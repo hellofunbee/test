@@ -1,0 +1,95 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    background: url("../img/login_bg.png") no-repeat;
+}
+.login{
+   /*  border-top: 1px solid #fff;
+   width: 90%;*/
+    /*padding: 2rem 0 0 5.4rem;*/
+   /* height: 99%;*/
+    /*background:url("../img/Group.png") no-repeat;*/
+    width:10.06rem;
+    height:3.01rem;
+    margin: 180px auto;
+    /*background-size: cover;*/
+    clear: both;
+    position:relative;
+}
+.login>div{
+	float:left;
+}
+.login>div>img{
+	display: block;
+}
+.loginImg {
+	float:left;
+	width: 4rem;
+	height:4rem;
+}
+.login>.center{
+	position:relative;
+}
+.login>.center>.l1{
+	position:absolute;
+	bottom:20px;
+	left:15px;
+}
+.login>.l1{
+    width: 2rem;
+    height: 1.6rem;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 1px 1px 3px #ccc;
+    float: left;
+    background: #fff;
+    position: absolute;
+    top: 0.8rem;
+    left: 7.1rem;
+}
+.login>.l1>p{
+    text-align: center;
+    font-size: .2rem;
+    padding-top: .29rem;
+    padding-bottom: .21rem;
+}
+.login .l1>ul{
+    width: 1.8rem;;
+    margin: 0 auto;
+    padding-top:0.1rem;
+}
+.login .l1>ul>li{
+    width: 100%;
+    color: #036393;
+    margin-bottom: .24rem;
+}
+.login .l1>ul>li>p{
+    font-size: .14rem;
+    line-height: .21rem;
+    margin-bottom: .03rem;
+    width: 0.66rem;
+    display: inline-block;
+}
+.login .l1>ul>li>input{
+    display: inline-block;
+    width: 52%;
+    height: .28rem;
+    line-height: .28rem;
+    border: 1px solid #036393;
+    box-sizing: border-box;
+    font-size: .14rem;
+    padding-left: .1rem;
+}
+#pass {
+	margin-bottom: 0;
+}
+#sub{
+    text-align: center;
+    color: #fff;
+    background-color: #026191;
+    cursor: pointer;
+    line-height: 0.26rem;
+    margin-top: .2rem;
+    font-size: .1rem;
+}

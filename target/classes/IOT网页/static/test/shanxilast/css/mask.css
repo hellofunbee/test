@@ -1,0 +1,172 @@
+#ms1>div.popup{
+    width: 75%;
+    min-width: 1080px;
+}
+#ms1>div.popup>div.pop_record{
+    width: 90%;
+    height: auto;
+    margin: 0.4rem auto;
+}
+#ms1 ul.list{
+    overflow: auto;
+}
+#ms1 ul.list>li{
+    width: 50%;
+    float: left;
+    margin-top: 0.1rem;
+    font-size: 0.14rem;
+}
+#ms1 ul.list>li>span.s1{
+    display: inline-block;
+    width: 1rem;
+    text-align: right;
+    padding-right: 0.2rem;
+    padding-left: 0.5rem;
+    color: #5AA055;
+}
+#ms1 ul.list>li>span.s2{
+    display: inline-block;
+    color: #114D0E;
+}
+
+#ms1 ul.list>li>span.s3{
+    display: inline-block;
+    width: 0.5rem;
+    text-align: right;
+    padding-right: 0.2rem;
+    color: #5AA055;
+}
+#ms1 ul.list>li>select,#ms1 ul.list>li>input{
+    display: inline-block;
+    width: 1.2rem;
+    color: #114D0E;
+    font-size: 0.14rem;
+}
+.sub1{
+    width: 120px;
+    text-align: center;
+    background-color: #7EE657;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin: 1rem auto;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.12rem;
+}
+.minequipment{
+    border: 1px solid #2fc73e;
+    position: relative;
+}
+.minequipment>p.title{
+    background-color: #fff;
+    color: #5aa055;
+    position: absolute;
+    left:0.1rem;
+    top:-0.1rem;
+    font-size: 0.14rem;
+}
+.minequipment div.t,.minequipment div.b{
+    border: 1px solid #2fc73e;
+    width: 90%;
+    margin: 0.3rem auto;
+    position: relative;
+}
+.minequipment div.t>p,.minequipment div.b>p{
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    left:0.1rem;
+    top:-0.1rem;
+    font-size: 0.14rem;
+}
+.minequipment ul{
+    padding: 20px 0;
+}
+.minequipment ul>li{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 4rem;
+    font-size: 0.12rem;
+}
+.minequipment ul>li>span{
+    display: inline-block;
+    color: #000;
+    font-size: 0.12rem;
+    height: 100%;
+    width: 1.5rem;
+    text-align: right;
+}
+.minequipment ul>li>input,.minequipment ul>li>select{
+    display: inline-block;
+    width: 1rem;
+}
+.minequipment ul>li>input.input1{
+    display: inline-block;
+    width: 0.6rem;
+}
+.tree>li>p.active{
+background-color:#168536;
+color:#fff;
+}
+#td{
+    border: 1px solid #2fc73e;
+    margin: 0.2rem auto;
+    font-size: 0.12rem;
+}
+#td th,#td tr{
+    text-align: center;
+    width: 1.3rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    border-top: 1px solid #2fc73e;
+}
+#td tr span{
+    display: block;
+    width: 90%;
+    height: 0.2rem;
+    margin: 0.05rem auto;
+    text-align: center;
+    line-height: 0.2rem;
+    cursor: pointer;
+    color: #0bc9ff;
+    border: 1px solid #0bc9ff;
+    border-radius: 5px;
+}
+#ms3 .popup{
+    width: 70%;
+}
+#ms3 .pop_ul{
+    width: 90%;
+    margin: 0 auto;
+    overflow: auto;
+}
+#ms3 .pop_record{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+#ms3 .pop_ul>li{
+    width: 45%;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    margin-top: 0.1rem;
+}
+#ms3 .pop_ul>li>span{
+   display: inline-block;
+    width: 1rem;
+    text-align: right;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 0.1rem;
+    font-size: 0.12rem;
+    color: rgb(90, 160, 85);
+    padding-right: 0.2rem;
+}
+#ms3 .pop_ul>li>input,#ms3 .pop_ul>li>select{
+    width: 2rem;
+   height: 100%;
+    border: 1px solid rgb(90, 160, 85);
+}

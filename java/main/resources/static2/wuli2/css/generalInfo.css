@@ -1,0 +1,372 @@
+/*信息列表*/
+.menuPage{
+	padding-top: .25rem;
+}
+.choose {
+	background: #fff;
+}
+
+.choose a {
+	color: #2F852A;
+}
+
+.menu_e_lists {
+	padding: 0 .127rem;
+}
+
+.menu_e_l_top {
+	position: relative;
+	margin-bottom: .05rem;
+	font-size: .0875rem;
+}
+
+.menu_e_l_t {
+	height: .2rem;
+	line-height: .2rem;
+	text-align: center;
+	background: #3BA9ED;
+	font-size: 0.0875rem;
+	color: #fff;
+}
+
+.menu_e_l_pic {
+	margin-bottom: .01875rem;
+    height: .75rem;
+    width: 100%;
+    display: block;
+    position: relative;
+    margin-top: .0625rem;
+}
+
+.menu_e_l_pic .bg {
+	width: 100%;
+	height: .75rem;
+	margin-bottom: 0.1rem;
+	position: relative;
+	background-color: #fff;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.menu_e_l_b {
+	font-size: .1rem;
+	text-align: center;
+	color: #0E64AD;
+	line-height: 0.2125rem;
+	height: 0.2125rem;
+}
+
+.menu_e_listinfo {
+	float: left;
+	border: 1px solid #3BA9ED;
+	width: 1rem;
+	margin-top: 0.0625rem;
+}
+
+.menu_e_l_pic img {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+
+/*信息列表*/
+
+
+/*设备详情*/
+
+.menu_e_info {
+	font-size: 0.0875rem;
+	line-height: .2125rem;
+}
+
+.menu_e_info_list_l {
+	/*padding-right: .1rem;*/
+	width: 60%;
+}
+.menu_e_info_list_l ul,.menu_e_info_l_r ul{
+	padding-top: .0625rem;
+}
+.menu_e_info_l_r {
+	width: 40%;
+}
+
+.menu_e_info_list_l li,
+.menu_e_info_l_r li {
+	width: 100%;
+}
+
+.menu_e_i_name {
+	padding-right: .1rem;
+	color: #95989A;
+	text-align: right;
+	width: 0.4125rem;
+}
+
+.menu_e_i_text {
+	color: #114D0E;
+}
+
+.btnnum {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: .405rem;
+	border-radius: .025rem;
+	background: #3366FF  url(../img/Path/1070.png) .0625rem center no-repeat;
+	padding-left: .2rem;
+	height: .175rem;
+	line-height: .175rem;
+	color: #fff;
+	font-size: .0875rem;
+	display: block;
+	margin-right: .03rem;
+}
+
+.alltime {
+	
+}
+
+
+/*设备详情*/
+
+
+/*实时信息*/
+
+.seconShow {
+	display: none;
+}
+.menu_e_actialout {
+	margin-left:.456rem;
+}
+.menu_e_actial {
+	border-right: 1px solid #ADCBDD;
+	border-bottom: 1px solid #ADCBDD;
+	color: #0E64AD;
+	font-size: .0875rem;
+	
+}
+
+.menu_e_actial tr>td{
+	border: 1px solid #ADCBDD;
+	border-right: none;
+	border-bottom: none;
+	text-align: center;
+	line-height: .2rem;
+	width: .75rem;
+	padding: 0 .05rem;
+}
+
+.menu_e_actial .menu_e_fir_td {
+	background: #5AA055;
+	color: #fff;
+	line-height: .2875rem;
+	white-space: nowrap;
+	text-align: right;
+	padding: 0 .0625rem
+}
+
+/*实时信息*/
+
+
+/*图片信息*/
+
+.pic_vido_bg {
+	display: none;
+}
+
+.pic_vido {
+	height: 2.343rem;
+	width: 100%;
+	background: #000;
+}
+
+.pic_content {
+	background: #fff;
+	height: 47%;
+	width: 100%;
+}
+
+.pic_co_save {
+	width: .85rem;
+	height: .2rem;
+	line-height: .2rem;
+	text-align: center;
+	display: block;
+	background: #51C626;
+	border-radius: .025rem;
+	margin: 0.0625rem auto;
+	/*	box-shadow: 0 .02rem .01rem .01rem #51C626;*/
+	color: #fff;
+	font-size: .1rem;
+}
+
+.pic_co_s_info {
+	width: 2.03rem;
+	border: 1px solid #B0DDAD;
+	border-radius: .025rem;
+	margin: .0625rem auto;
+	padding: 0 .0625rem .0625rem .1312rem;
+	box-sizing: border-box;
+}
+
+.pic_co_s_i_eye {
+	font-size: .1rem;
+	line-height: .125rem;
+	color: #5AA055;
+}
+
+.pic_co_s_i_num {
+	font-size: .0875rem;
+	line-height: .125rem;
+	color: #5AA055;
+}
+
+
+/*图盘信息*/
+
+.pic_co_s_i_l_l {
+	width: 1.44rem;
+}
+
+.pic_co_s_i_l_r {
+	width: .375rem;
+}
+
+.pic_co_s_i_list {
+	line-height: .1875rem;
+	color: #5AA055;
+	margin-top: .0625rem;
+}
+
+.pic_co_s_i_list label {
+	width: .525rem;
+	text-align: right;
+	margin-right: .125rem;
+	display: inline-block;
+}
+
+.pic_co_s_i_l_l span {
+	display: none;
+}
+
+.pic_co_s_i_l_l input {
+	display: inline-block;
+	width: .51rem;
+	border: 1px solid #5AA055;
+	height: .162rem;
+	line-height: .162rem;
+	padding: 0 .043rem;
+	color: #2F852A;
+}
+
+.pic_co_s_i_l_l input::-webkit-input-placeholder {
+	/* placeholder颜色  */
+	color: #2F852A;
+	/* placeholder字体大小  */
+	font-size: .0875rem;
+	/* placeholder位置  */
+	text-align: right;
+}
+
+.pic_co_s_i_l_r a {
+	width: .375rem;
+	height: .175rem;
+	background: #51C626;
+	text-align: center;
+	line-height: .175rem;
+	font-size: .0875rem;
+	margin-bottom: .125rem;
+	display: inline-block;
+	border-radius: .025rem;
+	color: #fff;
+}
+
+
+/*信息管理*/
+
+.mana_lists {
+	padding: .0625rem .1875rem;
+	color: #5AA055;
+	line-height: .3125rem;
+	font-size: .1rem;
+}
+
+.mana_lists label {
+	width: .5rem;
+	text-align: right;
+	display: inline-block;
+}
+
+.mana_l_text {
+	padding-left: .1187rem;
+	color: #114D0E;
+}
+
+
+/*信息管理*/
+.menu_e_act_bg {
+	width:100%;
+	overflow-x:scroll ;
+	position: relative;
+}
+
+
+.menu_e_act_bg_l {
+	position: fixed;
+	width:.518rem;
+	box-sizing: border-box;
+	text-align: right;
+	line-height: .2rem;
+	font-size: .0875rem;
+	color: #fff;
+	background: #3BA9ED;
+}
+.menu_e_act_bg_l  li {
+	border-bottom: 1px solid #ADCBDD;
+	padding-right:.0625rem;
+	box-sizing: border-box;
+}
+.menu_e_act_out {
+	display: none;
+}
+.menu_data_bg>li{
+	width: 1rem;
+	height: 1.25rem;
+}
+.menu_data_bg>li>img{
+	
+}
+
+
+.menu_e_fir_times {
+	line-height: .24rem;
+}
+
+.menu_e_actial .menu_e_fir_datas {
+	line-height:.12rem;
+}
+.choose a{
+	color: #2C68FF;
+}
+.menu_equip {
+	height: .562rem;
+}
+.btnAlltime {
+	display: none;
+}
+.btnHistory{
+	background: #3366FF  url(../img/temperature_2_.png) .0625rem center no-repeat;
+}
+.menu_e_a_inner {
+	clear: both;
+	overflow: scroll;
+	white-space: nowrap;
+	display: table-cell;
+	
+}

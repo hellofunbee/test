@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1849 -5741 80 28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        stroke: #7c8c9f;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-4 {
+        fill: #02265a;
+        font-size: 14px;
+        font-family: YuGothicUI-Regular, Yu Gothic UI;
+      }
+
+      .cls-5 {
+        font-family: MicrosoftJhengHeiUIRegular, Microsoft JhengHei UI;
+      }
+
+      .cls-6 {
+        stroke: none;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="80" height="28"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#b3bcc6"/>
+    </linearGradient>
+  </defs>
+  <g id="Repeat_Grid_319" data-name="Repeat Grid 319" class="cls-2" transform="translate(-1849 -5741)">
+    <g id="Group_3078" data-name="Group 3078" transform="translate(-790 -112)">
+      <g id="Rectangle_1130" data-name="Rectangle 1130" class="cls-3" transform="translate(790 112)">
+        <rect class="cls-6" width="80" height="28" rx="4"/>
+        <rect class="cls-1" x="0.5" y="0.5" width="79" height="27" rx="3.5"/>
+      </g>
+      <text id="数据导入" class="cls-4" transform="translate(830 131)"><tspan x="-28" y="0">数据</tspan><tspan class="cls-5" y="0">导</tspan><tspan y="0">入</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+/*头部*/
+header{
+	height: .25rem;
+	line-height: .1875rem;
+	background: #eff5fb;
+	overflow: hidden;
+	padding: 0.03125rem 0.0625rem;
+	box-sizing: border-box;
+	margin-bottom: 0.0625rem;
+}
+	/*返回按钮*/
+	header .back{
+		float: left;
+		width: .5rem;
+		height: .1875rem;
+		border-radius: .025rem;
+		padding-left: .1875rem;
+		color: #fff;
+		font-size: .1rem;
+		text-align: left;
+		background: #3366FF url(../img/backtoHome.svg) .0625rem center/.0812rem .137rem no-repeat;
+		box-sizing: border-box;
+		cursor: pointer;
+		box-shadow: 0 2px 9px 2px rgba(0,100,173,.3);
+	}
+	
+	/*搜索框*/
+	input::-webkit-input-placeholder{
+		color: #dbe2ea;
+	}
+	header .search{
+		float: right;
+		position: relative;
+		padding-left: .185rem;
+		padding-right: .3625rem;
+		box-sizing: border-box;
+		width: 1.5625rem;
+		height: .1875rem;
+		box-sizing: border-box;
+		border-radius: .025rem;
+		background: #fdfdff;
+		font-size: .096rem;
+		overflow: hidden;
+	}
+	header .search>img{
+		position: absolute;
+		left: 0;
+		top: 0.04rem;
+		width: .125rem;
+		margin: 0 0.02rem 0 0.04rem;
+	}
+	header .search>button{
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: .1875rem;
+		width: .3625rem;
+		background: #3367fb;
+		color: #fff;
+		text-align: center;
+	}
+	header .search>input{
+		width: 100%;
+	}
+	
+	
+		
+	
+/*内容*/

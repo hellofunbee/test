@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1581 -5735 72 28">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #778189;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-3 {
+        fill: #02265a;
+      }
+
+      .cls-2 {
+        font-size: 14px;
+        font-family: YuGothicUI-Regular, Yu Gothic UI;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#b3bcc6"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_888" data-name="Group 888" transform="translate(-3013 -6166)">
+    <g id="Rectangle_3911" data-name="Rectangle 3911" class="cls-1" transform="translate(1432 431)">
+      <path class="cls-4" d="M0,0H68a4,4,0,0,1,4,4V24a4,4,0,0,1-4,4H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"/>
+      <path class="cls-5" d="M1,.5H68A3.5,3.5,0,0,1,71.5,4V24A3.5,3.5,0,0,1,68,27.5H1A.5.5,0,0,1,.5,27V1A.5.5,0,0,1,1,.5Z"/>
+    </g>
+    <text id="搜索" class="cls-2" transform="translate(1474.5 450.2)"><tspan x="-14" y="0">搜索</tspan></text>
+    <path id="search_icon" data-name="search icon" class="cls-3" d="M14,12.906,9.844,8.641a5.293,5.293,0,0,0,1.094-3.172A5.485,5.485,0,0,0,5.469,0,5.416,5.416,0,0,0,0,5.469a5.485,5.485,0,0,0,5.469,5.469A5.293,5.293,0,0,0,8.641,9.844L12.8,14ZM1.094,5.469A4.375,4.375,0,1,1,5.469,9.844,4.388,4.388,0,0,1,1.094,5.469Z" transform="translate(1445.5 438.6)"/>
+  </g>
+</svg>

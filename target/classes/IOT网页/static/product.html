@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>生产管理</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/sweetalert.css">
+		<link href="css/product.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/ion.calendar.css"/>
+		<link rel="stylesheet" href="css/common.css" />
+		<style type="text/css">
+			.sweet-alert{
+				top:75% ;
+			}
+			.sweet-alert fieldset{
+				display: none;
+			}
+			.sweet-alert .sa-error-container{
+				display: none;
+			}
+			.sweet-alert button{
+				margin-top:0px;
+			}			
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="left fl">
+				<div>
+					<div class="nav_left">
+						<div class="icon student">
+							<img src="./img/home.png" alt="" />
+						</div>
+						<p class="pinline" style="font-size: 0.12rem"> 山西农业大学互联网+项目</p>
+						<ul id="navigation" style="font-size: 0.12rem">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div class="r_top" style="display: none">
+					<ul class="ul_top">
+						<li class="choose">智能控制管理</li>
+						<li>投入品管理</li>
+						<li>生产计划管理</li>
+						<li>专家远程指导</li>
+					</ul>
+				</div>
+				<div class="r_mid" style="display: none">
+					<ul class="mid_info" style="display: block">
+						<li class="choose">现场监测</li>
+						<li>智能控温系统</li>
+						<li>智能控水系统</li>
+						<li>智能补光系统</li>
+						<li>土壤温度</li>
+						<li>土壤湿度</li>
+					</ul>
+					<div class="add_de" style="display: none;height: 100%">
+						<select name="" id="classify3">
+							<option value="0">全部</option>
+						</select>
+						<select name="" id="classify4">
+							<option value="0">全部</option>
+						</select>
+						<input class="tgT datas" type="text"  id="date"  placeholder="起始时间(2017-01-01)">
+						<span class="hengTou">-</span>
+						<input class="tgFt datas" type="text"  id="date"  placeholder="结束时间(2017-01-01)">
+						<input class="beginT datas" type="text"  id="date"  placeholder="开始时间(2017-01-01)">
+						<span class="heng">-</span>
+						<input class="finishT datas" type="text"  id="date"  placeholder="结束时间(2017-01-01)">
+						<div class="search">搜索</div>
+						<div class="add addProduct">添加投入品</div>
+						<div class="add addPlain">新建排产计划</div>
+					</div>
+				</div>
+				<!--投入品生产计划-->
+				<div class="r_bot r_bot1" style="display: none">
+					<div class="moni_tab">
+						<table class="tab2">
+							<thead>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="text-align: center">1号大棚-马晓晴</td>
+									<td>青椒（绿色）</td>
+									<td>国福（308）</td>
+									<td>有机</td>
+									<td>1.5</td>
+									<td>2017-08-22</td>
+									<td>2017-12-22</td>
+									<td>
+										<span class="edit">编辑</span>
+										<span class="delete">删除</span>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<div id="parentpage" style="text-align: center;">
+						<div id="page1" class="page_div"></div>
+					</div>
+				</div>
+				<div class="r_bot r_bot3" style="display: none;">
+					<div>
+
+					</div>
+				</div>
+				<!--智能控制管理-->
+				<div class="r_bot r_bot4" style="display: none">
+					<div class="video fl">
+						<div class="watch">
+							<iframe id="iframe1" src="./demo01.html" frameborder="0"></iframe>
+
+						</div>
+						
+						<div class="controlOut">
+							<ul class='controlBysel'>
+								<!--非控温-->
+								<li class='controlByno'>
+									<div class='controlTypeNo'>
+										<span>自动控制方式</span>
+										<span>预约控制方式</span>
+										<span>智能控制方式</span>
+									</div>
+									<div class="feiwen">
+										<!--电磁阀-->
+										<p class='changeState'>
+											<button data-s="0" class="changeSt_off">关闭</button>
+											<button data-s="-1" class="changeSt_on">开启</button>
+										</p>
+										<!--电机-->
+										<div class='controlTypeWenOut'>
+											<div class='controlWenOut'>
+												<p class='controlWen' style="padding: .16rem .0;">
+													<span>上升</span>
+													<span>下降</span>
+													<span>停止</span>
+												</p>
+												<p class='controlCont'>
+													<span>设置开启度</span>
+													<input type="text" placeholder="%" />
+													<button class="nowMove">执行</button>
+												</p>
+											</div>
+										</div>
+										</div>
+										<div class="list feiwen">
+											<ul class="wa_intel">
+												<li>
+													采集周期:
+												</li>
+												<li>
+													开始时间:
+												</li>
+												<li>
+													结束时间:
+												</li>
+											</ul>
+										</div>
+
+										<ul class="wa_intel2 feiwen">
+											<li>&gt;30℃开启</li>
+											<li>&lt;24℃关闭</li>
+										</ul>
+								</li>
+								<!--控温-->
+								<li class='controlByWen'>
+									<div class='controlTypeWen'>
+										<span id='wenself'>自动控制方式</span>
+										<span id='wenzhi'>智能控制方式</span>
+									</div>
+									<div class='feiwen'>
+										<!--电磁阀-->
+										<p class='changeState'>
+											<button data-s="0" class="changeSt_off">关闭</button>
+											<button data-s="-1" class="changeSt_on">开启</button>
+										</p>
+										<!--电机-->
+										<div class='controlTypeWenOut'>
+											<div class='controlWenOut'>
+												<p class='controlWen'  style="padding: .16rem .0;">
+													<span>上升</span>
+													<span>下降</span>
+													<span>停止</span>
+												</p>
+												<p class='controlCont'>
+													<span>设置开启度</span>
+													<input type="text" placeholder="%" />
+													<button class="nowMove">执行</button>
+												</p>
+											</div>
+										</div>
+									</div>
+									<ul class="wa_intel2 feiwen">
+										<li>&gt;30℃开启</li>
+										<li>&lt;t24℃关闭</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<ul class="sensorAnimation" style="width: 7rem;float: left;">
+
+					</ul>
+					<div class="speack fl">
+						<img src="img/sounds.svg"/>
+						<span class='speakText' data-s="0">开启对讲</span>
+					</div>
+					<div class='moveInfo'>
+						<p id='moveText'>欢迎使用远程专家指导系统</p>
+					</div>
+				</div>
+				<div class="r_bot r_bot5" style="display: none">
+					<ul>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="mask mask1 addNews" style="display: none">
+			<div class="popup">
+				<div class="pop_tit" style="position: relative">
+					<p>新建投入品使用记录</p> <span class="close" style="position: absolute;top:0;right:1px">X</span></div>
+				<div class="pop_record" style="overflow: auto">
+					<ul class="pop_ul">
+						<li>
+							<p class="pop_tit2">种植作物</p>
+							<div class="pop_kuang">
+								<select class="s1">
+									<option value="">123</option>
+								</select>
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">投放时间</p>
+							<div class="pop_kuang">
+								<input class="s2" type="text" placeholder="例:2017-01-01">
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">投放明细</p>
+							<div class="pop_kuang">
+								<input class="s3" type="text">
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">投放数量</p>
+							<div class="pop_kuang">
+								<input class="s4" type="text">
+							</div>
+						</li>
+					</ul>
+					<div class="addtouruagain">
+						<img src="img/pro_in.svg" alt="" class="pro_in" />
+					</div>
+				</div>
+				<div>
+					<span class="pop_cancel">取消</span>
+					<span class="pop_save sureuse" data-id="0">保存</span>
+				</div>
+			</div>
+		</div>
+		<div class="mask mask2" style="display: none">
+			<div class="popup" style="height: 5rem;margin: 0.5rem auto 0">
+				<div class="pop_tit"><a class='popname'>新建生产计划 </a><span class="close">X</span></div>
+				<div class="pop_record" style="height: 3.5rem">
+					<ul class="pop_ul">
+						<li>
+							<p class="pop_tit2">作物种类</p>
+							<div class="pop_kuang">
+								<select class="s1">
+									<option value="">123</option>
+								</select>
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">排产品种</p>
+							<div class="pop_kuang">
+								<select class="s2">
+									<option value="">123</option>
+								</select>
+							</div>
+						</li>
+						<li style="width: 4rem">
+							<p class="pop_tit2">排产标准</p>
+							<div class="pop_kuang checkNewarr radios">
+								<label class='ss'>
+		                            <input name="biaozhun" checked value="1" type="radio" class="s3" style="width: 0.2rem;height: 0.2rem">
+		                            <span style="font-size: 0.13rem;color:#5AA055">有机</span>
+		                        </label>
+								<label>
+		                            <input name="biaozhun" value="2" type="radio" class="s4" style="width: 0.2rem;height: 0.2rem">
+		                            <span style="font-size: 0.13rem;color:#5AA055">绿色</span>
+		                        </label>
+								<label>
+		                            <input name="biaozhun" value="3"  type="radio" class="s5" style="width: 0.2rem;height: 0.2rem">
+		                            <span style="font-size: 0.13rem;color:#5AA055">无公害</span>
+		                        </label>
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">排产时间</p>
+							<div class="pop_kuang">
+								<input type="text" class="s6" placeholder="2017-01-01">
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">结束时间</p>
+							<div class="pop_kuang">
+								<input type="text" class="s7" placeholder="2017-01-01">
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">采收开始时间</p>
+							<div class="pop_kuang">
+								<input type="text" class="s8" placeholder="2017-01-01">
+							</div>
+						</li>
+						<li>
+							<p class="pop_tit2">排产面积</p>
+							<div class="pop_kuang">
+								<input type="text" class="s9">
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<span class="pop_cancel">取消</span>
+					<span class="pop_save sureproct" dataArr='0' dataId=''>保存</span>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/sweetalert.min.js"></script>
+	<script src="js/moment.min.js"></script>
+	<script src="js/moment.zh-cn.js"></script>
+	<script src="js/ion.calendar.min.js"></script>
+	<script src="./js/template.js"></script>
+	<script src="./scripts/httpHeader.js"></script>
+	<script type="text/javascript" src="scripts/product.js"></script>
+	<script type="text/javascript" src="js/paging.js"></script>
+	<script src="./js/jquery.rotate.min.js"></script>
+	<script src="./js/rem.js"></script>
+</html>

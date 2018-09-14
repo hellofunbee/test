@@ -1,0 +1,40 @@
+.menu_equip {
+    height: .562rem;
+}
+.wrap {
+	padding-top: .25rem;
+}
+.menu_eq_list ul {
+    background: #40B6E6;
+    box-shadow: 0 0.01rem 0.01rem 0.01rem rgba(0, 0, 0, .5);
+}
+.menu_eq_list .active {
+    background: #3366FF;
+    color: #fff;
+}
+.menu_eq_list li {
+    margin: .025rem 0 .025rem .0625rem;
+    padding: 0 .093rem;
+    line-height: .2rem;
+    background: #fff;
+    border-radius: .025rem;
+    font-size: .1rem;
+    color: #0887D6;
+}
+.productDesign img{
+	width: .5rem;
+	height: .5rem;
+	margin: .775rem auto .4rem;
+	display: block;
+}
+.productDesign p{
+	font-size: .125rem;
+	color:#0887D6;
+	text-align: center;
+	line-height: .168rem;
+	
+	
+}
+.productDesign {
+	display: none;
+}

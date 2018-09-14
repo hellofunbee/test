@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="js/layer/skin/layer.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="overflow:hidden">
+<div class="mx-header">
+    <div class="mx-contaniner clearfix"><a href="/" class="mx-logo">物联网综合信息云平台</a>
+        <div class="mx-topNocie">
+            <div class="mx-topNocieCnt"><span>滚动消息</span> <span>滚动消息</span> <span>滚动消息</span></div>
+        </div>
+        <div class="mx-topSearch"><input type="text" placeholder="请输入您想查询的文章标题"> <a href="#">搜索</a></div>
+    </div>
+</div>
+<div class="header-line"></div>
+<div class="mx-navCnt">
+    <ul class="mx-nav">
+        <li class=""><a href="javascript:;"><i class="ico1"></i>首页</a></li>
+        <li><a href="javascript:;"><i class="ico2"></i>GIS系统</a>
+            <dl class="nav-drop" style="width:390px;left:-60px">
+                <dd class=""><a href="javascript:;">设备分布</a></dd>
+                <dd><a href="javascript:;">物种分布</a></dd>
+                <dd><a href="javascript:;">生产分布</a></dd>
+                <dd><a href="javascript:;">信息预警</a></dd>
+            </dl>
+        </li>
+        <li><a href="javascript:;"><i class="ico3"></i>综合信息</a>
+            <dl class="nav-drop" style="width:390px">
+                <dd class=""><a href="javascript:;">传感信息</a></dd>
+                <dd><a href="javascript:;">图片信息</a></dd>
+                <dd><a href="javascript:;">视频信息</a></dd>
+                <dd><a href="javascript:;">管理信息</a></dd>
+            </dl>
+        </li>
+        <li><a href="javascript:;"><i class="ico4"></i>生产管理</a>
+            <dl class="nav-drop" style="width:400px">
+                <dd><a href="javascript:;">智能控制</a></dd>
+                <dd><a href="javascript:;">投入品</a></dd>
+                <dd><a href="javascript:;">生产计划</a></dd>
+                <dd><a href="javascript:;">专家远程指导</a></dd>
+            </dl>
+        </li>
+        <li><a href="javascript:;"><i class="ico5"></i>大数据分析</a>
+            <dl class="nav-drop" style="width:420px;left:-120px">
+                <dd><a href="javascript:;">监测单数据</a></dd>
+                <dd><a href="javascript:;">监测多数据</a></dd>
+                <dd><a href="javascript:;">生产数据</a></dd>
+                <dd><a href="javascript:;">市场数据</a></dd>
+            </dl>
+        </li>
+        <li><a href="javascript:;"><i class="ico6"></i>信息发布</a>
+            <dl class="nav-drop" style="width:510px;left:-150px">
+                <dd><a href="javascript:;">政策信息</a></dd>
+                <dd><a href="javascript:;">即时信息</a></dd>
+                <dd><a href="javascript:;">预警信息</a></dd>
+                <dd><a href="javascript:;">首页资讯</a></dd>
+                <dd><a href="javascript:;">首页轮播图</a></dd>
+            </dl>
+        </li>
+        <li><a href="javascript:;"><i class="ico7"></i>专家系统</a></li>
+        <li class="user-type-admin"><a href="javascript:;"><i class="ico8"></i>系统管理</a>
+            <dl class="nav-drop" style="width:390px;right:0;left:inherit">
+                <dd><a href="javascript:;">设备管理</a></dd>
+                <dd><a href="javascript:;">分类管理</a></dd>
+                <dd><a href="javascript:;">用户管理</a></dd>
+                <dd><a href="javascript:;">权限管理</a></dd>
+            </dl>
+        </li>
+        <li><a href="javascript:;"><i class="ico9"></i>注销</a></li>
+    </ul>
+</div>
+<div id="main_iframe"></div>
+<script>var _hmt = _hmt || []</script>
+<script type="text/javascript">if (!window.jQuery) {
+    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/swiper.min.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+    document.write(html)
+}</script>
+<script src="js/index.js"></script>
+<script>API.listMessage(2, null, null, function (t) {
+    var e = t.object, i = 3 < e.length ? e.slice(0, 3) : e, n = $(".mx-topNocieCnt").empty();
+    $(i).each(function (t) {
+        $("<span></span>").attr("m_id", this.m_id).text(this.m_title).appendTo(n).click(function () {
+            return showMessageDetail($(this).attr("m_id")), !1
+        })
+    })
+}), $(".mx-topNocie").slide({
+    mainCell: ".mx-topNocieCnt ",
+    autoPlay: !0,
+    effect: "leftMarquee",
+    interTime: 50,
+    vis: 3,
+    trigger: "click"
+})</script>
+<script>!function (e) {
+    var t = document.createElement("script");
+    t.src = "https://hm.baidu.com/hm.js?29af1c870a0982d5fcf6059288d2be0d";
+    var c = document.getElementsByTagName("script")[0];
+    c.parentNode.insertBefore(t, c)
+}()</script>
+</body>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=1XR2D1wencMcoyeNTcOt6E7pe6AnUFkp"></script>
+</html>

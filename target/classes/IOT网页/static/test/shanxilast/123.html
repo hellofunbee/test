@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/sweetalert.css">
+    <style>
+    	iframe{
+    		position: absolute;
+    		top:0;
+    		left:0;
+    	}
+    </style>
+</head>
+<body>
+<div class="pop_kuang checkNewarr radios">
+								<label class='ss'>
+		                            <input name="biaozhun" checked  value="1" type="radio" class="s3" style="width: 0.2rem;height: 0.2rem">
+		                            <span style="font-size: 0.13rem;color:#5AA055">有机</span>
+		                        </label>
+								<label>
+		                            <input name="biaozhun" value="2" type="radio" class="s4" style="width: 0.2rem;height: 0.2rem">
+		                            <span style="font-size: 0.13rem;color:#5AA055">绿色</span>
+		                        </label>
+								<label>
+		                            <input name="biaozhun" value="3"  type="radio" class="s5" style="width: 0.2rem;height: 0.2rem">
+		                            <span style="font-size: 0.13rem;color:#5AA055">无公害</span>
+		                        </label>
+							</div>
+							<button>123123123</button>
+</body>
+<script>
+</script>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script>
+	
+
+	$('button').click(function(){
+		 var val=$('.radios input:radio[name="biaozhun"]:checked').val();
+                alert(val);
+            
+	})
+</script>

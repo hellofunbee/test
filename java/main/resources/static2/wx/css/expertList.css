@@ -1,0 +1,79 @@
+
+
+
+
+/*详情列表*/
+
+.expertList {
+	width: 2.243rem;
+	margin: 0 auto;
+}
+
+.expertList li {
+	position: relative;
+	margin-top: .125rem;
+	box-shadow: .1rem .1rem 0.2rem 0.01rem rgba(0, 0, 0, .1);
+	color: #114D0E;
+	box-sizing: border-box;
+	padding: 0 .0625rem .15rem;
+}
+
+.expertList li img {
+	position: absolute;
+	top: -.0625rem;
+	right: .0625rem;
+	width: .75rem;
+	height: .75rem;
+	border-radius: .0187rem;
+	padding: .0187rem .0625rem 0;
+}
+
+.expertList_tit {
+	line-height: .1312rem;
+	font-size: .1rem;
+	margin-bottom: .162rem;
+}
+
+.expertList_tex {
+	line-height: .1312rem;
+	font-size: .1rem;
+}
+
+.expertList_data {
+	line-height: .1312rem;
+	font-size: .1rem;
+	color: #E2846D;
+}
+
+.expertList_text {
+	font-size: .075rem;
+	line-height: .125rem;
+	color: #6D847D;
+	margin-top: .0187rem;
+}
+
+.addserves {
+	width: .5rem;
+	height: .1875rem;
+	line-height: .1875rem;
+	text-align: center;
+	background: #51C626;
+	color: #fff;
+	border-radius: .025rem;
+	display: inline-block;
+	margin-top: .0625rem;
+}
+
+.addservesOut {
+	width: 2.218rem;
+	margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+

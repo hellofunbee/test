@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/productControl.css" />
+		<title>生产管理</title>
+	</head>
+	<body>
+		<div class="fir_var_menu" id="fir_var_menu">
+			<p class='fir_var_bor'></p>
+			<span class="fir_var_menu_close">关闭</span>
+			<ul class='fir_var_m_list'>
+				<li class='firpage'>首页</li>
+				<li class='sistem'>GIS系统</li>
+				<li class='controlinfo'>综合信息</li>
+				<li class="product">生产管理</li>
+				<li class="moreinfo">大数据分析</li>
+				<li class='expertsis'>专家系统</li>
+				<li class="proinfo">信息发布</li>
+				<!--<li class='sisterm'>系统设置</li>-->
+				<li class='noborder'>注销</li>
+			</ul>
+		</div>
+		<!--	摄像头-->
+		<div class="fir_pro_menu" id="fir_pro_menu">
+			<p class='fir_var_bor'></p>
+			<span class="fir_pro_menu_close">关闭</span>
+			<div class='gis-camera'>
+				<div class="treeleft">
+					<p class="treeleft_head">山西农业大学互联网+项目</p>
+					<ul class='treeleft_second'>
+						<li class='treeleft_student'>
+							<span class="leftLies">
+							学生组
+						</span>
+							<ul class='treeleft_stu_lists'>
+								<script type="text/html" id="temp">
+									{{each object as val i}}
+									<li id="{{val.tp_id}}">
+										<div class="icon fa2">
+											<img src="./img/online.png" alt="" />
+										</div>
+										<p class="pinline pinline01">{{val.tp_name}}</p>
+										<ul class="tree2">
+
+										</ul>
+									</li>
+									{{/each}}
+								</script>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--	摄像头-->
+		<div class='page_bg'>
+			<div class="fir_head clear">
+				<span class='fir_head_all'>智能控制</span>
+				<span id="" class='fl fir_head_l'>
+				
+			</span>
+				<span id="" class='fr fir_head_r_search'>
+				
+			</span>
+				<span id="" class='fr fir_head_r'>
+				
+			</span>
+			</div>
+			<div id="" class="menu_equip">
+				<ul>
+					<li class='menu_e_list choice'>
+						<a href="productControl.html">智能控制</a>
+					</li>
+					<li class='menu_e_list'>
+						<a href="product_inputs.html">投入品</a>
+					</li>
+					<li class='menu_e_list'>
+						<a href="product_Argument.html">生产计划</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="menuPage">
+			<div class="proFirData">
+				<div class='menu_eq_list' style="width: 100%;overflow-x: scroll;overflow-y: hidden;">
+					<ul class="clear" class="menu_eq_l_ulAll" style="min-width: 100%;">
+					</ul>
+					<div class="toRight">
+						<span></span>
+					</div>
+				</div>
+				<img class='inte_vido' src='' alt="该摄像头暂无图片" />
+				<div class='inte_v_contro_out'>
+					<!--非空光-->
+						<div class='inte_v_contro inte_v_con_feiwen clear'>
+							<div class="fl inte_v_contro_li" style="border-left: 1px solid #95989A;">自动控制</div>
+							<div class="fl inte_v_contro_li">预约控制</div>
+							<div class="fl inte_v_contro_li">智能控制</div>
+						</div>
+					<!--控光-->
+						<!--<div class='inte_v_contro inte_v_con_kongwen clear'>
+							<div class="fl inte_v_contro_li" style="border-left: 1px solid #95989A;">自动控制</div>
+							<div class="fl inte_v_contro_li">预约控制</div>
+							<div class='inte_v_contro_li fl'>智能控制</div>
+						</div>-->
+					</div>
+				
+				<input type="hidden" name="" id="hiddenName" value="" />
+				<div class="inte_vido_outs">
+					<div class='inte_vi_dataBg'>
+						<ul class='inte_vi_dataGroup'>
+									<li class="inte_v_control">
+										<!--电机-->
+										<div class='inte_v_dianji'>
+											<div class="clear inte_v_c_img">
+												<img src="img/control/2693.svg" />
+												<img src="img/control/2694.svg" />
+												<img src="img/control/2695.svg" />
+											</div>
+											<div class="inte_v_c_degree clear">
+												<span class='fl'>设置开启度</span>
+												<div class='fl inte_v_c_deinpuOut'>
+													<input style="margin-right:0;border:1px solid #3366FF" type="text" name="" id="" value="" />
+													<span>%</span>
+												</div>
+												<img src="img/control/2696.svg" />
+												<span style='position：absolute；right'></span>
+											</div>
+										</div>
+										<!--电磁阀-->
+										<div class="clear line_water">
+											<img class="line_water_stop fl" src="img/control/2695.svg" />
+											<img class="fr" src="img/control/2701.svg" />
+										</div>
+									</li>
+									<!--预约控制-->
+									<li class="inte_v_control inte_v_yuyue">
+										<div class='contro_cont'>
+											<div class="list clear yuyueControl">
+												<p>下一个预约指令:</p>
+												<ul class="wa_intel">
+													
+												</ul>
+											</div>
+										</div>
+									</li>
+									<!--智能控制-->
+									<li class="inte_v_control">
+										<div class='contro_cont contro_cont_zhi clear'>
+											<span>>30℃  开启</span>
+											<span><24℃  关闭</span>
+											<span>仅做工作展示</span>
+										</div>
+										<li>
+						</ul>
+					</div>
+					<!--植物列表-->
+					<div class="product_content">
+		
+						<ul class='clear menu_data_bg'>
+						</ul>
+						
+					</div>
+					<!--植物列表-->
+				</div>
+			</div>
+		</div>
+		
+		<!--<div class="backData" onclick="secondClick()">查看实时画面</div>-->
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src='js/loading.js'></script>
+		<script type="text/javascript" src='js/jquery.rotate.min.js'></script>
+		<script type="text/javascript" src='js/sweetalert.min.js'></script>
+		<script src="js/loading.js"></script>
+		<script src="js/httpHeader.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/commen.js"></script>
+		<script type="text/javascript" src='js/showBoMore.js'></script>
+		<script type="text/javascript" src='js/productControl.js'></script>
+	</body>
+
+</html>

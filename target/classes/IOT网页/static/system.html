@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>发布信息</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link href="css/system.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/mask.css">
+    <link rel="stylesheet" href="./css/sweetalert.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="left fl">
+        <div>
+            <div class="nav_left">
+                <div class="point">
+                    <div class="icon student">
+                        <img src="./img/home.png" alt=""/>
+                    </div>
+                    <p class="pinline" style="font-size: 0.12rem"> 山西农业大学互联网+项目</p>
+                    <ul id="navigation" style="font-size: 0.12rem">
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="r_top">
+            <ul class="ul_top">
+                <li class="choose">设备管理</li>
+                <li>摄像头管理</li>
+                <li style="display: none">控制管理</li>
+                <li>分类管理</li>
+                <li>专家管理</li>
+                <li>用户管理</li>
+               <li>生产者管理</li>
+                <li>管理者管理</li>
+                 <li>权限管理</li>
+            </ul>
+        </div>
+        <div class="r_mid" style="display: block">
+            <div class="mid_five" style="display: block">
+                <div class="addMin">添加主设备</div>
+                <div class="addMinM">批量添加主设备</div>
+            </div>
+            <div class="mid_one" style="display: none">
+                <div class="addsxt">添加摄像头</div>
+                <div class="tbpz">同步配置</div>
+            </div>
+            <div class="mid_two" style="display: none">
+                <ul class="mid_info">
+                    <li class="choose">控制输出开关</li>
+                    <li>查看输入开关</li>
+                    <li>配置输出开关</li>
+                    <li>配置输入开关</li>
+                    <li>开关状态查询</li>
+                </ul>
+            </div>
+            <div class="mid_three" style="display: none">
+                <div class="sear fl">
+                    <input type="text" placeholder=""/>
+                    <span class="search" id="search" data-s="0">搜索</span>
+                </div>
+                <div class="addguanlizhe">添加管理者</div>
+            </div>
+            <div class="mid_four" style="display: none">
+                <ul class="mid_info mid_info2">
+                    <li data-id="0">站点分类</li>
+                    <li data-id="1">作物分类</li>
+                    <li data-id="2">农资分类</li>
+                    <li data-id="3">预警信息分类</li>
+                    <li data-id="4">政策信息分类</li>
+                    <li data-id="5">即时信息分类</li>
+                    <li data-id="6" style="display: none">专家分类</li>
+                   <!-- <li data-id="7">首页资讯分类</li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="r_bot r_bot1" style="display: none">
+            <div class="moni_tab">
+                <table class="tab2">
+                    <thead>
+                    <tr>
+                        <th>IPC编号</th>
+                        <th>主设备号</th>
+                        <th>设备名称</th>
+                        <th>IP地址</th>
+                        <th>控制端口</th>
+                        <th>码流类型</th>
+                        <th>电源控制</th>
+                        <th>同步状态</th>
+                        <th>设备状态</th>
+                        <th>参数配置</th>
+                        <th>视频代理</th>
+                        <th>控制代理</th>
+                        <th>视频配置</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>10.00.21.30</td>
+                        <td>1号摄像头</td>
+                        <td>192.168.0.164</td>
+                        <td>80</td>
+                        <td>主码流</td>
+                        <td>不控制</td>
+                        <td>已同步</td>
+                        <td>在线</td>
+                        <td>
+                            <span class="edit">编辑</span>
+                        </td>
+                        <td>
+                            <span class="edit">修改</span>
+                        </td>
+                        <td>
+                            <span class="edit">修改</span>
+                        </td>
+                        <td>
+                            <span class="edit">修改</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="operate">
+                <div>保存参数</div>
+                <div class="writein">写入设备</div>
+                <div>重置</div>
+            </div>
+        </div>
+        <!--专家管理-->
+        <div class="r_bot r_bot2" style="display: none">
+            <div class="moni_tab2">
+                <table class="tab2">
+                    <thead>
+                    <tr>
+                        <th>专家姓名</th>
+                        <th style="width: 6%">性别</th>
+                        <th>手机号</th>
+                        <th style="width: 18%">电子邮箱</th>
+                        <th>职务/学历</th>
+                        <th style="width: 25%">所属分类</th>
+                        <th style="width: 15%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                  
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center;" id="parentpage">
+                <div id="page" class="page_div"></div>
+            </div>
+        </div>
+        <!--用户展示-->
+        <div class="r_bot r_bot23" style="display: none">
+            <div class="moni_tab2">
+                <table class="tab2">
+                    <thead>
+                    <tr>
+                        <th class="title">用户名</th>
+                        <th>手机号</th>
+                        <th>用户状态</th>
+                        <th>修改状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center;" id="parentpage1">
+                <div id="page2" class="page_div"></div>
+            </div>
+        </div>
+        <!--生产者管理-->
+        <div class="r_bot r_bot3" style="display: none">
+            <div class="moni_tab2">
+                <table class="tab2">
+                    <thead>
+                    <tr>
+                        <th class="title">生产者姓名</th>
+                        <th>手机号</th>
+                        <th>主设备名</th>
+                        <th>主设备IP</th>
+                        <th>用户状态</th>
+                        <th>修改状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center;" id="parentpage1">
+                <div id="page2" class="page_div"></div>
+            </div>
+        </div>
+        <!--管理者展示-->
+        <div class="r_bot r_bot33" style="display: none">
+            <div class="moni_tab2">
+                <table class="tab2">
+                    <thead>
+                    <tr>
+                        <th class="title">管理者姓名</th>
+                        <th>手机号</th>
+                        <th>权限</th>
+                        <th>修改状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center;" id="parentpage1">
+                <div id="page2" class="page_div"></div>
+            </div>
+        </div>
+		
+        
+        <!--分类管理-->
+        <div class="r_bot r_bot8" style="display: none">
+            <div class="addone">添加一级类目</div>
+            <ul class="type">
+                <!--<li>-->
+                    <!--<div class="add_top">-->
+                        <!--<div class="type_tit fl">一级类目</div>-->
+                        <!--<input type="text" placeholder="请输入一级分类信息" class="typeone fl"/>-->
+                        <!--<div class="switch fr">收起</div>-->
+                        <!--<div class="type_del fr">删除</div>-->
+                    <!--</div>-->
+                    <!--<div class="add_bot">-->
+                        <!--<div class="addtwo">添加二级类目</div>-->
+                        <!--<ul class="typetwo">-->
+                            <!--<li>-->
+                                <!--<div class="type_tit2 fl">二级类目</div>-->
+                                <!--<input type="text" placeholder="请输入二级分类信息" class="typeone2 fl"/>-->
+                                <!--<div class="type_del2 fr">删除</div>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <!--设备管理-->
+        <div class="r_bot r_bot6" style="display: none;">
+            <div>
+                <div class="add_con fl">添加控制设备</div>
+                <ul class="equis fl">
+                    <li class="select_eq">主设备</li>
+                </ul>
+            </div>
+            <div style="clear:both;margin-bottom: 0.3rem"></div>
+            <div class="list1 list" style="display: block">
+                <div class="minequipment">
+                    <p class="title">123456</p>
+                    <div class="t">
+                        <p class="title_t">网络参数配置</p>
+                        <ul class="wangluocanshu">
+                            <li><span class="s1">设备获取服务器：</span><input name="s_deviceIdServIp" type="text" id="s_deviceIdServIp">:<input type="text" class="input1" name="s_deviceIdServPort" id="s_deviceIdServPort"></li>
+                            <li><span class="s1">日志服务器：</span><input type="text" name="s_logServIp" id="s_logServIp">:<input type="text" class="input1" name="s_logServPort" id="s_logServPort"></li>
+                            <li><span class="s1">图片服务器IP：</span><input type="text" name="s_imgServIP" id="s_imgServIP">:<input type="text" class="input1" name="s_imgServPort" id="s_imgServPort"></li>
+                            <li><span class="s1">报警服务器：</span><input type="text" name="s_alarmServIP" id="s_alarmServIP">:<input type="text" class="input1" name="s_alarmServPort" id="s_alarmServPort"></li>
+                            <li><span class="s1">校时服务器IP：</span><input type="text" name="s_timeServIP" id="s_timeServIP">:<input type="text" class="input1" name="s_timeServPort" id="s_timeServPort"></li>
+                            <li><span class="s1">本地IP：</span><input type="text" name="s_localIP" id="s_localIP"></li>
+                            <li><span class="s1">上报服务器IP1：</span><input type="text" name="s_repIpServIp1" id="s_repIpServIp1">:<input type="text" class="input1" name="s_repIpServPort1" id="s_repIpServPort1"></li>
+                            <li><span class="s1">ADC上报服务器IP1：</span><input name="s_adcServIp1" type="text" id="s_adcServIp1">:<input type="text" class="input1" name="s_adcServPort1" id="s_adcServPort1"></li>
+                            <li><span class="s1">子网掩码：</span><input type="text" name="s_netmask" id="s_netmask"></li>
+                            <li><span class="s1">上报服务器IP2：</span><input type="text" name="s_repIpServIp2" id="s_repIpServIp2">:<input type="text" class="input1" name="s_repIpServPort2" id="s_repIpServPort2"></li>
+                            <li><span class="s1">ADC上报服务器IP2：</span><input type="text" name="s_adcServIp2" id="s_adcServIp2">:<input type="text" class="input1" name="s_adcServPort2" id="s_adcServPort2"></li>
+                            <li><span class="s1"><input type="checkbox" id="changemoren">修改默认网关：</span><input style="display: none" id="s_gatewayIP" name="s_gatewayIP" type="text"></li>
+                            <li><span class="s1">上报服务器IP3：</span><input type="text" name="s_repIpServIp3" id="s_repIpServIp3">:<input type="text" class="input1" name="s_repIpServPort3" id="s_repIpServPort3"></li>
+                            <li><span class="s1">ADC上报服务器IP3：</span><input type="text" name="s_adcServIp3" id="s_adcServIp3">:<input type="text" class="input1" name="s_adcServPort3" id="s_adcServPort3"></li>
+                            <li><span class="s1">DNS：</span><input type="text" name="s_dnsIP" id="s_dnsIP"></li>
+                        </ul>
+                    </div>
+                    <div class="b">
+                        <p class="title_t">系统参数配置</p>
+                            <ul>
+                                <li><span class="s1">电源模式：</span><select name="" id="power_mode">
+                                    <option value="0">市电</option>
+                                    <option value="1">太阳能电</option>
+                                </select></li>
+                                <li><span class="s1">ADC上报时间间隔：</span><input type="text" id="adc_cap_time">秒</li>
+                                <li><span class="s1">时间控制(从)：</span><input type="text" id="beginTime"></li>
+                                <li><span class="s1">控制模式：</span><select name="" id="nouse_ctrl">
+                                    <option value="0">不控制</option>
+                                    <option value="1">时间控制</option>
+                                    <option value="2">光照控制</option>
+                                </select></li>
+                                <li><span class="s1">光照度控制：</span><input type="text" id="use_light_ctrl">0~1000Lux</li>
+                                <li><span class="s1">(到)：</span><input type="text" id="endendTime"></li>
+                            </ul>
+                        <div class="operate" style="clear: both;margin-top: 0.4rem;float: left;width: 100%">
+                            <div id="guige" style="background-color: #399EE8">规格文件</div>
+                            <div class="writein" id="chongqi" style="background-color: #399EE8">重启采集服务</div>
+                            <label for="updataFile"><div id="updata" name="updata" style="background-color: #399EE8">软件更新</div></label>
+                           <input type="file" id="updataFile" style="display: none">
+                            <div class="writein" id="chongqimin" style="background-color: #399EE8">重启主设备</div>
+                            <div class="writein" id="zhezhimin" style="background-color: #399EE8">设置主设备</div>
+                        </div>
+                </div>
+                    <div class="operate" style="clear: both;margin-top: 0.4rem">
+                        <div id="baocuncanshu">保存参数</div>
+                        <div id="xierushebei" class="writein">写入设备</div>
+                        <div id="chongzhi">重置</div>
+                    </div>
+            </div>
+            </div>
+            <div class="list2 list" style="display: none">
+                <ul class="pop_ul3 fl">
+                    <li class="li01">
+                        <p>控制设备名称</p>
+                        <div>
+                            <input class="controlname" type="text"/>
+                        </div>
+                    </li>
+                    <li class="li02">
+                        <p>控制设备别名</p>
+                        <div>
+                            <input class="controlbieming" type="text"/>
+                        </div>
+                    </li>
+                    <li class="li02">
+                        <p>主控设备ID</p>
+                        <div>
+                            <input class="parentId" type="text" readonly/>
+                        </div>
+                    </li>
+                    <li class="li04">
+                        <p>视频设备ID</p>
+                        <div>
+                            <select class="parentshipinId" disabled>
+
+                            </select>
+                        </div>
+                    </li>
+                    <li class="li05">
+                        <p>映射最大值</p>
+                        <div>
+                            <input class="ctrl_man" type="text"/>
+                        </div>
+                    </li>
+                    <li class="li06">
+                        <p>映射最小值</p>
+                        <div>
+                            <input class="minnum" type="text"/>
+                        </div>
+                    </li>
+                    <li class="li07">
+                        <p>位置传感器通道</p>
+                        <div>
+                            <input type="text" class="ctrl_channel" placeholder="1~50">
+                        </div>
+                    </li>
+                    <li class="li08">
+                        <p>控温分析通道</p>
+                        <div>
+                            <select class="kongwen">
+
+                            </select>
+                        </div>
+                    </li>
+                    <li class="li09">
+                        <p>控水分析通道</p>
+                        <div>
+                            <select class="kongshui">
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="pop_ul3 pop_ul2 fl">
+                    <li class="li10">
+                        <p>设备类型</p>
+                        <div>
+                            <select class="controltype">
+                                <option value="1">电机</option>
+                                <option value="2">电磁阀</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li class="li11">
+                        <p>上升通道组号</p>
+                        <div>
+                            <input type="text" class="upnum">
+                        </div>
+                    </li>
+                    <li class="li12">
+                        <p>上升通道开关号</p>
+                        <div><input type="text" class="upnumkg"></div>
+                    </li>
+                    <li class="li13">
+                        <p>下降通道组号</p>
+                        <div>
+                            <input type="text" class="downnum">
+                        </div>
+                    </li>
+                    <li class="li14">
+                        <p>下降通道开关号</p>
+                        <div>
+                            <input type="text" class="ctrl_mix">
+                        </div>
+                    </li>
+                    <li class="li15">
+                        <p>计量参数(秒)</p>
+                        <div>
+                            <input type="text" class="jiliang">
+                        </div>
+                    </li>
+                    <li class="li16">
+                        <p>状态图名称</p>
+                        <div>
+                            <select class="zhuangtaitu">
+                                <option value="1" selected>控光</option>
+                                <option value="2">控温</option>
+                                <option value="3">控水</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li class="li17">
+                        <p>状态图标题</p>
+                        <div>
+                            <input type="text" class="zhuangtaitutitle">
+                        </div>
+                    </li>
+                </ul>
+                <br style="clear: both">
+                <div class="operate" style="margin-top: 50px">
+                    <div id="baocunagain" style="margin-right: 30px">保存参数</div>
+                    <div id="addRule" style="margin:0 30px;background-color: #E2846D">预约规则</div>
+                    <!--<div id="addEntell" style="margin-left: 30px;background-color: #E2846D">智能规则</div>-->
+                </div>
+            </div>
+        </div>
+        <!--分类站点管理-->
+        <div class="r_bot r_bot5" style="display: none">
+            <div class="addone">新增站点</div>
+            <ul class="type">
+                <li>
+                    <div class="add_top">
+                        <div class="type_tit fl">站点名称</div>
+                        <input type="text" placeholder="请输入站点名称" class="typeone fl"/>
+                        <div class="switch fr">收起</div>
+                        <div class="type_del fr">删除</div>
+                    </div>
+                    <div class="add_bot">
+                        <div class="addtwo">新增分组</div>
+                        <ul class="typetwo">
+                            <li>
+                                <div class="type_tit2 fl">组名</div>
+                                <input type="text" placeholder="请输入组名" class="typeone2 fl"/>
+                                <div class="type_del2 fr">删除</div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="add_top">
+                        <div class="type_tit fl">站点名称</div>
+                        <input type="text" placeholder="请输入站点名称" class="typeone fl"/>
+                        <div class="switch fr">收起</div>
+                        <div class="type_del fr">删除</div>
+                    </div>
+                    <div class="add_bot">
+                        <div class="addtwo">新增分组</div>
+                        <ul class="typetwo">
+                            <li>
+                                <div class="type_tit2 fl">二级类目</div>
+                                <input type="text" placeholder="请输入组名" class="typeone2 fl"/>
+                                <div class="type_del2 fr">删除</div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--摄像头管理-->
+        <div class="r_bot r_bot7" style="display: none">
+          <table id="td">
+              <thead>
+              <tr>
+                  <th>IPC编号</th>
+                  <th>主设备号</th>
+                  <th>设备名称</th>
+                  <th>IP地址</th>
+                  <th>控制端口</th>
+                  <th>码流类型</th>
+                  <th>电源控制</th>
+                  <th>同步状态</th>
+                  <th>设备状态</th>
+                  <th>参数配置</th>
+                  <th>视频代理</th>
+                  <th>控制代理</th>
+                  <th>视频配置</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!--<tr>-->
+                  <!--<td>1</td>-->
+                  <!--<td>10.1.01.02</td>-->
+                  <!--<td>1号摄像头</td>-->
+                  <!--<td>192.168.0.168</td>-->
+                  <!--<td>80</td>-->
+                  <!--<td>主码流</td>-->
+                  <!--<td>不控制</td>-->
+                  <!--<td>已同步</td>-->
+                  <!--<td>在线</td>-->
+                  <!--<td><span class="sbj">编辑</span></td>-->
+                  <!--<td><span class="sxg1">修改</span></td>-->
+                  <!--<td><span class="sxg2">修改</span></td>-->
+                  <!--<td><span class="sxg3">修改</span></td>-->
+              <!--</tr>-->
+              </tbody>
+          </table>
+        </div>
+         <!--权限管理-->
+        <div class="r_bot r_bot9" style="display: none">
+            <div class="moni_tab2">
+                <table class="tab2">
+                    <thead>
+                    <tr>
+                        <th class="title">姓名</th>
+                        <th>手机号</th>
+                        <th>角色</th>
+                        <th>修改状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center;" id="parentpage2">
+                <div id="page3" class="page_div"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms1" style="display: none">
+    <div class="popup">
+        <div class="pop_tit"><span class="addMainPoint">添加主设备</span> <span class="close">X</span>
+        </div>
+        <div class="pop_record">
+            <ul class="list listsetMain">
+                <li><span class="s1">站点</span><select name="" id="zhandian"></select></li>
+                <li><span class="s1">指导专家</span><select name="" id="zhidaozhuanjia"></select></li>
+                <li><span class="s1">父分类</span><select name="" id="fufenlei"></select></li>
+                <li><span class="s1">网络连接方式</span><select name="" id="lianjiefangshi">
+                    <option value="1" selected >内网连接</option>
+                    <option value="2">外网连接</option>
+                    <option value="3" >代理连接</option>
+                    <option value="4">路由连接</option>
+                </select></li>
+                <li><span class="s1">分类类型</span><span class="s2">主设备</span></li>
+                <li><span class="s1">主设备编号</span><input type="text" id="zhushebei"></li>
+                <li><span class="s1">软件版本</span><span class="s2" id="softWareVersion"></span></li>
+                <li><span class="s1">所有者姓名</span><input type="text" id="suoyouzhe"></li>
+                <li><span class="s1">硬件版本</span><span class="s2" id="hardWareVersion"></span></li>
+                <li><span class="s1">软件更新端口</span><input type="text" id="duankou"></li>
+                <li><span class="s1">设备序号</span><input type="text" id="xuhao"></li>
+                <li><span class="s1">Lat纬度</span><input type="text" id="lat"></li>
+                <li><span class="s1">内网IP</span><input type="text" id="neiwang"><span class="s3">端口</span><input type="text" id="neiwangduankou"></li>
+                <li><span class="s1">Lng经度</span><input type="text" id="lng"></li>
+                <li><span class="s1">外网IP</span><input type="text" id="waiwang"><span class="s3">端口</span><input type="text" id="waiwangduankou"></li>
+                <li><span class="s1">ZOOM</span><input type="text" id="zoom"></li>
+                <li><span class="s1">代理IP</span><input type="text" id="daili"><span class="s3">端口</span><input type="text" id="dailiduankou"></li>
+                <li><span class="s1">所在省</span><select name="" id="sheng"></select></li>
+                <li><span class="s1">监管者姓名</span><select name="" id="jianguan"></select></li>
+                <li><span class="s1">所在市</span><select name="" id="shi"></select></li>
+                <li><span class="s1">生产者姓名</span><select name="" id="shengchan"></select></li>
+                <li><span class="s1">所在区</span><select name="" id="qu"></select></li>
+            </ul>
+            <div class="sub1">保存参数</div>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms2" style="display: none">
+    <div class="popup">
+        <div class="pop_tit">添加摄像头 <span class="close">X</span></div>
+        <div class="pop_record">
+            <ul class="pop_ul">
+                <!--<li>-->
+                    <!--<p>配置状态</p>-->
+                    <!--<div>未同步</div>-->
+                <!--</li>-->
+                <li class="li1">
+                    <p>在线状态</p>
+                    <div>不在线</div>
+                </li>
+                <li class="li2">
+                    <p>IPC设备编号</p>
+                    <div>1</div>
+                </li>
+                <li class="li3">
+                    <p>设备名称</p>
+                    <div>
+                        <input value="12345" type="text"/>
+                    </div>
+                </li>
+                <li class="li4">
+                    <p>IPC设备地址</p>
+                    <div>
+                        <input value="192.168.0.234" type="text" class="ads_one fl"/><span class="colon fl">:</span><input value="80" type="text" class="ads_two fl"/>
+                    </div>
+                </li>
+                <li class="li5">
+                    <p>设备用户名</p>
+                    <div>
+                        <input value="admin" type="text"/>
+                    </div>
+                </li>
+                <li class="li6">
+                    <p>设备密码</p>
+                    <div>
+                        <input value="12345" type="text"/>
+                    </div>
+                </li>
+                <li class="li7">
+                    <p>预览码流类型</p>
+                    <div>
+                        <select name="" id="addmaliu">
+                            <option value="0">主码流</option>
+                            <option value="1">子码流</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li8">
+                    <p>电源控制</p>
+                    <div>
+                        <select name="" id="addkongzhi">
+                            <option value="1">不控制</option>
+                            <option value="2">控制</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="phonesetOut">
+            <span class="pop_cancel phonesetOut">重置</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms3" style="display: none">
+    <div class="popup">
+        <div class="pop_tit">添加控制设备<span class="close">X</span></div>
+        <div class="pop_record">
+            <ul class="pop_ul">
+               <li>
+                   <span>控制设备</span>
+                   <input type="text" class="controlname">
+               </li>
+                <li>
+                    <span>设备类型</span>
+                    <select name="" class="controltype">
+                        <option value="1">电机</option>
+                        <option value="2">电磁阀</option>
+                    </select>
+                </li>
+                <li>
+                    <span>控制设备别名</span>
+                    <input type="text" class="controlbieming">
+                </li>
+                <li>
+                    <span>上升通道组号</span>
+                    <input type="text" class="upnum">
+                </li>
+                <li>
+                    <span>主控设备ID</span>
+                    <input type="text" class="parentId" readonly>
+                </li>
+                <li>
+                    <span>上升通道开关号</span>
+                    <input type="text" class="upnumkg">
+                </li>
+                <li>
+                    <span>视频设备ID</span>
+                    <select name="" class="parentshipinId"></select>
+                </li>
+                <li>
+                    <span>下降通道组号</span>
+                    <input type="text" class="downnum">
+                </li>
+                <li>
+                    <span>映射最大值</span>
+                    <input type="text" class="ctrl_man">
+                </li>
+                <li>
+                    <span>下降通道开关号</span>
+                    <input type="text" class="ctrl_mix">
+                </li>
+                <li>
+                    <span>映射最小值</span>
+                    <input type="text" class="minnum">
+                </li>
+                <li>
+                    <span>计量参数(秒)</span>
+                    <input type="text" class="jiliang">
+                </li>
+                <li>
+                    <span>位置传感器通道</span>
+                    <input type="text" class="ctrl_channel" placeholder="1~50">
+                </li>
+                <li>
+                    <span>状态图名称</span>
+                    <select name="" class="zhuangtaitu">
+                        <option value="1" selected>控光</option>
+                        <option value="2">控温</option>
+                        <option value="3">控水</option>
+                    </select>
+                </li>
+                <li>
+                    <span>控温分析通道</span>
+                    <select name="" class="kongwen">
+
+                    </select>
+                </li>
+                <li>
+                    <span>状态图标题</span>
+                    <input type="text" class="zhuangtaitutitle">
+                </li>
+                <li>
+                    <span>控水分析通道</span>
+                    <select name="" class="kongshui">
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align: center">
+            <span class="pop_save" id="addControl" style="margin-top: 0.4rem">保存参数</span>
+        </div>
+    </div>
+</div>
+<!--规格文件-->
+<div class="mask" id="ms4" style="display: none">
+    <div class="popup1" style="width:auto;padding-bottom:.5rem">
+        <div class="pop_tit">修改规格文件<span class="close">X</span></div>
+        <ul class="pop_ul4">
+            <li class="li1">添加</li>
+            <li class="pop_color li2">删除</li>
+            <li class="li3">拷贝</li>
+            <li class="li4">粘贴</li>
+            <li class="pop_color li5">清空粘贴板</li>
+            <li class="li6" style="margin-left: 1rem">保存</li>
+        </ul>
+        <table class="tab3">
+            <thead>
+            <tr>
+                <th><input id="allCheck" type="checkbox"></th>
+                <th>频道编号</th>
+                <th>名称</th>
+                <th>开始位置</th>
+                <th>长度</th>
+                <th>字段名</th>
+                <th>数据格式</th>
+                <th>下限值</th>
+                <th>上限值</th>
+                <th>偏差</th>
+                <th>计算公式</th>
+                <th>单位</th>
+                <th>列表显示</th>
+                <th>统计显示</th>
+                <th>图表显示</th>
+                <th>图表排序</th>
+                <th>图表类型</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="mask" id="ms5" style="display: none">
+    <div class="popup1" style="height: auto;">
+        <div class="pop_tit">专家详情<span class="close">X</span></div>
+           <ul>
+               <li class="li1">
+                   <img src="" alt="">
+                   <span></span>
+               </li>
+               <li class="li2">
+                   <p>手机号</p>
+                   <span></span>
+               </li>
+               <li class="li3">
+                   <p>研究领域</p>
+                   <span></span>
+               </li>
+               <li class="li4">
+                   <p>备用联系方式</p>
+                   <span></span>
+               </li>
+               <li class="li5">
+                   <p>职务(或最高学历)</p>
+                   <span></span>
+               </li>
+               <li class="li6">
+                   <p>电子邮箱</p>
+                   <span></span>
+               </li>
+               <li class="li7">
+                   <p>一级分类</p>
+                   <span></span>
+               </li>
+               <li class="li8">
+                   <p>二级分类</p>
+                   <span></span>
+               </li>
+               <li class="li9">
+                   <p>个人简介</p>
+                   <span></span>
+               </li>
+           </ul>
+    </div>
+</div>
+<div class="mask" id="ms6user" style="display: none">
+    <div class="popup1">
+        <div class="pop_tit">用户详情<span class="close">X</span></div>
+           <ul>
+               <li class="li1">
+                   <p>用户姓名</p>
+                   <input type="text" name="" id="" value="" />
+               </li>
+                <li class="li5">
+                   <p>用户登录账号</p>
+                    <input type="text" name="" id="" value="" />
+               </li>
+               <li class="li2">
+                   <p>确认密码</p>
+                    <input type="text" name="" id="" value="" placeholder="******"/>
+               </li>
+            <!--   <li class="li3">
+                   <p>姓名</p>
+                    <input type="text" name="" id="" value="" />
+               </li>-->
+               <li class="li4">
+               		<p>手机号</p>
+                    <input type="text" name="" id="" value="" />
+                   <!--<p>状态</p>
+                   	<select name="" style='width:100%;font-size: .14rem;'>
+                   		<option class='seleOne' value="1">正常</option>
+                   		<option class='seleTwo' value="2">封停</option>
+                   	</select>-->
+               </li>
+           </ul>
+           <div class='edis'>
+           		<button data-userId='' class="saveedit fl">保存编辑</button>
+           		<button class="deledit fr">取消编辑</button>
+           </div>
+    </div>
+</div>
+<div class="mask" id="ms6" style="display: none">
+    <div class="popup1">
+        <div class="pop_tit">管理者详情<span class="close">X</span></div>
+           <ul>
+               <li class="li1">
+                   <p>管理者姓名</p>
+                   <input type="text" name="" id="" value="" />
+               </li>
+               <li class="li5">
+                   <p>管理者登录账号</p>
+                    <input type="text" name="" id="" value="" placeholder="******"/>
+               </li>
+               <li class="li2">
+                   <p>密码</p>
+                    <input type="text" name="" id="" value="" placeholder="******"/>
+               </li>
+              <!-- <li class="li3">
+                   <p>姓名</p>
+                    <input type="text" name="" id="" value="" />
+               </li>-->
+               <!--<li class="li4">
+                   <p>状态</p>
+                   	<select name="" style='width:100%;font-size: .14rem;'>
+                   		<option class='seleOne' value="1">正常</option>
+                   		<option class='seleTwo' value="2">封停</option>
+                   	</select>
+               </li>-->
+           </ul>
+           <div class='edis'>
+           		<button data-userId='' class="saveedit fl">保存编辑</button>
+           		<button class="deledit fr">取消编辑</button>
+           </div>
+    </div>
+</div>
+<div class="mask" id="msss" style="display: none">
+    <div class="popup1">
+        <div class="pop_tit">生产管理者详情<span class="close">X</span></div>
+           <ul>
+               <li class="li1">
+                   <p>
+                   	<span>生产者姓名</span>
+                   <input disabled class="noneStyle" type="text" name="" id="tu_name" value="" />
+                   </p>
+               </li>
+               <li class="li1">
+                   <p>
+                   	<span>主设备名&nbsp;&nbsp;&nbsp;</span>
+                   <input disabled class="noneStyle" type="text" name="" id="tp_name" value="" />
+                   </p>
+               </li>
+               <li class="li1">
+                   <p>
+                   	<span>主设备ID&nbsp;&nbsp;&nbsp;</span>
+                   <input class="noneStyle" disabled type="text" name="" id="tp_id" value="" />
+                   </p>
+               </li>
+               <!--<li class="li2">
+                   <p>密码</p>
+                    <input type="text" name="" id="" value="" placeholder="******"/>
+               </li>
+               <li class="li3">
+                   <p>姓名</p>
+                    <input type="text" name="" id="" value="" />
+               </li>-->
+               <!--<li class="li4">
+                   <p>状态</p>
+                   	<select name="" style='width:100%;font-size: .14rem;'>
+                   		<option class='seleOne' value="1">正常</option>
+                   		<option class='seleTwo' value="2">封停</option>
+                   	</select>
+               </li>-->
+           </ul>
+           <div class='edis'>
+           		<button class="saveedit1 fl jiebang">解除绑定</button>
+           		<button class="saveedit1 fl jiebang1">关闭</button>
+           </div>
+    </div>
+</div>
+<div class="mask" id="ms7" style="display: none">
+    <div class="popup1">
+        <div class="pop_tit"><span class='changeNam'>添加管理者</span><span class="close">X</span></div>
+        <ul>
+            <li class="li1">
+                <span>管理者姓名</span>
+                <input type="text">
+            </li>
+            <li class="li2">
+                <span>管理者登录账号</span>
+                <input type="text">
+            </li>
+            <li class="li3">
+                <span>管理者登录密码</span>
+                <input type="password">
+            </li>
+            <li class="li4">
+                <span>确认密码</span>
+                <input type="password">
+            </li>
+        </ul>
+        <div class="btn" id="ms7result">重置</div>
+        <div class="btn" id="ms7sureT">保存</div>
+    </div>
+</div>
+
+<div class="mask" id="msuser" style="display: none">
+    <div class="popup1">
+        <div class="pop_tit"><span class='changeNam'>添加新用户</span><span class="close">X</span></div>
+        <ul>
+            <li class="li1">
+                <span>用户姓名</span>
+                <input type="text">
+            </li>
+            <li class="li2">
+                <span>用户登录账号</span>
+                <input type="text">
+            </li>
+            <li class="li3">
+                <span>用户登录密码</span>
+                <input type="password">
+            </li>
+            <li class="li4">
+                <span>确认密码</span>
+                <input type="password">
+            </li>
+            <li class="li5">
+                <span>手机号</span>
+                <input type="text">
+            </li>
+        </ul>
+        <div class="btn" id="msuserresult">重置</div>
+        <div class="btn" id="msusersureT">保存</div>
+    </div>
+</div>
+
+<div class="mask" id="ms8" style="display: none">
+    <div class="popup" style="height: 4rem;margin: 1rem auto 0">
+        <div class="pop_tit">修改视频代理参数 <span class="close">X</span></div>
+        <div class="pop_record" style="height: 2rem;margin-top: 0.47rem">
+            <ul class="pop_ul">
+                <li class="li1">
+                    <p>视频设备地址</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+                <li class="li2">
+                    <p>视频设备端口</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+                <li class="li3">
+                    <p>终端映射端口</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div style="width: 3.5rem;margin: .3rem auto 0;">
+            <span class="pop_cancel" style="margin: 0 .2rem 0 0;">重置</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms9" style="display: none">
+    <div class="popup" style="">
+        <div class="pop_tit">修改视频代理参数 <span class="close">X</span></div>
+        <div class="pop_record">
+            <ul class="pop_ul">
+                <li class="li1">
+                    <p>配置状态</p>
+                    <div>
+                       已同步
+                    </div>
+                </li>
+                <li class="li2">
+                    <p>在线状态</p>
+                    <div>
+                        在线
+                    </div>
+                </li>
+                <li class="li3">
+                    <p>IPC设备编号</p>
+                    <div>
+                       0
+                    </div>
+                </li>
+                <li class="li4">
+                    <p>设备名称</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+                <li class="li5">
+                    <p>IPC设备地址</p>
+                    <div>
+                        <input type="text" style="width: 40%"/>
+                        <span style="float: left;display: inline-block;width:40px;text-align: center ">:</span>
+                        <input type="text" style="width: 20%"/>
+                    </div>
+                </li>
+                <li class="li6">
+                    <p>设备用户名</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+                <li class="li7">
+                    <p>设备密码</p>
+                    <div>
+                        <input type="password"/>
+                    </div>
+                </li>
+                <li class="li8">
+                    <p>预览码流类型</p>
+                    <div>
+                        <select name="" id="maliu">
+                            <option value="0">主码流</option>
+                            <option value="1">子码流</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li9">
+                    <p>电源控制</p>
+                    <div>
+                        <select name="" id="kongzhi">
+                            <option value="1">不控制</option>
+                            <option value="2">控制</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div style="width: 3.5rem;margin: .3rem auto 0;">
+            <span class="pop_cancel" style="margin: 0 .2rem 0 0;">重置</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms10" style="display: none">
+    <div class="popup" style="height: 4rem;margin: 1rem auto 0">
+        <div class="pop_tit">修改控制代理参数 <span class="close">X</span></div>
+        <div class="pop_record" style="height: 2rem;margin-top: 0.47rem">
+            <ul class="pop_ul">
+                <li class="li1">
+                    <p>视频设备地址</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+                <li class="li2">
+                    <p>视频设备端口</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+                <li class="li3">
+                    <p>终端映射端口</p>
+                    <div>
+                        <input type="text"/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div style="width: 3.5rem;margin: .3rem auto 0;">
+            <span class="pop_cancel"  style="margin: 0 .2rem 0 0;">重置</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms11" style="display: none">
+    <div class="popup" style="height: 5.5rem">
+        <div class="pop_tit">修改视频配置参数<span class="close">X</span></div>
+        <div class="pop_record" style="height: 4rem">
+            <ul class="pop_ul">
+                <li class="li1">
+                    <p>码流类型</p>
+                    <div>
+                        <select>
+                            <option value="0">主码流</option>
+                            <option value="1">子码流</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li2">
+                    <p>分辨率</p>
+                    <div>
+                        <select>
+
+                        </select>
+                    </div>
+                </li>
+                <li class="li3">
+                    <p>帧率</p>
+                    <div>
+                        <select>
+                            <option value="-1">请选择</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li4">
+                    <p>码率(k)</p>
+                    <div>
+                        <select>
+                            <option value="2">32</option>
+                            <option value="3">48</option>
+                            <option value="4">64</option>
+                            <option value="5">80</option>
+                            <option value="6">90</option>
+                            <option value="7">128</option>
+                            <option value="8">160</option>
+                            <option value="9">192</option>
+                            <option value="10">224</option>
+                            <option value="11">256</option>
+                            <option value="12">320</option>
+                            <option value="13">384</option>
+                            <option value="14">448</option>
+                            <option value="15">512</option>
+                            <option value="16">640</option>
+                            <option value="17">768</option>
+                            <option value="18">896</option>
+                            <option value="19">1024</option>
+                            <option value="20">1280</option>
+                            <option value="21">1536</option>
+                            <option value="22">1792</option>
+                            <option value="23">2048</option>
+                            <option value="24">3072</option>
+                            <option value="25">4096</option>
+                            <option value="26">8192</option>
+                            <option value="27">16384</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li5">
+                    <p>编码类型</p>
+                    <div>
+                        <select>
+
+                        </select>
+                    </div>
+                </li>
+                <li class="li6">
+                    <p>编码复杂程度</p>
+                    <div>
+                        <select>
+                            <option value="-1">请选择</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li7">
+                    <p>时间矫正</p>
+                    <div>
+                        <select>
+                            <option value="1">矫正</option>
+                            <option value="2">不矫正</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align: center">
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms12" style="display: none">
+    <div class="popup" style="height: 3rem">
+        <div class="pop_tit">批量添加主设备<span class="close">X</span></div>
+        <div class="pop_record" style="height: auto">
+            <ul class="pop_ul" style="height: 1.2rem;overflow: auto">
+                <li class="li1">
+                    <p>设备号</p>
+                    <div>
+                        <input type="text">
+                    </div>
+                </li>
+            </ul>
+            <div class="addM">+</div>
+        </div>
+        <div style="text-align: center">
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms13" style="display: none">
+    <div class="popup popupList" style="width: 1000px">
+        <div class="pop_tit">预约规则<span class="close">X</span></div>
+        <div class="pop_record" style="height: 400px;width: 100%;overflow: auto;margin-bottom: 30px">
+           <table class="tab4" style="">
+               <thead>
+               <tr>
+                   <th>
+                       <input type="checkbox" id="allCheckRoule">
+                   </th>
+                   <th>
+                       规则名称
+                   </th>
+                   <th>
+                       循环周期
+                   </th>
+                   <th>状态</th>
+                   <th>开始时间</th>
+                   <th>结束时间</th>
+                   <th>执行时间</th>
+                   <th>执行时长</th>
+                   <th>操作</th>
+               </tr>
+               <tbody>
+               </tbody>
+               </thead>
+           </table>
+        </div>
+        <div style="text-align: center">
+            <span class="pop_save delRoule" style="background-color: #e1836c;box-shadow: 0 0.04rem 0.08rem #e1836c;
+}
+
+">删除选中</span>
+            <span class="pop_save closeRoule">关闭窗口</span>
+            <span class="pop_save addNewRoule">新建规则</span>
+        </div>
+    </div>
+    <div class="popup popupAdd" style="width: 1000px;display: none">
+        <div class="pop_tit">新建预约规则<span class="close">X</span></div>
+        <div class="pop_record" style="height: 400px;width: 100%;overflow: auto;margin-bottom: 30px">
+            <ul class="pop_ul addRoule_pop_ul" style="width: 70%;margin: 0 auto;font-size: 16px;color: #5AA055;">
+                <li class="li1">
+                    <span class="fl s1">预约规则名称</span>
+                    <div>
+                        <input type="text">
+                    </div>
+                </li>
+                <li class="li2">
+                    <span class="fl s1">规则状态</span>
+                    <div>
+                        <select>
+                            <option value="1">启用</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li3">
+                    <span class="fl s1">循环周期</span>
+                    <div>
+                        <input type="text">
+                    </div>
+                    <span>天(注意:天数为1以上的整数)</span>
+                </li>
+                <li class="li4">
+                    <span class="fl s1">执行时间</span>
+                    <div>
+                        <input type="text" placeholder="例: 00:00:00">
+                    </div>
+                </li>
+                <li class="li5">
+                    <span class="fl s1">开始时间</span>
+                    <div>
+                        <input type="text" placeholder="例:2017/01/01 00:00:00">
+                    </div>
+                </li>
+                <li class="li6">
+                    <span class="fl s1">结束时间</span>
+                    <div>
+                        <input type="text" placeholder="例:2017/01/01 00:00:00">
+                    </div>
+                </li>
+                <li class="li7">
+                    <span class="fl s1">执行时长</span>
+                    <div>
+                        <input type="text">
+                    </div>
+                    <span>秒</span>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align: center">
+            <span class="pop_save giveUpRoule" style="background-color: #e1836c;margin-right: 20px;box-shadow: 0 0.04rem 0.08rem #e1836c;">放弃新建</span>
+            <span class="pop_save saveRoule" style="margin-left: 20px">保存规则</span>
+        </div>
+    </div>
+</div>
+<div class="mask" id="ms14" style="display: none">
+    <div class="popup popupList" style="width: 1000px">
+        <div class="pop_tit">编辑权限<span class="close">X</span></div>
+        <div class="pop_record" style="height: 400px;width: 100%;overflow: auto;margin-bottom: 30px">
+           <ul>
+               <li class="s1">
+                   <span class="leftStyle">姓名:</span>
+                  <span id="ms14_name"></span>
+               </li>
+               <li class="s2">
+                   <span class="leftStyle">角色属性:</span>
+                   <span>
+                       <select id="permissions">
+                       	<option value="3">普通用户</option>
+                       	<option value="2">管理员</option>
+                       </select>
+                       <div class="permissions_list">
+                           <label>
+                               <input type="checkbox" id="shengchanzhe" disabled>
+                               <span>生产者</span>
+                           </label>
+                            <label> 
+                               <input type="checkbox" id="jianduzghe" disabled>
+                               <span>监督者</span>
+                           </label>
+                            <label>
+                               <input type="checkbox" id="zhuanjia" disabled>
+                               <span>专家</span>
+                           </label>
+                       </div>
+                   </span>
+
+               </li>
+           </ul>
+            <div>
+                <span class="pop_cancel" id="qxguabbi">关闭</span>
+                <span class="pop_save" id="qxsave">保存</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--智能-->
+
+</body>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="./js/template.js"></script>
+<script src="./scripts/httpHeader.js"></script>
+<script type="text/javascript" src="scripts/system.js"></script>
+<script type="text/javascript" src="js/paging.js"></script>
+<script src="./js/rem.js"></script>
+</html>

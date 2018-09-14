@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/lCalendar.css"/>
+		<link rel="stylesheet" type="text/css" href="css/picInfo.css" />
+		
+		<title>物联网综合信息</title>
+		<style type="text/css">
+			.dw{
+				width: 100%;
+				max-width:100%;
+			}
+			.dw-block{
+				width: 100%;
+				position: absolute;
+				bottom: 1rem;
+			}
+			.mbsc-ios7 .dwb{
+				color: #666;
+				
+			}
+			.swiper-container{
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="fir_var_menu" id="fir_var_menu">
+			<p class='fir_var_bor'></p>
+			<span class="fir_var_menu_close">关闭</span>
+			<ul class='fir_var_m_list'>
+				<li class='firpage'>首页</li>
+				<li class='sistem'>GIS系统</li>
+				<li class='controlinfo'>综合信息</li>
+				<li class="product">生产管理</li>
+				<li class="moreinfo">大数据分析</li>
+				<li class='expertsis'>专家系统</li>
+				<li class="proinfo">信息发布</li>
+				<!--<li class='sisterm'>系统设置</li>-->
+				<li class='noborder'>注销</li>
+			</ul>
+		</div>
+		<!--	摄像头-->
+		<div class="fir_pro_menu" id="fir_pro_menu">
+			<p class='fir_var_bor'></p>
+			<span class="fir_pro_menu_close">关闭</span>
+			<div class='gis-camera'>
+				<div class="treeleft">
+					<p class="treeleft_head">山西农业大学互联网+项目</p>
+					<ul class='treeleft_second'>
+						<li class='treeleft_student'>
+							<span class="leftLies">
+							学生组
+						</span>
+							<ul class='treeleft_stu_lists'>
+								<script type="text/html" id="temp">
+									{{each object as val i}}
+									<li id="{{val.tp_id}}">
+										<div class="icon fa2">
+											<img src="./img/online.png" alt="" />
+										</div>
+										<p class="pinline pinline01">{{val.tp_name}}</p>
+										<ul class="tree2">
+
+										</ul>
+									</li>
+									{{/each}}
+								</script>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--	摄像头-->
+		<div class='page_bg'>
+			<div class="fir_head clear">
+				<span class='fir_head_all'>图片信息</span>
+				<span id="" class='fl fir_head_l'>
+				
+			</span>
+				<span id="" class='fr fir_head_r_search'>
+				
+			</span>
+				<span id="" class='fr fir_head_r'>
+				
+			</span>
+			</div>
+			<div id="" class="menu_equip">
+				<ul>
+					<li class='menu_e_list'>
+						<a href="generalInfo.html">传感器信息</a>
+					</li>
+					<li class='menu_e_list choose'>
+						<a href="picInfo.html">图片信息</a>
+					</li>
+					<li class='menu_e_list checkToAndro'>
+						<a>视频信息</a>
+					</li>
+					<li class='menu_e_list'>
+						<a href="infoList.html">管理信息</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="menuPage">
+			<!--图片信息-->
+			<div class="pics_content">
+
+			</div>
+			<div class="pics_cont_picbotOut">
+				<div class="pics_cont_picbot">
+
+				</div>
+			</div>
+			<!--<button class='pic_co_save' data-attr="0">添加监视点</button>-->
+			<div class='pic_content'>
+				<div class='swiper-container gallery-bottom '>
+					<ul class='pic_con_l_out swiper-wrapper'>
+						<p class='ts'>暂无信息</p>
+					</ul>
+				</div>
+				<div class="rigntMore">
+					<span></span>
+				</div>
+				<div class="picHaveL">
+					<span></span>
+				</div>
+			</div>
+			<div class="outerDiv">
+				<span id="closeImgOut">
+				</span>
+				<img src="" class=""/>
+			</div>
+			<div class='addpic_coOut'>
+				<button class="appSet">调整摄像头</button>
+				<div class="pic_con_liaddAndro">
+				
+				<li class="pic_con_list">
+					<div class="pic_co_s_info">
+						<p class="clear">
+							<span class="pic_co_s_i_eye fl">监视点名称</span>
+							<input class="pic_co_s_i_e_name" id="monitorName" placeholder="" />
+							<span class="pic_co_s_i_num fr"></span></p>
+						<div class="pic_co_s_i_list">
+							<ul class="pic_co_s_i_l_l changelast_val">
+								<input type="hidden" name="hideIds" id="hideIds" value="" />
+								<input type="hidden" name="" id="ipcPointId" value="" />
+								<li><label>采集开始时间</label><span></span><input id="begintime" style="display:inline-block" type="text" name="" class="begintime" value="" placeholder="00:00:00" onfocus="this.blur();"/></li>
+								<li><label>采集结束时间</label><span></span><input id="endtime" type="text" style="display:inline-block" name="" class="endtime" value="" placeholder="00:00:00" onfocus="this.blur();"/></li>
+								<li><label>采集间隔时间</label><span></span><input type="text" id="ratesec" style="display:inline-block" name="" class="monitorId" />分钟</li>
+								<li><label>采集周期</label><span></span><input type="text" name="" id="cycleday" style="display:inline-block" class="cycleday" value="" />天</li>
+								<li><label>状态</label><p style="display:inline"> - -</p></li>
+							</ul>
+							<ul class="pic_co_s_i_l_r clear" id="newPoint" style='width: 100%;margin: .1rem auto;'>
+								<li class='fl'>
+									<a href="##" class="pics_picst picedit">取消编辑</a>
+								</li>
+								<li class='fr'>
+									<a href="##" class="pics_edit piceditadd">保存添加</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+					
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/httpHeader.js"></script>
+		<script type="text/javascript" src='js/sweetalert.min.js'></script>
+		<script src="js/swiper-3.3.1.jquery.min.js"></script>
+		<script type="text/javascript" src='js/lCalendarPicinfo.js'></script>
+		<script src="js/template.js"></script>
+		<script src="js/loading.js"></script>
+		<script src="js/commen.js"></script>
+		<script type="text/javascript" src='js/picIfon.js'></script>
+	</body>
+
+</html>

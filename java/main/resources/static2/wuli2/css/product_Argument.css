@@ -1,0 +1,277 @@
+.menuPage {
+	padding-top:.25rem;
+	position: relative;
+}
+.inputAr_set {
+	height: .25rem;
+	padding: 0 .0687rem;
+	box-shadow: 0 .01rem .01rem .01rem rgba(149, 152, 154, .3);
+	background: #40B6E6;
+	position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    clear: both;
+}
+
+.inputAr_set .inputAr_s_more {
+	width: .375rem;
+	height: .2rem;
+	line-height: .2rem;
+	background: #fff;
+	color: #0887D6;
+	text-align: center;
+	font-size: .087rem;
+	border-radius: .025rem;
+	margin: .025rem 0;
+}
+
+.inputAr_lists li {
+	margin: .0625rem auto;
+	border: 1px solid #ADCBDD;
+	box-shadow: 0 2px 1px 1px rgba(0,100,173,.2);
+	font-size: 0.0875rem;
+	line-height: .175rem;
+	border-radius: .025rem;
+	color: #0887D6;
+	width: 2.2rem;
+}
+.inputAr_lists .autor {
+	width: .41rem;
+	text-align: right;
+	font-size: .0875rem;
+	color: #02265A;
+	margin-right: .05rem;
+}
+.inputAr_lists .proName{
+	width: .41rem;
+	text-align: right;
+	font-size: .0875rem;
+	color: #02265A;
+	margin-right: .05rem;
+}
+.inputAr_lists .inputAr_li_in .proVal{
+	font-size: .0875rem;
+	color: #0887D6;
+	padding-right: .0625rem;
+}
+.list_name {
+	font-size: .0875rem;
+	min-width: .8rem;
+}
+.inputAr_li_in .time{
+	line-height: .075rem;
+	font-size: .075rem;
+	float: left;
+	text-align: right;
+	width: 100%;
+}
+.inputAr_li_in .timeOut,.inputAr_li_in .provalues{
+	width:.8rem;
+	padding-right: .0625rem;
+	text-align: right;
+}
+.times {
+	padding:.005rem 0 0 .125rem;
+	font-size: .075rem;
+	line-height: .0875rem;
+}
+.protime {
+	padding: 0 .0625rem 0 .1rem;
+	font-size: 0.0875rem;
+	line-height: .175rem;
+}
+.newColor {
+	color: #114D0E;
+}
+
+
+/*更多弹框*/
+
+.inputAr_outMore {
+	width: 1.9rem;
+	background: #fff;
+	position: fixed;
+	z-index: 2;
+	top: .25rem;
+	right: 0;
+	padding: .112rem .075rem;
+	display: none;
+	box-sizing: border-box;
+	box-shadow: 1px 1px 9px rgba(0,0,0,.5);
+}
+
+.setData,.setNewData {
+	width: .75rem;
+	height: .175rem;
+	border-radius: .025rem;
+	background: #f0f0f0 url(../img/Rectangle/Grid.png) .568rem center no-repeat;
+	padding: 0 0 0 .0875rem;
+	box-sizing: border-box;
+	line-height: .175rem;
+	color: #0887D6;
+}
+
+.line {
+	width: .25rem;
+	font-size: .175rem;
+	color: #c9d9ec;
+	text-align: center;
+	height: 175rem;
+	line-height: .175rem;
+}
+.inputAr_outMore {
+	height: .175rem;
+	height: 100%;
+}
+.inputAr_select {
+	width: 1.26rem;
+	height: .175rem;
+	line-height: .175rem;
+	padding-left:.0875rem;
+	color: #0887D6;
+	background: #f0f0f0 url(../img/selectMore.svg) 1.13rem center/.07rem no-repeat;
+	border-radius: .025rem;
+	font-size: .075rem;
+	box-sizing: border-box;
+}
+.inputAr_selectOut {
+	
+}
+.inputAr_selectOut span{
+	width: .425rem;
+	text-align: center;
+	line-height: .175rem;
+	text-align: center;
+	color: #666;
+	font-size: .075rem;
+	display: inline-block;
+	
+}
+.nomar {
+	margin-bottom: 0;
+}
+.inputAr_outtime {
+	height:.175rem;
+}
+.inputAr_search {
+	width: 1.75rem;
+	height: .175rem;
+	margin-top: .31rem;
+	line-height: .175rem;
+	text-align: center;
+	font-size: .0875rem;
+	line-height: .175rem;
+	color: #fff;
+	border-radius: .025rem;
+	background: #3366FF;
+	cursor: pointer;
+}
+.inputAr_se_fir_bg,.inputAr_se_two_bg{
+	position: relative;
+	margin: .175rem 0;
+	width: 1.685rem;
+}
+.inputAr_se_fir{
+	position: absolute;
+	top:.175rem;
+	right: 0;
+	z-index: 5;
+	display: none;
+	background: #f0f0f0;
+	box-shadow: 1px 1px 9px rgba(0,100,173,.5);
+}
+.inputAr_se_two{
+	position: absolute;
+	top:.175rem;
+	right: 0;
+	z-index: 2;
+	background: #f0f0f0;
+	display: none;
+	box-shadow: 1px 1px 9px rgba(0,100,173,.5);
+}
+
+.inputAr_se_two li,.inputAr_se_fir li{
+	width: 1.5rem;
+    height: .175rem;
+    line-height: .175rem;
+    padding: 0 .0875rem;
+    color: #0887D6;
+    border-radius: .025rem;
+    font-size: .075rem;
+    background: #f0f0f0 ;
+    box-sizing: border-box;
+}
+.inputAr_se_two .active,.inputAr_se_fir .active{
+	background: #2C68FF;
+	color:#fff;
+}
+.inputAr_se_two li:hover,.inputAr_se_fir li:hover{
+	background: #2C68FF;
+	color:#fff;
+}
+/*.fir_head_r_search {
+	display: none;
+}*/
+.inputAr_set .inputAr_s_new{
+	display: none;
+}
+#pullUp {
+	text-align: center;
+}
+.inputAr_lists {
+	padding: .225rem .062rem;
+	box-sizing: border-box;
+}
+.inputAr_searNo {
+    width: 1.75rem;
+    height: .175rem;
+    margin-top: .2rem;
+    line-height: .175rem;
+    text-align: center;
+    font-size: .0875rem;
+    line-height: .175rem;
+    color: #fff;
+    border-radius: .025rem;
+    background: #8F9A8B;
+    cursor: pointer;
+}
+
+.inputAr_se_first,.inputAr_se_secon{
+	width: .812rem;
+	height: .2rem;
+	line-height: .2rem;
+	border-radius: .025rem;
+	cursor: pointer;
+	text-align: left;
+	font-size: .1rem;
+	padding-left: .0625rem;
+	box-sizing: border-box;
+	color: #0887D6;
+	background: #fff url(../img/showmores.svg) .7rem center/.07rem no-repeat;
+}
+
+.inputAr_se_firstOut,.inputAr_se_seconOut {
+	width: .812rem;
+	position: relative;
+	margin: .024rem  .09rem 0 0;
+}
+
+.inputAr_se_firstOut ul,.inputAr_se_seconOut ul{
+	position: absolute;
+	top: .2rem;
+	left: 0;
+	width: 1.4rem;
+	line-height: .185rem;
+	color: #666;
+	border: 1px solid #ADCBDD;
+	background: #fff;
+	box-shadow: 1px 1px 9px rgba(0,100,173,.5);
+	display: none;
+}
+.inputAr_se_firstOut ul li,.inputAr_se_seconOut ul li{
+	padding-left: .05rem;
+}
+.inputAr_se_fi_list .active,.inputAr_se_se_list .active{
+	background: #2C68FF;
+	color: #fff;
+}

@@ -1,0 +1,212 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+
+
+}
+
+html,
+body {
+    font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif, "SimSun";
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+
+}
+
+select,
+button,
+textarea,
+input {
+    outline: none
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    text-decoration: blink;
+    outline: none;
+    color: #3c3c3c;
+}
+
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+img {
+    border: 0
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+    font-style: normal;
+    font-weight: normal
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+caption,
+th {
+    text-align: left
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal
+}
+
+q:before,
+q:after {
+    content: ''
+}
+
+
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit
+}
+
+input,
+textarea,
+select {
+    *font-size: 100%
+}
+.alimg{
+  display: inline-block;
+  vertical-align: middle;
+}
+/*距离*/
+.mt2{
+  margin-top: 2px;
+}
+.mt5{
+  margin-top: 5px;
+}
+.mr5{
+  margin-right: 5px;
+}
+.mr10{
+  margin-right: 10px;
+}
+.mr15{
+  margin-right: 15px;
+}
+.mr20{
+  margin-right: 20px;
+}
+.mt10{
+  margin-top: 10px;
+}
+.mt20 {
+    margin-top: 20px
+}
+
+.tl {
+    text-align: left !important;
+}
+
+.tr {
+    text-align: right !important;
+}
+
+.tc {
+    text-align: center !important;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    overflow: hidden;
+    clear: both;
+    height: 0;
+}
+.gray{
+  color: #505050 !important;
+}
+.red{
+  color: #f00 !important;
+}
+.blue{
+  color: #0877D6 !important;
+}
+.orange{
+  color: #f60 !important;
+}
+/*头部分类和搜索*/
+.mx-top-search{
+  position: relative;
+  padding-right: 28px;
+  height: 28px;
+  input{
+    height: 28px;
+    line-height: 28px;
+  }
+}

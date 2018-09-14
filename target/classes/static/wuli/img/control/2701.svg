@@ -1,0 +1,48 @@
+<svg id="Group_2874" data-name="Group 2874" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-2729 88 98 54">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #36f;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #36f;
+      }
+
+      .cls-2 {
+        font-size: 16px;
+        font-family: YuGothicUI-Regular, Yu Gothic UI;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+
+      .cls-6 {
+        filter: url(#Rectangle_3117);
+      }
+    </style>
+    <filter id="Rectangle_3117" x="-2729" y="88" width="98" height="54" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#0064ad" flood-opacity="0.275"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_2743" data-name="Group 2743" transform="translate(-3006 -482)">
+    <g class="cls-6" transform="matrix(1, 0, 0, 1, 3006, 482)">
+      <g id="Rectangle_3117-2" data-name="Rectangle 3117" class="cls-1" transform="translate(-2720 94)">
+        <rect class="cls-4" width="80" height="36" rx="8"/>
+        <rect class="cls-5" x="0.5" y="0.5" width="79" height="35" rx="7.5"/>
+      </g>
+    </g>
+    <text id="打开" class="cls-2" transform="translate(337 600)"><tspan x="-16" y="0">打开</tspan></text>
+    <path id="Path_1079" data-name="Path 1079" class="cls-3" d="M0,13.334,8,0l8,13.334Z" transform="translate(313 586) rotate(90)"/>
+  </g>
+</svg>

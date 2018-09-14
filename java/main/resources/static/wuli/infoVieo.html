@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/picInfo.css" />
+		<link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+		<title>物联网综合信息</title>
+	</head>
+	<body>
+		<div class="fir_var_menu" id="fir_var_menu">
+			<p class='fir_var_bor'></p>
+			<span class="fir_var_menu_close">关闭</span>
+			<ul class='fir_var_m_list'>
+				<li class='firpage'>首页</li>
+				<li class='sistem'>GIS系统</li>
+				<li class='controlinfo'>综合信息</li>
+				<li class="product">生产管理</li>
+				<li class="moreinfo">大数据分析</li>
+				<li class='expertsis'>专家系统</li>
+				<li class="proinfo">信息发布</li>
+				<!--<li class='sisterm'>系统设置</li>-->
+				<li class='noborder'>注销</li>
+			</ul>
+		</div>
+		<!--	摄像头-->
+		<div class="fir_var_menu" id="fir_pro_menu">
+			<p class='fir_var_bor'></p>
+			<span class="fir_pro_menu_close">关闭</span>
+			<div class='gis-camera'>
+				<div class="treeleft">
+					<p class="treeleft_head">山西农业大学互联网+项目</p>
+					<ul class='treeleft_second'>
+						<li class='treeleft_student'>
+							<span class="leftLies">
+							学生组
+						</span>
+							<ul class='treeleft_stu_lists'>
+								<script type="text/html" id="temp">
+									{{each object as val i}}
+									<li id="{{val.tp_id}}">
+										<div class="icon fa2">
+											<img src="./img/online.png" alt="" />
+										</div>
+										<p class="pinline pinline01">{{val.tp_name}}</p>
+										<ul class="tree2">
+
+										</ul>
+									</li>
+									{{/each}}
+								</script>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--	摄像头-->
+		<div class='page_bg'>
+			<div class="fir_head clear">
+				<span class='fir_head_all'>视频信息</span>
+				<span id="" class='fl fir_head_l'>
+				
+			</span>
+				<span id="" class='fr fir_head_r_search'>
+				
+			</span>
+				<span id="" class='fr fir_head_r'>
+				
+			</span>
+			</div>
+			<div id="" class="menu_equip">
+				<ul>
+					<li class='menu_e_list'>
+						<a href="generalInfo.html">传感器信息</a>
+					</li>
+					<li class='menu_e_list'>
+						<a href="picInfo.html">图片信息</a>
+					</li>
+					<li class='menu_e_list choose'>
+						<a>视频信息</a>
+					</li>
+					<li class='menu_e_list'>
+						<a href="infoList.html">管理信息</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="menuPage">
+
+			<!--图片信息-->
+			<div class="pics_content vio_content" onclick="secondClick()">
+				点击加载视频
+			</div>
+			<!--别删除-->
+			<!--<button class='pic_co_save'>添加监视点</button>
+			<div class='pic_content'>
+				<div class='swiper-container gallery-bottom '>
+					<ul class='pic_con_l_out swiper-wrapper'>
+						<p class='ts'>暂无信息</p>
+
+					</ul>
+				</div>
+			</div>-->
+			<!--别删除-->
+		</div>
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/httpHeader.js"></script>
+		<script type="text/javascript" src='js/sweetalert.min.js'></script>
+		<script src="js/swiper-3.3.1.jquery.min.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/loading.js"></script>
+		<script src="js/commen.js"></script>
+		<script type="text/javascript" src="js/gisComment.js"></script>
+		<script type="text/javascript" src='js/infoVieo.js'></script>
+	</body>
+
+</html>

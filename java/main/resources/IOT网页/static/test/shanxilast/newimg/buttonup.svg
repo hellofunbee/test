@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-2527 -7544 120 28">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #778189;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #02265a;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#b3bcc6"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_4516" data-name="Group 4516" transform="translate(-2583 -7668)">
+    <g id="Rectangle_3911" data-name="Rectangle 3911" class="cls-1" transform="translate(56 124)">
+      <rect class="cls-3" width="120" height="28" rx="4"/>
+      <rect class="cls-4" x="0.5" y="0.5" width="119" height="27" rx="3.5"/>
+    </g>
+    <path id="Path_1277" data-name="Path 1277" class="cls-2" d="M7.9.429l.533,8-8-.533L5.545,2.779Z" transform="matrix(-0.695, -0.719, 0.719, -0.695, 165.597, 146.391)"/>
+  </g>
+</svg>

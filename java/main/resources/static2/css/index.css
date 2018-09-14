@@ -1,0 +1,63 @@
+body{
+    width: 100%;
+}
+.wrap{
+    width: 100%;height: 100%;overflow: hidden;
+    min-width: 1024px;
+}
+.top{
+    height: .8rem;
+    overflow: hidden;
+    background: url(../img/bg-grass.png)no-repeat center/cover;
+    font-size: 0.4rem;
+    color: #14600F;
+    line-height: .8rem;
+    text-align: center;
+    /* padding-top: 10px; */
+    box-sizing: border-box;
+}
+.nav{
+	position: relative;
+       height: 0.36rem;
+    background: url(../img/bg-nav.png)no-repeat center/cover;
+    box-shadow: 0 0 10px rgba(4,69,0,0.7);
+}
+.menu{
+    margin: 0 auto;height: 100%;width: 68%;overflow: auto;
+}
+.menu li{
+    float: left;height: 100%;padding-top: 10px;box-sizing: border-box;color: #369A30;
+    position: relative;margin-right: 4%;cursor: pointer;width: 7%;text-align: center;white-space: nowrap;
+}
+.menu li p{
+    position: absolute;bottom: 0;left: 0;background-color: #2F852A;height: 18%;width: 100%;display: none;
+}
+.menu li div{
+    font-size: 0.2rem;
+}
+.homeCon{
+    width: 100%;
+}
+.showKnows{
+	position: absolute;
+	right: 5%;
+	width: 3rem;
+	height: .2rem;
+	top:.08rem;
+	z-index: 2;
+	overflow: hidden;
+	cursor: pointer;
+	display: none;
+}
+.showKnowsInner{
+	font-size: 0.16rem;
+	color: red;
+	width: 1.9rem;
+	position: absolute;
+	letter-spacing:.01rem;
+	line-height: .2rem;
+	filter:shadow(color=ffo)
+}
+.userType {
+	display: none;
+}

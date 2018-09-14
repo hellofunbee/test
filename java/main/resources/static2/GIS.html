@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>GIS</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link href="css/GIS.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/sweetalert.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="left fl">
+        <div>
+            <div class="nav_left">
+                <div class="icon student">
+                    <img src="./img/home.png" alt=""/>
+                </div>
+                <p class="pinline" style="font-size: 0.12rem"> 山西农业大学互联网+项目</p>
+                <ul id="navigation" style="font-size: 0.12rem">
+                    <!--<li>-->
+                        <!--<div class="icon fa1">-->
+                            <!--<img src="./img/home.png" alt=""/>-->
+                        <!--</div>-->
+                        <!--<p  class="pinline">学生组</p>-->
+                        <!--<ul class="tree">-->
+                            <!--<script type="text/html" id="temp">-->
+                                <!--{{each object as val i}}-->
+                                    <!--<li id="{{val.tp_id}}">-->
+                                        <!--<div class="icon fa2">-->
+                                            <!--<img src="./img/online.png" alt=""/>-->
+                                        <!--</div>-->
+                                        <!--<p  class="pinline pinline01">{{val.tp_name}}</p>-->
+                                        <!--<ul class="tree2">-->
+
+                                        <!--</ul>-->
+                                    <!--</li>-->
+                                <!--{{/each}}-->
+                            <!--</script>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right fl">
+        <div class="textbox" style="display: none">
+            <span class="fr xxx" > X </span>
+            <div class="tet_title">
+            </div>
+            <div class="tet_content tet_content1">
+                <div style="margin-right: 0.1rem">
+                    <p class="pop_tit2">标题</p>
+                    <div class="pop_kuang">
+                        <input class="biaoti" type="text" style="width: 100%;height: 0.3rem;color: #5aa055;border: 1px solid #5aa055;">
+                    </div>
+                </div>
+                <div  style="margin-right: 0.1rem">
+                    <p class="pop_tit2 ">所属一级分类</p>
+                    <div class="pop_kuang">
+                        <select id="fenlei" style="width: 100%">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="tet_content tet_content2">
+                <div class="fl" style="margin-right: 0.1rem">
+                    <p class="pop_tit2 pop_tit_1"></p>
+                    <div class="pop_kuang">
+                        <select id="s1">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fl" style="margin-right: 0.1rem">
+                    <p class="pop_tit2 pop_tit_2"></p>
+                    <div class="pop_kuang">
+                        <select id="s2">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fl">
+                    <p class="pop_tit2 pop_tit_3"></p>
+                    <div class="pop_kuang">
+                        <select id="s3">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="text_con">
+                <div >
+                    <p>种植作物</p><p>种植比例</p>
+                    <ul id="data_info">
+                        <li>
+                            <input type="text" placeholder="种植作物"/>
+                            <input type="text" placeholder="种植比例"/>
+                        </li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                        <li><input type="text" placeholder="种植作物"/><input type="text" placeholder="种植比例"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text_con text_con1" style="margin-bottom: 30px">
+              <p class="pop_tit2">预警信息</p>
+                <div class="pop_kuang" style="border: 1px solid #5aa055">
+                <textarea name="" style="resize: none;width: 98%;border: none" id="textarea" cols="30" rows="10"></textarea>
+                    </div>
+            </div>
+            <ul class="btn">
+                <li><button class="canle01">取消</button></li>
+                <li><button id="btn_info">保存</button></li>
+            </ul>
+        </div>
+        <div class="r_top">
+            <ul class="ul_top">
+                <li id="li1" data-num = "0" class="choose">设备分布图</li>
+                <li id="li2" data-num = "1" data-str = "请选择区域">物种分布图</li>
+                <li id="li3" data-num = "1" data-num2 = "2">生产分布图</li>
+                <li id="li4" data-num = "2" >预警信息</li>
+            </ul>
+        </div>
+        <div class="r_mid">
+            <div class="button getinfo usreType" data-index="0" style="display: none">新建</div>
+        </div>
+
+        <!-- 设备分布图 -->
+        <div class="map">
+            <div style="width:100%;height:100%;border:#ccc solid 1px;" id="map"></div>
+        </div>
+        <!-- 物种分布图 -- 生产分布图 -->
+
+        <div class="map">
+            <div class="map_left">
+                <ul class="uu_map">
+                    <script type="text/html" id="city">
+                        {{each object as val i}}
+                            <li id="{{val.d_id}}">{{val.province}}{{val.city}}{{val.district}}</li>
+                        {{/each}}
+                    </script>
+                </ul>
+           </div>
+            <div class="map_rigth">
+                <div style="width:100%;height:100%;border:#ccc solid 1px;" id="allmap"></div>
+                <div id="r-result"></div>
+            </div>
+        </div>
+        <!-- 预警信息 -->
+        <div class="map">
+            <div class="map_left">
+                <select name="" id="se"></select>
+                <ul style="height: 400px;overflow: auto;width: 150px" id="yujing"></ul>
+            </div>
+            <div class="map_rigth">
+                <div style="width:100%;height:100%;border:#ccc solid 1px;" id="c_allmap"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="./scripts/httpHeader.js"></script>
+<script src="./js/template.js"></script>
+<script src="./scripts/httpHeader.js"></script>
+<script src="./js/rem.js"></script>
+<!--引用百度地图API-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XR2D1wencMcoyeNTcOt6E7pe6AnUFkp"></script>
+<script src="./scripts/gis2.js"></script>
+<script type="text/javascript" src="scripts/GIS.js"></script>
+
+</body>
+</html>

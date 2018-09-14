@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="screen-orientation" content="landscape">
+		<title>大数据分析</title>
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/lCalendar.css"/>
+		<link rel="stylesheet" href="css/bigData.css" />
+		<style type="text/css">
+			.border {
+				left:-59px;
+			}
+			.fa3:after {
+				left: -59px;
+			}
+			.dw{
+				width: 100%;
+				max-width:100%;
+			}
+			.dw-block{
+				width: 100%;
+				position: absolute;
+				bottom: 1rem;
+			}
+			.mbsc-ios7 .dwb{
+				color: #666;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="fir_var_menu" id="fir_var_menu">
+			<p class='fir_var_bor'></p>
+			<span class="fir_var_menu_close">关闭</span>
+			<ul class='fir_var_m_list'>
+				<li class='firpage'>首页</li>
+				<li class='sistem'>GIS系统</li>
+				<li class='controlinfo'>综合信息</li>
+				<li class="product">生产管理</li>
+				<li class="moreinfo">大数据分析</li>
+				<li class='expertsis'>专家系统</li>
+				<li class="proinfo">信息发布</li>
+				<li class='noborder'>注销</li>
+			</ul>
+		</div>
+				<div class='page_bg'>
+			<div class="fir_head clear">
+				<span class='fir_head_all'>监测单数据</span>
+				<span id="" class='fl fir_head_l'>
+				</span>
+				<span id="" class='fr fir_head_r_search'  style='display: none;'>
+				
+				</span>
+				<span id="" class='fr fir_head_r' style='display: none;'>
+				
+				</span>
+			</div>
+			<div id="" class="menu_equip">
+				<ul>
+					<li class='menu_e_list choose'>
+						<a class="nav_l_de" href="##">监测单数据</a>
+					</li>
+					<li class='menu_e_list'>
+						<a href="##" class="nav_l_morede">监测多数据</a>
+					</li>
+					<li class='menu_e_list'>
+						<a class="nav_l_pro" href="productData.html">生产数据</a>
+					</li>
+					<li class='menu_e_list'>
+						<a href="marketData.html" class="nav_l_market">市场数据</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="wrap">
+			<div class="right">
+				<div class="menu_eq_list">
+					<ul class="clear" style="min-width: 100%; width: 282px;">
+						<li class="fl active">实时分析</li>
+					</ul>
+					<div class="toRight">
+						<span></span>
+					</div>
+				</div>
+				<div class='bdouterAll' style=''>
+					<div class='bdouter'>
+						<div class="fieldset">
+							<p class='fieldsetF'>请选择要分析的设备</p>
+							<div class='bdequips'>
+
+							</div>
+							
+						</div>
+							<div class="picHavedata">
+								<span></span>
+							</div>
+						</div>
+						<div id="bdequipSelOut">
+							<p class='bdequipSelName'>请选择要分析的指标</p>
+							<ul class='bdequipSel'>
+								<li class='bdequipSelL'>
+									<ul>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>电池电量</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>二氧化碳</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>风向</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>土壤水分</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>系统5V电压</span>
+										</li>
+										
+									</ul>
+								</li>
+								<li class='bdequipSelR'>
+									<ul>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>土壤温度</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>空气湿度</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>降水量</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>空气温度</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>光照度</span>
+										</li>
+									</ul>
+
+								</li>
+							</ul>
+						</div>
+						<p class='bdequipdata clear'>
+							<span class='fl'>日期范围</span> <input class='bdequipdataB fl' id="demo" type="text" value="" placeholder="2017-08-01" onfocus="this.blur();"/> <b class='fl'>-</b><input id="demo1" class='bdequipdataE fl' value="" type="text" placeholder="2017-08-01" onfocus="this.blur();"/>
+						</p>
+						<p class='bdequipSele clear'>
+							<span class='fl'>分析项目 </span>
+							<select name="" class='fl'>
+									<option value="mainLi1" data-dan='单位(%)'>电池电量</option>
+									<option value="mainLi2" data-dan='单位(ppm)'>二氧化碳</option>
+									<option value="mainLi3">风向</option>
+									<option value="mainLi4" data-dan='单位(%)'>土壤水分</option>
+									<option value="mainLi5" data-dan='单位(v)'>系统5V电压</option>
+									<option value="mainLi6" data-dan='单位(ml)'>降水量</option>
+									<option value="mainLi7" data-dan='单位(℃)'>空气温度</option>
+									<option value="mainLi8" data-dan='单位(lux)'>光照度</option>
+									<option value="mainLi9" data-dan='单位(℃)'>土壤温度</option>
+									<option value="mainLi10" data-dan='单位(%)'>空气湿度</option>
+							</select>
+						</p>
+					<button class='bdequipselect' datalist='0'>分析</button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src='js/echarAll.js'></script>
+		<script type="text/javascript" src='js/echar.js'></script>
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/sweetalert.min.js"></script>
+		<script type="text/javascript" src='js/lCalendar.js'></script>
+		<script src="js/template.js"></script>
+		<script src="js/loading.js"></script>
+		<script src="js/httpHeader.js"></script>
+		<script src="js/commen.js"></script>
+		<script src='js/bigData.js'></script>
+	</body>
+
+</html>

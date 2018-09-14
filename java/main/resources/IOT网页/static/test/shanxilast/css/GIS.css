@@ -1,0 +1,565 @@
+html,body{
+    height: 100%;
+}
+.wrap{
+	position: relative;
+    width: 100%;
+    height: 100%;
+    /*padding-left: 200px;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    box-sizing: border-box;
+}
+.gisTop {
+	height: 36px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 4px 0 4px 0;
+	text-align: center;
+	line-height: 28px;
+	font-size: 16px;
+	clear: both;
+	background: rgba(0,0,0,.3);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	
+}
+.shebei {
+	width:120px;
+	height:28px;
+	color: #02265A;
+	border-radius: 4px;
+	cursor: pointer;
+	float: left;
+	background: url(../newimg/buttondown.svg) 0 0/100%  no-repeat;
+	position: relative;
+	margin-left: 40px;
+}
+.shebeifeng {
+	border-left: 4px solid #000080;
+	width: 108px;
+	float: left;
+	color: #000080;
+	background: #C3C6FF;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.selectArea {
+	float: right;
+	margin-right: 40px;
+	display: none;
+}
+.allArea {
+	float: right;
+	position: relative;
+	width: 80px;
+	height: 28px;
+	background: url(../newimg/jingxuan.svg) 0 0 no-repeat;	
+	cursor: pointer;
+}
+.allAreaOuter {
+	display: none;
+	position: absolute;
+	top: 28px;
+	height: 65px;
+	width: 472px;
+	right: 0;
+	background: url(../newimg/jingxuannei.svg) 0 0 no-repeat;	
+}
+
+.allAreaqu,.allAreashi,.allAreasheng{ 	
+	position: absolute;
+	top: 24px;
+	width: 120px;
+	height: 28px;
+}
+.shengchanli,.yujing {
+	width: 120px;
+	height: 28px;
+	float: right;
+	margin-right: 27px;
+	position: relative;
+	display: none;
+}
+.allAreaqu {
+	left: 330px;
+}
+.allAreashi {
+	left: 180px;
+
+	
+}
+.allAreasheng {
+	margin-left:30px;
+	
+}
+.allAreaqucon{
+	width: 100%;
+	height: 100%;
+	clear: both;
+	overflow: hidden;
+	border: 1px solid #778189;
+	border-radius: 2px;	
+	
+}
+.allAreaqu .allAreaqucon input,.allAreashi .allAreaqucon input,.allAreasheng .allAreaqucon input{
+	float: left;
+	width: 94px;
+	height: 28px;
+	border: none;
+	padding-left: 5px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+.shengchanli .allAreaqucon input,.yujing .allAreaqucon input  {
+	float: left;
+	width: 92px;
+	height: 26px;
+	border: none;
+	padding-left: 5px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+.allAreaqu .allAreaqucon span,.allAreashi .allAreaqucon span,.allAreasheng .allAreaqucon span{
+	margin-right: -2px;
+	margin-top: -1px;
+	width: 28px;
+	height: 30px;
+	float: right;
+	background: url(../newimg/diquxiala.svg) 0 0 no-repeat;
+	background-size: 28px 30px;
+}
+.shengchanli .allAreaqucon span,.yujing .allAreaqucon span {
+	margin-right: -2px;
+	margin-top: -1px;
+	width: 30px;
+	height: 27px;
+	float: right;
+	background: url(../newimg/diquxiala.svg) 0 0 no-repeat;
+	background-size: 29px;
+}
+.allAreaqu ul,.allAreashi ul ,.allAreasheng ul{
+	position: absolute;
+	top: 30px;
+	border: 1px solid #778189;
+	border-top: none;
+	border-bottom: none;
+	box-sizing: border-box;
+	width: 121px;
+	display: none;
+}
+.shengchanli ul ,.yujing ul{
+	position: absolute;
+	top: 27px;
+	border: 1px solid #778189;
+	border-top: 1px solid #778189;
+	border-bottom: none;
+	box-sizing: border-box;
+	width: 121px;
+	display: none;
+}
+.allAreaqu ul li,.allAreashi ul li ,.allAreasheng ul li,.shengchanli ul li,.yujing ul li{
+	width: 100%;
+	height: 28px;
+	line-height: 28px;
+	padding-left: 5px;
+	box-sizing: border-box;
+	color: #666;
+	font-size: 14px;
+	border-bottom: 1px solid #666;
+	background: #fff;
+	cursor: pointer;
+}
+/*//春耕*/
+
+
+
+
+.chiosseArea {
+	width: 240px;
+	margin-right: 27px;
+	float: right;
+	overflow: hidden;
+	height: 28px;
+	border: 1px solid #778189;
+	border-radius: 7px;	
+	box-sizing: border-box;
+}
+.chiosseArea input{
+	float: left;
+	border: none;
+	height: 26px;
+	width: 165px;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+.chiosseArea span {
+	float: left;
+	background: url(../newimg/sousuo.svg) 0 0 no-repeat;
+	background-size: 72px 34px;
+	width: 72px;
+	height: 30px;
+	margin-top: -3px;
+	cursor: pointer;
+}
+.shujudao {
+	margin-right: 21px;
+	float: right;
+	background: url(../newimg/daorushu.svg) 0 0 no-repeat;
+	background-size: 80px 28px;
+	width: 80px;
+	height: 28px;
+	cursor: pointer;
+}
+.right{
+    height: 100%;width:100%;overflow: hidden;
+}
+.r_top{
+    height: 0.36rem;background-color: #30862B;box-shadow: 0 0 10px rgba(3,64,0,0.7);
+}
+/*.ul_top{
+    margin-left: 0.15rem;
+}
+.ul_top li{
+    float: left;width: 1.1rem;height: 0.32rem;border-radius: 0.04rem 0.04rem 0 0;line-height: 0.32rem;
+    margin: 0.04rem 0.6rem 0 0;font-size: 0.16rem;text-align: center;cursor: pointer;
+    color: rgba(250,250,250,.5);
+}
+.ul_top li.choose{
+    background: #5AA055; color: #fff;
+}*/
+.mid_info li.choose{
+	background: #fff; color: #30862B;
+}
+.r_mid{
+    height: 0.36rem;background-color: #5AA055;
+    border-top: 1px solid #5AA055;
+}
+.map{
+    position: relative;
+}
+/* ��ͼ��� */
+.map_left{
+    width: 2rem;
+    height: 100%;
+    position: absolute;
+    padding: 0.15rem;
+    overflow-y: scroll;
+}
+
+.uu_map{
+    width: 1.60rem;
+}
+.map_left h5{
+    font: 0.20rem Microsoft YaHei;
+    color: #51c626;
+}
+.uu_map li{
+    font-size: 0.2rem;
+    line-height: 0.3rem;
+    color: #51c626;
+    cursor: pointer;
+}
+.map_rigth{
+    width: 100%;
+    height: 100%;
+
+}
+.button{
+    width: 0.8rem;
+    height: 0.26rem;
+    background-color: #7ee657;
+    color: #fff;
+    text-align: center;
+    font: 0.16rem/0.26rem Microsoft YaHei;
+   margin-top: 0.05rem;
+    margin-left: 0.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*�ı�����Ϣ*/
+.textbox{
+    position: fixed;
+    width: 7.0rem;
+    height: 9.0rem;
+    left: 32%;
+    top: 0;
+    background-color: #fff;
+    z-index: 100;
+    border: 1px solid  #5aa055;
+}
+.tet_title{
+    color: #fff;
+    font: 0.16rem/0.4rem Microsoft YaHei;
+    background-color: #5aa055;
+    text-align: center;
+}
+.tet_content{
+    margin: 20px auto;
+    overflow: hidden;
+    width: 90%;
+}
+.tet_content p{
+    font: 0.16rem/0.3rem Microsoft YaHei;
+    color: #5aa055;
+}
+.tet_content select{
+    width: 2.00rem;
+    height: 0.3rem;
+    color: #5aa055;
+    border: 1px solid #5aa055;
+}
+.text_con{
+    width: 90%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.text_con div{
+    box-sizing: border-box;
+}
+.text_con p{
+    width: 45%;
+    display: inline-block;
+    font: 0.16rem/0.3rem Microsoft YaHei;
+    color: #5aa055;
+    padding-left: 0.15rem;
+}
+.text_con ul li{
+    overflow: hidden;
+    margin: 0.15rem;
+}
+.text_con ul li input{
+    padding-left: 0.08rem;
+    width: 45%;
+    height: 0.32rem;
+    color: #5aa055;
+    margin-right: 0.18rem;
+    float: left;
+    border: 1px solid #5aa055;
+}
+.btn li  button{
+    width: 1.6rem;
+    height: 0.4rem;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    border: 0;
+    font: 0.18rem/0.4rem Microsoft YaHei;
+}
+.btn li{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+.btn li:nth-of-type(1) button{
+    background-color: #B7B7B7;
+}
+.btn li:nth-of-type(2) button{
+    background-color: #7ee657;
+}
+.xxx{
+    margin-right: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+.tree>li>p.active{
+    color: #fff;
+    background-color: #2F852A;
+}
+#se{
+    display: block;
+    width: 150px;
+    height: 30px;
+    color: #2F852A;
+    border: 1px solid #2F852A;
+}
+.navigation p.active{
+	background-color: #168536;
+    color: #fff;
+}
+.fa3:after {
+    left: -59px;
+}
+.active{
+	background-color: #168536;
+    color: #fff;
+}
+#yujing>li{
+	cursor: pointer;
+}
+
+.map_rigth {
+	font-size: .14rem;
+	line-height: .2rem;
+}
+
+.outerInfo,.outerInfoSc {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.3);
+	z-index: 10;
+}
+.outerInfoArgu {
+	margin: 60px auto 0;
+	width: 1000px;
+	background: #fff;
+}
+.outerInfoArT{
+	height: 40px;
+	background: #179EE5;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	clear: both;
+	overflow: hidden;
+	line-height: 40px;
+}
+.outerInfoArT_l,.outerInfoArScT_l {
+	width: 80px;
+	margin: 7px 0 0 60px;
+	height: 28px;
+	font-size: 12px;
+	background: #fff;
+	color: #666;
+	float: left;
+	cursor: pointer;
+	text-align: center;
+	line-height: 28px;
+	font-size: 14px;
+	border-radius: 4px;
+	
+}
+.outerInfoArT_r {
+	float: right;
+	width: 30px;
+	height: 40px;
+	font-size: 30px;
+	line-height: 40px;
+	color: #fff;
+	background: transparent;
+	cursor: pointer;
+}
+.outerInfoArC {
+	margin-top: 10px;
+	padding-bottom: 40px;
+}
+.outerInfoArCT {
+	clear: both;
+	overflow: hidden;
+	font-size: 16px;
+	line-height: 20px;
+	color: #666;
+	width: 800px;
+	margin:0 auto;
+}
+.outerInfoArScCT {
+	clear: both;
+	overflow: hidden;
+	font-size: 16px;
+	line-height: 20px;
+	color: #666;
+	width: 950px;
+	margin:0 auto;
+}
+.outerInfoArCT p,.outerInfoArScCT p {
+	float: left;
+	width: 160px;
+	margin-right: 20px;
+
+}
+.outerInfoArCT p select,.outerInfoArScCT p select{
+	width: 100%;
+	height: 30px;
+	box-sizing: border-box;
+}
+.outerInfoArCT p select option,.outerInfoArScCT p select option{
+	height: 30px;
+	line-height:30px;
+}
+.outerInfoArCT p:last-child,.outerInfoArScCT p:last-child {
+	margin-right:0;
+}
+.liulan {
+	float: left;
+	width: 80px;
+	height: 30px;
+	color: #fff;
+	background: #007FFF;
+	cursor: pointer;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	box-shadow: 0 1px 9px 2px rgba(57,158,232,.3);
+	border-radius: 0 4px 4px 0;
+	margin-top: 20px;
+}
+.shangchuan {
+	float: right;
+	width: 80px;
+	height: 30px;
+	color: #fff;
+	background: #007FFF;
+	cursor: pointer;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	box-shadow: 0 1px 9px 2px rgba(57,158,232,.3);
+	border-radius: 4px;
+	margin-top: 20px;
+}
+.outerInfoArCCon {
+	width: 805px;
+	margin: 16px auto 0;
+	border: 1px solid #707070;
+}
+.outerInfoArCConT {
+	background: #E3E3E3;
+	padding: 0 27px;
+	border-bottom: 1px solid #707070;
+	box-sizing: border-box;
+	line-height: 36px;
+	font-size: 16px;
+	clear: both;
+	overflow: hidden;
+}
+.outerInfoArCConC li{
+	padding: 0 14px 0 24px;
+	line-height: 30px;
+	color: #767B86;
+	font-size: 16px;
+	clear: both;
+	overflow: hidden;
+}
+.outerInfoArCConC li:nth-child(odd){
+	background: #F5F5F5;
+}
+.outerInfoArCConC li span{
+	width: 60px;
+	height: 28px;
+	border: 1px solid #FF4F24;
+	color: #FF4F24;
+	border-radius: 4px;
+	line-height: 28px;
+	box-sizing: border-box;
+	margin-top: 1px;
+	cursor: pointer;
+	text-align: center;
+}
+.onelychuan {
+	color: red;
+	font-size: 14px;
+	line-height: 30px;
+	float:right;
+	margin-top: 20px;
+	margin-left: 15px;
+}

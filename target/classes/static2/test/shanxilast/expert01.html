@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>专家系统</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link href="css/expert.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/sweetalert.css">
+
+</head>
+<body>
+<div class="wrap">
+    <div class="left fl">
+        <div>
+            <h4 style="font-size: 0.12rem">Sample 2 - Navigation</h4>
+            <div class="nav_left">
+                <div class="icon student">
+                    <img src="./img/home.png" alt=""/>
+                </div>
+                <p class="pinline" style="font-size: 0.12rem"> 山西农业大学互联网+项目</p>
+                <ul id="navigation" style="font-size: 0.12rem">
+                    <!--<li>-->
+                        <!--<div class="icon fa1">-->
+                            <!--<img src="./img/home.png" alt=""/>-->
+                        <!--</div>-->
+                        <!--<p  class="pinline">学生组</p>-->
+                        <!--<ul class="tree">-->
+                            <!--<script type="text/html" id="temp">-->
+                                <!--{{each object as val i}}-->
+                                <!--<li id="{{val.tp_id}}">-->
+                                    <!--<div class="icon fa2">-->
+                                        <!--<img src="./img/online.png" alt=""/>-->
+                                    <!--</div>-->
+                                    <!--<p  class="pinline">{{val.tp_name}}</p>-->
+                                    <!--<ul class="tree2">-->
+
+                                    <!--</ul>-->
+                                <!--</li>-->
+                                <!--{{/each}}-->
+                            <!--</script>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="r_top">
+            <select name="" id="select_1"></select>
+            <select name="" id="select_2">
+
+            </select>
+        </div>
+        <div class="r_mid" style="display: none">
+            <div class="sear fl">
+                <input type="text" placeholder="请输入专家姓名"/>
+                <span class="search">搜索</span>
+            </div>
+        </div>
+        <div class="r_bot">
+            <ul class="ul_bot" >
+                <!--<li>-->
+                    <!--<a href="javascript:;" class="zj_data" >-->
+                        <!--<div class="head"></div>-->
+                        <!--<div class="bot_info">-->
+                            <!--<p class="bot_name">张哈哈</p>-->
+                            <!--<p class="master">硕士</p>-->
+                            <!--<p>专业领域&nbsp;  <span>浆果类作物种植、防病虫害</span></p>-->
+                            <!--<p>电子邮箱&nbsp;   <span>zhanghan88@hotmail.com</span></p>-->
+                            <!--<p>服务对象&nbsp;   <span>2个</span></p>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</li>-->
+            </ul>
+            <div class="info" style="display: none">
+                <div class="renwuinfo">
+                    <div class="infoLeft fl">
+                        <img src="./img/tu1.png" alt=""/>
+                    </div>
+                    <div class="infoRight fl">
+                        <div class="infoName">
+                            <button id="btn3">编辑个人信息</button>
+                            <p class="info_name" >
+                                <span class="user_name">九尾妖狐</span>
+                                <!--<span class="user_age">18</span>-->
+                                <span class="user_sex">女</span>
+                                <span class="user_position">法师</span>
+                            </p>
+                            <p> <span style="color: #7EE657">研究领域&nbsp;</span><span class="field"></span></p>
+                            <p> <span style="color: #7EE657">电子邮箱&nbsp;</span><span class="u_email"></span></p>
+                        </div>
+                        <div class="infojieshao">
+                            <h4>个人简介</h4>
+                            <p style="color: #7EE657" class="detail"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fuwujilu">
+                    <div>
+                        <h4>服务的项目<button id="btn1">编辑</button></h4>
+                        <ul class="u_1">
+                            <!--<li><span></span>田心说芈月不行，我的蛇皮走位躲过一万伤害</li>-->
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>曾服务过的项目<button id="btn2">编辑</button></h4>
+                        <ul class="u_2">
+                            <!--<li><span></span>曾经的一场雨让我清醒，才知道你已离去</li>-->
+                           <!---->
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="ask">
+                            <h4>服务用户</h4>
+                            <ul class="u_3">
+
+                            </ul>
+                        </div>
+                        <div class="ask">
+                            <h4>提问记录 <button id="btn">我要提问</button></h4>
+                            <ul class="u_4">
+                                <!--<li><span></span>曾经的一场雨让我清醒，才知道你已离去</li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>专家答疑</h4>
+                        <ul class="u_5">
+                            <!--<li>-->
+                                <!--<span></span>-->
+                                <!--曾经的一场雨让我清醒，才知道你已离去-->
+                                <!--<p>为什么要加班我不想加班啊啊啊啊啊啊啊啊为什么要加班我不想加班啊啊啊啊啊啊啊啊为什么要加班我不想加班啊啊啊啊啊啊啊啊为什么要加班我不想加班啊啊啊啊啊啊啊啊为什么要加班我不想加班啊啊啊啊啊啊啊啊</p>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="info_xq">
+                    <ul class="u_6">
+                        <!--<li>-->
+                            <!--<div class="info_js">-->
+                                <!--<span class="fr" style="color: #E2846D; ">2017年7月5日</span>-->
+                                <!--<h4>我是茄子大茄子</h4>-->
+                                <!--<p>哈哈哈哈哈</p>-->
+                                <!--<p>哈哈哈哈哈</p>-->
+                                <!--<p style="color: #95989A;">一生只谈三次恋爱最好，一次懵懂，一次刻骨，一次一生。谈的太多会比较，无法确定；经历太多会麻木，不再相信爱情，行尸走肉，最后与不爱的人结婚，无法发自内心的爱对方，日常表现的应付，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，对方则抱怨你不够关心和不顾家，最后这失败的爱情，让你在遗憾和凑合中走完一生。</p>-->
+                            <!--</div>-->
+                            <!--<div class="info_img">-->
+                                <!--<img src="./img/apple.png" alt=""/>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+                <!-- 弹框 -->
+                <div class="textbox textbox1" style="display: none">
+                    <div class="tet_title">
+                        在线咨询
+                        <span class="fr xxx" > X </span>
+                    </div>
+                    <div class="zx_content">
+                        <p>提出内容</p>
+                        <textarea name="" id="tj_txt" style="padding: 10px;color:#bababa;font-size: 16px" placeholder="请就您的疑问提出清晰明确的疑问:)"></textarea>
+                    </div>
+                    <ul class="btn">
+                        <li><button class="close">放弃提问</button></li>
+                        <li><button id="btn_info">提交问题</button></li>
+                    </ul>
+                </div>
+                <div class="textbox textbox2" style="display: none">
+                    <div class="tet_title">
+                        编辑服务中的项目
+                        <span class="fr xxx" > X </span>
+                    </div>
+                    <ul class="finishedS">
+                        <!--<li>-->
+                            <!--<p>服务过的项目</p>-->
+                            <!--<input type="text">-->
+                            <!--<span>-</span>-->
+                        <!--</li>-->
+                    </ul>
+                    <div class="addS">+</div>
+                    <ul class="btn">
+                        <li><button class="close">取消</button></li>
+                        <li><button id="btn_info1">保存</button></li>
+                    </ul>
+                </div>
+                <div class="textbox textbox3" style="display: none">
+                    <div class="tet_title">
+                        编辑服务过的项目
+                        <span class="fr xxx" > X </span>
+                    </div>
+                    <ul class="finishedS">
+                        <!--<li>-->
+                        <!--<p>服务过的项目</p>-->
+                        <!--<input type="text">-->
+                        <!--<span>-</span>-->
+                        <!--</li>-->
+                    </ul>
+                    <div class="addS">+</div>
+                    <ul class="btn">
+                        <li><button class="close">取消</button></li>
+                        <li><button id="btn_info2">保存</button></li>
+                    </ul>
+                </div>
+                <div class="textbox textbox4" style="display: none">
+                    <div class="tet_title">
+                        回答问题
+                        <span class="fr xxx" > X </span>
+                    </div>
+                    <div class="a a_1">
+                        <p>问题列表</p>
+                        <ul>
+                            <li>打火机熬枯受淡看哈打开撒谎的</li>
+                        </ul>
+                    </div>
+                    <div class="a a_2">
+                        <p>提问内容</p>
+                        <div class="text"></div>
+                    </div>
+                    <div class="a a_3">
+                        <p>回答内容</p>
+                        <textarea class="ansower" placeholder="作答区域"></textarea>
+                    </div>
+                    <ul class="btn">
+                        <li><button class="close">取消</button></li>
+                        <li><button id="btn_info3">保存</button></li>
+                    </ul>
+                </div>
+                <div class="textbox textbox5" style="display: none">
+                    <div class="tet_title">
+                        编辑个人信息
+                        <span class="fr xxx" > X </span>
+                    </div>
+                    <div class="a">
+                        <ul id="userList">
+                            <li>
+                                <img src="" alt="加载失败">
+                                <input id="changeHeadImg" type="file" style="width: 100%;height: 100%;display: block;float: left;opacity: 0;z-index: 100;position: absolute;top:0;left:0">
+                            </li>
+                            <li>
+                                <input type="text" class="name">
+                                <div class="sex">
+                                    <span class="s_1 active" data-s="1">男</span>
+                                    <span class="s_2" data-s="2">女</span>
+                                </div>
+                            </li>
+                            <li>
+                                <p>手机号</p>
+                                <input type="text">
+                            </li>
+
+                            <li>
+                                <p>研究领域</p>
+                                <input type="text">
+                            </li>
+                            <li>
+                                <p>备用联系方式</p>
+                                <input type="text">
+                            </li>
+                            <li>
+                                <p>职务</p>
+                                <input type="text">
+                            </li>
+                            <li>
+                                <p>电子邮箱</p>
+                                <input type="text">
+                            </li>
+                            <li>
+                                <p>一级分类</p>
+                                <div class="bg">
+                                    多选
+                                    <span class="sj" data-s="1"></span>
+                                </div>
+                               <div class="class1 class">
+                                   <p>一级分类列表</p>
+                                   <span class="closeClass">X</span>
+                                   <ul>
+                                       <li>
+                                           <label>
+                                               <input type="checkbox">
+                                               <i></i>
+                                           </label>
+                                           <span class="s_l">123</span>
+                                       </li>
+                                   </ul>
+                               </div>
+                            </li>
+                            <li>
+                                <p>二级分类</p>
+                                <div class="bg">
+                                    多选
+                                    <span class="sj" data-s="1"></span>
+                                </div>
+                                <div class="class2 class" style="z-index: 200">
+                                    <p>二级分类列表</p>
+                                    <span class="closeClass">X</span>
+                                    <div>
+                                        <ul class="ul_class2_1">
+                                            <li style="width: 100%">
+                                                <div>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <i class="allI"></i>
+                                                    </label>
+                                                    <span class="s_l">123</span>
+                                                </div>
+                                                <ul class="ul_class2_2">
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <i></i>
+                                                        </label>
+                                                        <span class="s_l">123</span>
+
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <i></i>
+                                                        </label>
+                                                        <span class="s_l">123</span>
+
+                                                    </li><li>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <i></i>
+                                                    </label>
+                                                    <span class="s_l">123</span>
+
+                                                </li><li>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <i></i>
+                                                    </label>
+                                                    <span class="s_l">123</span>
+
+                                                </li><li>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <i></i>
+                                                    </label>
+                                                    <span class="s_l">123</span>
+
+                                                </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="width: 100%">
+                                <p>个人介绍(240字以内)</p>
+                                <textarea name="" id="" cols="30" rows="10" style="width: 93%;height: 100px;overflow: auto;" maxlength="240"></textarea>
+                            </li>
+                            <li style="width: 100%">
+                                <p>审核状态</p>
+                                <span style="color: #000">123</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="btn">
+                        <li><button class="close">取消</button></li>
+                        <li><button id="btn_info4">保存</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="./js/template.js"></script>
+<script src="./scripts/httpHeader.js"></script>
+<script type="text/javascript" src="scripts/expert.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/rem.js"></script>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>综合信息</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link href="css/synthesize.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ion.calendar.css"/>
+    <link rel="stylesheet" href="./css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="./css/swiper.css">
+    <link rel="stylesheet" href="./css/sweetalert.css">
+	<style type="text/css">
+		.r_bot {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="left fl">
+        <div>
+            <div class="nav_left">
+                <div class="icon student">
+                    <img src="./img/home.png" alt=""/>
+                </div>
+                <p class="pinline" style="font-size: 0.12rem"> 山西农业大学互联网+项目</p>
+                <ul id="navigation" style="font-size: 0.12rem">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right fl">
+        <div class="r_top" style="float: left;width: 100%;">
+            <ul class="ul_top">
+                <li class="choose">传感信息</li>
+                <li>图片信息</li>
+                <li>视频信息</li>
+                <li>管理信息</li>
+            </ul>
+        </div>
+        <div class="r_mid" style="float: left;width: 100%;">
+        	<ul class="newInfor">
+	            		<li>设备ID</li>
+	                    <li>所有者姓名</li>
+	                    <li>监管者姓名</li>
+	                    <li>指导专家</li>
+	                    <li>状态</li>
+            </ul>
+            <ul class="mid_info" style="width: 100%;display: none;clear: both;">
+                <li style="margin-right: 0.4rem">
+                    <label style="width: 120px;text-align: center">时间(年-月-日)</label>
+                    <input class="datas" type="text"  id="beginIMG"  placeholder="2017-01-01">
+                </li>
+                <li style="margin-right: 0.4rem">
+                    <label style="margin-left: 0.17rem">至</label>
+                    <input class="datas" type="text"  id="endIMG"  placeholder="2017-01-01">
+                </li>
+                <li class="mid_search" style="width: 4%">搜索</li>
+            </ul>
+
+        </div>
+        <!--传感器信息-->
+        <div class="r_bot r_bot1" style="display: none">
+            <div class="equipment">
+                <ul class="info fl">
+                   
+                </ul>
+                <ul class="show sensorAnimation">
+                </ul>
+            </div>
+            <div class="list">
+               <table class="tab" id="tab01">
+                   <thead>
+                   <tr id="sheader">
+                       <th style="width: 16%">时间</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   </tbody>
+               </table>
+            </div>
+            <div style="text-align: center" id="parentpage">
+                <div id="page" class="page_div"></div>
+            </div>
+        </div>
+        <!--图片信息-->
+        <div class="r_bot r_bot2" style="display: none">
+            <div class="l">
+                <div class="swiper-container gallery-top swiper-container-horizontal">
+                    <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                    <!-- Add Arrows -->
+                </div>
+            </div>
+                <div class="swiper-container gallery-thumbs swiper-container-horizontal">
+                    <div class="swiper-wrapper" style="transform: translate3d(505.5px, 0px, 0px); transition-duration: 0ms;">
+                </div>
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white swiper-button-disabled"></div>
+                </div>
+                <div style="text-align: center" id="parentpage1">
+                <div id="page1" class="page_div"></div>
+            </div>
+            </div>
+
+            <div class="r">
+                <div class="jianshiguanli jianshiguanli2">监视点管理</div>
+                <p class="ts" style="text-align: center;color: #ccc;display: none"></p>
+                <ul class="shexiangtoujsdList shexiangtoujsdList2">
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="r_bot r_bot4" style="display: none">
+            <!--<div class="new_con">新建监视点</div>-->
+            <div class="moni_tab fl">
+                <div class="save">新建监视点</div>
+                <table class="tab2">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center">监视点编号</th>
+                            <th style="width: 14%">监视点名称</th>
+                            <th>采集开始时间</th>
+                            <th>采集结束时间</th>
+                            <th>采集时间间隔(分钟)</th>
+                            <th>采集周期(天)</th>
+                            <th style="width: 4%">状态</th>
+                            <th style="width: 18%;text-align: center;text-indent: 0">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="fl" style="text-align: center;width: 30%">
+                <div class="video">
+                </div>
+            </div>
+        </div>
+        <div class="r_bot r_bot3" style="display: none"></div>
+        <!--管理信息-->
+        <div class="r_bot r_bot5" style="display: none">
+        	<fieldset>
+        		<legend>站点管理信息</legend>
+            <ul class="pop_ul fl" style="width: 48%;">
+                <li class="li01">
+                    <p>站点:</p>
+                    <div></div>
+                </li>
+                <li class="li02">
+                    <p>父分类:</p>
+                    <div></div>
+                </li>
+                <li class="li03">
+                    <p>分类类型:</p>
+                    <div></div>
+                </li>
+                <li class="li04">
+                    <p>软件版本:</p>
+                    <div></div>
+                </li>
+                <li class="li05">
+                    <p>硬件版本:</p>
+                    <div></div>
+                </li>
+            </ul>
+            <ul class="pop_ul fl" style="width: 48%;">
+                <li class="li06">
+                    <p>监管者姓名:</p>
+                    <div>
+                    </div>
+                </li>
+                <li class="li07">
+                    <p>生产者姓名:</p>
+                    <div>
+                    </div>
+                </li>
+                <li class="li08">
+                    <p>指导专家:</p>
+                    <div>
+                    </div>
+                </li>
+                <li class="li09">
+                    <p>所在省:</p>
+                    <div>
+                    </div>
+                </li>
+                <li class="li10">
+                    <p>所在市:</p>
+                    <div>
+                    </div>
+                </li>
+                <li class="li11">
+                    <p>所在区:</p>
+                    <div>
+                    </div>
+                </li>
+            </ul>
+            </fieldset>
+        </div>
+        <div class="r_bot r_bot6" style="display: none">
+           <div class="l" style='border: none;'>
+
+           </div>
+           <div class="r">
+               <div class="jianshiguanli jianshiguanli1">监视点管理</div>
+               <p class="ts" style="text-align: center;color: #ccc;display: none"></p>
+               <ul class="shexiangtoujsdList shexiangtoujsdList1">
+
+               </ul>
+           </div>
+        </div>
+    </div>
+</div>
+<iframe style="display: none" name="childer01" class="iframe" id="shipin01" src="" frameborder="0" style="border: 0"></iframe>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/moment.zh-cn.js"></script>
+<script src="js/ion.calendar.min.js"></script>
+<script src="./js/template.js"></script>
+<script src="./scripts/httpHeader.js"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
+<script src="js/jquery.treeview.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/paging.js"></script>
+<script src="./js/rem.js"></script>
+<script src="./js/swiper-3.3.1.jquery.min.js"></script>
+<script src="./js/jquery.rotate.min.js"></script>
+<script type="text/javascript" src="scripts/synthesize.js"></script>
+
+<script>
+</script>

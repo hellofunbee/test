@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-6071 -5777 1200 36">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#004e9b"/>
+      <stop offset="0.36" stop-color="#00489b"/>
+      <stop offset="0.365" stop-color="#00369b"/>
+      <stop offset="1" stop-color="#0093ff"/>
+    </linearGradient>
+  </defs>
+  <rect id="图层-1-拷贝-2" class="cls-1" width="1200" height="36" transform="translate(-6071 -5777)"/>
+</svg>

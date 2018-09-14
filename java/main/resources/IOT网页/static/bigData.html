@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>大数据分析</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/ion.calendar.css"/>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/sweetalert.css">
+		<link rel="stylesheet" href="css/bigData.css" />
+		<style type="text/css">
+			.border {
+				left:-59px;
+			}
+			.fa3:after {
+				left: -59px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="right">
+				<div class="r_top">
+		            <ul class="nav_leDe clear">
+		                <li class="nav_l_de active">数据分析</li>
+		                <li class='nav_l_morede'>多数据分析</li>
+		            </ul>
+		        </div>
+				<div class='bdouterAll' style=''>
+					<div class='bdouter'>
+						<fieldset>
+							<legend>请选择要分析的设备</legend>
+							<div class='bdequips'>
+							</div>
+						</fieldset>
+						<fieldset id="bdequipSelOut">
+							<legend>请选择要分析的指标</legend>
+							<ul class='bdequipSel'>
+								<li class='bdequipSelL'>
+									<ul>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>电池电量</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>二氧化碳</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>风向</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>土壤水分</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>系统5V电压</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>降水量</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>空气温度</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>光照度</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>土壤温度</span>
+										</li>
+										<li>
+											<input class="bdequipSeles fl" type="checkbox" name="" id="" value="" />
+											<span class='fl bdequipSelesval'>空气湿度</span>
+										</li>
+									</ul>
+									
+								</li>
+
+							</ul>
+						</fieldset>
+						<p class='bdequipdata'>
+							日期范围 <input class="bdequipdataB datas" type="text"  placeholder="2017-08-01"><b>-</b><input class="bdequipdataE datas" type="text"  placeholder="2017-08-10">
+						</p>
+						<p class='bdequipSele'>
+							<span>分析项目 </span>
+							<select name="">
+									<option value="mainLi1" data-dan='单位(%)'>电池电量</option>
+									<option value="mainLi2" data-dan='单位(ppm)'>二氧化碳</option>
+									<option value="mainLi3">风向</option>
+									<option value="mainLi4" data-dan='单位(%)'>土壤水分</option>
+									<option value="mainLi5" data-dan='单位(v)'>系统5V电压</option>
+									<option value="mainLi6" data-dan='单位(ml)'>降水量</option>
+									<option value="mainLi7" data-dan='单位(℃)'>空气温度</option>
+									<option value="mainLi8" data-dan='单位(lux)'>光照度</option>
+									<option value="mainLi9" data-dan='单位(℃)'>土壤温度</option>
+									<option value="mainLi10" data-dan='单位(%)'>空气湿度</option>
+							</select>
+						</p>
+					</div>
+					<p class='bdequipselectOut'><button class='bdequipselect' datalist='0'>分析</button></p>
+				</div>
+				<div class='bdequipshow'>
+					<ul class='bdequipshList'>
+						<li id='mainLi1'></li>
+						<li id='mainLi2'></li>
+						<li id='mainLi3'></li>
+						<li id='mainLi4'></li>
+						<li id='mainLi5'></li>
+						<li id='mainLi6'></li>
+						<li id='mainLi7'></li>
+						<li id='mainLi8'></li>
+						<li id='mainLi9'></li>
+						<li id='mainLi10'></li>
+					</ul>
+					<div id='mains' style='height:400px'></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src='js/echarAll.js'></script>
+		<script type="text/javascript" src='js/echar.js'></script>
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/sweetalert.min.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/moment.zh-cn.js"></script>
+		<script src="js/ion.calendar.min.js"></script>
+		<script src="./js/rem.js"></script>
+		<script src="./js/template.js"></script>
+		<script src="./scripts/httpHeader.js"></script>
+		
+		<script src='scripts/bigData.js'></script>
+	</body>
+
+</html>

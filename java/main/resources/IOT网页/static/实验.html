@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>综合信息</title>
+
+
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <!--<script src="js/jquery.js" type="text/javascript"></script>-->
+    <style>
+        ul li {
+            list-style: none;
+        }
+        #navigation li{
+            position: relative;
+            margin-top: 8px;
+            background-color: #fff;
+        }
+        .tree,
+        .tree2{
+            display: none;
+            position: relative;
+            left: 10px;
+        }
+        .tree:before,.tree2:before{
+            content: "";
+            display: block;
+            border-left: 2px solid green;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: -18px;
+        }
+        .tree li{
+            margin-left: -10px;
+        }
+        .tree li:before{
+            content: "";
+            display: block;
+            position: absolute;
+            border-bottom:2px solid green ;
+            width: 20px;
+            left: -30px;
+            top: 10px;
+        }
+        .icon{
+            width: 24px;
+            height: 24px;
+            display:inline-block;
+        }
+        .icon img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .nav_left{
+            position: relative;
+        }
+        .student:after{
+            content: "";
+            position: absolute;
+            border-left: 2px solid green;
+            border-bottom: 2px solid green;
+            width: 25px;
+            height: 30px;
+            left: 10px;
+            top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="left fl">
+        <h4>Sample 2 - Navigation</h4>
+        <div class="nav_left">
+            <div class="icon student">
+                <img src="./img/home.png" alt=""/>
+            </div>
+            山西农业大学互联网+项目
+            <ul id="navigation">
+                <li>
+                    <div class="icon fa1">
+                        <img src="./img/home.png" alt=""/>
+                    </div>
+                    学生组
+                    <ul class="tree">
+
+                        <li>
+                            <div class="icon fa2">
+                                <img src="./img/online.png" alt=""/>
+                            </div>
+                            <span>1231231组</span>
+                            <ul class="tree2">
+                                <li>
+                                    <div class="icon">
+                                        <img src="./img/camera.svg" alt=""/>
+                                    </div>
+                                    <a href="?2.0.0.0">1号摄像头</a>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                        <img src="./img/camera.svg" alt=""/>
+                                    </div>
+                                    <a href="?2.0.0.1">1号摄像头</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="icon fa2">
+                                <img src="./img/online.png" alt=""/>
+                            </div>
+                            <span>李娜111  土豆</span>
+                            <ul class="tree2">
+                                <li>
+                                    <div class="icon">
+                                        <img src="./img/camera.svg" alt=""/>
+                                    </div>
+                                    <a href="?2.0.0.0">1号摄像头</a>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                        <img src="./img/camera.svg" alt=""/>
+                                    </div>
+                                    <a href="?2.0.0.1">1号摄像头</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="icon fa2">
+                                <img src="./img/offline.png" alt=""/>
+                            </div>
+                            <span>李娜 222 土豆</span>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $(".fa1").on("click", function () {
+            var off = $(".tree").css("display");
+            if(off == "none"){
+                $(".tree").css({display:"block"});
+            }else{
+                $(".tree").css({display:"none"});
+            }
+        })
+//        $(".fa2").on("click", function () {
+//            var off = $(".tree2").css("display");
+//            if(off == "none"){
+//                $(".tree2").css({display:"block"});
+//            }else{
+//                $(".tree2").css({display:"none"});
+//            }
+//        });
+        var lis = $(".tree").children("li").find(".icon");
+        for(var i = 0;i<lis.length;i++){
+            lis[i].addEventListener("click", function () {
+                var ul = $(this).siblings("ul")
+                if(ul.css("display") == "none"){
+                    ul.css("display","block")
+                }else{
+                    ul.css("display","none")
+                }
+            })
+        }
+
+    })
+</script>
+</html>

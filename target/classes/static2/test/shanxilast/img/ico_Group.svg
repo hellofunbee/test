@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-1954.799 -5276.736 33.799 26.736">
+  <defs>
+    <style>
+      .cls-1, .cls-10, .cls-2, .cls-7, .cls-8, .cls-9 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #b0ddad;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke: #2f852a;
+      }
+
+      .cls-3 {
+        fill: #b0ddad;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        fill: #114d0e;
+      }
+
+      .cls-6 {
+        stroke: none;
+      }
+
+      .cls-8 {
+        clip-path: url(#clip);
+      }
+
+      .cls-9 {
+        clip-path: url(#clip-2);
+      }
+
+      .cls-10 {
+        clip-path: url(#clip-3);
+      }
+    </style>
+    <clipPath id="clip">
+      <use xlink:href="#fill"/>
+    </clipPath>
+    <clipPath id="clip-2">
+      <use xlink:href="#fill-2"/>
+    </clipPath>
+    <clipPath id="clip-3">
+      <use xlink:href="#fill-3"/>
+    </clipPath>
+  </defs>
+  <g id="Group_2608" data-name="Group 2608" transform="translate(-2351 -5374)">
+    <path id="Path_1090" data-name="Path 1090" class="cls-1" d="M169.7,117.327v16.947h8" transform="translate(227 -20.063)"/>
+    <g id="Group_2550" data-name="Group 2550" transform="translate(368 -179)">
+      <g id="Rectangle_3139" data-name="Rectangle 3139" class="cls-2" transform="translate(42.5 286.5)">
+        <rect class="cls-6" width="15" height="12"/>
+        <rect class="cls-7" x="0.5" y="0.5" width="14" height="11"/>
+      </g>
+      <g id="Rectangle_3140" data-name="Rectangle 3140" class="cls-3" transform="translate(45.5 282)">
+        <rect class="cls-6" width="9" height="9"/>
+        <rect class="cls-7" x="0.5" y="0.5" width="8" height="8"/>
+      </g>
+      <g id="Rectangle_3143" data-name="Rectangle 3143" class="cls-3" transform="translate(38 294)">
+        <rect class="cls-6" width="9" height="9"/>
+        <rect class="cls-7" x="0.5" y="0.5" width="8" height="8"/>
+      </g>
+      <g id="Rectangle_3144" data-name="Rectangle 3144" class="cls-3" transform="translate(53 294)">
+        <rect class="cls-6" width="9" height="9"/>
+        <rect class="cls-7" x="0.5" y="0.5" width="8" height="8"/>
+      </g>
+      <g id="Rectangle_3141" data-name="Rectangle 3141" class="cls-4" transform="translate(45.5 288)">
+        <rect class="cls-6" width="9" height="3"/>
+        <rect class="cls-7" x="0.5" y="0.5" width="8" height="2"/>
+      </g>
+      <g id="Rectangle_3145" data-name="Rectangle 3145" class="cls-4" transform="translate(53 300)">
+        <rect class="cls-6" width="9" height="3"/>
+        <rect class="cls-7" x="0.5" y="0.5" width="8" height="2"/>
+      </g>
+      <g id="Rectangle_3146" data-name="Rectangle 3146" class="cls-4" transform="translate(38 300)">
+        <rect class="cls-6" width="9" height="3"/>
+        <rect class="cls-7" x="0.5" y="0.5" width="8" height="2"/>
+      </g>
+      <g id="Rectangle_3142" data-name="Rectangle 3142" class="cls-5" transform="translate(47.75 288.75)">
+        <rect id="fill" class="cls-6" width="0.75" height="0.75"/>
+        <path class="cls-8" d="M0,0.25h0.7500000596046448M0.5,0v0.75M0.7500000596046448,0.5h-0.7500000596046448M0.2500000596046448,0.75v-0.75"/>
+      </g>
+      <g id="Rectangle_3147" data-name="Rectangle 3147" class="cls-5" transform="translate(40.25 300.75)">
+        <rect id="fill-2" class="cls-6" width="0.75" height="0.75"/>
+        <path class="cls-9" d="M0,0.25h0.7500000596046448M0.5,0v0.75M0.7500000596046448,0.5h-0.7500000596046448M0.2500000596046448,0.75v-0.75"/>
+      </g>
+      <g id="Rectangle_3148" data-name="Rectangle 3148" class="cls-5" transform="translate(55.25 300.75)">
+        <rect id="fill-3" class="cls-6" width="0.75" height="0.75"/>
+        <path class="cls-10" d="M0,0.25h0.7500000596046448M0.5,0v0.75M0.7500000596046448,0.5h-0.7500000596046448M0.2500000596046448,0.75v-0.75"/>
+      </g>
+    </g>
+  </g>
+</svg>

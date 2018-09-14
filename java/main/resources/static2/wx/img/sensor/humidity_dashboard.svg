@@ -1,0 +1,278 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="3369.5 -8610.5 201 101.399">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffb400"/>
+      <stop offset="0.047" stop-color="#f6b600"/>
+      <stop offset="0.124" stop-color="#dcbc00"/>
+      <stop offset="0.223" stop-color="#b3c500"/>
+      <stop offset="0.34" stop-color="#79d200"/>
+      <stop offset="0.469" stop-color="#30e200"/>
+      <stop offset="0.5" stop-color="#1ee600"/>
+      <stop offset="1" stop-color="#00a5ff"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2227" data-name="Group 2227" transform="translate(3369.5 -8610.5)">
+    <g id="Group_2164" data-name="Group 2164">
+      <path id="Path_1005" data-name="Path 1005" class="cls-1" d="M200.5,100.5H182.3a81.8,81.8,0,0,0-163.6,0H.5a100,100,0,0,1,200,0Z"/>
+    </g>
+    <g id="Group_2165" data-name="Group 2165">
+      <line id="Line_1122" data-name="Line 1122" class="cls-2" x2="17.3" transform="translate(18.9 100.5)"/>
+      <rect id="Rectangle_2880" data-name="Rectangle 2880" width="17.3" height="1.8" transform="translate(18.9 99.6)"/>
+    </g>
+    <g id="Group_2166" data-name="Group 2166">
+      <line id="Line_1123" data-name="Line 1123" class="cls-2" x2="16.4" y2="5.3" transform="translate(22.9 75.3)"/>
+      <rect id="Rectangle_2881" data-name="Rectangle 2881" width="1.8" height="17.3" transform="translate(22.603 76.149) rotate(-72.002)"/>
+    </g>
+    <g id="Group_2167" data-name="Group 2167">
+      <line id="Line_1124" data-name="Line 1124" class="cls-2" x2="16.4" y2="5.3" transform="translate(22.9 75.3)"/>
+      <rect id="Rectangle_2882" data-name="Rectangle 2882" width="1.8" height="17.3" transform="translate(22.603 76.149) rotate(-72.002)"/>
+    </g>
+    <g id="Group_2168" data-name="Group 2168">
+      <line id="Line_1125" data-name="Line 1125" class="cls-2" x2="14" y2="10.2" transform="translate(34.5 52.5)"/>
+      <rect id="Rectangle_2883" data-name="Rectangle 2883" width="1.8" height="17.3" transform="matrix(0.588, -0.809, 0.809, 0.588, 33.99, 53.265)"/>
+    </g>
+    <g id="Group_2169" data-name="Group 2169">
+      <line id="Line_1126" data-name="Line 1126" class="cls-2" x2="10.2" y2="14" transform="translate(52.5 34.5)"/>
+      <rect id="Rectangle_2884" data-name="Rectangle 2884" width="1.8" height="17.3" transform="matrix(0.809, -0.588, 0.588, 0.809, 51.774, 34.995)"/>
+    </g>
+    <g id="Group_2170" data-name="Group 2170">
+      <line id="Line_1127" data-name="Line 1127" class="cls-2" x2="5.3" y2="16.4" transform="translate(75.3 22.9)"/>
+      <rect id="Rectangle_2885" data-name="Rectangle 2885" width="1.8" height="17.3" transform="translate(74.387 23.22) rotate(-17.998)"/>
+    </g>
+    <g id="Group_2171" data-name="Group 2171">
+      <line id="Line_1128" data-name="Line 1128" class="cls-2" y2="17.3" transform="translate(100.5 18.9)"/>
+      <rect id="Rectangle_2886" data-name="Rectangle 2886" width="1.8" height="17.3" transform="translate(99.6 18.9)"/>
+    </g>
+    <g id="Group_2172" data-name="Group 2172">
+      <line id="Line_1129" data-name="Line 1129" class="cls-2" x1="5.3" y2="16.4" transform="translate(120.4 22.9)"/>
+      <rect id="Rectangle_2887" data-name="Rectangle 2887" width="17.3" height="1.8" transform="translate(119.495 39.058) rotate(-72)"/>
+    </g>
+    <g id="Group_2173" data-name="Group 2173">
+      <line id="Line_1130" data-name="Line 1130" class="cls-2" x1="10.2" y2="14" transform="translate(138.3 34.5)"/>
+      <rect id="Rectangle_2888" data-name="Rectangle 2888" width="17.3" height="1.8" transform="matrix(0.588, -0.809, 0.809, 0.588, 137.565, 47.983)"/>
+    </g>
+    <g id="Group_2174" data-name="Group 2174">
+      <line id="Line_1131" data-name="Line 1131" class="cls-2" x1="14" y2="10.2" transform="translate(152.5 52.5)"/>
+      <rect id="Rectangle_2889" data-name="Rectangle 2889" width="17.3" height="1.8" transform="matrix(0.809, -0.588, 0.588, 0.809, 152.007, 61.947)"/>
+    </g>
+    <g id="Group_2175" data-name="Group 2175">
+      <line id="Line_1132" data-name="Line 1132" class="cls-2" x1="16.4" y2="5.3" transform="translate(161.7 75.3)"/>
+      <rect id="Rectangle_2890" data-name="Rectangle 2890" width="17.3" height="1.8" transform="translate(161.319 79.733) rotate(-18)"/>
+    </g>
+    <g id="Group_2176" data-name="Group 2176">
+      <line id="Line_1133" data-name="Line 1133" class="cls-2" x1="17.3" transform="translate(164.8 100.5)"/>
+      <rect id="Rectangle_2891" data-name="Rectangle 2891" width="17.3" height="1.8" transform="translate(164.8 99.6)"/>
+    </g>
+    <g id="Group_2177" data-name="Group 2177">
+      <line id="Line_1134" data-name="Line 1134" class="cls-2" x2="8.6" transform="translate(18.9 100.5)"/>
+      <rect id="Rectangle_2892" data-name="Rectangle 2892" width="8.6" height="0.9" transform="translate(18.9 100)"/>
+    </g>
+    <g id="Group_2178" data-name="Group 2178">
+      <line id="Line_1135" data-name="Line 1135" class="cls-2" x2="8.6" y2="0.5" transform="translate(19.1 95.4)"/>
+      <rect id="Rectangle_2893" data-name="Rectangle 2893" width="0.9" height="8.6" transform="translate(19.008 95.855) rotate(-86.402)"/>
+    </g>
+    <g id="Group_2179" data-name="Group 2179">
+      <line id="Line_1136" data-name="Line 1136" class="cls-2" x2="8.5" y2="1.1" transform="translate(19.6 90.3)"/>
+      <rect id="Rectangle_2894" data-name="Rectangle 2894" width="0.9" height="8.6" transform="translate(19.499 90.707) rotate(-82.802)"/>
+    </g>
+    <g id="Group_2180" data-name="Group 2180">
+      <line id="Line_1137" data-name="Line 1137" class="cls-2" x2="8.4" y2="1.6" transform="translate(20.4 85.2)"/>
+      <rect id="Rectangle_2895" data-name="Rectangle 2895" width="0.9" height="8.6" transform="matrix(0.187, -0.982, 0.982, 0.187, 20.26, 85.698)"/>
+    </g>
+    <g id="Group_2181" data-name="Group 2181">
+      <line id="Line_1138" data-name="Line 1138" class="cls-2" x2="8.3" y2="2.2" transform="translate(21.5 80.2)"/>
+      <rect id="Rectangle_2896" data-name="Rectangle 2896" width="0.9" height="8.6" transform="translate(21.395 80.66) rotate(-75.6)"/>
+    </g>
+    <g id="Group_2182" data-name="Group 2182">
+      <line id="Line_1139" data-name="Line 1139" class="cls-2" x2="8.2" y2="2.7" transform="translate(22.9 75.3)"/>
+      <rect id="Rectangle_2897" data-name="Rectangle 2897" width="0.9" height="8.6" transform="translate(22.776 75.674) rotate(-72.002)"/>
+    </g>
+    <g id="Group_2183" data-name="Group 2183">
+      <line id="Line_1140" data-name="Line 1140" class="cls-2" x2="8.1" y2="3.1" transform="translate(24.6 70.5)"/>
+      <rect id="Rectangle_2898" data-name="Rectangle 2898" width="0.9" height="8.6" transform="translate(24.439 70.87) rotate(-68.402)"/>
+    </g>
+    <g id="Group_2184" data-name="Group 2184">
+      <line id="Line_1141" data-name="Line 1141" class="cls-2" x2="7.8" y2="3.6" transform="translate(26.7 65.8)"/>
+      <rect id="Rectangle_2899" data-name="Rectangle 2899" width="0.9" height="8.6" transform="translate(26.486 66.206) rotate(-64.798)"/>
+    </g>
+    <g id="Group_2185" data-name="Group 2185">
+      <line id="Line_1142" data-name="Line 1142" class="cls-2" x2="7.6" y2="4.2" transform="translate(29 61.2)"/>
+      <rect id="Rectangle_2900" data-name="Rectangle 2900" width="0.9" height="8.6" transform="translate(28.808 61.642) rotate(-61.197)"/>
+    </g>
+    <g id="Group_2186" data-name="Group 2186">
+      <line id="Line_1143" data-name="Line 1143" class="cls-2" x2="7.3" y2="4.6" transform="translate(31.6 56.8)"/>
+      <rect id="Rectangle_2901" data-name="Rectangle 2901" width="0.9" height="8.6" transform="matrix(0.536, -0.844, 0.844, 0.536, 31.383, 57.178)"/>
+    </g>
+    <g id="Group_2187" data-name="Group 2187">
+      <line id="Line_1144" data-name="Line 1144" class="cls-2" x2="7" y2="5.1" transform="translate(34.5 52.5)"/>
+      <rect id="Rectangle_2902" data-name="Rectangle 2902" width="0.9" height="8.6" transform="matrix(0.588, -0.809, 0.809, 0.588, 34.237, 52.957)"/>
+    </g>
+    <g id="Group_2188" data-name="Group 2188">
+      <line id="Line_1145" data-name="Line 1145" class="cls-2" x2="6.7" y2="5.5" transform="translate(37.6 48.5)"/>
+      <rect id="Rectangle_2903" data-name="Rectangle 2903" width="0.9" height="8.6" transform="translate(37.318 48.829) rotate(-50.401)"/>
+    </g>
+    <g id="Group_2189" data-name="Group 2189">
+      <line id="Line_1146" data-name="Line 1146" class="cls-2" x2="6.3" y2="6" transform="translate(41 44.6)"/>
+      <rect id="Rectangle_2904" data-name="Rectangle 2904" width="0.9" height="8.6" transform="translate(40.711 44.999) rotate(-46.803)"/>
+    </g>
+    <g id="Group_2190" data-name="Group 2190">
+      <line id="Line_1147" data-name="Line 1147" class="cls-2" x2="6" y2="6.3" transform="translate(44.6 41)"/>
+      <rect id="Rectangle_2905" data-name="Rectangle 2905" width="0.9" height="8.6" transform="translate(44.312 41.404) rotate(-43.197)"/>
+    </g>
+    <g id="Group_2191" data-name="Group 2191">
+      <line id="Line_1148" data-name="Line 1148" class="cls-2" x2="5.5" y2="6.7" transform="translate(48.5 37.6)"/>
+      <rect id="Rectangle_2906" data-name="Rectangle 2906" width="0.9" height="8.6" transform="translate(48.121 37.886) rotate(-39.599)"/>
+    </g>
+    <g id="Group_2192" data-name="Group 2192">
+      <line id="Line_1149" data-name="Line 1149" class="cls-2" x2="5.1" y2="7" transform="translate(52.5 34.5)"/>
+      <rect id="Rectangle_2907" data-name="Rectangle 2907" width="0.9" height="8.6" transform="matrix(0.809, -0.588, 0.588, 0.809, 52.173, 34.8)"/>
+    </g>
+    <g id="Group_2193" data-name="Group 2193">
+      <line id="Line_1150" data-name="Line 1150" class="cls-2" x2="4.6" y2="7.3" transform="translate(56.8 31.6)"/>
+      <rect id="Rectangle_2908" data-name="Rectangle 2908" width="0.9" height="8.6" transform="matrix(0.844, -0.536, 0.536, 0.844, 56.34, 31.845)"/>
+    </g>
+    <g id="Group_2194" data-name="Group 2194">
+      <line id="Line_1151" data-name="Line 1151" class="cls-2" x2="4.2" y2="7.6" transform="translate(61.2 29)"/>
+      <rect id="Rectangle_2909" data-name="Rectangle 2909" width="0.9" height="8.6" transform="translate(60.795 29.256) rotate(-28.803)"/>
+    </g>
+    <g id="Group_2195" data-name="Group 2195">
+      <line id="Line_1152" data-name="Line 1152" class="cls-2" x2="3.6" y2="7.8" transform="translate(65.8 26.7)"/>
+      <rect id="Rectangle_2910" data-name="Rectangle 2910" width="0.9" height="8.6" transform="translate(65.323 26.918) rotate(-25.202)"/>
+    </g>
+    <g id="Group_2196" data-name="Group 2196">
+      <line id="Line_1153" data-name="Line 1153" class="cls-2" x2="3.1" y2="8.1" transform="translate(70.5 24.6)"/>
+      <rect id="Rectangle_2911" data-name="Rectangle 2911" width="0.9" height="8.6" transform="translate(70.03 24.775) rotate(-21.598)"/>
+    </g>
+    <g id="Group_2197" data-name="Group 2197">
+      <line id="Line_1154" data-name="Line 1154" class="cls-2" x2="2.7" y2="8.2" transform="translate(75.3 22.9)"/>
+      <rect id="Rectangle_2912" data-name="Rectangle 2912" width="0.9" height="8.6" transform="translate(74.892 23.042) rotate(-17.998)"/>
+    </g>
+    <g id="Group_2198" data-name="Group 2198">
+      <line id="Line_1155" data-name="Line 1155" class="cls-2" x2="2.2" y2="8.3" transform="translate(80.2 21.5)"/>
+      <rect id="Rectangle_2913" data-name="Rectangle 2913" width="0.9" height="8.6" transform="translate(79.734 21.555) rotate(-14.4)"/>
+    </g>
+    <g id="Group_2199" data-name="Group 2199">
+      <line id="Line_1156" data-name="Line 1156" class="cls-2" x2="1.6" y2="8.4" transform="translate(85.2 20.4)"/>
+      <rect id="Rectangle_2914" data-name="Rectangle 2914" width="0.9" height="8.6" transform="matrix(0.982, -0.187, 0.187, 0.982, 84.804, 20.455)"/>
+    </g>
+    <g id="Group_2200" data-name="Group 2200">
+      <line id="Line_1157" data-name="Line 1157" class="cls-2" x2="1.1" y2="8.5" transform="translate(90.3 19.6)"/>
+      <rect id="Rectangle_2915" data-name="Rectangle 2915" width="0.9" height="8.6" transform="translate(89.858 19.586) rotate(-7.198)"/>
+    </g>
+    <g id="Group_2201" data-name="Group 2201">
+      <line id="Line_1158" data-name="Line 1158" class="cls-2" x2="0.5" y2="8.6" transform="translate(95.4 19.1)"/>
+      <rect id="Rectangle_2916" data-name="Rectangle 2916" width="0.9" height="8.6" transform="translate(94.93 19.136) rotate(-3.598)"/>
+    </g>
+    <g id="Group_2202" data-name="Group 2202">
+      <line id="Line_1159" data-name="Line 1159" class="cls-2" y2="8.6" transform="translate(100.5 18.9)"/>
+      <rect id="Rectangle_2917" data-name="Rectangle 2917" width="0.9" height="8.6" transform="translate(100 18.9)"/>
+    </g>
+    <g id="Group_2203" data-name="Group 2203">
+      <line id="Line_1160" data-name="Line 1160" class="cls-2" x1="0.5" y2="8.6" transform="translate(105.1 19.1)"/>
+      <rect id="Rectangle_2918" data-name="Rectangle 2918" width="8.6" height="0.9" transform="translate(104.6 27.698) rotate(-86.417)"/>
+    </g>
+    <g id="Group_2204" data-name="Group 2204">
+      <line id="Line_1161" data-name="Line 1161" class="cls-2" x1="1.1" y2="8.5" transform="translate(109.6 19.6)"/>
+      <rect id="Rectangle_2919" data-name="Rectangle 2919" width="8.6" height="0.9" transform="matrix(0.125, -0.992, 0.992, 0.125, 109.218, 28.029)"/>
+    </g>
+    <g id="Group_2205" data-name="Group 2205">
+      <line id="Line_1162" data-name="Line 1162" class="cls-2" x1="1.6" y2="8.4" transform="translate(114.2 20.4)"/>
+      <rect id="Rectangle_2920" data-name="Rectangle 2920" width="8.6" height="0.9" transform="matrix(0.188, -0.982, 0.982, 0.188, 113.694, 28.704)"/>
+    </g>
+    <g id="Group_2206" data-name="Group 2206">
+      <line id="Line_1163" data-name="Line 1163" class="cls-2" x1="2.2" y2="8.3" transform="translate(118.6 21.5)"/>
+      <rect id="Rectangle_2921" data-name="Rectangle 2921" width="8.6" height="0.9" transform="translate(118.206 29.725) rotate(-75.582)"/>
+    </g>
+    <g id="Group_2207" data-name="Group 2207">
+      <line id="Line_1164" data-name="Line 1164" class="cls-2" x1="2.7" y2="8.2" transform="translate(123 22.9)"/>
+      <rect id="Rectangle_2922" data-name="Rectangle 2922" width="8.6" height="0.9" transform="translate(122.669 30.952) rotate(-72.025)"/>
+    </g>
+    <g id="Group_2208" data-name="Group 2208">
+      <line id="Line_1165" data-name="Line 1165" class="cls-2" x1="3.1" y2="8.1" transform="translate(127.4 24.6)"/>
+      <rect id="Rectangle_2923" data-name="Rectangle 2923" width="8.6" height="0.9" transform="translate(126.927 32.521) rotate(-68.396)"/>
+    </g>
+    <g id="Group_2209" data-name="Group 2209">
+      <line id="Line_1166" data-name="Line 1166" class="cls-2" x1="3.6" y2="7.8" transform="translate(131.6 26.7)"/>
+      <rect id="Rectangle_2924" data-name="Rectangle 2924" width="8.6" height="0.9" transform="translate(131.133 34.27) rotate(-64.811)"/>
+    </g>
+    <g id="Group_2210" data-name="Group 2210">
+      <line id="Line_1167" data-name="Line 1167" class="cls-2" x1="4.2" y2="7.6" transform="translate(135.6 29)"/>
+      <rect id="Rectangle_2925" data-name="Rectangle 2925" width="8.6" height="0.9" transform="matrix(0.482, -0.876, 0.876, 0.482, 135.224, 36.339)"/>
+    </g>
+    <g id="Group_2211" data-name="Group 2211">
+      <line id="Line_1168" data-name="Line 1168" class="cls-2" x1="4.6" y2="7.3" transform="translate(139.6 31.6)"/>
+      <rect id="Rectangle_2926" data-name="Rectangle 2926" width="8.6" height="0.9" transform="matrix(0.536, -0.844, 0.844, 0.536, 139.217, 38.648)"/>
+    </g>
+    <g id="Group_2212" data-name="Group 2212">
+      <line id="Line_1169" data-name="Line 1169" class="cls-2" x1="5.1" y2="7" transform="translate(143.4 34.5)"/>
+      <rect id="Rectangle_2927" data-name="Rectangle 2927" width="8.6" height="0.9" transform="translate(142.993 41.198) rotate(-53.978)"/>
+    </g>
+    <g id="Group_2213" data-name="Group 2213">
+      <line id="Line_1170" data-name="Line 1170" class="cls-2" x1="5.5" y2="6.7" transform="translate(147 37.6)"/>
+      <rect id="Rectangle_2928" data-name="Rectangle 2928" width="8.6" height="0.9" transform="translate(146.626 44.02) rotate(-50.388)"/>
+    </g>
+    <g id="Group_2214" data-name="Group 2214">
+      <line id="Line_1171" data-name="Line 1171" class="cls-2" x1="6" y2="6.3" transform="translate(150.4 41)"/>
+      <rect id="Rectangle_2929" data-name="Rectangle 2929" width="8.6" height="0.9" transform="matrix(0.685, -0.729, 0.729, 0.685, 150.112, 46.987)"/>
+    </g>
+    <g id="Group_2215" data-name="Group 2215">
+      <line id="Line_1172" data-name="Line 1172" class="cls-2" x1="6.3" y2="6" transform="translate(153.7 44.6)"/>
+      <rect id="Rectangle_2930" data-name="Rectangle 2930" width="8.6" height="0.9" transform="matrix(0.729, -0.685, 0.685, 0.729, 153.324, 50.197)"/>
+    </g>
+    <g id="Group_2216" data-name="Group 2216">
+      <line id="Line_1173" data-name="Line 1173" class="cls-2" x1="6.7" y2="5.5" transform="translate(156.7 48.5)"/>
+      <rect id="Rectangle_2931" data-name="Rectangle 2931" width="8.6" height="0.9" transform="translate(156.417 53.668) rotate(-39.612)"/>
+    </g>
+    <g id="Group_2217" data-name="Group 2217">
+      <line id="Line_1174" data-name="Line 1174" class="cls-2" x1="7" y2="5.1" transform="translate(159.5 52.5)"/>
+      <rect id="Rectangle_2932" data-name="Rectangle 2932" width="8.6" height="0.9" transform="translate(159.242 57.221) rotate(-36.022)"/>
+    </g>
+    <g id="Group_2218" data-name="Group 2218">
+      <line id="Line_1175" data-name="Line 1175" class="cls-2" x1="7.3" y2="4.6" transform="translate(162.1 56.8)"/>
+      <rect id="Rectangle_2933" data-name="Rectangle 2933" width="8.6" height="0.9" transform="matrix(0.844, -0.536, 0.536, 0.844, 161.812, 60.999)"/>
+    </g>
+    <g id="Group_2219" data-name="Group 2219">
+      <line id="Line_1176" data-name="Line 1176" class="cls-2" x1="7.6" y2="4.2" transform="translate(164.4 61.2)"/>
+      <rect id="Rectangle_2934" data-name="Rectangle 2934" width="8.6" height="0.9" transform="matrix(0.876, -0.482, 0.482, 0.876, 164.215, 64.932)"/>
+    </g>
+    <g id="Group_2220" data-name="Group 2220">
+      <line id="Line_1177" data-name="Line 1177" class="cls-2" x1="7.8" y2="3.6" transform="translate(166.5 65.8)"/>
+      <rect id="Rectangle_2935" data-name="Rectangle 2935" width="8.6" height="0.9" transform="translate(166.297 68.986) rotate(-25.189)"/>
+    </g>
+    <g id="Group_2221" data-name="Group 2221">
+      <line id="Line_1178" data-name="Line 1178" class="cls-2" x1="8.1" y2="3.1" transform="translate(168.3 70.5)"/>
+      <rect id="Rectangle_2936" data-name="Rectangle 2936" width="8.6" height="0.9" transform="translate(168.147 73.234) rotate(-21.604)"/>
+    </g>
+    <g id="Group_2222" data-name="Group 2222">
+      <line id="Line_1179" data-name="Line 1179" class="cls-2" x1="8.2" y2="2.7" transform="translate(169.9 75.3)"/>
+      <rect id="Rectangle_2937" data-name="Rectangle 2937" width="8.6" height="0.9" transform="translate(169.781 77.545) rotate(-17.975)"/>
+    </g>
+    <g id="Group_2223" data-name="Group 2223">
+      <line id="Line_1180" data-name="Line 1180" class="cls-2" x1="8.3" y2="2.2" transform="translate(171.2 80.2)"/>
+      <rect id="Rectangle_2938" data-name="Rectangle 2938" width="8.6" height="0.9" transform="translate(171.017 81.89) rotate(-14.418)"/>
+    </g>
+    <g id="Group_2224" data-name="Group 2224">
+      <line id="Line_1181" data-name="Line 1181" class="cls-2" x1="8.4" y2="1.6" transform="translate(172.2 85.2)"/>
+      <rect id="Rectangle_2939" data-name="Rectangle 2939" width="8.6" height="0.9" transform="matrix(0.982, -0.188, 0.188, 0.982, 172.105, 86.412)"/>
+    </g>
+    <g id="Group_2225" data-name="Group 2225">
+      <line id="Line_1182" data-name="Line 1182" class="cls-2" x1="8.5" y2="1.1" transform="translate(172.9 90.3)"/>
+      <rect id="Rectangle_2940" data-name="Rectangle 2940" width="8.6" height="0.9" transform="matrix(0.992, -0.125, 0.125, 0.992, 172.79, 90.952)"/>
+    </g>
+    <g id="Group_2226" data-name="Group 2226">
+      <line id="Line_1183" data-name="Line 1183" class="cls-2" x1="8.6" y2="0.5" transform="translate(173.3 95.4)"/>
+      <rect id="Rectangle_2941" data-name="Rectangle 2941" width="8.6" height="0.9" transform="translate(173.273 95.467) rotate(-3.583)"/>
+    </g>
+  </g>
+</svg>

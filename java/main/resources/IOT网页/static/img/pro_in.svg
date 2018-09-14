@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="2868 -5289 53 53">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #5aa055;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 3px;
+      }
+
+      .cls-3 {
+        filter: url(#Ellipse_9);
+      }
+    </style>
+    <filter id="Ellipse_9" x="2868" y="-5289" width="53" height="53" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#176911" flood-opacity="0.204"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_2365" data-name="Group 2365" transform="translate(2415 -5457)">
+    <g class="cls-3" transform="matrix(1, 0, 0, 1, -2415, 5457)">
+      <circle id="Ellipse_9-2" data-name="Ellipse 9" class="cls-1" cx="17.5" cy="17.5" r="17.5" transform="translate(2877 -5283)"/>
+    </g>
+    <g id="Group_117" data-name="Group 117">
+      <line id="Line_26" data-name="Line 26" class="cls-2" y2="18" transform="translate(479.5 182.5)"/>
+      <line id="Line_27" data-name="Line 27" class="cls-2" x2="19" transform="translate(470 191.5)"/>
+    </g>
+  </g>
+</svg>

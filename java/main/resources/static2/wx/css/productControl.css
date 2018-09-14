@@ -1,0 +1,556 @@
+.menuPage {
+	padding-top: .25rem;
+	/*height: 100%;*/
+	box-sizing: border-box;
+}
+
+.product_content {
+	/*position: relative;*/
+	/*height: 100%;*/
+	padding-bottom: .5rem;
+}
+
+.menu_data_bg {
+	width: 100%;
+	padding: 0 .1375rem;
+	box-sizing: border-box;
+}
+
+.product_back {
+	float: right;
+	width: .375rem;
+	height: .187rem;
+	line-height: .187rem;
+	color: #fff;
+	padding-left: .13rem;
+	box-sizing: border-box;
+	font-size: .1rem;
+	border-radius: .025rem;
+	background: #e2846d url(../img/Group/2628.svg) .05rem center/.075rem .0875rem no-repeat;
+}
+
+.product_b_out {
+	height: .187rem;
+	padding-top: .0625rem;
+}
+
+
+/*nav*/
+
+.menu_eq_list ul {
+	background: #40B6E6;
+	box-shadow: 0 .01rem .01rem .01rem rgba(0, 0, 0, .5);
+}
+
+.menu_eq_list li {
+	margin: .025rem 0 .025rem .0625rem;
+	padding: 0 .093rem;
+	line-height: .2rem;
+	background: #fff;
+	border-radius: .025rem;
+	font-size: .1rem;
+	color: #0887D6;
+}
+
+.menu_eq_list .active {
+	background: #3366FF;
+	color: #fff;
+}
+
+.menu_eq_list .active a {
+	color: #fff;
+}
+
+.menu_eq_list li a {
+	color: #2F852A;
+}
+
+
+/*nav*/
+
+
+/*视屏*/
+
+.inte_vido {
+	width: 2.06rem;
+	height: 1.53rem;
+	-webkit-touch-callout: none;
+	cursor: pointer;
+	margin: .0812rem auto .1rem;
+	display: block;
+	line-height: 1.83rem;
+    text-align: center;
+    font-size: .1rem;
+}
+
+.inte_v_contro {
+	width: 100%;
+	line-height: .225rem;
+	/*color: #114D0E;*/
+	font-size: .1rem;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.inte_v_contro_li,
+.nnones {
+	width: .781rem;
+	box-sizing: border-box;
+	border-top: 1px solid #95989A;
+	border-right: 1px solid #95989A;
+	border-bottom: 1px solid #3366FF;
+	background: #B8C6D5;
+	color: #fff;
+	cursor: pointer;
+}
+
+.nnones {
+	line-height: .44rem;
+}
+
+.inte_v_control {
+	/*padding-top:.187rem;*/
+	/*height: .875rem;*/
+	display: none;
+	/*width: 1.875rem;
+	margin: .0375rem 0 0 .0625rem;
+	border: 1px solid #B0DDAD;
+	border-radius: .025rem;
+	padding: .05rem 0 .312rem .0875rem;
+	box-sizing: border-box;
+	height: 1.437rem;*/
+}
+
+.contro_self {
+	color: #114D0E;
+	font-size: .1rem;
+	line-height: .25rem;
+	margin-right: .4187rem;
+}
+
+.contro_btns {
+	margin: .187rem 0;
+}
+
+.contro_btns span {
+	width: .375rem;
+	height: .187rem;
+	line-height: .187rem;
+	margin-right: .293rem;
+	float: left;
+	color: #fff;
+	padding-left: .13rem;
+	box-sizing: border-box;
+	font-size: .1rem;
+	border-radius: .025rem;
+}
+
+.btn_up {
+	background: #51C626 url(../img/switch/2516.png) .05rem center no-repeat;
+}
+
+.btn_down {
+	background: #51C626 url(../img/switch/11.png) .05rem center no-repeat;
+}
+
+.contro_btns .btn_stop {
+	margin-right: 0;
+	background: #e2846d url(../img/switch/3115.png) .05rem center no-repeat;
+}
+
+.contro_select {
+	font-size: .1rem;
+	color: #5AA055;
+	height: .187rem;
+	line-height: .187rem;
+	padding-right: .125rem;
+}
+
+.contro_setVal input {
+	width: .562rem;
+	height: .187rem;
+	border: 1px solid #5AA055;
+	font-size: .1rem;
+	line-height: .187rem;
+	display: inline-block;
+	margin-right: .143rem;
+}
+
+.contro_setVal input::-webkit-input-placeholder {
+	/* placeholder颜色  */
+	color: #2F852A;
+	/* placeholder字体大小  */
+	font-size: .1rem;
+	/* placeholder位置  */
+	text-align: right;
+	padding-right: .05rem;
+}
+
+.contro_playNow {
+	width: .375rem;
+	height: .187rem;
+	line-height: .187rem;
+	color: #fff;
+	display: inline-block;
+	padding-left: .13rem;
+	box-sizing: border-box;
+	font-size: .1rem;
+	border-radius: .025rem;
+	background: #51C626 url(../img/switch/1079.png) .05rem center no-repeat;
+}
+
+.contro_cont span {
+	float: left;
+	color: #5AA055;
+	font-size: .1rem;
+	margin-right: .125rem;
+	line-height: .225rem;
+}
+
+
+/*switch切换*/
+
+
+/*信息列表*/
+
+.menu_e_lists {
+	padding: 0 0.143rem;
+}
+
+
+/*信息列表*/
+
+.menu_e_lists {
+	padding: 0 0.143rem;
+}
+
+.menu_e_l_t {
+	height: .2rem;
+	line-height: .2rem;
+	text-align: center;
+	background: #5AA055;
+	font-size: 0.0875rem;
+	color: #fff;
+}
+
+.menu_e_l_pic {
+	margin-bottom: .01875rem;
+	height: .9rem;
+	width: 100%;
+}
+
+.menu_e_l_b {
+	font-size: .1rem;
+	text-align: center;
+	color: #114D0E;
+	line-height: 0.2125rem;
+	height: 0.2125rem;
+}
+
+.menu_e_listinfo {
+	float: left;
+	border: 1px solid #5AA055;
+	width: 1.09rem;
+	margin-top: 0.0625rem;
+}
+
+
+/*信息列表*/
+
+.wa_switch {
+	width: .5rem;
+	height: .187rem;
+	line-height: .187rem;
+	position: relative;
+	border-radius: .056rem;
+	border: 1px solid #95989A;
+	background: #d5d5d5;
+}
+
+.switch {
+	position: absolute;
+	left: 0;
+	top: -.012rem;
+	border-radius: .056rem;
+	box-shadow: 0 0.02rem 0.04rem rgba(0, 0, 0, 0.22);
+	width: .3rem;
+	height: 100%;
+}
+
+.switch img {
+	width: 100%;
+	height: 100%;
+}
+
+.inte_vido_outs {
+/*	position: relative;*/
+}
+
+.backData {
+	position: fixed;
+	bottom: 0;
+	z-index: 2;
+	width: 100%;
+	height: .3rem;
+	line-height: .3rem;
+	color: #fff;
+	background: #51C626 url(../img/shishi.svg) .743rem center/.175rem .137rem no-repeat;
+	padding-left: 1rem;
+	font-size: .1rem;
+	box-sizing: border-box;
+}
+
+.inte_vi_dataBg {
+	width: 100%;
+	margin: 0 auto;
+	border: 1px solid #3366FF;
+	border-top: none;
+	box-sizing: border-box;
+	display: none;
+}
+
+.inte_vi_dataGroup {
+	/*padding-left: .118rem;*/
+}
+
+
+/*.product_content {
+	display: none;
+}*/
+
+.contro_btns .btnTw {
+	margin: 0 .3rem 0 .35rem;
+}
+
+.inte_v_short {
+	display: none;
+}
+
+
+/*新加图片*/
+
+.menu_e_listinfo {
+	float: left;
+	border: 1px solid #3BA9ED;
+	width: 1rem;
+	margin-top: 0.0625rem;
+	box-sizing: border-box;
+}
+
+.menu_e_l_t {
+	margin-bottom: .0625rem;
+	height: .2rem;
+	line-height: .2rem;
+	text-align: center;
+	background: #3BA9ED;
+	font-size: 0.0875rem;
+	color: #fff;
+}
+
+.menu_e_l_pic {
+	margin:0 auto .01875rem;
+	height: .9rem;
+	width: .875rem;
+	display: block;
+	position: relative;
+}
+
+.menu_e_l_pic .bg {
+	width: 100%;
+	height: .9rem;
+	margin-bottom: 0.1rem;
+	position: relative;
+	background-color: #fff;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.menu_e_l_pic img {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.menu_e_l_b {
+	font-size: .087rem;
+	text-align: center;
+	color: #0E64AD;
+	line-height: 0.2125rem;
+	height: 0.2125rem;
+}
+
+
+/*控制开关获取数据*/
+
+.auto {
+	width: .8rem;
+	height: .2rem;
+	float: left;
+	margin-left: .7rem;
+	margin-top: .1rem;
+}
+
+.onSele {
+	cursor: pointer;
+	display: inline-block;
+	width: 50px;
+	height: 100%;
+	background: url(../img/on.svg)no-repeat;
+	background-size: 100%;
+}
+
+.offSele {
+	cursor: pointer;
+	display: inline-block;
+	width: 50px;
+	height: 100%;
+	background: url(../img/off.svg)no-repeat;
+	background-size: 100%;
+}
+
+.hiderem {
+	display: none;
+	width: 1rem;
+	visibility: hidden;
+}
+
+.inte_v_contro .actived {
+	background: #fff;
+	color: #02265A;
+	border-top: 1px solid #3366FF;
+	border-right: 1px solid #3366FF;
+	border-left: 1px solid #3366FF !important;
+	border-bottom: 1px solid #fff;
+}
+
+
+/*控制图标*/
+.inte_v_dianji {
+	height: .875rem;
+}
+.inte_v_c_img {
+	padding: .125rem 0 .15rem;
+}
+.inte_v_c_img img {
+	width: .575rem;
+	height: .2812rem;
+	margin-right: .14rem;
+	float: left;
+}
+
+.inte_v_c_degree {
+	line-height: .225rem;
+	font-size: .1rem;
+	color: #02265A;
+}
+
+.inte_v_c_degree span {
+	padding-right: .1375rem;
+}
+
+.inte_v_c_degree img {
+	width: .575rem;
+	height: .281rem;
+	float: left;
+}
+.inte_v_c_deinpuOut {
+	width: .812rem;
+	height: .225rem;
+	position: relative;
+}
+.inte_v_c_deinpuOut input {
+	width: .812rem;
+	border: 1px solid #5AA055;
+	box-sizing: border-box;
+	height: .225rem;
+	padding-left: .05rem;
+}
+.inte_v_c_deinpuOut span{
+	position: absolute;
+	right: 0;
+	top: .02rem;
+	width: .15rem;
+	line-height: .2rem;
+	display: block;
+	padding: 0;
+}
+.inte_v_c_degree input::-moz-placeholder {
+	text-align: right;
+}
+
+.inte_v_c_degree input::-ms-placeholder {
+	text-align: right;
+}
+
+.inte_v_c_degree input::-webkit-placeholder {
+	text-align: right;
+}
+
+input::-webkit-input-placeholder {
+	text-align: right;
+	padding-right: .05rem;
+}
+
+.line_water {
+	padding: .137rem .437rem;
+}
+
+.line_water img {
+	width: .5rem;
+	height: .225rem;
+}
+
+.proFirData {
+	/*position: relative;*/
+	height: 100%;
+}
+
+.inte_v_contro_out {
+	margin-top: .0875rem;
+	display: none;
+}
+
+
+/*.backData {
+	position: fixed;
+	bottom: 0;
+	z-index: 2;
+	width: 100%;
+	height:.3rem;
+	line-height: .3rem;
+	color: #fff;
+	background: #51C626 url(../img/control/backControl.svg) .743rem center/.075rem .0875rem no-repeat;
+	text-align: center;
+	font-size: .1rem;
+	box-sizing: border-box;
+}
+*/
+
+.contro_cont_zhi {
+	height:.875rem;
+}
+.inte_v_dianji {
+	padding-left: .175rem;
+	box-sizing: border-box;
+}
+.inte_v_yuyue {
+	height: .875rem;
+}
+.yuyueControl {
+	padding: .275rem 0 0 .237rem;
+	color: #02265A;
+	font-size: .1rem;
+	line-height: .125rem;
+}
+.yuyueControl .wa_intel li span{
+	color: #02265A;
+}
+.sweet-alert {
+	padding: 17px 0;
+}
+
+

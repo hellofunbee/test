@@ -1,0 +1,242 @@
+
+/*导航*/
+.menuPage {
+	padding-top:.25rem;
+}
+.inputAr_set {
+	height: .25rem;
+	padding: 0 .0625rem;
+	box-shadow: 0 .01rem .01rem .01rem rgba(149, 152, 154, .3);
+	background: #40B6E6;
+}
+.inputAr_s_new_bg {
+    width: .9rem;
+    float: left;
+    position: relative;
+}
+.inputAr_set {
+	clear: both;
+}
+.inputAr_set span {
+	height: .2rem;
+    line-height: .2rem;
+    color: #0887D6;
+    cursor: pointer;
+    text-align: center;
+    font-size: .1rem;
+    border-radius: .0875rem;
+    margin: .025rem .043rem .025rem 0;
+    border: 1px solid #C9D9EC;
+    border-radius: .0875rem;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 .15rem 0 .02rem;
+    background: #fff url(../img/selectMore.svg) .75rem center/.07rem no-repeat;
+}
+.expertLists {
+	    position: absolute;
+    top: .22rem;
+    left: 0;
+    width: 1.4rem;
+    line-height: .185rem;
+    color: #666;
+    border: 1px solid #ADCBDD;
+    background: #fff;
+    box-shadow: 1px 1px 9px rgba(0,100,173,.5);
+    display: none;
+    z-index: 3;
+}
+.inputAr_s_sear {
+	width: 1.2rem;
+    line-height: .2rem;
+    margin-top: .025rem;
+}
+
+.inputAr_s_sear input {
+	width: .85rem;
+	height: .2rem;
+	float: left;
+	padding-left: .05rem;
+	box-sizing: border-box;
+	border-radius: .0875rem 0 0 .0875rem;
+	background: #fff;
+	color: #0887D6;
+	font-size: .1rem;
+}
+
+.inputAr_s_search {
+	width: .318rem;
+	background: #3366FF;
+	color: #fff;
+	text-align: center;
+	border-radius: 0 .0875rem .0875rem 0;
+	height: .2rem;
+	line-height: .2rem;
+	cursor: pointer;
+	font-size: .0875rem;
+}
+
+.inputAr_s_sear input::-webkit-input-placeholder {
+	color: #0887D6;
+	font-size: .1rem;
+	padding-left: .05rem;
+}
+
+.inputAr_s_sear input::-webkit-input-placeholder {
+	color: #0887D6;
+	font-size: .1rem;
+	padding-left: .05rem;
+}
+
+.inputAr_s_sear input::-moz-placeholder {
+	color: #0887D6;
+	font-size: .1rem;
+	padding-left: .05rem;
+}
+
+.inputAr_s_sear input:-ms-input-placeholder {
+	color: #0887D6;
+	font-size: .1rem;
+	padding-left: .05rem;
+}
+/*政策信息详情*/
+.poli_content {
+	padding: .093rem .075rem;
+	box-sizing: border-box;
+}
+.poli_conL{
+	color: #FF7600;
+	font-size: .125rem;
+	line-height: .168rem;
+	width: .6rem;
+}
+.poli_conR {
+	padding-left: .05rem;
+    width: 1.5rem;
+    border-left: 1px solid #FF7600;
+    height: .562rem;
+    box-sizing: border-box;
+    position: relative;
+}
+.lookMore {
+	position: absolute;
+	bottom: .06rem;
+	right: 0;
+	color: #399EE8;
+	font-size: .075rem;
+	line-height:.125rem ;
+	display: block;
+}
+.lookMorezhen {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: #399EE8;
+	font-size: .075rem;
+	line-height:.125rem ;
+	display: block;
+	}
+.poli_conR_t {
+	line-height: .1312rem;
+	font-size: .1rem;
+	color:#02265A;
+}
+.poli_conR_cen {
+	font-size: .0875rem;
+	line-height: .125rem;
+	color: #666;
+	position: relative;
+	white-space: pre-line;
+}
+.poli_conR_b {
+	line-height: .1187rem;
+	font-size: .075rem;
+	color: #399EE8;
+	position: absolute;
+	right:0;
+	bottom: 0;
+}
+/*政策信息详情*/
+.fir_head_r_search {
+	display: none;
+}
+/*政策列表*/
+.fir_var {
+	height:.175rem;
+	background: url(../img/research.png) 0 0/100% no-repeat;
+	line-height: .175rem;
+	font-size: .1rem;
+	color: #fff;
+	text-align: center;
+}
+.fir_var_new {
+	height:.175rem;
+	background: url(../img/research.png) 0 0/100% no-repeat;
+	line-height: .175rem;
+	font-size: .1rem;
+	color: #fff;
+}
+.fir_var_lists {
+	height:.255rem;
+	background: url(../img/titleLine.svg) center/2.21rem auto no-repeat;
+	line-height: .255rem;
+	text-align: center;
+	color:#0E64AD;
+	font-size: .1rem;
+}
+.fir_var_l_num {
+	border-bottom: 1px solid #ADCBDD;
+	margin-bottom: 0.0875rem;
+	position: relative;
+}
+.fir_var_l_n_img {
+	width:.625rem;
+	height:.625rem;
+	margin-right:0.0625rem;
+}
+.fir_var_l_n_text {
+	font-size: .1rem;
+	line-height: .14rem;
+	width:1.5rem;
+}
+.fir_var_l_n_t_top{
+	color:#02265A;
+	font-size:.1rem;
+}
+.fir_var_l_n_t_text {
+	color:#666;
+	font-size:.0875rem;
+	    white-space: pre-line;
+}
+.fir_var_l_user {
+	font-size: .0875rem;
+	color:#0E64AD;
+}
+.fir_var_l_time {
+	color:#E2846D;
+	font-size:0.075rem;
+} 
+.fir_var_l_more {
+	font-size:0.0875rem;
+	color:#3198FF;
+}
+.fir_var_l_more:visited {
+	color:#3198FF;
+}
+.expertLists .choose {
+    background: #3366FF;
+    color: #fff;
+}
+.expertLists li {
+    border: 1px solid #C9D9EC;
+    /* border-radius: .0875rem; */
+    background: #fff;
+    border-top: none;
+    color: #0887D6;
+    padding-left: .05rem;
+}
+
+.poli_co_list {
+	margin-bottom: .1125rem;
+}

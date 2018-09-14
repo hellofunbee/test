@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>发布信息</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link href="css/publish.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="./css/sweetalert.css">
+</head>
+<body>
+<div class="wrap">
+<!--    <div class="left fl">
+        <div>
+            <div class="nav_left">
+                <div class="icon student">
+                    <img src="./img/home.png" alt=""/>
+                </div>
+                <p class="pinline pinline2" style="font-size: 0.12rem"> 山西农业大学互联网+项目</p>
+                <ul id="navigation" style="font-size: 0.12rem">
+                </ul>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="right fl">
+        <div class="r_top" style="padding-left: 200px;">
+            <ul class="ul_top" id="ul_top">
+                <li id="1" class="choose" data-id="4">政策信息</li>
+                <li id="2" data-id="5">即时信息</li>
+                <li id="3" data-id="3">预警信息</li>
+                <!--<li id="4">首页资讯</li>-->
+                <!--<li id="5">首页轮播图</li>-->
+            </ul>
+        </div>
+        <!-- 发布信息 -->
+        <div class="r_mid" style="padding-left: 200px;">
+            <div class="mid_one" style="display: block">
+                <div class="sear fl" style="display: block；">
+                    <input type="text" placeholder="请输入标题"/>
+                    <span class="search" data-s="2">搜索</span>
+                </div>
+            </div>
+            <select class="jss" style="display: none">
+                <option value="">即时消息类型</option>
+            </select>
+            <select class="yujing" style="display: none">
+                <option value="">预警消息类型</option>
+            </select>
+            <div class='firstpageText fl' style='display:none'>
+            	<select name="" id="firstpageT_fir">
+            		<option value="0">一级分类全部</option>
+            	</select>
+            	<select name="" id="firstpageT_twi">
+            		<option value="0">二级分类全部</option>
+            	</select>
+            </div>
+            <div class="publish fl usreType" data-num="0">
+                	发布新消息
+            </div>
+            
+        </div>
+            <!--<div class="mid_two" style="display: block">-->
+                <!--<div class="sear fl">-->
+                    <!--<input type="text" placeholder="请输入文章标题"/>-->
+                    <!--<span class="search">搜索</span>-->
+                <!--</div>-->
+                <!--<select>-->
+                    <!--<option value="">即时消息类型</option>-->
+                <!--</select>-->
+                <!--<div class="publish fl">-->
+                    <!--发布新消息-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="mid_three" style="display: block">-->
+                <!--<div class="sear fl">-->
+                    <!--<input type="text" placeholder="请输入文章标题"/>-->
+                    <!--<span class="search">搜索</span>-->
+                <!--</div>-->
+                <!--<select>-->
+                    <!--<option value="">预警类型</option>-->
+                <!--</select>-->
+                <!--<div class="publish fl">-->
+                    <!--发布新消息-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <!-- 政策信息 -->
+        <div class="r_bot zhengce" style="display: block;min-height: 100%;padding-bottom: 200px" id="a1">
+        </div>
+        <!-- 即时信息 -->
+        <div class="r_bot jishi" style="display: none;min-height: 100%;padding-bottom: 200px"  id="a2">
+            <ul class="info1">
+
+            </ul>
+        </div>
+
+        <!--   预警信息-->
+        <div class="r_bot jishi" style="display: none;min-height: 100%;padding-bottom: 200px"  id="a3">
+            <ul class="info2">
+
+            </ul>
+        </div>
+
+        <!-- 首页资讯 -->
+        <div class="r_bot zhengce"  style="display: none;min-height: 100%;padding-bottom: 200px" id="a4">
+            <!--<div class="title">-->
+                <!--新技术研究-->
+            <!--</div>-->
+            <!--<div class="top">-->
+                <!--<div class="heng fl"></div>-->
+                <!--<img src="img/lingxing.png" alt=""/>-->
+                <!--<span >蔬菜</span>-->
+                <!--<img src="img/lingxing.png" alt=""/>-->
+                <!--<div class="heng fl"></div>-->
+            <!--</div>-->
+            <!--<ul class="content con1">-->
+            <!--</ul>-->
+        </div>
+         <!--轮播-->
+        <ul class="r_bot r_bot5" id="a5" style="display: none;overflow: scroll;min-height: 100%;padding-bottom: 200px">
+            <!--<li class="addLB">-->
+                <!--<div class="lb_bg">-->
+                    <!--<img src="./img/apple.png" alt="">-->
+                    <!--<div class="bg"></div>-->
+                   <!--<span class="addImg">添加</span>-->
+                <!--</div>-->
+                <!--<p class="lb_tit">跳转链接：</p>-->
+                <!--<textarea class="lb_href">http://sxjg.net/eshop/HOT COMMODITY</textarea>-->
+                <!--<div class="lb_save">保存链接</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="lb_bg">-->
+                    <!--<img src="./img/apple.png" alt="">-->
+                    <!--<div class="bg"></div>-->
+                    <!--<div class="btn">-->
+                        <!--<span class="replaceimg">替换</span>-->
+                        <!--<span class="delLB">删除</span>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--<p class="lb_tit">跳转链接：</p>-->
+                <!--<textarea class="lb_href">http://sxjg.net/eshop/HOT COMMODITY</textarea>-->
+                <!--<div class="lb_save">保存链接</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+
+
+<!--  新建政策信息  -->
+<div class="mask mask0" style="display: none">
+    <div class="popup">
+        <div class="pop_tit">新建政策信息 <span class="close">X</span></div>
+        <div class="pop_record">
+            <div class="pop_top">
+                <ul class="pop_ul fl">
+                    <li>
+                        <p class="pop_tit2">标题</p>
+                        <div class="pop_kuang">
+                            <input type="text" class="m_title"/>
+                        </div>
+                    </li>
+
+                    <li>
+                        <p class="pop_tit2">作者名</p>
+                        <div class="pop_kuang">
+                            <input type="text" class="m_authorname"/>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fl" style="margin-right: 0.2rem">
+                            <p class="pop_tit2">所属一级分类</p>
+                            <div class="pop_kuang">
+                                <select id="m_city" class="fenlei">
+                                </select>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+                <div class="cover fr">
+                    <div class="cover-ico">
+                        <p class="cover_p">上传文章封面</p>
+                        <p>>900x900px<100KB</p>
+                    </div>
+                    <input type="file" class="upload abcd"/>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <div class="pop_bot">
+                <p class="pop_tit2">原文信息</p>
+                <textarea class="tx" placeholder="原文信息(新政策、法规、文件)"></textarea>
+            </div>
+        </div>
+        <div>
+            <span class="pop_cancel">取消</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<!--  新建及时信息  -->
+<div class="mask mask1" style="display: none">
+    <div class="popup">
+        <div class="pop_tit">新建即时信息 <span class="close">X</span></div>
+        <div class="pop_record">
+            <div class="pop_top">
+                <ul class="pop_ul2 fl">
+                    <li>
+                        <p class="pop_tit2">标题</p>
+                        <div class="pop_kuang">
+                            <input type="text" class="js_title"/>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="pop_tit2">所属一级分类</p>
+                        <div class="pop_kuang">
+                            <select class="fenlei">
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div style="clear: both"></div>
+            <div class="pop_bot">
+                <p class="pop_tit2">正文信息</p>
+                <textarea class="js_tx tx" placeholder="正文信息"></textarea>
+            </div>
+        </div>
+        <div>
+            <span class="pop_cancel">取消</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<!--  新建预警信息  -->
+<div class="mask mask2" style="display: none">
+    <div class="popup">
+        <div class="pop_tit">新建预警信息 <span class="close">X</span></div>
+        <div class="pop_record">
+            <div class="pop_top">
+                <ul class="pop_ul3 fl">
+                    <li>
+                        <p class="pop_tit2">标题</p>
+                        <div class="pop_kuang">
+                            <input type="text" class="yj_title"/>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="pop_tit2">所属一级分类</p>
+                        <div class="pop_kuang">
+                            <select style="width: 5rem" class="class1 fenlei">
+
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="fl" style="margin-right: 0.1rem">
+                            <p class="pop_tit2">预警地所在省</p>
+                            <div class="pop_kuang">
+                                <select id="s1">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="fl" style="margin-right: 0.1rem">
+                            <p class="pop_tit2">预警地所在市</p>
+                            <div class="pop_kuang">
+                                <select id="s2">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="fl">
+                            <p class="pop_tit2">预警地所在区</p>
+                            <div class="pop_kuang">
+                                <select id="s3">
+                                </select>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+            <div style="clear: both"></div>
+            <div class="pop_bot">
+                <p class="pop_tit2">正文信息</p>
+                <textarea class="yj_tx tx" placeholder="正文信息"></textarea>
+            </div>
+        </div>
+        <div>
+            <span class="pop_cancel">取消</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+<!--  新建资讯信息  -->
+<div class="mask mask3" style="display: none">
+    <div class="popup">
+        <div class="pop_tit">新建资讯信息 <span class="close">X</span></div>
+        <div class="pop_record">
+            <div class="pop_top">
+                <ul class="pop_ul3 fl">
+                    <li>
+                        <p class="pop_tit2">标题</p>
+                        <div class="pop_kuang">
+                            <input type="text"/>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="pop_tit2">作者</p>
+                        <div class="pop_kuang">
+                            <input type="text" class="m_authorname"/>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="pop_tit2">所属一级分类</p>
+                        <div class="pop_kuang">
+                            <select class="class1 fenlei">
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="pop_tit2">所属二级分类</p>
+                        <div class="pop_kuang">
+                            <select class="class2 fenleiTwo">
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+                <div class="cover fr">
+                    <div class="cover-ico">
+                        <p class="cover_p">上传文章封面</p>
+                        <p>>900x900px<100KB</p>
+                    </div>
+                    <input type="file" class="upload abcd1"/>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <div class="pop_bot">
+                <p class="pop_tit2">文章信息</p>
+                <textarea class="tx" placeholder="原文信息（新政策、法规、文件）"></textarea>
+            </div>
+        </div>
+        <div>
+            <span class="pop_cancel">取消</span>
+            <span class="pop_save">保存</span>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="./js/template.js"></script>
+<script src="./scripts/httpHeader.js"></script>
+<script type="text/javascript" src="scripts/publish.js"></script>
+<script type="text/javascript" src="js/paging.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/rem.js"></script>
+</html>

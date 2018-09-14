@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="mx-login">
+    <div class="login-cnt">
+        <div class="login-item"><label>用户名</label>
+            <div class="input-block"><input type="text" class="input-text" id="phone" value="admin"></div>
+        </div>
+        <div class="login-item"><label>密码</label>
+            <div class="input-block"><input type="password" class="input-text" id="pass" value="123456"></div>
+        </div>
+        <div><a href="#" class="login-btn">登录</a></div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/json2.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="js/common.js"></script>
+<script src="js/api.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script>$.backstretch(["images/bg2.jpg"]), $(function () {
+    var t = $(".login-btn").click(function () {
+        var e = $("#phone"), t = e.val();
+        if (!t)return layer.msg("请填写用户名"), void e.focus();
+        var o = $("#pass"), s = o.val();
+        return s ? (API.login(t, s, function (e) {
+            e.success ? (sessionStorage.setItem("ckuid", e.object.ckuid), sessionStorage.setItem("cksid", e.object.cksid), sessionStorage.setItem("utype", e.object.u_type), window.location.href = "./index.html") : layer.alert(e.msg)
+        }, function (e) {
+            layer.alert("用户名或密码错误!")
+        }), !1) : (layer.msg("请填写密码"), void o.focus())
+    });
+    $(document).keyup(function (e) {
+        return 13 === e.keyCode && (e.preventDefault(), t.click()), !0
+    })
+})</script>
+<script>var _hmt = _hmt || [];
+!function () {
+    var e = document.createElement("script");
+    e.src = "https://hm.baidu.com/hm.js?29af1c870a0982d5fcf6059288d2be0d";
+    var t = document.getElementsByTagName("script")[0];
+    t.parentNode.insertBefore(e, t)
+}()</script>
+</body>
+</html>

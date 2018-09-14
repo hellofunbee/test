@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" href="css/sweetalert.css">
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	    <script src="js/httpHeader.js"></script>
+	    <script src="js/sweetalert.min.js"></script>
+	   <script src="js/login.js"></script>
+	   <title>none</title>
+	</head>
+	<body>
+		<div class="log_bg" id="log_bg">
+		<div class="login">
+			<div class="l1" id="l1">
+				<p>欢迎使用物联网管理云平台</p>
+				<ul>
+					<li>
+						<span class="phoneImgOut">
+							<img class="phoneImg" src="img/userId.png" />
+						</span>
+						<input type="text" id="phone" placeholder="请输入用户名">
+					</li>
+					<li>
+						<span class="phoneImgOut">
+							<img class="phoneImg" src="img/userPass.png"/>
+						</span>
+						<input type="password" id="pass" placeholder="请输入登录密码">
+					</li>
+					<li id="sub">
+						登录
+					</li>
+					<p class="loginSel clear">
+						<input class="fl" type="checkbox" name="" id="checkLogin" value="" />
+						<label for="checkLogin" class="fl checkLogin">自动登录</label>
+						<span class="fr checkPass">忘记密码？</span>
+					</p>
+				</ul>
+			</div>
+		</div>
+		</div>
+		<script>
+			window.onload=function(){
+					var div = document.getElementById("l1");
+					var OHi=document.getElementById("log_bg");
+					var style = getCurrentStyle(div);
+					var display = style["height"];
+					var oPad=style["padding-top"];
+					var oAllH=getCurrentStyle(OHi)['height']
+					var nowheight=parseFloat(oAllH)-(parseFloat(display)+parseFloat(oPad));
+					div.style.paddingBottom=nowheight+'px';
+					
+					function getCurrentStyle(node) {
+					    var style = null;
+					    
+					    if(window.getComputedStyle) {
+					        style = window.getComputedStyle(node, null);
+					    }else{
+					        style = node.currentStyle;
+					    }
+					    
+					    return style;
+					}
+				}
+		</script>
+	</body>
+</html>

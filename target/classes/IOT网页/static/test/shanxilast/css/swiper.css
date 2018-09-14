@@ -1,0 +1,39 @@
+
+.gallery-top{
+width: 80%;
+height: 450px;
+border: 1px solid #5aa055;
+margin: 10px auto;
+}
+.gallery-thumbs{
+    width: 80%;
+    height: 80px;
+    border: 1px solid #5aa055;
+    margin: 10px auto;
+}
+.gallery-top .swiper-slide{
+    width: 100%;
+    height: 450px;
+}
+.gallery-thumbs .swiper-slide{
+    width: 100px;
+    height: 75px;
+}
+.gallery-top .swiper-slide>img{
+    width: 600px;
+    height: 450px;
+    display: block;
+    margin: 0 auto;
+}
+.gallery-thumbs .swiper-slide>img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.swiper-button-next,.swiper-button-prev{
+    width: 40px;
+    height: 80px;
+    top:22px;
+    background-color: #5aa055;
+}

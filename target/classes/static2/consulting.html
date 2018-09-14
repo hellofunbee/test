@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>咨讯详情</title>
+  <link rel="stylesheet" href="./css/loading.css">
+  <link rel="stylesheet" href="./css/sweetalert.css">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .a{
+      border: 1px solid #4ea05b;
+      border-radius: 5px;
+      width: 80%;
+      margin: 30px auto;
+    }
+    .a h3{
+      text-align: center;
+      line-height: 40px;
+    }
+    .a .a_1{
+      width: 96%;
+      margin: 10px auto;
+    }
+    .a p.p1{
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 10px;
+      color: #4ea05b;
+    }
+    .a p.p2{
+     width: 90%;
+      margin: 30px auto;
+      display: block;
+      line-height: 30px;
+      padding: 0 10px;
+      color: #4ea05b;
+    }
+    .a img{
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="a">
+  <h3></h3>
+  <div class="a_1">
+    <p class="p1"></p>
+    <img src="" alt="">
+    <p class="p2"></p>
+  </div>
+</div>
+</body>
+</html>
+<script src="./js/jquery-1.7.1.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="./js/loading.js"></script>
+<script src="./scripts/httpHeader.js"></script>
+<script>
+  $(function(){
+    listMessage()
+    function listMessage(){
+      var obj = new Object();
+      obj.ckuid=sessionStorage.getItem('ckuid');
+      obj.cksid=sessionStorage.getItem('cksid');
+      obj.m_id=window.location.href.split('?')[1].split('&')[0].split('=')[1]
+      loadShow()
+      $.ajax({
+        url: http+"listMessage",
+        type: "post",
+        contentType: "application/json",
+        headers: {'Content-type': 'application/json;charset=UTF-8'},
+        data:JSON.stringify(obj),
+        cache: false,
+        success: function (data) {
+          removeload()
+          if(data.success){
+            document.title=decodeURI(window.location.href.split('?')[1].split('&')[1].split('=')[1])
+             $('h3').text(data.object[0].m_title)
+            $('p.p1').html("作者名："+data.object[0].m_authorname+"&nbsp;&nbsp;&nbsp;&nbsp;"+dealdata(data.object[0].m_time))
+            $('img').attr('src',data.object[0].m_cover)
+            $('p.p2').text(data.object[0].m_content)
+          }else if(data.state==2){
+            window.location.href="./login.html";
+            return false
+          } else{
+            alert(data.msg);
+          }
+        },
+        error:function(){
+          parent.removeload()
+          alert('请求失败,请重新尝试')
+        }
+      });
+    }
+//时间戳
+    function dealdata(ele) {
+      var time = new Date(ele * 1000);
+      var n = time.getFullYear();
+      var y = time.getMonth() + 1;
+      var r = time.getDate();
+      var h=time.getHours()<10 ? "0" + time.getHours():time.getHours();
+      var m=time.getMinutes()<10 ? "0" + time.getMinutes() :time.getMinutes();
+      var s=time.getSeconds()<10? "0"+time.getSeconds():time.getSeconds();
+      var result=n+'年'+y+'月'+r+'日';
+      return result;
+    }
+  })
+  function loadShow(){
+    $('body').loading({
+      loadingWidth:240,
+      title:'处理中!',
+      name:'test',
+      discription:'',
+      direction:'column',
+      type:'origin',
+      // originBg:'#71EA71',
+      originDivWidth:40,
+      originDivHeight:40,
+      originWidth:6,
+      originHeight:6,
+      smallLoading:false,
+      loadingMaskBg:'rgba(0,0,0,0.2)'
+    });
+  }
+  function removeload(){
+    removeLoading('test');
+  }
+</script>

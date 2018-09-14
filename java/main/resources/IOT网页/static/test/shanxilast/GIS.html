@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>GIS</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="./css/sweetalert.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="./css/loading.css">
+		<link rel="stylesheet" href="./css/animate.css">
+		<link rel="stylesheet" href="./css/common.css" />
+		<link href="css/GIS.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="top">
+				<div class='showKnows'>
+					<marquee class="showKnowsInner" scrollamount="3" font=""></marquee>
+				</div>
+			</div>
+			<div class='topLine'></div>
+			<!--<div class="homeCon">
+		<iframe src="" frameborder="0" width="100%" height="100%" id="main_iframe"></iframe>
+	</div>-->
+			<div class="nav">
+				<ul class="menu">
+					<li class="homepage ">
+						<p></p>
+						<div class='homepageName'>首页</div>
+					</li>
+					<li class="GIS active">
+						<p></p>
+						<div class="gisname ">GIS系统</div>
+						<div class='giscont'>
+							<p class='giscont_t'></p>
+							<ul class="ul_top">
+								<li id="li1"  data-num = "0" class="active">设备分布</li>
+								<li id="li2" data-num = "1" data-str = "请选择区域">物种分布</li>
+								<li id="li3" data-num = "1" data-num2 = "2">生产分布</li>
+								<li id="li4" data-num = "2" >预警信息</li>
+							</ul>
+						</div>
+					</li>
+					<li class="zonghe">
+						<p></p>
+						<div data-id='' class="zongname">综合信息</div>
+						<div class='zongcont'>
+							<p class='zongcont_t'></p>
+							<ul>
+								<li>传感信息</li>
+								<li>图片信息</li>
+								<li>视频信息</li>
+								<li>管理信息</li>
+							</ul>
+						</div>
+					</li>
+					<li class="shengchan">
+						<p></p>
+						<div data-id='' class='shengname'>生产管理</div>
+						<div class='sheng'>
+							<p class='sheng_t'></p>
+							<ul>
+								<li>智能控制</li>
+								<li>投入品</li>
+								<li>生产计划</li>
+								<li>专家远程指导</li>
+							</ul>
+							<!--<ul>
+								<li>智能控制</li>
+								<li>现场监测</li>
+								<li>智能控温</li>
+								<li>智能控水</li>
+								<li>智能补光</li>
+							</ul>-->
+						</div>
+					</li>
+					<li class="dashuju">
+						<p></p>
+						<div class='daname'>大数据分析</div>
+						<div class='dashu'>
+							<p class='dashu_t'></p>
+							<ul>
+								<li>监测单数据</li>
+								<li>监测多数据</li>
+								<li>生产数据</li>
+								<li>市场数据</li>
+							</ul>
+						</div>
+					</li>
+					<li class='xinxifa'>
+						<p></p>
+						<div class="xinmane">信息发布</div>
+						<div class='xinxi'>
+							<p class='xinxi_t'></p>
+							<ul>
+								<li>政策信息</li>
+								<li>即时信息</li>
+								<li>预警信息</li>
+								<li>首页资讯</li>
+								<li>首页轮播图</li>
+							</ul>
+						</div>
+					</li>
+					<li class='zhuanjia'>
+						<p></p>
+						<div class='zhianname'>专家系统</div>
+
+					</li>
+					<li class="xintongguan">
+						<p></p>
+						<div class='xintongname'>系统管理</div>
+						<div class='xitong'>
+							<p class='xitong_t'></p>
+							<ul>
+								<li>设备管理</li>
+								<li>分类管理</li>
+								<li>用户管理</li>
+								<li>权限管理</li>
+							</ul>
+						</div>
+					</li>
+					<li class="zhuxiao">
+						<p></p>
+						<div class="zhuname">注销</div>
+					</li>
+				</ul>
+				<input type="hidden" name="hideNum" id="hideNum" value="" />
+			</div>
+			<div class="homeCon">
+				<div class='gisTop'>
+					<div class='shebei'>设备列表
+						<div class="left fl">
+							<div class="leftInner">
+								<div class="nav_left">
+									<div class="icon student">
+										<img src="./img/home.png" alt="" />
+									</div>
+									<p class="pinline" style="font-size: 0.12rem"> 山西农业大学互联网+项目</p>
+									<ul id="navigation" style="font-size: 0.12rem">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span class='shebeifeng'>设备分布</span>
+					<div class="selectArea">
+						<div class="allArea">						
+							<div class="allAreaOuter">
+								<div class="allAreasheng">
+									<div class="allAreaqucon">
+										<input disabled type="" name="" id="" placeholder="分布所在省" value="" />
+										<span></span>
+									</div>
+									<ul>
+										<li></li>
+									</ul>
+								</div>								
+								<div class="allAreashi">
+									<div class="allAreaqucon">
+										<input disabled type="" name="" id="" placeholder="分布所在市" value="" />
+										<span></span>
+									</div>
+									<ul>
+										<li></li>
+									</ul>
+								</div>
+								<div class="allAreaqu">
+										<div class="allAreaqucon">
+											<input disabled type="" name="" id="" placeholder="分布所在区" value="" />
+											<span></span>
+										</div>									
+										<ul>
+											
+										</ul>
+								</div>								
+							</div>
+						</div>
+						<div class="chiosseArea">
+							<input type="" name="" id="" placeholder="请输入地区名称" value="" />
+							<span></span>
+						</div>
+						<div class="shengchanli">   
+							<div class="allAreaqucon">
+								<input disabled type="" name="" id="" placeholder="春耕" value="" />
+								<span></span>
+							</div>									
+							<ul>
+							</ul>
+					</div>
+					<div class="yujing">   
+							<div class="allAreaqucon">
+								<input disabled type="" name="" id="" placeholder="洪涝" value="" />
+								<span></span>
+							</div>									
+							<ul>
+								
+							</ul>
+					</div>
+						<span class="shujudao" data-mo="1"></span>
+					</div>
+				</div>
+
+				<div class="right fl">
+					<!--<div class="textbox" style="display: none">
+						<span class="fr xxx"> X </span>
+						<div class="tet_title">
+						</div>
+						<div class="tet_content tet_content1">
+							<div style="margin-right: 0.1rem">
+								<p class="pop_tit2">标题</p>
+								<div class="pop_kuang">
+									<input class="biaoti" type="text" style="width: 100%;height: 0.3rem;color: #5aa055;border: 1px solid #5aa055;">
+								</div>
+							</div>
+							<div style="margin-right: 0.1rem">
+								<p class="pop_tit2 ">所属一级分类</p>
+								<div class="pop_kuang">
+									<select id="fenlei" style="width: 100%">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="tet_content tet_content2">
+							<div class="fl" style="margin-right: 0.1rem">
+								<p class="pop_tit2 pop_tit_1"></p>
+								<div class="pop_kuang">
+									<select id="s1">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="fl" style="margin-right: 0.1rem">
+								<p class="pop_tit2 pop_tit_2"></p>
+								<div class="pop_kuang">
+									<select id="s2">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="fl">
+								<p class="pop_tit2 pop_tit_3"></p>
+								<div class="pop_kuang">
+									<select id="s3">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="text_con">
+							<div>
+								<p>种植作物</p>
+								<p>种植比例</p>
+								<ul id="data_info">
+									<li>
+										<input type="text" placeholder="种植作物" />
+										<input type="text" placeholder="种植比例" />
+									</li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+									<li><input type="text" placeholder="种植作物" /><input type="text" placeholder="种植比例" /></li>
+								</ul>
+							</div>
+						</div>
+						<div class="text_con text_con1" style="margin-bottom: 30px">
+							<p class="pop_tit2">预警信息</p>
+							<div class="pop_kuang" style="border: 1px solid #5aa055">
+								<textarea name="" style="resize: none;width: 98%;border: none" id="textarea" cols="30" rows="10"></textarea>
+							</div>
+						</div>
+						<ul class="btn">
+							<li><button class="canle01">取消</button></li>
+							<li><button id="btn_info">保存</button></li>
+						</ul>
+					</div>-->
+					<!--<div class="r_top">
+            <ul class="ul_top">
+                <li id="li1" data-num = "0" class="choose">设备分布图</li>
+                <li id="li2" data-num = "1" data-str = "请选择区域">物种分布图</li>
+                <li id="li3" data-num = "1" data-num2 = "2">生产分布图</li>
+                <li id="li4" data-num = "2" >预警信息</li>
+            </ul>
+        </div>-->
+					<!--<div class="r_mid">
+						<div class="button getinfo usreType" data-index="0" style="display: none">新建</div>
+					</div>-->
+
+					<!-- 设备分布图 -->
+					<div class="map">
+						<div style="width:100%;height:100%;border:#ccc solid 1px;" id="map"></div>
+					</div>
+					<!-- 物种分布图 --生产分布图 -->
+
+					<div class="map">
+						<!--<div class="map_left">
+							<ul class="uu_map">
+								<script type="text/html" id="city">
+									{{each object as val i}}
+									<li id="{{val.d_id}}">{{val.province}}{{val.city}}{{val.district}}</li>
+									{{/each}}
+								</script>
+							</ul>
+						</div>-->
+						<div class="map_rigth">
+							<div style="width:100%;height:100%;border:#ccc solid 1px;" id="allmap"></div>
+							<div id="r-result"></div>
+						</div>
+					</div>
+					<!-- 预警信息 -->
+					<div class="map">
+						<!--<div class="map_left">
+							<select name="" id="se"></select>
+							<ul style="height: 400px;overflow: auto;width: 150px" id="yujing"></ul>
+						</div>-->
+						<div class="map_rigth">
+							<div style="width:100%;height:100%;border:#ccc solid 1px;" id="c_allmaps"></div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="outerInfo">
+				<div class="outerInfoArgu">
+					<p class="outerInfoArT">
+						物种分布信息管理
+						<span class="outerInfoArT_l" data-num='1'>下载模板</span>
+						<span class="outerInfoArT_r">x</span>
+					</p>
+					<div class="outerInfoArC">
+						<div class="outerInfoArCT">
+							<p>
+								物种分布所在省<br>
+								<select name="" id="s1">
+									
+								</select>
+
+							</p>
+							<p>
+								物种分布所在市<br>
+								<select name="" id="s2">
+								
+								</select>
+							</p>
+							<p style="margin-right: 0;">
+								物种分布所在区<br>
+								<select name="" id="s3">									
+								</select>
+							</p>
+							<span class="onelychuan">只可以上传excel文件</span>
+							<label for="upchuan" class="shangchuan getinfo"  data-index="2">
+								上传
+								<input style="display: none;" id="upchuan" class="upchuan" type="file" name="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  id="" value="" />
+							</label>						
+						</div>
+						<div class="outerInfoArCCon">
+							<p class="outerInfoArCConT"><span class="fl">已上传文件名称</span><span class="fr">操作</span></p>
+							<ul class="outerInfoArCConC">								
+								<li> daaa1<span class="fr delectexsel">删除</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="outerInfoSc">
+				<div class="outerInfoArgu">
+					<p class="outerInfoArT">
+						生产分布图信息管理
+						<span class="outerInfoArT_l" data-num='2'>下载模板</span>
+						<span class="outerInfoArT_r">x</span>
+					</p>
+					<div class="outerInfoArC">
+						<div class="outerInfoArScCT">
+							<!--<p>
+								物种分布所在省<br>
+								<select name="" id="sc1">
+									
+								</select>
+
+							</p>
+							<p>
+								物种分布所在市<br>
+								<select name="" id="sc2">
+								
+								</select>
+							</p>
+							<p>
+								物种分布所在区<br>
+								<select name="" id="sc3">									
+								</select>
+							</p>-->
+							<p>
+								选择农事类型<br>
+								<select name="" id="sc4">
+									
+								</select>
+
+							</p>
+							<span class="onelychuan">只可以上传excel文件</span>
+							<label for="upScchuan" class="shangchuan getinfo"  data-index="1">
+								上传
+								<input style="display: none;" id="upScchuan" type="file" name="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"  id="" value="" />
+							</label>						
+						</div>
+						<div class="outerInfoArCCon">
+							<p class="outerInfoArCConT"><span class="fl">已上传文件名称</span><span class="fr">操作</span></p>
+							<ul class="outerInfoArCConC">								
+								<li> daaa1<span class="fr delectexsel">删除</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<script type="text/javascript" src='js/heightchar.js'></script>	
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/sweetalert.min.js"></script>
+		<script src="./scripts/httpHeader.js"></script>
+		<script src="./js/template.js"></script>
+		<script src="./js/loading.js"></script>
+		<script src="./scripts/httpHeader.js"></script>
+		<script type="text/javascript" src='js/common.js'>
+		</script>
+		<!--<script src="./js/rem.js"></script>-->
+		<!--引用百度地图API-->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1XR2D1wencMcoyeNTcOt6E7pe6AnUFkp"></script>
+		<script src="./scripts/gis2.js"></script>
+		<script type="text/javascript" src="./scripts/GIS.js"></script>		
+	</body>
+
+</html>

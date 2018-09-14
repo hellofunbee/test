@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1633 3437 80 30">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.504;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 14px;
+        font-family: YuGothicUI-Regular, Yu Gothic UI;
+      }
+
+      .cls-3 {
+        font-family: MicrosoftJhengHeiUIRegular, Microsoft JhengHei UI;
+      }
+
+      .cls-4 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Group_2876" data-name="Group 2876" transform="translate(-1916 3329)">
+    <g id="Group_2875" data-name="Group 2875">
+      <g id="Group_2868" data-name="Group 2868" transform="translate(7 -468)">
+        <rect id="Rectangle_3117" data-name="Rectangle 3117" class="cls-1" width="80" height="30" rx="4" transform="translate(276 576)"/>
+        <text id="关闭" class="cls-2" transform="translate(326 596)"><tspan x="-14" y="0">关</tspan><tspan class="cls-3" y="0">闭</tspan></text>
+        <g id="Group_2869" data-name="Group 2869" transform="translate(7 2)">
+          <line id="Line_1487" data-name="Line 1487" class="cls-4" x2="14" y2="14" transform="translate(282.5 582.5)"/>
+          <line id="Line_1488" data-name="Line 1488" class="cls-4" y1="14" x2="14" transform="translate(282.5 582.5)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
