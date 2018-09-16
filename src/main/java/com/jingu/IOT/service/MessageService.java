@@ -13,19 +13,18 @@
 */ 
 package com.jingu.IOT.service;
 
-import java.util.List;
-import java.util.Map;import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.jingu.IOT.dao.ClassDao;
 import com.jingu.IOT.dao.MessageDao;
 import com.jingu.IOT.entity.ClassEntity;
-import com.jingu.IOT.entity.DistributionEntity2;
 import com.jingu.IOT.entity.MessageEntity;
 import com.jingu.IOT.requset.MessageRequset;
+import com.jingu.IOT.util.Types;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
 
@@ -60,7 +59,8 @@ public class MessageService {
 	public List<Map<String, Object>> listMessage(MessageEntity me) {
 		return messageDao.listMessage(me);
 	}
-	
+
+	//预警信息
 	public List<Map<String, Object>> listMessage3(MessageEntity me) {
 		List<Map<String,Object>> listDistribution2 = messageDao.listMessage4(me,"m_province");
 		for (Map<String, Object> map : listDistribution2) {
@@ -106,19 +106,27 @@ public class MessageService {
 		return messageDao.deleteMessage(me);
 	}
 
+
+	/**
+	 *
+	 * @param mr
+	 * @return
+	 */
 	public List<Map<String, Object>> listMessage1Bygroup(MessageRequset mr) {
 		ClassEntity classEntity = new ClassEntity();
 		MessageEntity messageEntity = new MessageEntity();
-		if(mr.getM_type()==4){
-			classEntity.setC_type(7);
+		if(mr.getM_type()== Types.MT_SHOUYE){
+			classEntity.setC_type(Types.CT_SHOUYE);
 		}
-		if(mr.getM_type()==1){
-			classEntity.setC_type(4);
+		if(mr.getM_type()==Types.MT_ZHENGCE){
+			classEntity.setC_type(Types.CT_ZHENGCE);
 			classEntity.setC_id(mr.getM_class());
   		}
 		messageEntity.setM_type(mr.getM_type());
 		messageEntity.setM_title(mr.getM_title());
+		//获取 class 一级分类
 		List<Map<String,Object>> listClass1 = classDao.listClass1(classEntity);
+
 		for (Map<String, Object> map : listClass1) {
 			String c_id = map.get("c_id").toString();
 			messageEntity.setM_class(Integer.parseInt(c_id));

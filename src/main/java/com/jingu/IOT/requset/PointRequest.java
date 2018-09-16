@@ -24,8 +24,8 @@ import com.jingu.IOT.entity.PointEntity;
 
 */
 public class PointRequest extends PointEntity{
-	private String ckuid;
-	private String cksid;
+	private String ckuid;//用户id
+	private String cksid;//登录时产生的随机UUID
 	private int pagesize = 20;
 	private int start ;
 	private int app;

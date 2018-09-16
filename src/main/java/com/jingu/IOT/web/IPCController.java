@@ -13,45 +13,21 @@
 */
 package com.jingu.IOT.web;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.jingu.IOT.entity.HCNetSDK;
+import com.jingu.IOT.entity.*;
 import com.jingu.IOT.entity.HCNetSDK.NET_DVR_COMPRESSIONCFG_V30;
-import com.jingu.IOT.entity.HkSdkEx;
-import com.jingu.IOT.entity.IPCEntity;
-import com.jingu.IOT.entity.IPCPointEntity;
-import com.jingu.IOT.entity.IPCProxyEntity;
-import com.jingu.IOT.entity.MonitorHBM;
-import com.jingu.IOT.entity.PointEntity;
-import com.jingu.IOT.entity.VideoChannel;
-import com.jingu.IOT.entity.VideoEncodeType;
-import com.jingu.IOT.entity.VideoParamsBean;
-import com.jingu.IOT.entity.VideoResolution;
-import com.jingu.IOT.entity.VideoShemaBean;
 import com.jingu.IOT.requset.IPCPointRequset;
 import com.jingu.IOT.requset.IPCPointsRequest;
 import com.jingu.IOT.requset.IPCRequest;
 import com.jingu.IOT.response.IOTResult;
 import com.jingu.IOT.response.IOTResult2;
 import com.jingu.IOT.response.PointResult;
-import com.jingu.IOT.service.IPCService;
-import com.jingu.IOT.service.PointService;
-import com.jingu.IOT.service.RoleService;
-import com.jingu.IOT.service.SettingService;
-import com.jingu.IOT.service.UserService;
+import com.jingu.IOT.service.*;
 import com.jingu.IOT.util.Client;
 import com.jingu.IOT.util.ToolUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 /**
  * 

@@ -13,20 +13,6 @@
 */
 package com.jingu.IOT.web;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.jingu.IOT.entity.ArticleEntity;
 import com.jingu.IOT.entity.ClassEntity;
 import com.jingu.IOT.entity.ProjectEntity;
@@ -37,9 +23,12 @@ import com.jingu.IOT.response.IOTResult;
 import com.jingu.IOT.response.IOTResult2;
 import com.jingu.IOT.service.CMSService;
 import com.jingu.IOT.util.Base64;
-
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.util.*;
 
 /**
  * 
@@ -100,6 +89,7 @@ public class CMSController {
 			List<Map<String, Object>> listArticle = cmsService.listArticle(articleEntity);
 			ProjectEntity pe = new ProjectEntity();
 			pe.setP_uid((int) u.getU_id());
+
 			List<Map<String, Object>> listProject = cmsService.listProject(pe);
 			for (Map<String, Object> map2 : listProject) {
 				map2.put("a_id", map2.get("p_id").toString());

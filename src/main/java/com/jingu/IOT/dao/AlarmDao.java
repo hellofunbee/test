@@ -13,25 +13,18 @@
 */
 package com.jingu.IOT.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.jingu.IOT.entity.AlarmRuleEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.jingu.IOT.entity.AlarmRuleEntity;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import javax.annotation.Resource;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -43,6 +36,7 @@ import net.sf.json.JSONObject;
  */
 @Component
 public class AlarmDao {
+	final static String table = "alarm_rule";
 
 	@Resource
 	@Qualifier("primaryJdbcTemplate")
@@ -54,19 +48,19 @@ public class AlarmDao {
 	// }
 
 	public int addAlarmRule(AlarmRuleEntity ae) {
-		String sql = "insert into alarm (ala_name,ala_channel,deviceid,range,ala_state,ala_up,ala_low,ala_producer,ala_supervisor,ala_content,ala_index,ala_grade) value (?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into "+table+" (ala_name,ala_channel,deviceid,range,ala_state,ala_up,ala_low,ala_producer,ala_supervisor,ala_content,ala_index,ala_grade) value (?,?,?,?,?,?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(sql, ae.getAla_name(), ae.getAla_channel(), ae.getDeviceid(), ae.getRange(),
 				ae.getAla_state(), ae.getAla_up(), ae.getAla_low(), ae.getAla_producer(), ae.getAla_supervisor(),
 				ae.getAla_content(), ae.getAla_index(), ae.getAla_grade());
 	}
 
 	public int deleteAlarmById(AlarmRuleEntity ae) {
-		String sql = "delete from alarm ala_id = ?";
+		String sql = "delete from "+table+" ala_id = ?";
 		return jdbcTemplate.update(sql, ae.getAla_id());
 	}
 
 	public int deleteAlarmByDeviceId(String deviceId) {
-		String sql = "delete from alarm deviceid = ?";
+		String sql = "delete from "+table+" deviceid = ?";
 		return jdbcTemplate.update(sql, deviceId);
 	}
 
@@ -104,7 +98,7 @@ public class AlarmDao {
 	}
 
 	public int updateAlarmRule(AlarmRuleEntity ae) {
-		String sql = "update alarm set ala_id = ?";
+		String sql = "update "+table +"  set ala_id = ?";
 		if (ae == null) {
 			return 0;
 		}
@@ -163,7 +157,7 @@ public class AlarmDao {
 	}
 
 	public List<Map<String, Object>> listAlarmRule(AlarmRuleEntity ae, Integer pageNum, Integer pageSize) {
-		String sql = "select * from alarm where 1=1";
+		String sql = "select * from "+table +"  where 1=1";
 		ArrayList<Object> arrayList = new ArrayList<>();
 		if (ae.getAla_channel() != null && ae.getAla_channel().trim().length() > 0) {
 			sql += " and ala_channel = ?";
@@ -220,22 +214,22 @@ public class AlarmDao {
 	}
 
 	public String getFiledByFieldValue(String outFiled, String inField, String value) {
-		String sql = " select count(1) from alarm where " + inField + " = ?";
+		String sql = " select count(1) from "+table +"  where " + inField + " = ?";
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class, value);
 		if (count == 0) {
 			return null;
 		}
-		sql = " select " + outFiled + " from alarm where " + inField + " = ?";
+		sql = " select " + outFiled + " from "+table +"  where " + inField + " = ?";
 		return jdbcTemplate.queryForObject(sql, String.class, value);
 	}
 
 	public Map<String, Object> getFieldByValue(String inField, String value) {
-		String sql = " select count(1) from alarm where " + inField + " = ?";
+		String sql = " select count(1) from "+table +"  where " + inField + " = ?";
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class, value);
 		if (count == 0) {
 			return null;
 		}
-		sql = " select * from alarm where " + inField + " = ?";
+		sql = " select * from "+table +"  where " + inField + " = ?";
 		return jdbcTemplate.queryForMap(sql, value);
 	}
 
@@ -243,7 +237,7 @@ public class AlarmDao {
 		if (idString == null) {
 			return 0;
 		}
-		String sql = "delete from alarm deviceid in (" + idString + ")";
+		String sql = "delete from "+table +"  deviceid in (" + idString + ")";
 		return jdbcTemplate.update(sql);
 	}
 
@@ -252,7 +246,7 @@ public class AlarmDao {
 		if (deviceId == null) {
 			return null;
 		}
-		String sql = "select * from alarm where deivceid =? group by ala_channel";
+		String sql = "select * from "+table +"  where deivceid =? group by ala_channel";
 		return jdbcTemplate.queryForList(sql, deviceId);
 	}
 
@@ -261,12 +255,12 @@ public class AlarmDao {
 		if (deviceId == null) {
 			return null;
 		}
-		String sql = "select count(1) from alarm where deivceid =? and ala_channel = ? and ala_up > ? and ala_low < ?";
+		String sql = "select count(1) from "+table +"  where deivceid =? and ala_channel = ? and ala_up > ? and ala_low < ?";
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class, deviceId, channel, score);
 		if (count == 0) {
 			return null;
 		}
-		sql = "select * from alarm where deivceid =? and ala_channel = ? and ala_up > ? and ala_low < ?";
+		sql = "select * from "+table +"  where deivceid =? and ala_channel = ? and ala_up > ? and ala_low < ?";
 		return jdbcTemplate.queryForMap(sql);
 	}
 

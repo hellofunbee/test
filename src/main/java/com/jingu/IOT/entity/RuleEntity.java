@@ -13,13 +13,11 @@
 */ 
 package com.jingu.IOT.entity;
 
+import org.springframework.jdbc.core.RowMapper;
+
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.springframework.jdbc.core.RowMapper;
-
-import com.jingu.IOT.entity.HCNetSDK.NET_DVR_DECCHANSTATUS.objectInfo.timeInfo;
 
 /**
 
@@ -29,7 +27,7 @@ import com.jingu.IOT.entity.HCNetSDK.NET_DVR_DECCHANSTATUS.objectInfo.timeInfo;
 * @date 2017年10月24日 上午11:14:00
 
 */
-public class RuleEntity implements RowMapper<RuleEntity>,Serializable {
+public class  RuleEntity implements RowMapper<RuleEntity>,Serializable {
 
 	/**
 	* @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)

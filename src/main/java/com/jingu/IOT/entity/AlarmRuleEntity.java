@@ -35,7 +35,7 @@ public class AlarmRuleEntity {
 	private Integer ala_supervisor;
 	private String	ala_content;
 	private String ala_index;
-	private String ala_grade;
+		private String ala_grade;
 	
 	
 	

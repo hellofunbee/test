@@ -85,10 +85,9 @@ public class ToolUtil {
 	public static final String ALARMGRADE = "ALARMGRADE";
 
 	// 线上
-	 public static final String FILEPATH =
-	 File.separator+"data"+File.separator+"IOT"+File.separator+"resources"+File.separator+"picture"+File.separator;
+//	 public static final String FILEPATH = File.separator+"data"+File.separator+"IOT"+File.separator+"resources"+File.separator+"picture"+File.separator;
 	// 线下
-//	public static final String FILEPATH = "resources" + File.separator + "IOT" + File.separator;
+	public static final String FILEPATH = "resources" + File.separator + "IOT" + File.separator;
 
 	public static final String DEVICELOG = "resources" + File.separator + "deviceLog" + File.separator;
 
