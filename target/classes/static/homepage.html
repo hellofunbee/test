@@ -82,9 +82,17 @@
             </ul>
         </div>
     </div>
-    <div class="line-tit">新技术研究</div>
-    <div class="mx-title"><h3>蔬菜<a href="#" class="more" onclick='window.openPageContent("信息发布","首页资讯")'>了解更多&gt;</a>
-    </h3></div>
+
+    <!--资讯-->
+    <div id="articals"></div>
+
+    <!--<div class="line-tit">新技术研究</div>
+    <div class="mx-title">
+        <h3>蔬菜
+            <a href="#" class="more" onclick='window.openPageContent("信息发布","首页资讯")'>了解更多&gt;</a>
+        </h3>
+    </div>
+
     <div class="mt20 clearfix module-box-cnt xjgyjList">
         <div class="module-box">
             <div class="module-info">
@@ -163,12 +171,13 @@
             <p class="sm-info">
                 越瓜又叫菴瓜、生瓜、梢瓜、酥瓜。为葫芦科，甜瓜属，甜瓜种中以嫩果生食的变种，一年生蔓性草本植物，主要分布于中国、日本及东南亚。中国栽培较普遍。越瓜具有很高的营养价值和药用价值，含有人体所需的糖类、维生素C、维生素B1、维生素B2、钙、磷...</p>
             <p class="tr"><a href="#">了解更多&gt;</a></p></div>
-    </div>
+    </div>-->
 </div>
-<script type="text/javascript">if (!window.jQuery) {
-    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
-    document.write(html)
-}</script>
+<script type="text/javascript">
+    if (!window.jQuery) {
+        var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+        document.write(html)
+    }</script>
 <script>
     var page = $('[page="homepage"]');
 
@@ -245,25 +254,75 @@
             '<a href="#" onclick="showMessageDetail({m_id},4,\'查看\');return false;">了解更多&gt;</a>' +
             '</p>' +
             '</div>';
-    /*新技术研究*/
-    API.listMessage(4, null, null, function (e) {
-        var t = e.object;
-        i = 4 < t.length ? t.slice(0, 4) : t;
-        l = page.find(".xjgyjList").empty();
-        $(i).each(function (e) {
-            UI.appendFieldTo(tplNewIt, this, l)
-        })
+    var title1 = '<div class="line-tit">{c_name}</div> ';
+
+    var title2 =
+            '  <div class="mx-title"> ' +
+            '   <h3>{c_name} ' +
+            '     <a href="#" class="more" onclick="window.openPageContent(&quot;信息发布&quot;,&quot;首页资讯&quot;)">了解更多&gt;' +
+            '     </a> ' +
+            '   </h3> ' +
+            '  </div>';
+    var cnt = '<div id="cnt_{c_id}" class=" mt20 clearfix module-box-cnt xjgyjList"></div>';
+
+    var data = {m_type: 4};
+
+
+
+    API.service("/listHomePageMessage", data, function (d) {
+
+        console.log(d)
+        var el = $('#articals');
+        el.empty();
+        for (class1 in  d.object) {
+
+            var c1 = d.object[class1];
+            UI.appendFieldTo(title1, c1, el);
+
+
+            for (var class2 in c1.classList) {
+                var c2 = c1.classList[class2];
+                UI.appendFieldTo(title2, c2, el)
+                var cnt_el = UI.appendFieldTo(cnt, c2, el);
+
+                var ms = c2.messageList;
+                ms = 4 < ms.length ? ms.slice(0, 4) : ms;
+                for (var message in ms) {
+                    var msg = ms[message];
+
+                    UI.appendFieldTo(tplNewIt, msg, cnt_el)
+                }
+
+            }
+
+        }
+
+
+    }, function (e) {
+        layer.alert(e.msg);
     });
 
-    /*新技术案例*/
-    API.listMessage(4, null, null, function (e) {
-        var t = e.object;
-        i = 4 < t.length ? t.slice(0, 4) : t;
-        l = page.find(".xjsalList").empty();
-        $(i).each(function (e) {
-            UI.appendFieldTo(tplNewIt, this, l)
-        })
-    }), page.find(".scrollUp").slide({mainCell: "ul", effect: "topLoop", autoPlay: !0, delayTime: 0})
+    /*
+     API.listMessage(4, null, null, function (e) {
+     var t = e.object;
+     i = 4 < t.length ? t.slice(0, 4) : t;
+     l = page.find(".xjgyjList").empty();
+     $(i).each(function (e) {
+     UI.appendFieldTo(tplNewIt, this, l)
+     })
+     });
+
+     /!*新技术案例*!/
+     API.listMessage(4, null, null, function (e) {
+     var t = e.object;
+     i = 4 < t.length ? t.slice(0, 4) : t;
+     l = page.find(".xjsalList").empty();
+     $(i).each(function (e) {
+     UI.appendFieldTo(tplNewIt, this, l)
+     })
+     });*/
+
+    page.find(".scrollUp").slide({mainCell: "ul", effect: "topLoop", autoPlay: !0, delayTime: 0})
 </script>
 </body>
 </html>

@@ -149,14 +149,19 @@ public class MessageService {
 	public List<Map<String, Object>> listHomePageMessage(MessageRequset mr) {
 		MessageEntity messageEntity = new MessageEntity();
 		ClassEntity classEntity = new ClassEntity();
+
 		if(mr.getM_type()==4){
 			classEntity.setC_type(7);
 			messageEntity.setM_type(4);
 		}else{
 			return null;
 		}
+		messageEntity.setM_title(mr.getM_title());
 		classEntity.setC_id(mr.getM_class());
+
+
 		List<Map<String,Object>> listClass1 = classDao.listClass1(classEntity);
+
 		for (Map<String, Object> map : listClass1) {
 			String c_id = map.get("c_id").toString();
 			classEntity.setC_id(0);

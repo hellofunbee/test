@@ -35,5 +35,12 @@ public class Types {
 
     public final static int STATE_OK = 1;
     public final static int STATE_FAIL = 2;
+    /*用户 0  1 超级管理员  2 管理员 3 普通用户 4监管者用户 5生产者用户 6专家用户 */
+    public final static int usr_s_admin = 1;
+    public final static int usr_admin = 2;
+    public final static int usr = 3;
+    public final static int usr_superviser = 4;
+    public final static int usr_roducer = 5;
+    public final static int usr_expert = 6;
 
 }

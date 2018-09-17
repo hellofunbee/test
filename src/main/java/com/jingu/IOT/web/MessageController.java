@@ -182,6 +182,14 @@ public class MessageController {
             }
             return new IOTResult(true, "消息查看成功", listMessage, 0);
         }
+        /*首页*/
+        if (mr.getM_type() == Types.MT_SHOUYE) {
+            List<Map<String, Object>> listMessage = messageService.listMessage1Bygroup(mr);
+            if (listMessage == null || listMessage.isEmpty()) {
+                return new IOTResult(false, "暂无相关信息", null, 10);
+            }
+            return new IOTResult(true, "消息查看成功", listMessage, 0);
+        }
 
         List<Map<String, Object>> listMessage = messageService.listMessage(mr);
         if (listMessage == null || listMessage.isEmpty()) {

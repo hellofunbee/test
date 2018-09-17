@@ -104,44 +104,78 @@
     document.write(html)
 }</script>
 <script type="text/javascript">$(function () {
-    var i = purl(location.href), t = i.param("tp_id"), n = i.param("action"), e = (i.param("siteid"), i.param("sitename"), i.param("groupid")), o = i.param("groupname"), r = {}, a = $('[field="groupid"]').empty(), l = function () {
-        var i = {};
-        return $("input[field],select[field]").each(function () {
-            i[$(this).attr("field")] = $(this).val()
-        }), $("select[field2]").each(function () {
-            i[$(this).attr("field2")] = $(this).find("option:selected").text()
-        }), i.pointEntity = {tp_pid: i.groupid}, i
-    }, c = $('[field="siteid"]').empty(), d = $("[field=superviserid]").empty(), p = $("[field=producerid]").empty(), u = $('[field="province"]').empty(), s = $('[field="city"]').empty(), v = $('[field="district"]').empty(), f = function () {
-        API.service("/listPoint3", null, function (i) {
-            UI.renderSelectByData(c, null, function (i, t) {
-                return $("<option></option>").text(t.tp_name).val(t.tp_id)
-            }, i.object.site), r.siteid ? c.val(r.siteid) : c.val(c.find("option").eq(0).attr("value")), UI.renderSelectByData(a, null, function (i, t) {
-                return $("<option></option>").text(t.tp_name).val(t.tp_id)
-            }, i.object.group), r.groupid && a.val(r.groupid)
-        }), API.service("/listUser", {tu_type: 3}, function (i) {
-            $(i.object).each(function (i) {
-                var t = this;
-                $("<option></option>").appendTo(d).val(t.uid).text(t.tu_name), $("<option></option>").appendTo(p).val(t.uid).text(t.tu_name)
-            }), r.producerid && p.val(r.producerid), r.superviserid && d.val(r.superviserid)
-        }), u.on("init", function () {
-            if (r.province && r.province !== $(this).val() && $(this).find('option[value="' + r.province + '"]'))return $(this).val(r.province).change(), !1
-        }), s.on("init", function () {
-            if (r.city && r.city !== $(this).val() && $(this).find('option[value="' + r.city + '"]'))return $(this).val(r.city).change(), !1
-        }), v.on("init", function () {
-            if (r.district && r.district !== $(this).val() && $(this).find('option[value="' + r.district + '"]'))return $(this).val(r.district).change(), !1
-        }), UI.renderProvince(u, function (i) {
-            null !== $(this).val() && UI.renderCity(s, $(this).val(), function (i) {
-                null !== $(this).val() && UI.renderDistrict(v, $(this).val())
-            })
-        });
-        var t = $('[field="exportorid"]').empty();
-        API.service("/listProfessor", function (i) {
-            UI.renderSelectByData(t, null, function (i, t) {
-                return $("<option></option>").text(t.u_uname).val(t.u_id)
-            }, i.object), r.exportorid && t.val(r.exportorid)
-        }, function (i) {
-        })
-    };
+    var i = purl(location.href),
+            t = i.param("tp_id"),
+            n = i.param("action"),
+            e = (i.param("siteid"),
+                    i.param("sitename"),
+                    i.param("groupid")),
+            o = i.param("groupname"),
+            r = {},
+            a = $('[field="groupid"]').empty(),
+            l = function () {
+                var i = {};
+                return $("input[field],select[field]").each(function () {
+                    i[$(this).attr("field")] = $(this).val()
+                }),
+                        $("select[field2]").each(function () {
+                            i[$(this).attr("field2")] = $(this).find("option:selected").text()
+                        }),
+                        i.pointEntity = {tp_pid: i.groupid}, i
+            },
+            c = $('[field="siteid"]').empty(),
+            d = $("[field=superviserid]").empty(),
+            p = $("[field=producerid]").empty(),
+
+            u = $('[field="province"]').empty(),
+            s = $('[field="city"]').empty(),
+            v = $('[field="district"]').empty(),
+
+            f = function () {
+                API.service("/listPoint3", null, function (i) {
+                    UI.renderSelectByData(c, null, function (i, t) {
+                                return $("<option></option>").text(t.tp_name).val(t.tp_id)
+                            },
+                            i.object.site), r.siteid ? c.val(r.siteid) : c.val(c.find("option").eq(0).attr("value")), UI.renderSelectByData(a, null, function (i, t) {
+                                return $("<option></option>").text(t.tp_name).val(t.tp_id)
+                            },
+                            i.object.group), r.groupid && a.val(r.groupid)
+                }),
+                        API.service("/listUser", {tu_type: 3}, function (i) {
+                            $(i.object).each(function (i) {
+                                var t = this;
+                                $("<option></option>").appendTo(d).val(t.uid).text(t.tu_name), $("<option></option>").appendTo(p).val(t.uid).text(t.tu_name)
+                            }),
+                            r.producerid && p.val(r.producerid),
+                            r.superviserid && d.val(r.superviserid)
+                        }),
+
+                        u.on("init", function () {
+                            if (r.province && r.province !== $(this).val() && $(this).find('option[value="' + r.province + '"]'))return $(this).val(r.province).change(), !1
+                        }),
+                        s.on("init", function () {
+                            if (r.city && r.city !== $(this).val() && $(this).find('option[value="' + r.city + '"]'))return $(this).val(r.city).change(), !1
+                        }),
+                        v.on("init", function () {
+                            if (r.district && r.district !== $(this).val() && $(this).find('option[value="' + r.district + '"]'))return $(this).val(r.district).change(), !1
+                        }),
+                        UI.renderProvince(u, function (i) {
+                            null !== $(this).val()
+                            &&
+                            UI.renderCity(s, $(this).val(), function (i) {
+                                null !== $(this).val()
+                                &&
+                                UI.renderDistrict(v, $(this).val())
+                            })
+                        });
+                var t = $('[field="exportorid"]').empty();
+                API.service("/listProfessor", function (i) {
+                    UI.renderSelectByData(t, null, function (i, t) {
+                        return $("<option></option>").text(t.u_uname).val(t.u_id)
+                    }, i.object), r.exportorid && t.val(r.exportorid)
+                }, function (i) {
+                })
+            };
     "update" === n && t ? API.service("/getSetting", {tp_id: 16, tp_type: 3}, function (e) {
         r = e.object, $("[field]").each(function () {
             var i, t = $(this);

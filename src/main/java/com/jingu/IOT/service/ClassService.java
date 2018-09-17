@@ -51,6 +51,11 @@ public class ClassService {
         return 1;
     }
 
+    /**
+     * 一级分类
+     * @param c
+     * @return
+     */
     public List<Map<String, Object>> listClass1(ClassEntity c) {
 //		Map<Object,Object> map = new HashMap<>();
         c.setC_lev(1);

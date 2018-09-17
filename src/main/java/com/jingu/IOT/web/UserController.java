@@ -22,7 +22,7 @@ import com.jingu.IOT.response.IOTResult;
 import com.jingu.IOT.response.IOTResult2;
 import com.jingu.IOT.service.*;
 import com.jingu.IOT.util.ToolUtil;
-import net.sf.json.JSONArray;
+import com.jingu.IOT.util.Types;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -443,22 +443,28 @@ public class UserController {
 	public IOTResult listProfessor(@RequestBody UserReq u){
 		u.setU_type(String.valueOf(2));
 		int totalpage =0;
-		
-		int listUserCount = userService.listUserCount2(u);
+
+		UserEntity ue = new UserEntity();
+		ue.setTu_type(Types.usr_expert);
+
+		int listUserCount = userService.listUserCount(ue);
+
 		if(listUserCount%u.getPagesize() >0){
 			totalpage = listUserCount/u.getPagesize()+1;
 		}else{
 			totalpage = listUserCount/u.getPagesize();
 		}
-		List<Map<String,Object>> listUser = userService.listUser2(u);
-		for (Map<String, Object> map : listUser) {
+
+
+		List<UserEntity> listUser = userService.listUser(ue);
+		/*for (Map<String, Object> map : listUser) {
 //			Object object = map.get("seredproject");
 			map.put("seredproject", JSONArray.fromObject(map.get("seredproject")));
 			map.put("serproject", JSONArray.fromObject(map.get("serproject")));
 			map.put("seruser", JSONArray.fromObject(map.get("seruser")));
 //			map.put("class1name", map.get("classname1").toString());
 //			map.put("class2name", map.get("classname2").toString());
-		}
+		}*/
 		if(listUser!=null && !listUser.isEmpty()){
 			return new IOTResult2(true,"查看成功",listUser,0,totalpage,listUserCount);
 		}

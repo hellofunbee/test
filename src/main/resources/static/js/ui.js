@@ -163,6 +163,54 @@ var UI = {
                 return UI.renderSelectByData(targetEl, onChange, render, data.object)
             })
         }
+        //首页资讯
+    }, renderSelectByData_artical: function (targetEl, onChange, render, datas) {
+        var el = $(targetEl);
+        var oldValue = el.val();
+        el.empty();
+        if (onChange) {
+            if (!el.attr("_oldchange")) {
+                el.attr("_oldchange", onChange);
+                el.on("change", onChange)
+            }
+        }
+        if (datas) {
+            $.each(datas, function (idx) {
+                var d = this;
+                if (render) {
+                    $(render({value: d["c_id"], name: d["c_name"]}, d)).appendTo(el)
+                } else {
+                    $("<option></option>").attr("value", d["c_id"]).text(d["c_name"]).appendTo(el)
+                }
+            })
+        }
+        if (el.trigger("init") !== false) {
+            el.change()
+        }
+    }, renderHArtical_class1: function (targetEl, onChange, render) {
+
+        API.service("/listClass1", {c_type: 7, c_lev: 1}, function (data) {
+            return UI.renderSelectByData_artical(targetEl, onChange, render, data.object);
+        })
+
+    }, renderHArtical_class2: function (targetEl, c_rid, onChange, render) {
+
+        if (c_rid != null) {
+            API.service("/listClass2Byrid", {c_type: 7, c_lev: 2, c_rid: c_rid}, function (data) {
+
+                return UI.renderSelectByData_artical(targetEl, onChange, render, data.object);
+            }, function (e) {
+                if (e.status === 404) {
+                    layer.msg("接口开发中 " + this.url)
+                } else {
+                    console.log(e);
+                    layer.alert('二级分类'+(e.statusText || e.msg || e.state || e.status || e.message))
+                }
+                return UI.renderSelectByData_artical(targetEl, onChange, render, null);
+
+            });
+        }
+
     }
 };
 $.fn.selectX = function (data) {

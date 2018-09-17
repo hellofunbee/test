@@ -1,25 +1,15 @@
 package com.jingu.IOT.web;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.jingu.IOT.entity.ClassEntity;
 import com.jingu.IOT.requset.ClassRequest;
 import com.jingu.IOT.response.IOTResult;
-import com.jingu.IOT.service.ClassService;
-import com.jingu.IOT.service.HomePageService;
-import com.jingu.IOT.service.MessageService;
-import com.jingu.IOT.service.PointService;
-import com.jingu.IOT.service.ProduceService;
-import com.jingu.IOT.service.UserService;
+import com.jingu.IOT.service.*;
 import com.jingu.IOT.util.ToolUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 类目
@@ -269,43 +259,6 @@ public class ClassController {
 		return new IOTResult(false, "没有相关信息", null, 0);
 	}
 
-	// //后台查询首页显示的类目
-	@CrossOrigin
-	@RequestMapping(value = "/listClass12", method = RequestMethod.POST)
-	public IOTResult listClass12(@RequestBody ClassRequest c) {
-		if (c.getCksid() == null || c.getCksid().trim().length() < 1 || c.getCkuid() == null
-				|| c.getCkuid().trim().length() < 1) {
-			return new IOTResult(false, "信息不规范", null, 1);
-		}
-		String check = tool.getCheck(ToolUtil.CMS + c.getCkuid());
-		if (check == null || !check.equals(c.getCksid())) {
-			return new IOTResult(false, "登录失效", null, 2);
-		}
-		List<Map<String, Object>> list = service.listClass1(c);
-		if (list.size() > 0) {
-			return new IOTResult(true, "查询成功", list, 0);
-		}
-		return new IOTResult(false, "没有相关信息", null, 0);
-	}
-
-	// 查看二级分类
-	@CrossOrigin
-	@RequestMapping(value = "/listClass2Byrid2", method = RequestMethod.POST)
-	public IOTResult listClass2Byrid2(@RequestBody ClassRequest c) {
-		if (c.getCksid() == null || c.getCksid().trim().length() < 1 || c.getCkuid() == null
-				|| c.getCkuid().trim().length() < 1) {
-			return new IOTResult(false, "信息不规范", null, 1);
-		}
-		String check = tool.getCheck(ToolUtil.CMS + c.getCkuid());
-		if (check == null || !check.equals(c.getCksid())) {
-			return new IOTResult(false, "登录失效", null, 2);
-		}
-		List<Map<String, Object>> list = service.listClass2Byrid(c);
-		if (list.size() > 0) {
-			return new IOTResult(true, "查询成功", list, 0);
-		}
-		return new IOTResult(false, "没有相关信息", null, 0);
-	}
 
 	// //后台设置主页类目显示
 	// @CrossOrigin

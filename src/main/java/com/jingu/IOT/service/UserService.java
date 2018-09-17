@@ -13,22 +13,18 @@
 */ 
 package com.jingu.IOT.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.jingu.IOT.dao.UserDao;
+import com.jingu.IOT.entity.UserEntity;
+import com.jingu.IOT.entity.UserEntity2;
+import com.jingu.IOT.requset.UserReq;
+import com.jingu.IOT.util.ToolUtil;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.jingu.IOT.dao.UserDao;
-import com.jingu.IOT.entity.RelationShipEntity;
-import com.jingu.IOT.entity.UserEntity;
-import com.jingu.IOT.entity.UserEntity2;
-import com.jingu.IOT.requset.UserReq;
-import com.jingu.IOT.response.IOTResult;
-import com.jingu.IOT.util.ToolUtil;
-
-import net.sf.json.JSONObject;
+import java.util.List;
+import java.util.Map;
 
 /**
 
@@ -97,6 +93,7 @@ public class UserService {
 	public List<UserEntity> listUser(UserEntity userEntity) {
 		return userDao.listUser(userEntity);
 	}
+
 	public  int listUserCount(UserEntity userEntity) {
 		return userDao.listUserCount(userEntity);
 	}
