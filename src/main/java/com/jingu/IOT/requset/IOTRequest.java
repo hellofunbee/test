@@ -23,8 +23,8 @@ package com.jingu.IOT.requset;
 */
 public class IOTRequest<T> {
 
-	private String uid;
-	private String sid;
+	private String ckuid;
+	private String cksid;
 	private T param;
 	private Integer pageNum;
 	private Integer pageSize;
@@ -43,18 +43,24 @@ public class IOTRequest<T> {
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
-	public String getUid() {
-		return uid;
+
+
+	public String getCkuid() {
+		return ckuid;
 	}
-	public void setUid(String uid) {
-		this.uid = uid;
+
+	public void setCkuid(String ckuid) {
+		this.ckuid = ckuid;
 	}
-	public String getSid() {
-		return sid;
+
+	public String getCksid() {
+		return cksid;
 	}
-	public void setSid(String sid) {
-		this.sid = sid;
+
+	public void setCksid(String cksid) {
+		this.cksid = cksid;
 	}
+
 	public T getParam() {
 		return param;
 	}

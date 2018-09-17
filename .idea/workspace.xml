@@ -33,76 +33,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ui.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/ui.js">
+      <file leaf-file-name="AlarmRuleController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/AlarmRuleController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="684" column="0" selection-start-line="684" selection-start-column="0" selection-end-line="684" selection-end-column="0" />
+            <state relative-caret-position="106">
+              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
               <folding>
-                <marker date="1537174229000" expanded="true" signature="8661:8677" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="14059:14076" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="14652:14669" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="15221:15238" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="15811:15842" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="16512:16543" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="17213:17244" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="23577:23597" ph="..." />
-                <marker date="1537174229000" expanded="true" signature="27507:27513" ph="&amp;##160;" />
-                <marker date="1537174229000" expanded="true" signature="27514:27520" ph="&amp;##160;" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/api.js">
+      <file leaf-file-name="HomePageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/HomePageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+            <state relative-caret-position="229">
+              <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/common.js">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3488">
-              <caret line="337" column="1" selection-start-line="337" selection-start-column="1" selection-end-line="337" selection-end-column="1" />
+            <state relative-caret-position="191">
+              <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="publish4.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish4.html">
+      <file leaf-file-name="system.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/system.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="393" column="7" selection-start-line="393" selection-start-column="7" selection-end-line="393" selection-end-column="7" />
-              <folding>
-                <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <marker date="1537179207000" expanded="true" signature="6744:6748" ph="&amp;gt;" />
-                <marker date="1537179207000" expanded="true" signature="7065:7069" ph="&amp;gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homepage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/homepage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-71">
-              <caret line="304" column="6" selection-start-line="304" selection-start-column="6" selection-end-line="304" selection-end-column="6" />
+            <state relative-caret-position="504">
+              <caret line="742" column="7" selection-start-line="742" selection-start-column="7" selection-end-line="742" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/ClassService.java">
+      <file leaf-file-name="xgbjgz.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/xgbjgz.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
+            <state relative-caret-position="118">
+              <caret line="198" column="30" selection-start-line="198" selection-start-column="30" selection-end-line="198" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -111,8 +88,8 @@
       <file leaf-file-name="MessageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/MessageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="235" column="23" selection-start-line="235" selection-start-column="23" selection-end-line="235" selection-end-column="23" />
+            <state relative-caret-position="115">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,29 +98,62 @@
       <file leaf-file-name="MessageService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/MessageService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="148" column="63" selection-start-line="148" selection-start-column="63" selection-end-line="148" selection-end-column="63" />
-              <folding />
+            <state relative-caret-position="151">
+              <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+              <folding>
+                <element signature="e#1050#1051#0" expanded="true" />
+                <element signature="e#1089#1090#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageRequset.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/MessageRequset.java">
+      <file leaf-file-name="MessageDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/MessageDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="126">
+              <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+              <folding>
+                <marker date="1537121443000" expanded="true" signature="965:1130" ph="insert into message... " />
+                <marker date="1537121443000" expanded="true" signature="1434:1460" ph="update messa... " />
+                <marker date="1537121443000" expanded="true" signature="3529:3896" ph="select m.*,s... message" />
+                <marker date="1537121443000" expanded="true" signature="3529:3898" ph="select m.*,s... message" />
+                <marker date="1537121443000" expanded="true" signature="6392:6425" ph="delete from " />
+                <marker date="1537121443000" expanded="true" signature="6616:6706" ph="select * fro... message" />
+                <marker date="1537121443000" expanded="true" signature="6959:7019" ph="select count... message" />
+                <marker date="1537121443000" expanded="true" signature="7335:7723" ph="select m.m_t... message" />
+                <marker date="1537121443000" expanded="true" signature="10225:10406" ph="select m.m_i... message" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/entity/MessageEntity.java">
+      <file leaf-file-name="publish4.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish4.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="27" column="11" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="145">
+              <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+              <folding>
+                <element signature="e#8212#9104#0" expanded="false" />
+                <marker date="1537207926000" expanded="true" signature="5974:5985" ph="..." />
+                <marker date="1537207926000" expanded="true" signature="7181:7185" ph="&amp;gt;" />
+                <marker date="1537207926000" expanded="true" signature="7502:7506" ph="&amp;gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="publish.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4500">
+              <caret line="256" column="7" selection-start-line="256" selection-start-column="7" selection-end-line="256" selection-end-column="7" />
+              <folding>
+                <marker date="1537208294000" expanded="true" signature="4606:4617" ph="..." />
+                <marker date="1537208294000" expanded="true" signature="5775:5779" ph="&amp;gt;" />
+                <marker date="1537208294000" expanded="true" signature="6953:6964" ph="..." />
+                <marker date="1537208294000" expanded="true" signature="7412:7416" ph="&amp;gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -170,20 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/java/main/resources/static/synthesize3.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/SettingController.java" />
-        <option value="$PROJECT_DIR$/java/main/resources/static/system.html" />
-        <option value="$PROJECT_DIR$/java/main/resources/static/tjsxt.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/entity/RuleEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/entity/AlarmRuleEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/AlarmDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/IPCController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/GatherService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/GatherController.java" />
-        <option value="$PROJECT_DIR$/java/main/resources/static/product4.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/CMSController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/GatherDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/AreaService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/AreaDao.java" />
         <option value="$PROJECT_DIR$/java/main/resources/static2/test/shanxilast/scripts/system.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/PointRequest.java" />
@@ -200,17 +196,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/ImageController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/system2.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/xjlbt.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/HomePageController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/publish5.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/publish.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/MessageDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/Types.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/UserController.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/static/xgzsb.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/ClassController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/MessageController.java" />
@@ -220,7 +213,24 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/js/common.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/ClassService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/MessageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/CommonUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/config/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/config/SessionInterceptor.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/xgggwj.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/system.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/AlarmRuleRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/IOTRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/entity/AlarmRuleEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/AlarmRuleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/DataSourceConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/IOTApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/AlarmDao.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/system.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/xgbjgz.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/publish4.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/publish.html" />
       </list>
     </option>
   </component>
@@ -301,19 +311,19 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="comm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/common.js&#10;api.js&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/api.js&#10;home&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;pub&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;ui.js&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/ui.js&#10;pom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/pom.xml&#10;ty&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/Types.java&#10;homep&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;type&#9;PSI&#9;JAVA://com.jingu.IOT.util.Types&#10;pu&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish.html&#10;publis4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;publis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;homepa&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;pr&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/application.properties&#10;ap&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/application.properties&#10;api&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/api.js&#10;xgzsb.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/xgzsb.html&#10;system.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/system.html&#10;system2.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/system2.html&#10;publish5&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish5.html&#10;tool&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/ToolUtil.java&#10;applica&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/application.properties&#10;ho&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;hom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;index.j&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/index.js&#10;index.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/index.html&#10;too&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/ToolUtil.java&#10;publish4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;gath&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/GatherDao.java&#10;clien&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/Client.java&#10;product4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/product4.html&#10;co&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/CtrlController.java&#10;tjsxt.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/tjsxt.html&#10;sett&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/SettingController.java&#10;system.j&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/js/system.js&#10;system&#9;PSI&#9;JAVA://java.lang.System&#10;syste&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/system.html&#10;synthesize3.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/synthesize3.html&#10;getShopCamera&#9;null&#9;null&#10;pro&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/application.properties&#10;synthesize3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/synthesize3.html&#10;app&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/application.properties&#10;log4j.properties&#9;FILE&#9;jar:///Users/weifengxu/.m2/repositories/org/springframework/boot/spring-boot/1.3.3.RELEASE/spring-boot-1.3.3.RELEASE.jar!/org/springframework/boot/logging/log4j/log4j.properties" />
+    <property name="SearchEverywhereHistoryKey" value="publis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish.html&#10;publi&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;home&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/HomePageController.java&#10;syste&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/system.html&#10;ap&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/application.properties&#10;pom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/pom.xml&#10;comm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/common.js&#10;api.js&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/api.js&#10;pub&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;ui.js&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/ui.js&#10;ty&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/Types.java&#10;homep&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;type&#9;PSI&#9;JAVA://com.jingu.IOT.util.Types&#10;pu&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish.html&#10;publis4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;homepa&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;pr&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/application.properties&#10;api&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/api.js&#10;xgzsb.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/xgzsb.html&#10;system.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/system.html&#10;system2.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/system2.html&#10;publish5&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish5.html&#10;tool&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/ToolUtil.java&#10;applica&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/application.properties&#10;ho&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;hom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/homepage.html&#10;index.j&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/js/index.js&#10;index.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/index.html&#10;too&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/ToolUtil.java&#10;publish4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/resources/static/publish4.html&#10;gath&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/GatherDao.java&#10;clien&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/Client.java&#10;product4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/product4.html&#10;co&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/CtrlController.java&#10;tjsxt.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/tjsxt.html&#10;sett&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/SettingController.java&#10;system.j&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/js/system.js&#10;system&#9;PSI&#9;JAVA://java.lang.System&#10;synthesize3.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/synthesize3.html&#10;getShopCamera&#9;null&#9;null&#10;pro&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/application.properties&#10;synthesize3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/static/synthesize3.html&#10;app&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/java/main/resources/application.properties&#10;log4j.properties&#9;FILE&#9;jar:///Users/weifengxu/.m2/repositories/org/springframework/boot/spring-boot/1.3.3.RELEASE/spring-boot-1.3.3.RELEASE.jar!/org/springframework/boot/logging/log4j/log4j.properties" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/static/js" />
-      <recent name="$PROJECT_DIR$/src/main/resources/static" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static/js" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.IOTApplication">
@@ -925,12 +935,12 @@
       <workItem from="1537090397243" duration="7207000" />
       <workItem from="1537099086796" duration="21178000" />
       <workItem from="1537152407974" duration="5629000" />
-      <workItem from="1537159478302" duration="11637000" />
+      <workItem from="1537159478302" duration="28518000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131440000" />
+    <option name="totallyTimeSpent" value="148321000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -943,7 +953,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329927" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -952,27 +962,27 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329927" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33417085" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33360258" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739726" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6630137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329927" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329927" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26130652" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2609047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24878837" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36301368" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42328766" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
     </layout>
@@ -1020,10 +1030,22 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/MessageService.java</url>
-          <line>150</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/AlarmRuleController.java</url>
+          <line>52</line>
           <properties />
-          <option name="timeStamp" value="39" />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/AlarmRuleController.java</url>
+          <line>111</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/MessageController.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1035,7 +1057,7 @@
           </selected-grouping-rules>
         </breakpoints-dialog>
       </breakpoints-dialog>
-      <option name="time" value="40" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1044,148 +1066,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/bg2.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/bg1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/bar-btn.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/btn-default-r.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repositories/org/springframework/spring-core/4.2.5.RELEASE/spring-core-4.2.5.RELEASE.jar!/org/springframework/core/io/FileSystemResource.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-934">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/system2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13184">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="126" column="49" selection-start-line="126" selection-start-column="49" selection-end-line="126" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/ImageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2825">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repositories/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/system.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15775">
-          <caret line="631" column="10" selection-start-line="619" selection-start-column="7" selection-end-line="631" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/xjlbt.html" />
-    <entry file="jar://$USER_HOME$/.m2/repositories/org/springframework/spring-core/4.2.5.RELEASE/spring-core-4.2.5.RELEASE.jar!/org/springframework/core/io/InputStreamSource.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repositories/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/multipart/MultipartFile.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/ajaxfileupload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/system.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="740" column="20" selection-start-line="740" selection-start-column="20" selection-end-line="740" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="8" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/HomePageDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-991">
-          <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/UploadService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/HomePageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="650" column="16" selection-start-line="650" selection-start-column="2" selection-end-line="650" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish5.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4716">
-          <caret line="304" column="23" selection-start-line="304" selection-start-column="23" selection-end-line="304" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/IOT网页/static/scripts/publish.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7825">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static2/scripts/publish.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1125">
@@ -1207,53 +1087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/ToolUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="61" column="31" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/MessageDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2325">
-          <caret line="113" column="36" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <marker date="1537121443000" expanded="true" signature="965:1130" ph="insert into message... " />
-            <marker date="1537121443000" expanded="true" signature="1434:1460" ph="update messa... " />
-            <marker date="1537121443000" expanded="true" signature="3529:3896" ph="select m.*,s... message" />
-            <marker date="1537121443000" expanded="true" signature="3529:3898" ph="select m.*,s... message" />
-            <marker date="1537121443000" expanded="true" signature="6392:6425" ph="delete from " />
-            <marker date="1537121443000" expanded="true" signature="6616:6706" ph="select * fro... message" />
-            <marker date="1537121443000" expanded="true" signature="6959:7019" ph="select count... message" />
-            <marker date="1537121443000" expanded="true" signature="7335:7723" ph="select m.m_t... message" />
-            <marker date="1537121443000" expanded="true" signature="10225:10406" ph="select m.m_i... message" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="142" column="60" selection-start-line="142" selection-start-column="48" selection-end-line="142" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/HomePageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1875">
-          <caret line="97" column="31" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/PointService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -1270,14 +1103,6 @@
             <element signature="n#!!doc" expanded="false" />
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/DataSourceConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1337,34 +1162,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="180" column="37" selection-start-line="180" selection-start-column="37" selection-end-line="180" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="463" column="12" selection-start-line="463" selection-start-column="12" selection-end-line="463" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/entity/UserEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="34" column="51" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/xgzsb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1559">
-          <caret line="197" column="7" selection-start-line="197" selection-start-column="7" selection-end-line="197" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1436,22 +1237,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/MessageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="148" column="63" selection-start-line="148" selection-start-column="63" selection-end-line="148" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/MessageRequset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/entity/MessageEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -1460,22 +1245,351 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/MessageController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/MessageRequset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-96">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/ToolUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-466">
+          <caret line="61" column="31" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/CommonUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/config/SessionInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/config/WebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="38" column="0" selection-start-line="33" selection-start-column="31" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2659">
+          <caret line="128" column="21" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/system.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="802">
+          <caret line="822" column="3" selection-start-line="822" selection-start-column="3" selection-end-line="822" selection-end-column="3" />
+          <folding>
+            <marker date="1537194314000" expanded="true" signature="14:34611" ph="{...}" />
+            <marker date="1537194314000" expanded="true" signature="27795:28204" ph="{...}" />
+            <marker date="1537194314000" expanded="true" signature="27940:28197" ph="{&quot;title&quot;: &quot;修改规格文件&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/RuleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="77" column="7" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repositories/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/bind/annotation/RequestMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/xgzsb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="187" column="6" selection-start-line="187" selection-start-column="6" selection-end-line="187" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/xgggwj.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6172">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repositories/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/IPCController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-903">
+          <caret line="469" column="0" selection-start-line="469" selection-start-column="0" selection-end-line="469" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/IPCDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="563" column="36" selection-start-line="563" selection-start-column="36" selection-end-line="563" selection-end-column="36" />
+          <folding>
+            <marker date="1515040576000" expanded="true" signature="1283:1516" ph="insert into t_vartriver_ipc... " />
+            <marker date="1515040576000" expanded="true" signature="3469:3658" ph="insert into t_vartriver_ipcproxy... " />
+            <marker date="1515040576000" expanded="true" signature="4095:4132" ph="update t_var... " />
+            <marker date="1515040576000" expanded="true" signature="5430:5479" ph="update t_var... " />
+            <marker date="1515040576000" expanded="true" signature="6972:7017" ph="select * fro... t_vartriver_ipcproxy" />
+            <marker date="1515040576000" expanded="true" signature="8461:8512" ph="delete from " />
+            <marker date="1515040576000" expanded="true" signature="8690:8722" ph="update t_var... " />
+            <marker date="1515040576000" expanded="true" signature="12675:12782" ph="update t_var... " />
+            <marker date="1515040576000" expanded="true" signature="13066:13105" ph="select * fro... t_vartriver_ipc" />
+            <marker date="1515040576000" expanded="true" signature="17067:17108" ph="select * fro... t_vartriver_ipc" />
+            <marker date="1515040576000" expanded="true" signature="17359:17400" ph="select * fro... t_vartriver_ipc" />
+            <marker date="1515040576000" expanded="true" signature="17548:17719" ph="insert into T_VARTRIVER_Monitor... " />
+            <marker date="1515040576000" expanded="true" signature="18017:18188" ph="insert into T_VARTRIVER_Monitor... " />
+            <marker date="1515040576000" expanded="true" signature="19012:19057" ph="select * fro... T_VARTRIVER_Monitor" />
+            <marker date="1515040576000" expanded="true" signature="19193:19236" ph="delete from " />
+            <marker date="1515040576000" expanded="true" signature="19413:19450" ph="update T_VAR... " />
+            <marker date="1515040576000" expanded="true" signature="20928:21070" ph="select t.*,t... T_VARTRIVER_Monitor" />
+            <marker date="1515040576000" expanded="true" signature="22517:22560" ph="select * fro... T_VARTRIVER_Monitor" />
+            <marker date="1515040576000" expanded="true" signature="23298:23337" ph="select * fro... t_vartriver_img" />
+            <marker date="1515040576000" expanded="true" signature="24368:24711" ph="select t.id,... t_vartriver_ipcproxy" />
+            <marker date="1515040576000" expanded="true" signature="24995:25041" ph="select count... t_vartriver_img" />
+            <marker date="1515040576000" expanded="true" signature="25797:25837" ph="select Max(i... t_vartriver_ipcproxy" />
+            <marker date="1515040576000" expanded="true" signature="26088:26154" ph="select max(m... T_VARTRIVER_Monitor" />
+            <marker date="1515040576000" expanded="true" signature="26445:26515" ph="select id fr... T_VARTRIVER_Monitor" />
+            <marker date="1515040576000" expanded="true" signature="27059:27102" ph="select * fro... T_VARTRIVER_Monitor" />
+            <marker date="1515040576000" expanded="true" signature="28529:28664" ph="select * fro... t_vartriver_img" />
+            <marker date="1515040576000" expanded="true" signature="28598:28662" ph="SELECT MAX(i... t_vartriver_img" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/entity/AlarmRuleEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/AlarmRuleRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/Impl/AlarmServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/util/DataSourceConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="53" column="7" selection-start-line="50" selection-start-column="4" selection-end-line="53" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/requset/IOTRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/AlarmService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="42" column="36" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/IOTApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/AlarmDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <marker date="1537202318000" expanded="true" signature="1104:1280" ph="insert into alarm_rule... " />
+            <marker date="1537202318000" expanded="true" signature="1629:1661" ph="delete from " />
+            <marker date="1537202318000" expanded="true" signature="1788:1828" ph="delete from " />
+            <marker date="1537202318000" expanded="true" signature="2012:2193" ph="insert into alarm... " />
+            <marker date="1537202318000" expanded="true" signature="3191:3224" ph="update alarm... " />
+            <marker date="1537202318000" expanded="true" signature="5180:5215" ph="select * fro... alarm_rule" />
+            <marker date="1537202318000" expanded="true" signature="7252:7310" ph="select count... alarm_rule" />
+            <marker date="1537202318000" expanded="true" signature="7437:7503" ph="select missi... alarm_rule" />
+            <marker date="1537202318000" expanded="true" signature="7667:7725" ph="select count... alarm_rule" />
+            <marker date="1537202318000" expanded="true" signature="7852:7903" ph="select * fro... alarm_rule" />
+            <marker date="1537202318000" expanded="true" signature="8069:8123" ph="delete from " />
+            <marker date="1537202318000" expanded="true" signature="8331:8395" ph="select * fro... alarm_rule" />
+            <marker date="1537202318000" expanded="true" signature="8628:8729" ph="select count... alarm_rule" />
+            <marker date="1537202318000" expanded="true" signature="8874:8968" ph="select * fro... alarm_rule" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/AlarmRuleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/xgbjgz.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
-          <caret line="235" column="23" selection-start-line="235" selection-start-column="23" selection-end-line="235" selection-end-column="23" />
+          <caret line="198" column="30" selection-start-line="198" selection-start-column="30" selection-end-line="198" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/HomePageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/service/MessageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+          <folding>
+            <element signature="e#1050#1051#0" expanded="true" />
+            <element signature="e#1089#1090#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/dao/MessageDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+          <folding>
+            <marker date="1537121443000" expanded="true" signature="965:1130" ph="insert into message... " />
+            <marker date="1537121443000" expanded="true" signature="1434:1460" ph="update messa... " />
+            <marker date="1537121443000" expanded="true" signature="3529:3896" ph="select m.*,s... message" />
+            <marker date="1537121443000" expanded="true" signature="3529:3898" ph="select m.*,s... message" />
+            <marker date="1537121443000" expanded="true" signature="6392:6425" ph="delete from " />
+            <marker date="1537121443000" expanded="true" signature="6616:6706" ph="select * fro... message" />
+            <marker date="1537121443000" expanded="true" signature="6959:7019" ph="select count... message" />
+            <marker date="1537121443000" expanded="true" signature="7335:7723" ph="select m.m_t... message" />
+            <marker date="1537121443000" expanded="true" signature="10225:10406" ph="select m.m_i... message" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/MessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jingu/IOT/web/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/system.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="742" column="7" selection-start-line="742" selection-start-column="7" selection-end-line="742" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish4.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="393" column="7" selection-start-line="393" selection-start-column="7" selection-end-line="393" selection-end-column="7" />
+        <state relative-caret-position="145">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
           <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <marker date="1537179207000" expanded="true" signature="6744:6748" ph="&amp;gt;" />
-            <marker date="1537179207000" expanded="true" signature="7065:7069" ph="&amp;gt;" />
+            <element signature="e#8212#9104#0" expanded="false" />
+            <marker date="1537207926000" expanded="true" signature="5974:5985" ph="..." />
+            <marker date="1537207926000" expanded="true" signature="7181:7185" ph="&amp;gt;" />
+            <marker date="1537207926000" expanded="true" signature="7502:7506" ph="&amp;gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/publish.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4500">
+          <caret line="256" column="7" selection-start-line="256" selection-start-column="7" selection-end-line="256" selection-end-column="7" />
+          <folding>
+            <marker date="1537208294000" expanded="true" signature="4606:4617" ph="..." />
+            <marker date="1537208294000" expanded="true" signature="5775:5779" ph="&amp;gt;" />
+            <marker date="1537208294000" expanded="true" signature="6953:6964" ph="..." />
+            <marker date="1537208294000" expanded="true" signature="7412:7416" ph="&amp;gt;" />
           </folding>
         </state>
       </provider>

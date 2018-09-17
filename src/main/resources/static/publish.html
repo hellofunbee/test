@@ -71,25 +71,6 @@
     </div>
 </div>
 <div class="xxx-layer">
-    <div class="clearfix">
-        <div class="left-info"><h4>标题</h4>
-            <p><input type="text" id="publish-title"></p><h4>作者名</h4>
-            <p><input type="text" id="publish-author"></p><h4>所属一级分类</h4>
-            <p><select name="" id="publish-class-sel">
-                <option value=""></option>
-            </select></p>
-        </div>
-        <div class="right-file">
-            <input type="file" name="picture" accept="image/*" id="publish-file">
-            <img style="width: 100%" id="cms-cover" src="images/upfile.png" alt="">
-        </div>
-    </div>
-    <h4>原文信息</h4>
-    <p><textarea name="" id="publish-content" cols="30" rows="10"></textarea></p>
-    <div class="tc mt20"><a href="#" class="btn-lg btn-df-gray" id="publish-frm-cancel">取消</a><a href="#"
-                                                                                                 class="btn-lg btn-df-blue"
-                                                                                                 id="publish-frm-save">保存</a>
-    </div>
 </div>
 <script type="text/javascript">if (!window.jQuery) {
     var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
@@ -97,6 +78,25 @@
 }</script>
 <script src="js/ajaxfileupload.js"></script>
 <script>
+    var layer_html = '  <div class="clearfix">' +
+            '        <div class="left-info"><h4>标题</h4>' +
+            '            <p><input type="text" id="publish-title"></p><h4>作者名</h4>' +
+            '            <p><input type="text" id="publish-author"></p><h4>所属一级分类</h4>' +
+            '            <p><select name="" id="publish-class-sel">' +
+            '                <option value=""></option>' +
+            '            </select></p>' +
+            '        </div>' +
+            '        <div class="right-file">' +
+            '            <input type="file" name="picture" accept="image/*" id="publish-file">' +
+            '            <img style="width: 100%" id="cms-cover" src="images/upfile.png" alt="">' +
+            '        </div>' +
+            '    </div>' +
+            '    <h4>原文信息</h4>' +
+            '    <p><textarea name="" id="publish-content" cols="30" rows="10"></textarea></p>' +
+            '    <div class="tc mt20">' +
+            '        <a href="#" class="btn-lg btn-df-gray" id="publish-frm-cancel">取消</a>' +
+            '        <a href="#" class="btn-lg btn-df-blue" id="publish-frm-save">保存</a>' +
+            '    </div>';
     var page = $('[page="publish"]');
     page.find(".mx-top-select h3").click(function () {
         $(this).hasClass("on") ? ($(this).removeClass("on"), $(this).next(".mx-top-select-list").hide()) : ($(this).addClass("on"), $(this).next(".mx-top-select-list").show())
@@ -178,6 +178,7 @@
     }), API.service("/listClass1", {c_type: 4}, function (e) {
         searClsEl.selectX(e)
     }), $("#fbxx").click(function () {
+        $(".xxx-layer").html(layer_html);
         layer.open({
             type: 1,
             area: ["720px", "650px"],

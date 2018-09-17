@@ -645,6 +645,7 @@ $(function () {
             skin: "mlayer"
         })
     });
+    /*规格文件*/
     $("#ggwz").click(function () {
         var node = lastSelectNode;
         var id = node.oriData["tp_id"];
@@ -659,6 +660,22 @@ $(function () {
             skin: "mlayer"
         })
     });
+    /*报警规则*/
+    $("#bjsz").click(function () {
+        var node = lastSelectNode;
+        var id = node.oriData["tp_id"];
+        var deviceId = node.oriData["deviceId"];
+        layer.open({
+            type: 2,
+            title: "修改规格文件",
+            area: ["1200px", "600px"],
+            maxmin: true,
+            scrollbar: false,
+            content: "xgbjgz.html?deviceId=" + deviceId + "&tp_id=" + id,
+            skin: "mlayer"
+        })
+    });
+    /*摄像头*/
     $("#tjsxt").click(function () {
         var node = lastSelectNode;
         var name = node.oriData["tp_name"];

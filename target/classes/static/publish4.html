@@ -93,39 +93,9 @@
                 越瓜又叫菴瓜、生瓜、梢瓜、酥瓜。为葫芦科，甜瓜属，甜瓜种中以嫩果生食的变种，一年生蔓性草本植物，主要分布于中国、日本及东南亚。中国栽培较普遍。越瓜具有很高的营养价值和药用价值，含有人体所需的糖类、维生素C、维生素B1、维生素B2、钙、磷...</p>
             <p class="tr"><a href="#">了解更多&gt;</a></p></div>
     </div>-->
+    <div class="xxx-layer"></div>
 </div>
-<div class="xxx-layer">
-    <div class="clearfix">
-        <div class="left-info">
-            <h4>标题</h4>
-            <p><input type="text" id="publish-title"></p>
-            <h4>作者名</h4>
-            <p><input type="text" id="publish-author"></p>
-            <h4>所属一级分类</h4>
-            <p>
-                <select name="" id="publish-class-sel">
-                    <option value=""></option>
-                </select>
-            </p>
-            <h4>所属二级分类</h4>
-            <p>
-                <select name="" id="publish-class-sel2">
-                    <option value=""></option>
-                </select>
-            </p>
-        </div>
-        <div class="right-file">
-            <input type="file" name="picture" accept="image/*" id="publish-file">
-            <img style="width: 100%" id="cms-cover" src="images/upfile.png" alt="">
-        </div>
-    </div>
-    <h4>文章信息</h4>
-    <p><textarea name="" id="publish-content" cols="30" rows="10"></textarea></p>
-    <div class="tc mt20">
-        <a href="#" id="publish-frm-cancel" class="btn-lg btn-df-gray">取消</a>
-        <a href="#" id="publish-frm-save" class="btn-lg btn-df-blue">保存</a>
-    </div>
-</div>
+
 <script type="text/javascript">
     if (!window.jQuery) {
         var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
@@ -134,6 +104,36 @@
 <script src="js/ajaxfileupload.js"></script>
 
 <script>
+    var layer_html = ''+
+            '        <div class="left-info">'+
+            '            <h4>标题</h4>'+
+            '            <p><input type="text" id="publish-title"></p>'+
+            '            <h4>作者名</h4>'+
+            '            <p><input type="text" id="publish-author"></p>'+
+            '            <h4>所属一级分类</h4>'+
+            '            <p>'+
+            '                <select name="" id="publish-class-sel">'+
+            '                    <option value=""></option>'+
+            '                </select>'+
+            '            </p>'+
+            '            <h4>所属二级分类</h4>'+
+            '            <p>'+
+            '                <select name="" id="publish-class-sel2">'+
+            '                    <option value=""></option>'+
+            '                </select>'+
+            '            </p>'+
+            '        </div>'+
+            '        <div class="right-file">'+
+            '            <input type="file" name="picture" accept="image/*" id="publish-file">'+
+            '            <img style="width: 100%" id="cms-cover" src="images/upfile.png" alt="">'+
+            '        </div>'+
+            '    </div>'+
+            '    <h4>文章信息</h4>'+
+            '    <p><textarea name="" id="publish-content" cols="30" rows="10"></textarea></p>'+
+            '    <div class="tc mt20">'+
+            '        <a href="#" id="publish-frm-cancel" class="btn-lg btn-df-gray">取消</a>'+
+            '        <a href="#" id="publish-frm-save" class="btn-lg btn-df-blue">保存</a>'+
+            '    </div>';
 
     var tplNewIt =
             '<div class="module-box">' +
@@ -162,74 +162,49 @@
     var cnt = '<div id="cnt_{c_id}" class=" mt20 clearfix module-box-cnt xjgyjList"></div>';
 
 
-    function start(c_id, c_rid) {
+    $(function () {
 
         var e = $('[page="publish4"]'),
                 t = e.find(".mx-top-search"),
                 i = e.parents("div#main_iframe").attr("src") || location.href, n = purl(i).param("keyword");
-        n && t.find("input").val(n);
-        t.find("a").click(function () {
+        n && t.find("input").val(n),
+                queryIt = function (m_class, m_class2) {
+                    var i = t.find("input").val();
+                    var data = {m_type: 4, m_title: i, m_class: m_class, m_class2: m_class2};
+                    API.service("/listHomePageMessage", data, function (d) {
+                        console.log(d)
+                        var el = $('#articals');
+                        el.empty();
+                        for (class1 in  d.object) {
+                            var c1 = d.object[class1];
+                            UI.appendFieldTo(title1, c1, el);
+                            for (var class2 in c1.classList) {
+                                var c2 = c1.classList[class2];
+                                UI.appendFieldTo(title2, c2, el)
+                                var cnt_el = UI.appendFieldTo(cnt, c2, el);
 
-            var i = t.find("input").val();
+                                for (var message in c2.messageList) {
+                                    var msg = c2.messageList[message];
+                                    UI.appendFieldTo(tplNewIt, msg, cnt_el)
+                                }
 
-
-            var data = {m_type: 4, m_title: i, m_class: c_id, m_class2: c_rid};
-            API.service("/listHomePageMessage", data, function (d) {
-                console.log(d)
-                var el = $('#articals');
-                el.empty();
-                for (class1 in  d.object) {
-                    var c1 = d.object[class1];
-                    UI.appendFieldTo(title1, c1, el);
-                    for (var class2 in c1.classList) {
-                        var c2 = c1.classList[class2];
-                        UI.appendFieldTo(title2, c2, el)
-                        var cnt_el = UI.appendFieldTo(cnt, c2, el);
-
-                        for (var message in c2.messageList) {
-                            var msg = c2.messageList[message];
-                            UI.appendFieldTo(tplNewIt, msg, cnt_el)
+                            }
                         }
-
-                    }
-                }
-            }, function (e) {
-                layer.alert(e.msg);
-            });
-
-
-            /*API.service("/listMessage", {m_type: "4", m_title: i}, function (i) {
-
-             var t = e.find(".module-box-cnt").empty();
-
-             $(i.object).each(function (i) {
-             UI.appendFieldTo('' +
-             '<div class="module-box">' +
-             '<div class="module-info">' +
-             '<div class="img">' +
-             '<img src="images/pic2.png" onerror="this.setAttribute(\'url\',\'images/pic2.png\');this.removeAttribute(\'onerror\')" field="m_cover" alt="" />' +
-             '</div>' +
-             '<h4 field="m_authorname">天知道博士</h4>' +
-             '<p field="m_time" date-format="yyyy年MM月dd日">2018年7月12日</p>' +
-             '</div>' +
-             '<h3 field="m_title"></h3>' +
-             '<p field="m_content" max-length="100"  class="sm-info">..</p>' +
-             '<p class="tr">' +
-             '<a href="#" onclick="showMessageDetail({m_id},4,\'查看\');return false;">了解更多&gt;</a>' +
-             '</p>' +
-             '</div>', this, t)
-             })
-             }, function (i) {
-             e.find(".module-box-cnt").empty().html("无记录")
-             });
-             */
-        }).click(),
+                    }, function (e) {
+                        layer.alert(e.msg);
+                    });
+                },
+                t.find("a").click(function () {
+                    queryIt();
+                }).click(),
                 $(".mx-top-select > h3").click(function () {
                     $(this).hasClass("on") ? ($(this).removeClass("on"),
                             $(this).next().hide()) : ($(this).addClass("on"),
                             $(this).next().show())
                 }),
                 $("#syzx").click(function () {
+                    $('.xxx-layer').html(layer_html);
+
                     layer.open({
                         type: 1,
                         area: ["720px", "650px"],
@@ -257,30 +232,6 @@
                                             uploadImg(data, '/addPicture', 'publish-file', 'cms-cover');
                                             stopLoading();
 
-
-                                            /*var e = new FormData;
-                                             e.append("ckuid", sessionStorage.getItem("ckuid")),
-                                             e.append("cksid", sessionStorage.getItem("cksid")),
-                                             e.append("picture", l.get(0).files[0]),
-                                             e.append("oldfile", ""),
-                                             startLoading(),
-                                             $.ajax({
-                                             url: apiPre + "/addPicture",
-                                             type: "post",
-                                             enctype: "multipart/form-data",
-                                             processData: !1,
-                                             contentType: !1,
-                                             data: e,
-                                             cache: !1,
-                                             success: function (e) {
-                                             stopLoading(), 0 === e.state ? l.next("img").attr("src", e.object).attr("value", e.object) : 2 === e.state ? layer.alert(e.msg, function () {
-                                             window.parent.location.href = "./login.html"
-                                             }) : layer.alert(e.msg)
-                                             },
-                                             error: function () {
-                                             stopLoading(), layer.alert("请求失败，请重新尝试")
-                                             }
-                                             })*/
                                         }
                                     }),
 
@@ -294,73 +245,58 @@
                                     });
 
 
-                            /* API.service("/listClass1", {c_type: 7}, function (e) {
-                             console.log("class ", e.object),
-                             $(e.object).each(function (e) {
-                             $("<option>" + this.c_name + "</option>").attr("value", this.c_id).appendTo(a)
-                             })
-                             }),*/
-                            e.find("#publish-frm-save,#publish-frm-cancel").click(function (e) {
-                                if (e.preventDefault(), "publish-frm-save" === $(this).attr("id")) {
+                            $("#publish-frm-save").on('click', function (e) {
 
-                                    if (!artical_2.val()) {
-                                        layer.msg("请选择二级分类");
-                                        artical_2.focus();
-                                    }
-
-
-                                    if (!a.val()) {
-                                        layer.msg("请选择一级分类");
-                                        a.focus();
-                                    }
-                                    if (!i.val()) {
-                                        layer.msg("请输入标题");
-                                        i.focus();
-                                    }
-                                    if (!n.val()) {
-                                        layer.msg("请输入内容");
-                                        n.focus();
-                                    }
-                                    if (!a.val()) {
-                                        layer.msg("请输入作者");
-                                        a.focus();
-                                    }
-
-                                    API.service("/addMessage", {
-                                        m_authorname: s.val(),
-                                        m_class: a.val(),
-                                        m_class2: artical_2.val(),
-                                        m_content: n.val(),
-                                        m_title: i.val(),
-                                        m_type: "4",
-                                        m_cover: $('#cms-cover').attr("src")
-                                    }, function (e) {
-                                        layer.msg(e.msg);
-                                        layer.close(t);
-                                        start();
-                                    });
-
+                                if (!artical_2.val()) {
+                                    layer.msg("请选择二级分类");
+                                    artical_2.focus();
                                 }
-                            })
+
+                                if (!a.val()) {
+                                    layer.msg("请选择一级分类");
+                                    a.focus();
+                                }
+                                if (!i.val()) {
+                                    layer.msg("请输入标题");
+                                    i.focus();
+                                }
+                                if (!n.val()) {
+                                    layer.msg("请输入内容");
+                                    n.focus();
+                                }
+                                if (!s.val()) {
+                                    layer.msg("请输入作者");
+                                    s.focus();
+                                }
+
+                                API.service("/addMessage", {
+                                    m_authorname: s.val(),
+                                    m_class: a.val(),
+                                    m_class2: artical_2.val(),
+                                    m_content: n.val(),
+                                    m_title: i.val(),
+                                    m_type: "4",
+                                    m_cover: $('#cms-cover').attr("src")
+                                }, function (e) {
+                                    layer.msg(e.msg), layer.close(t), queryIt();
+                                });
+
+                            }), $("#publish-frm-cancel").on('click', function (e) {
+                                layer.close(t)
+                            });
+
+
+                        }, end: function () {
+                            $(".layui-layer-shade").remove();
                         }
                     })
-                })
-
-
-    }
-    ;
-
-
-    $(function () {
-
-        start();
-
-        $(".mx-checkbox").click(function (i) {
-            $(this).toggleClass("on")
-        });
-        $(".sblb >h3").click(function () {
-            $(this).next().toggle();
-        });
+                }),
+                $(".mx-checkbox").click(function (i) {
+                    $(this).toggleClass("on")
+                }),
+                $(".sblb >h3").click(function () {
+                    $(this).next().toggle();
+                });
 
         var c1 = $('#class1')
         var c2 = $('#class2')
@@ -376,19 +312,15 @@
         });
 
         $('#class-seach').on('click', function () {
-            start($(c1).val(), $(c2).val())
+            queryIt($(c1).val(), $(c2).val())
 
         });
 
 
-        /*$('#top-seacher').on('click', function () {
-         var val = $("#seach-text").val();
-         if (val != null)
-         start();
-         else
-         layer.alert("请输入关键词！")
-         });*/
     })
+    ;
+
+
 </script>
 </body>
 </html>

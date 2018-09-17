@@ -145,7 +145,13 @@ public class MessageService {
 		}
 		return listClass1;
 	}
-	
+
+
+	/**
+	 * 首页 以及首页资讯管理的数据接口
+	 * @param mr
+	 * @return
+	 */
 	public List<Map<String, Object>> listHomePageMessage(MessageRequset mr) {
 		MessageEntity messageEntity = new MessageEntity();
 		ClassEntity classEntity = new ClassEntity();

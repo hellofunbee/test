@@ -49,7 +49,7 @@ public class AlarmDao {
 
 	public int addAlarmRule(AlarmRuleEntity ae) {
 		String sql = "insert into "+table+" (ala_name,ala_channel,deviceid,range,ala_state,ala_up,ala_low,ala_producer,ala_supervisor,ala_content,ala_index,ala_grade) value (?,?,?,?,?,?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, ae.getAla_name(), ae.getAla_channel(), ae.getDeviceid(), ae.getRange(),
+		return jdbcTemplate.update(sql, ae.getAla_name(), ae.getAla_channel(), ae.getDeviceid(), ae.getAla_range(),
 				ae.getAla_state(), ae.getAla_up(), ae.getAla_low(), ae.getAla_producer(), ae.getAla_supervisor(),
 				ae.getAla_content(), ae.getAla_index(), ae.getAla_grade());
 	}
@@ -60,7 +60,7 @@ public class AlarmDao {
 	}
 
 	public int deleteAlarmByDeviceId(String deviceId) {
-		String sql = "delete from "+table+" deviceid = ?";
+		String sql = "delete from "+table+" WHERE deviceid = ?";
 		return jdbcTemplate.update(sql, deviceId);
 	}
 
@@ -68,19 +68,20 @@ public class AlarmDao {
 		if (list == null || list.isEmpty()) {
 			return 0;
 		}
-		String sql = "insert into alarm (ala_name,ala_channel,deviceid,range,ala_state,ala_up,ala_low,ala_producer,ala_supervisor,ala_content,ala_index,ala_grade) value (?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into "+table+" (ala_name,ala_channel,deviceid,ala_range,ala_state,ala_up,ala_low,ala_producer,ala_supervisor,ala_content,ala_index,ala_grade) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
 
 			@Override
 			public void setValues(PreparedStatement ps, int i) throws SQLException {
 				// TODO Auto-generated method stub
+
 				ps.setString(1, list.get(i).getAla_name());
 				ps.setString(2, list.get(i).getAla_channel());
 				ps.setString(3, list.get(i).getDeviceid());
-				ps.setString(4, list.get(i).getRange());
-				ps.setInt(5, list.get(i).getAla_state());
-				ps.setString(6, list.get(i).getAla_up());
-				ps.setString(7, list.get(i).getAla_low());
+				ps.setString(4, list.get(i).getAla_range());
+				ps.setString(5, list.get(i).getAla_state());
+				ps.setDouble(6, list.get(i).getAla_up());
+				ps.setDouble(7, list.get(i).getAla_low());
 				ps.setInt(8, list.get(i).getAla_producer());
 				ps.setInt(9, list.get(i).getAla_supervisor());
 				ps.setString(10, list.get(i).getAla_content());
@@ -91,7 +92,7 @@ public class AlarmDao {
 			@Override
 			public int getBatchSize() {
 				// TODO Auto-generated method stub
-				return 0;
+				return list.size();
 			}
 		});
 		return 1;
@@ -116,7 +117,7 @@ public class AlarmDao {
 			sql += " , ala_index = ?";
 			arrayList.add(ae.getAla_index());
 		}
-		if (ae.getAla_low() != null && ae.getAla_low().trim().length() > 0) {
+		if (ae.getAla_low() != null ) {
 			sql += " , ala_low = ?";
 			arrayList.add(ae.getAla_low());
 		}
@@ -124,7 +125,7 @@ public class AlarmDao {
 			sql += " , ala_name = ?";
 			arrayList.add(ae.getAla_name());
 		}
-		if (ae.getAla_up() != null && ae.getAla_up().trim().length() > 0) {
+		if (ae.getAla_up() != null) {
 			sql += " , ala_up = ?";
 			arrayList.add(ae.getAla_up());
 		}
@@ -132,7 +133,7 @@ public class AlarmDao {
 			sql += " , ala_producer = ?";
 			arrayList.add(ae.getAla_producer());
 		}
-		if (ae.getAla_state() != null && ae.getAla_state().intValue() > 0) {
+		if (ae.getAla_state() != null && ae.getAla_state().length() > 0) {
 			sql += " , ala_state = ?";
 			arrayList.add(ae.getAla_state());
 		}
@@ -140,9 +141,9 @@ public class AlarmDao {
 			sql += " , ala_supervisor = ?";
 			arrayList.add(ae.getAla_supervisor());
 		}
-		if (ae.getRange() != null && ae.getRange().trim().length() > 0) {
+		if (ae.getAla_range() != null && ae.getAla_range().trim().length() > 0) {
 			sql += " , range = ?";
-			arrayList.add(ae.getRange());
+			arrayList.add(ae.getAla_range());
 		}
 		if (ae.getDeviceid() != null && ae.getDeviceid().trim().length() > 0) {
 			sql += " , deviceid = ?";
@@ -171,7 +172,7 @@ public class AlarmDao {
 			sql += " and ala_index = ?";
 			arrayList.add(ae.getAla_index());
 		}
-		if (ae.getAla_low() != null && ae.getAla_low().trim().length() > 0) {
+		if (ae.getAla_low() != null ) {
 			sql += " and ala_low = ?";
 			arrayList.add(ae.getAla_low());
 		}
@@ -179,7 +180,7 @@ public class AlarmDao {
 			sql += " and ala_name = ?";
 			arrayList.add(ae.getAla_name());
 		}
-		if (ae.getAla_up() != null && ae.getAla_up().trim().length() > 0) {
+		if (ae.getAla_up() != null ) {
 			sql += " and ala_up = ?";
 			arrayList.add(ae.getAla_up());
 		}
@@ -187,7 +188,7 @@ public class AlarmDao {
 			sql += " and ala_producer = ?";
 			arrayList.add(ae.getAla_producer());
 		}
-		if (ae.getAla_state() != null && ae.getAla_state().intValue() > 0) {
+		if (ae.getAla_state() != null && ae.getAla_state().length() > 0) {
 			sql += " and ala_state = ?";
 			arrayList.add(ae.getAla_state());
 		}
@@ -195,9 +196,9 @@ public class AlarmDao {
 			sql += " and ala_supervisor = ?";
 			arrayList.add(ae.getAla_supervisor());
 		}
-		if (ae.getRange() != null && ae.getRange().trim().length() > 0) {
+		if (ae.getAla_range() != null && ae.getAla_range().trim().length() > 0) {
 			sql += " and range = ?";
-			arrayList.add(ae.getRange());
+			arrayList.add(ae.getAla_range());
 		}
 		if (ae.getDeviceid() != null && ae.getDeviceid().trim().length() > 0) {
 			sql += " and deviceid = ?";

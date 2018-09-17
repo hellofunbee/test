@@ -13,9 +13,9 @@
 */ 
 package com.jingu.IOT.requset;
 
-import java.util.List;
-
 import com.jingu.IOT.entity.AlarmRuleEntity;
+
+import java.util.List;
 
 /**
 
@@ -28,8 +28,8 @@ import com.jingu.IOT.entity.AlarmRuleEntity;
 public class AlarmRuleRequest {
 
 	private List<AlarmRuleEntity> aList;
-	private String uid;
-	private String sid;
+	private String ckuid;
+	private String cksid;
 	private Integer o_type;
 	private String deviceid;
 	private String idString;
@@ -49,18 +49,23 @@ public class AlarmRuleRequest {
 	public void setDeviceid(String deviceid) {
 		this.deviceid = deviceid;
 	}
-	public String getUid() {
-		return uid;
+
+	public String getCkuid() {
+		return ckuid;
 	}
-	public void setUid(String uid) {
-		this.uid = uid;
+
+	public void setCkuid(String ckuid) {
+		this.ckuid = ckuid;
 	}
-	public String getSid() {
-		return sid;
+
+	public String getCksid() {
+		return cksid;
 	}
-	public void setSid(String sid) {
-		this.sid = sid;
+
+	public void setCksid(String cksid) {
+		this.cksid = cksid;
 	}
+
 	public List<AlarmRuleEntity> getaList() {
 		return aList;
 	}
