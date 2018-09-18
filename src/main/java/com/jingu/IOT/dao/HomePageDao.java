@@ -13,17 +13,15 @@
 */ 
 package com.jingu.IOT.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
+import com.jingu.IOT.entity.HomePageEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.jingu.IOT.entity.HomePageEntity;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
 
@@ -107,6 +105,7 @@ public class HomePageDao {
 			sql += " where h_id =? ";
 			list.add(he.getH_id());
 		}
+		sql+=" order by update_time desc";
 		return jdbcTemplate.queryForList(sql,list.toArray());
 	}
 	/**

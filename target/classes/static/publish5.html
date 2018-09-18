@@ -16,7 +16,7 @@
         <div class="sm-title fl">首页轮播图</div>
         <a href="#" class="btn btn-default fr add-one">新加轮播图</a></div>
     <div class="upSroll-cnt clearfix mt20">
-        <div class="upSroll-list">
+       <!-- <div class="upSroll-list">
             <div class="imgCnt">
                 <div class="handle"><a href="#" class="sp-btn ">添加</a></div>
                 <img src="images/default-pic.png" alt=""></div>
@@ -59,27 +59,9 @@
                 <div class="handle"><a href="#" class="sp-btn">替换</a> <a href="#" class="sp-btn sp-btn-sc">删除</a></div>
                 <img src="images/default-pic.png" alt=""></div>
             <h3>跳转连接</h3><textarea name="name"></textarea> <a href="#" class="bc-btn">保存连接</a></div>
-    </div>
+    --></div>
 </div>
 <div class="xxx-layer">
-    <div class="clearfix">
-        <div class="left-info">
-            <h4>标题</h4>
-            <p><input type="text" id="publish-title"></p>
-            <h4>跳转链接</h4>
-            <p>
-                <textarea name="" id="publish-content" cols="30" rows="10"></textarea></p>
-        </div>
-        <div class="right-file">
-            <input type="file" name="picture" accept="image/*" id="publish-file">
-            <img id="h-img" style="width: 100%" src="images/upfile.png" alt="">
-        </div>
-    </div>
-
-    <div class="tc mt20">
-        <a href="#" class="btn-lg btn-df-gray" id="publish-frm-cancel">取消</a>
-        <a href="#" class="btn-lg btn-df-blue" id="publish-frm-save">保存</a>
-    </div>
 </div>
 <script type="text/javascript">if (!window.jQuery) {
     var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
@@ -87,221 +69,258 @@
 }</script>
 <script src="js/ajaxfileupload.js"></script>
 <script>
+    var quary;
     var e = $('.mx-main');
     var list = e.find(".upSroll-cnt");
 
-    function quary() {
+    var layer_html = '<div class="clearfix">' +
+            '        <div class="left-info">' +
+            '            <h4>标题</h4>' +
+            '            <p><input type="text" id="publish-title"></p>' +
+            '            <h4>跳转链接</h4>' +
+            '            <p>' +
+            '                <textarea name="" id="publish-content" cols="30" rows="10"></textarea></p>' +
+            '        </div>' +
+            '        <div class="right-file">' +
+            '            <input type="file" name="picture" accept="image/*" id="publish-file">' +
+            '            <img id="h-img" style="width: 100%" src="images/upfile.png" alt="">' +
+            '        </div>' +
+            '    </div>' +
+            '    <div class="tc mt20">' +
+            '        <a href="#" class="btn-lg btn-df-gray" id="publish-frm-cancel">取消</a>' +
+            '        <a href="#" class="btn-lg btn-df-blue" id="publish-frm-save">保存</a>' +
+            '    </div>';
+    $(function () {
 
-        API.listHomePage_edit(function (e) {
-            console.log(e);
-            var l = [];
-            $.each(e.object, function (e) {
-                var t = this;
+        quary = function () {
+            API.listHomePage_edit(function (e) {
+                console.log(e);
+                var l = [];
+                $.each(e.object, function (e) {
+                    var t = this;
 
-                var item =
-                        '  <div class="upSroll-list" data-id="' + t.h_id + '"> ' +
-                        '   <div class="imgCnt"> ' +
-                        '    <div class="handle" h_id="' + t.h_id + '" h_name="' + t.h_name + '"> ';
+                    var item =
+                            '  <div class="upSroll-list" data-id="' + t.h_id + '"> ' +
+                            '   <div class="imgCnt"> ' +
+                            '    <div class="handle" h_id="' + t.h_id + '" h_name="' + t.h_name + '"> ';
 
-                if (t.h_state == 2) {
-                    item += '<a href="#" class="sp-btn add">添加</a>';
-                } else {
-                    item += '<div class="sp-btn">' +
-                            '<input class="replace-file" id="input-' + t.h_id + '" type="file" name="picture" accept="image/*" h_cover="' + t.h_cover + '" h_id="' + t.h_id + '">' +
-                            '<a href="#" class="sp-btn replace">替换</a>' +
-                            '</div> ';
-                    item += '<a href="#" class="sp-btn sp-btn-sc del">删除</a>';
-                }
-
-                item += '    <h3>' + (t.h_name || "&#160;") + '</h3>' +
-                        '    </div> ' +
-                        '    <img id="img-' + t.h_id + '" src="' + apiPre + t.h_cover + '" alt="" /> ' +
-                        '   </div> ' +
-                        '   <h3>跳转连接</h3> ' +
-                        '   <textarea name="name"  <!--placeholder="http://或者https://开头"-->>' + t.h_url + '</textarea> ' +
-                        '   <a href="#" class="bc-btn save-url">保存连接</a> ' +
-                        '  </div>';
-                l.push(item);
-            });
-            list.empty().html(l.join(""));
-
-            /*添加到首页*/
-            $('.add').on('click', function () {
-                var h_id = $(this).parent().attr('h_id');
-                var h_name = $(this).parent().attr('h_name');
-                API.service("/updateHomePage", {h_id: h_id, h_state: 1}, function (e) {
-                    layer.msg(e.msg);
-                    quary();
-                })
-
-            });
-
-
-            $(".add-one").click(function () {
-                        layer.open({
-                            type: 1,
-                            area: ["720px", "550px"],
-                            title: "发布新消息",
-                            content: $(".xxx-layer"),
-                            skin: "mlayer",
-                            success: function (e, t) {
-                                var l = e.find("#publish-file");
-
-                                l.next("img").attr("src", "images/upfile.png");
-                                l.on("change", function () {
-
-                                    if (!check(l))
-                                        return;
-                                    changepic();
-                                });
-
-
-                                e.find("#publish-frm-save").click(function (e) {
-
-
-                                    if (!l.val()) {
-                                        layer.alert("请上传图片！");
-                                        return;
-                                    }
-                                    var data = {
-                                        ckuid: sessionStorage.getItem("ckuid"),
-                                        cksid: sessionStorage.getItem("cksid"),
-                                        oldfile: "",
-                                        h_url: $("#publish-content").val(),
-                                        h_state: 1,
-                                        h_name: $("#publish-title").val(),
-                                        h_type: 1
-                                    }
-
-                                    startLoading();
-
-                                    $.ajaxFileUpload(
-                                            {
-                                                url: apiPre + "/addHomePagePicture",
-                                                secureuri: false, //是否需要安全协议，一般设置为false
-                                                fileElementId: 'publish-file', //文件上传域的ID
-                                                dataType: 'json', //返回值类型 一般设置为json
-                                                data: data,
-                                                success: function (e) {
-                                                    stopLoading();
-
-                                                    if (e.state == 0) {
-                                                        $("#h-img").attr("src", e.object);
-                                                        $("#h-img").attr("value", e.object)
-
-                                                    } else if (e.state == 2) {
-                                                        layer.alert(e.msg, function () {
-                                                            window.parent.location.href = "./login.html"
-                                                        })
-
-                                                    }
-
-                                                    layer.alert(e.msg)
-                                                    layer.close(t);
-                                                    quary();
-
-                                                },
-                                                error: function () {
-                                                    stopLoading(), layer.alert("请求失败，请重新尝试")
-                                                }
-                                            }
-                                    );
-
-                                });
-                                e.find("#publish-frm-cancel").click(function (e) {
-                                    layer.close(t)
-                                });
-
-                            }
-                        })
+                    if (t.h_state == 2) {
+                        item += '<a href="#" class="sp-btn add" onclick="add(this)">添加</a>';
+                    } else {
+                        item += '<div class="sp-btn">' +
+                                '<input class="replace-file" onchange="replace_file(this)" id="input-' + t.h_id + '" type="file" name="picture" accept="image/*" h_cover="' + t.h_cover + '" h_id="' + t.h_id + '">' +
+                                '<a href="#" class="sp-btn replace" ">替换</a>' +
+                                '</div> ';
+                        item += '<a href="#" class="sp-btn sp-btn-sc del" onclick="del(this)">删除</a>';
                     }
-            );
-            $('.replace-file').on('change', function () {
 
-                var id = $(this).attr('id');
-                var img_id = id.replace('input', 'img');
-                var data = {
-                    ckuid: sessionStorage.getItem("ckuid"),
-                    cksid: sessionStorage.getItem("cksid"),
-                    oldfile: $(this).attr('h_cover'),
-                    h_id: $(this).attr('h_id')
-                }
+                    item += '    <h3>' + (t.h_name || "&#160;") + '</h3>' +
+                            '    </div> ' +
+                            '    <img id="img-' + t.h_id + '" src="' + apiPre + t.h_cover + '" alt="" /> ' +
+                            '   </div> ' +
+                            '   <h3>跳转连接</h3> ' +
+                            '   <textarea name="name" rows="3" cols="20">' + t.h_url + '</textarea> ' +
+                            '   <a href="#" class="bc-btn save-url" onclick="save_url(this)">保存连接</a> ' +
+                            '  </div>';
+                    l.push(item);
+                });
+                list.empty().html(l.join(""));
 
-                startLoading();
-                $.ajaxFileUpload(
-                        {
-                            url: apiPre + "/updateHomePagePicture",
-                            secureuri: false, //是否需要安全协议，一般设置为false
-                            fileElementId: id, //文件上传域的ID
-                            dataType: 'json', //返回值类型 一般设置为json
-                            data: data,
-                            success: function (e) {
-                                stopLoading();
+            });
+        };
 
-                                if (e.state == 0) {
-                                    $("#" + img_id).attr("src", e.object);
-                                    $("#" + img_id).attr("value", e.object)
+        quary();
+    });
 
-                                } else if (e.state == 2) {
-                                    layer.alert(e.msg, function () {
-                                        window.parent.location.href = "./login.html"
-                                    })
+    /*添加到首页*/
+    function add(obj) {
+        var h_id = $(obj).parent().attr('h_id');
+        var h_name = $(obj).parent().attr('h_name');
+        API.service("/updateHomePage", {h_id: h_id, h_state: 1}, function (e) {
+            layer.msg(e.msg);
+            quary();
+        })
 
-                                }
+    }
+    ;
 
-                                layer.alert(e.msg)
-                                layer.close(t);
+
+    $(".add-one").click(function () {
+                $(".xxx-layer").html(layer_html);
+                layer.open({
+                    type: 1,
+                    area: ["720px", "550px"],
+                    title: "发布新消息",
+                    content: $(".xxx-layer"),
+                    skin: "mlayer",
+                    success: function (e, t) {
+                        var l = e.find("#publish-file");
+
+                        l.next("img").attr("src", "images/upfile.png");
+                        l.on("change", function () {
+
+                            if (!check(l))
+                                return;
+                            changepic();
+                        });
+
+
+                        e.find("#publish-frm-save").click(function (e) {
+
+
+                            if (!l.val()) {
+                                layer.alert("请上传图片！");
+                                return;
+                            }
+                            var data = {
+                                ckuid: sessionStorage.getItem("ckuid"),
+                                cksid: sessionStorage.getItem("cksid"),
+                                oldfile: "",
+                                h_url: $("#publish-content").val(),
+                                h_state: 1,
+                                h_name: $("#publish-title").val(),
+                                h_type: 1
+                            }
+
+                            startLoading();
+
+                            $.ajaxFileUpload(
+                                    {
+                                        url: apiPre + "/addHomePagePicture",
+                                        secureuri: false, //是否需要安全协议，一般设置为false
+                                        fileElementId: 'publish-file', //文件上传域的ID
+                                        dataType: 'json', //返回值类型 一般设置为json
+                                        data: data,
+                                        success: function (e) {
+                                            stopLoading();
+
+                                            if (e.state == 0) {
+                                                $("#h-img").attr("src", e.object);
+                                                $("#h-img").attr("value", e.object)
+
+                                            } else if (e.state == 2) {
+                                                layer.alert(e.msg, function () {
+                                                    window.parent.location.href = "./login.html"
+                                                })
+
+                                            }
+
+                                            layer.alert(e.msg)
+                                            layer.close(t);
+                                            quary();
+
+                                        },
+                                        error: function () {
+                                            stopLoading(), layer.alert("请求失败，请重新尝试")
+                                        }
+                                    }
+                            );
+
+                        });
+                        e.find("#publish-frm-cancel").click(function (e) {
+                            layer.close(t)
+                        });
+
+                    }
+                })
+            }
+    );
+    function replace_file(obj) {
+
+        var id = $(obj).attr('id');
+        var img_id = id.replace('input', 'img');
+        var data = {
+            ckuid: sessionStorage.getItem("ckuid"),
+            cksid: sessionStorage.getItem("cksid"),
+            oldfile: $(obj).attr('h_cover'),
+            h_id: $(obj).attr('h_id')
+        }
+
+        startLoading();
+        $.ajaxFileUpload(
+                {
+                    url: apiPre + "/updateHomePagePicture",
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: id, //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json
+                    data: data,
+                    success: function (e) {
+                        stopLoading();
+
+                        if (e.state == 0) {
+                            $("#" + img_id).attr("src", e.object);
+                            $("#" + img_id).attr("value", e.object)
+
+                        } else if (e.state == 2) {
+                            layer.alert(e.msg, function () {
+                                window.parent.location.href = "./login.html"
+                            })
+
+                        }
+
+                        layer.alert(e.msg)
+                        layer.close(t);
 //                                quary();
 
-                            },
-                            error: function () {
-                                stopLoading(), layer.alert("请求失败，请重新尝试")
-                            }
-                        }
-                );
-
-            });
-
-
-            /*保存链接*/
-            $('.save-url').on('click', function () {
-                var url = $(this).next.text;
-                var h_id = $(this).prev.attr("h_id");
-
-                if (!url) {
-                    layer.msg('跳转链接为空！')
-                    return;
+                    },
+                    error: function () {
+                        stopLoading(), layer.alert("请求失败，请重新尝试")
+                    }
                 }
-                var reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;   //正则表达式判断http：//    https：//  为合法
-                var objExp = new RegExp(reg);
-                if (objExp.test(url) != true) {
-                    layer.alert('跳转链接格式不正确!');
-                    return;
-                }
-                API.service("/updateHomePage", {h_id: h_id, h_url: url}, function (e) {
-                    layer.msg(e.msg);
-                })
+        );
 
-            });
-
-            /*从首页删除*/
-            $('.del').on('click', function () {
-                var h_id = $(this).parent().attr('h_id');
-                var h_name = $(this).parent().attr('h_name');
-
-                layer.confirm("确定删除吗？", function (e) {
-                    layer.close(e),
-                            API.service("/updateHomePage", {h_id: h_id, h_state: 2}, function (e) {
-                                layer.msg(e.msg), /*$('[data-id="' + h_id + '"]').remove();*/
-                                        quary();
-                            })
-                })
-            });
+    }
+    ;
 
 
+    /*保存链接*/
+    function save_url(obj) {
+        var url = $(obj).prev('textarea').val();
+
+        var h_id = $(obj).parent().attr("data-id");
+
+
+        console.log(h_id)
+
+        if (!url) {
+            layer.msg('跳转链接为空！')
+            return;
+        }
+        console.log(url)
+        var Expression = '^((https|http|ftp|rtsp|mms)?://)?'
+                + '(([0-9a-z_!~*().&=+$%-]+: )?[0-9a-z_!~*().&=+$%-]+@)?' //ftp的user@
+                + '(([0-9]{1,3}.){3}[0-9]{1,3}|'// IP形式的URL- 199.194.52.184
+                + '([0-9a-z_!~*()-]+.)*'// 域名- www.
+                + '[a-z]{2,6})'//域名的扩展名
+                + '(:[0-9]{1,4})?'// 端口- :80
+                + '((/?)|(/[0-9a-z_!~*().;?:@&=+$,%#-]+)+/?)$';
+
+        var objExp = new RegExp(Expression);
+        if (!objExp.test(url)) {
+            layer.alert('跳转链接格式不正确!');
+            return;
+        }
+        API.service("/updateHomePage", {h_id: h_id, h_url: url}, function (e) {
+            layer.msg(e.msg);
+        })
+
+    }
+    ;
+
+    /*从首页删除*/
+    function del(obj) {
+        var h_id = $(obj).parent().attr('h_id');
+        var h_name = $(obj).parent().attr('h_name');
+
+        layer.confirm("确定删除吗？", function (e) {
+            layer.close(e),
+                    API.service("/updateHomePage", {h_id: h_id, h_state: 2}, function (e) {
+                        layer.msg(e.msg), /*$('[data-id="' + h_id + '"]').remove();*/
+                                quary();
+                    })
         })
     }
-
+    ;
     function changepic() {
         var reads = new FileReader();
         f = document.getElementById('publish-file').files[0];
@@ -311,9 +330,6 @@
         };
     }
 
-
-
-    quary();
 </script>
 </body>
 </html>

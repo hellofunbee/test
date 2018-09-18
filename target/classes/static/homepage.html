@@ -12,7 +12,7 @@
     <div class="mt20 clearfix">
         <div class="mx-scroll fl">
             <ul class="mx-scroll-pic">
-                <li><a href="#"><img src="images/pic.jpg">
+                <!--<li><a href="#"><img src="images/pic.jpg">
                     <div class="info"><h3>山西农业大学力推物联网平台，用科技指导生产</h3>
                         <p>物联网——打通农民与先进技术之间的壁垒，让更多人享受到最新技术成果</p></div>
                 </a></li>
@@ -27,7 +27,7 @@
                 <li><a href="#"><img src="images/bg2.jpg">
                     <div class="info"><h3>山西农业大学力推物联网平台，用科技指导生产4</h3>
                         <p>物联网——打通农民与先进技术之间的壁垒，让更多人享受到最新技术成果</p></div>
-                </a></li>
+                </a></li>-->
             </ul>
             <ul class="mx-scroll-num clearfix">
                 <li></li>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <ul class="newslist">
-                <li>
+                <!--<li>
                     <div class="time">2017年
                         <small>8月23日</small>
                     </div>
@@ -78,7 +78,7 @@
                         <small>8月23日</small>
                     </div>
                     <h3><a href="#">生猪屠宰价格信息</a></h3>
-                    <p><a href="#">据农业部监测，上周（8月14日-8月20日）全国规模以上生猪定点屠宰企业生猪…</a></p></li>
+                    <p><a href="#">据农业部监测，上周（8月14日-8月20日）全国规模以上生猪定点屠宰企业生猪…</a></p></li>-->
             </ul>
         </div>
     </div>
@@ -209,11 +209,14 @@
     API.listMessage(2, null, null, function (e) {
         var t = e.object,
                 a = page.find(".newslist").empty(),
-                n = '<div class="time">\n  {year}年\n  ' +
+                n =
+                        '<div class="time">\n{year}年\n' +
                         '<small>{monthDay}</small>\n' +
                         '</div>\n' +
+                        '<div style="padding-left: 15px">' +
                         '<h3><a href="#" class="news_title"></a></h3>\n' +
-                        '<p><a href="#" class="news_content"></a></p>',
+                        '<p><a href="#" class="news_content"></a></p>' +
+                        '</div>',
                 i = 5 < t.length ? t.slice(0, 5) : t;
         $(i).each(function (e) {
             var t = this,
@@ -222,9 +225,14 @@
             i.append(
                     n.replace(/{year}/g,
                             l.format("yyyy")).replace(/{monthDay}/g,
-                            l.format("MM月dd日"))).find(".news_title").text(t.m_title).end().find(".news_content").text(UI.cutSize(t.m_content, 36)).end().attr("m_id", t.m_id).click(function () {
-                return showMessageDetail($(this).attr("m_id")), !1
-            });
+                            l.format("MM月dd日")))
+                    .find(".news_title")
+                    .text(UI.cutSize(t.m_title,56)).end().find(".news_content")
+                    .text(t.m_content)
+                    .end().attr("m_id", t.m_id)
+                    .click(function () {
+                        return showMessageDetail($(this).attr("m_id")), !1
+                    });
         });
         i = 3 < t.length ? t.slice(0, 3) : t;
         var s = page.find(".newsScroll").empty();
@@ -266,7 +274,6 @@
     var cnt = '<div id="cnt_{c_id}" class=" mt20 clearfix module-box-cnt xjgyjList"></div>';
 
     var data = {m_type: 4};
-
 
 
     API.service("/listHomePageMessage", data, function (d) {
