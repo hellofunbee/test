@@ -1,1 +1,204 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物联网-大数据分析-监测多数据</title><link rel="stylesheet" href="css/reset.min.css"><link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css"><link rel="stylesheet" href="css/style.css"></head><body><div class="mx-main"><div class="mx-handle clearfix"><div class="sm-title fl">监测多数据</div><ul class="little-menu cleafix fl"><li class="on"><a href="javascript:;" data-href="#ssfx">实时分析</a></li><li><a href="javascript:;" data-href="#jzfx">均值分析</a></li><li><a href="javascript:;" data-href="#fzfx">峰值分析</a></li><li class="last"><a href="javascript:;" data-href="#gzfx">谷值分析</a></li></ul></div><div class="sjjc-module"><div id="ssfx"><div class="ssfx-module clearfix"><div class="fl"><div class="fieldset"><div class="legend orange">请选择要分析的设备</div><div class="fieldset-con" style="height:320px;overflow-y:auto"><ul id="big_data_analysis_device_tree" class="ztree"></ul></div></div><div class="form-list mt20"><label>日期范围</label><div class="list-block"><input type="text" placeholder="2018-01-11" id="big_data_analysis_device_from" class="text" style="width:47%"> <span style="width:6%">-</span> <input type="text" placeholder="2018-05-11" id="big_data_analysis_device_to" class="text" style="width:47%"></div></div></div><div class="fr"><div class="fieldset"><div class="legend orange">请选择要分析的指标</div><div class="fieldset-con" style="height:320px;overflow-y:auto"><div class="mx-checkbox mt5" value="mainLi1" data-dan="单位(%)"><em></em><label for="">电池电量</label></div><div class="mx-checkbox mt5" value="mainLi2" data-dan="单位(ppm)"><em></em><label for="">二氧化碳</label></div><div class="mx-checkbox mt5" value="mainLi3"><em></em><label for="">风向</label></div><div class="mx-checkbox mt5" value="mainLi4" data-dan="单位(%)"><em></em><label for="">土壤水分</label></div><div class="mx-checkbox mt5" value="mainLi5" data-dan="单位(v)"><em></em><label for="">系统5V电压</label></div><div class="mx-checkbox mt5" value="mainLi6" data-dan="单位(ml)"><em></em><label for="">降水量</label></div><div class="mx-checkbox mt5" value="mainLi7" data-dan="单位(℃)"><em></em><label for="">空气温度</label></div><div class="mx-checkbox mt5" value="mainLi8" data-dan="单位(lux)"><em></em><label for="">光照度</label></div><div class="mx-checkbox mt5" value="mainLi9" data-dan="单位(℃)"><em></em><label for="">土壤温度</label></div><div class="mx-checkbox mt5" value="mainLi10" data-dan="单位(%)"><em></em><label for="">空气湿度</label></div></div></div></div></div><div class="tc mt20"><a href="bigData-fxjg2.html" id="big_data_analysis_simple" target="_parent" class="btn-lg btn-lg-blue">分析</a></div></div><div id="jzfx"><div class="mx-build"><img src="images/icon-jsz.png" alt=""><p>功能建设中.....</p></div></div><div id="fzfx"><div class="mx-build"><img src="images/icon-jsz.png" alt=""><p>功能建设中.....</p></div></div><div id="gzfx"><div class="mx-build"><img src="images/icon-jsz.png" alt=""><p>功能建设中.....</p></div></div></div></div><script type="text/javascript">if(!window.jQuery){var html='<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';document.write(html)}</script><script>$(function(){UI.renderPointTree("#big_data_analysis_device_tree",function(e){e.id},{check:{enable:!0}},{1:!0,2:!0,3:!0});var n=$("#big_data_analysis_device_from"),r=$("#big_data_analysis_device_to");laydate.render({elem:"#big_data_analysis_device_to"}),laydate.render({elem:"#big_data_analysis_device_from"}),$("#big_data_analysis_simple").click(function(){try{var e=$("#big_data_analysis_device_tree").data("z-tree").getCheckedNodes(!0);if(0===e.length)return layer.msg("请先选择要分析的一个设备!"),!1;var i=[];if($.each(e,function(){3===this.oriData.tp_type&&i.push(this.oriData.deviceId)}),0===i.length)return layer.msg("请先选择要分析的设备!"),!1;var a={};if(a.deviceList=i,a.channelList=[],$(".mx-checkbox.on").each(function(e){a.channelList.push($(this).text())}),a.beginTime=n.val(),a.endTime=r.val(),0===i.length)return layer.msg("请先选择要分析的设备!"),!1;if(0===a.channelList.length)return layer.msg("请选择要分析的指标!"),!1;if(10!==a.beginTime.length||10!==a.endTime.length)return layer.msg("请先选择日期范围!"),!1;var t=$(this).attr("href")+"?reportParams="+JSON.stringify(a);showMainContent(t)}catch(e){layer.alert("出错了"+e.error)}return!1}),$(".sjjc-module>div:not(:first)").hide(),$(".little-menu li").click(function(){$(this).addClass("on").siblings().removeClass("on");var e=$(this).children("a").attr("data-href");$(e).show().siblings().hide()}),$(".mx-checkbox").click(function(e){$(this).toggleClass("on")})})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>物联网-大数据分析-监测多数据</title>
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <div class="mx-main">
+    <div class="mx-handle clearfix">
+      
+      <div class="sm-title fl">
+        监测多数据
+      </div>
+      <ul class="little-menu cleafix fl">
+        <li class="on"><a href="javascript:;" data-href="#ssfx">实时分析</a></li>
+        <li><a href="javascript:;" data-href="#jzfx">均值分析</a></li>
+        <li><a href="javascript:;" data-href="#fzfx">峰值分析</a></li>
+        <li class="last"><a href="javascript:;" data-href="#gzfx">谷值分析</a></li>
+      </ul>
+    </div>
+
+    <div class="sjjc-module">
+      
+      <div id="ssfx">
+        <div class="ssfx-module clearfix">
+          <div class="fl">
+            
+            <div class="fieldset">
+              <div class="legend orange">请选择要分析的设备</div>
+              <div class="fieldset-con" style="height:320px; overflow-y:auto;">
+                <ul id="big_data_analysis_device_tree" class="ztree"></ul>
+              </div>
+            </div>
+            
+            <div class="form-list mt20">
+              <label>日期范围</label>
+              <div class="list-block">
+                <input type="text" placeholder="2018-01-11" id="big_data_analysis_device_from" class="text" style="width:47%">
+                <span style="width:6%">-</span>
+                <input type="text" placeholder="2018-05-11" id="big_data_analysis_device_to" class="text" style="width:47%">
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="fr">
+            <div class="fieldset">
+              <div class="legend orange">请选择要分析的指标</div>
+              <div class="fieldset-con" style="height:320px; overflow-y:auto;">
+                <div class="mx-checkbox mt5" value="mainLi1" data-dan="单位(%)"><em></em><label for="">电池电量</label></div>
+                <div class="mx-checkbox mt5" value="mainLi2" data-dan="单位(ppm)"><em></em><label for="">二氧化碳</label></div>
+                <div class="mx-checkbox mt5" value="mainLi3"><em></em><label for="">风向</label></div>
+                <div class="mx-checkbox mt5" value="mainLi4" data-dan="单位(%)"><em></em><label for="">土壤水分</label></div>
+                <div class="mx-checkbox mt5" value="mainLi5" data-dan="单位(v)"><em></em><label for="">系统5V电压</label></div>
+                <div class="mx-checkbox mt5" value="mainLi6" data-dan="单位(ml)"><em></em><label for="">降水量</label></div>
+                <div class="mx-checkbox mt5" value="mainLi7" data-dan="单位(℃)"><em></em><label for="">空气温度</label></div>
+                <div class="mx-checkbox mt5" value="mainLi8" data-dan="单位(lux)"><em></em><label for="">光照度</label></div>
+                <div class="mx-checkbox mt5" value="mainLi9" data-dan="单位(℃)"><em></em><label for="">土壤温度</label></div>
+                <div class="mx-checkbox mt5" value="mainLi10" data-dan="单位(%)"><em></em><label for="">空气湿度</label></div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tc mt20"><a href="bigData-fxjg2.html" id="big_data_analysis_simple" target="_parent" class="btn-lg btn-lg-blue">分析</a></div>
+      </div>
+      
+      <div id="jzfx">
+        <div class="mx-build">
+          <img src="images/icon-jsz.png" alt="">
+          <p>功能建设中.....</p>
+        </div>
+      </div>
+      
+      <div id="fzfx">
+        <div class="mx-build">
+          <img src="images/icon-jsz.png" alt="">
+          <p>功能建设中.....</p>
+        </div>
+      </div>
+      
+      <div id="gzfx">
+        <div class="mx-build">
+          <img src="images/icon-jsz.png" alt="">
+          <p>功能建设中.....</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  
+  
+
+  <script type="text/javascript">
+      if (!window.jQuery) {
+          var html =
+              '<script src="js/jquery.min.js"><\/script>\n' +
+              '<script src="js/jquery.scrollTo.min.js"><\/script>\n' +
+              '<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n' +
+              '<script src="js/jquery.ztree.all.min.js"><\/script>\n' +
+              '<script src="js/layer/laydate/laydate.js"><\/script>\n' +
+              '<script src="js/layer/layer.js"><\/script>\n' +
+              '<script src="js/slide.js"><\/script>\n' +
+              '<script src="js/common.js"><\/script>\n' +
+              '<script src="js/purl.js"><\/script>\n' +
+              '<script src="js/api.js"><\/script>\n' +
+              '<script src="js/ui.js"><\/script>';
+          document.write(html);
+      }
+  </script>
+  <script>
+      $(function () {
+          var lastClickNodeId = 0;
+          UI.renderPointTree("#big_data_analysis_device_tree", function (node) {
+              lastClickNodeId = node.id;
+          }, {check: {enable: true}},{"1": true, "2": true, "3": true});
+          var deviceFrom = $('#big_data_analysis_device_from');
+          var deviceTo = $('#big_data_analysis_device_to');
+
+          //常规用法
+          laydate.render({
+              elem: '#big_data_analysis_device_to'
+          });
+          laydate.render({
+              elem: '#big_data_analysis_device_from'
+          });
+          // });
+          $('#big_data_analysis_simple').click(function () {
+              try {
+                  var treeObj = $('#big_data_analysis_device_tree').data('z-tree');
+                  // var deviceIds = UI.getPointTreeChecked(treeObj, true);
+                  var selNode=treeObj.getCheckedNodes(true);
+                  if (selNode.length ===0) {
+                      layer.msg('请先选择要分析的一个设备!');
+                      return false;
+                  }
+                  var deviceIds=[];
+                  $.each(selNode,function(){
+                      if(this.oriData.tp_type === 3){
+                          deviceIds.push(this.oriData.deviceId);
+                      }
+                  });
+                  if (deviceIds.length===0) {
+                      layer.msg('请先选择要分析的设备!');
+                      return false;
+                  }
+
+                  var param = {};
+                  //param.ckdata = '1';
+                  param.deviceList = deviceIds;
+                  param.channelList = [];
+                  $('.mx-checkbox.on').each(function (ix) {
+                      param.channelList.push($(this).text());
+                  });
+                  param.beginTime = deviceFrom.val();
+                  param.endTime = deviceTo.val();
+                  if (deviceIds.length === 0) {
+                      layer.msg('请先选择要分析的设备!');
+                      return false;
+                  }
+                  if (param.channelList.length === 0) {
+                      layer.msg('请选择要分析的指标!');
+                      return false;
+                  }
+                  if (param.beginTime.length !== 10 || param.endTime.length !== 10) {
+                      layer.msg('请先选择日期范围!');
+                      return false;
+                  }
+                  var url = $(this).attr('href') +
+                      "?reportParams=" + JSON.stringify(param);
+                  showMainContent(url);
+              } catch (e) {
+                  layer.alert('出错了' + e.error)
+              }
+              return false;
+
+          });
+
+          $(".sjjc-module>div:not(:first)").hide()
+          $('.little-menu li').click(function () {
+              $(this).addClass('on').siblings().removeClass('on');
+              var id = $(this).children('a').attr('data-href');
+              $(id).show().siblings().hide();
+          });
+          $('.mx-checkbox').click(function (event) {
+              $(this).toggleClass('on');
+          });
+
+      });
+  </script>
+
+</body>
+
+</html>

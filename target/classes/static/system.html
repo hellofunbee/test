@@ -1,743 +1,778 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>物联网-系统管理</title>
-    <link rel="stylesheet" href="css/reset.min.css">
-    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>物联网-系统管理</title>
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
-<div class="mx-main" page="system">
+  <div class="mx-main" page="system">
     <div class="mx-handle clearfix">
-        <div class="sblb fl"><h3>设备列表</h3>
-            <div class="tree-cnt">
-                <div class="tree-show">
-                    <ul id="treeDemo" class="ztree"></ul>
-                </div>
-            </div>
+      
+      <div class="sblb fl">
+        <h3>设备列表</h3>
+        <div class="tree-cnt">
+          <div class="tree-show">
+            <ul id="treeDemo" class="ztree"></ul>
+          </div>
         </div>
-        <div class="sm-title fl">设备管理</div>
-        <div class="btn-groups fr">
-            <a href="javascript:;" class="btn" id="tjzsb">添加主设备</a>
-            <a href="javascript:;" class="btn" id="xgzsb">修改主设备</a>
-            <a href="javascript:;" class="btn btn-default remove-main-device">删除主设备</a>
-            <a href="javascript:;" class="btn btn-default restart-main-device">重启主设备</a>
-        </div>
-        <div class="sm-userInfo fr">[21号] 李娜 土豆</div>
+      </div>
+      
+      <div class="sm-title fl">
+        设备管理
+      </div>
+      
+      <div class="btn-groups fr">
+        <a href="javascript:;" class="btn" id="tjzsb">添加主设备</a>
+        <a href="javascript:;" class="btn" id="xgzsb">修改主设备</a>
+        <a href="javascript:;" class="btn btn-default remove-main-device">删除主设备</a>
+        <a href="javascript:;" class="btn btn-default restart-main-device">重启主设备</a>
+      </div>
+      
+      <div class="sm-userInfo fr">
+        [21号] 李娜 土豆
+      </div>
     </div>
     <div class="xtsz-cnt">
-        <div class="fieldset">
-            <div class="legend">设备管理</div>
+      
+      <div class="fieldset">
+        <div class="legend">设备管理</div>
+        <div class="fieldset-con">
+          <div class="btn-radius-groups" id="sbgl">
+            <a href="javascript:;" data-href="#cspz" class="on load-config-panel">参数配置</a>
+            <a href="javascript:;" data-href="#sxtgl" class="ipc-list">摄像头管理</a>
+            <a href="javascript:;" data-href="#kzsb" class="control-dev">控制设备</a>
+            <a href="javascript:;" id="ggwz">规格文件</a>
+            <a href="javascript:;" data-href="#bjsz">报警设置</a>
+            <a href="javascript:;" data-href="#rjsj" class="upload-rom">软件升级</a>
+            <a href="javascript:;" class="restart-main-device" data-href="#gqzsb">重启主设备</a>
+          </div>
+        </div>
+      </div>
+      <div class="sbgl-module">
+        
+        <div id="cspz">
+          
+          <div class="fieldset">
+            <div class="legend"><span class="device-ip">192.168.1.1</span> 的设备参数</div>
             <div class="fieldset-con">
-                <div class="btn-radius-groups" id="sbgl">
-                    <a href="javascript:;" data-href="#cspz"class="on load-config-panel">参数配置</a>
-                    <a href="javascript:;" data-href="#sxtgl" class="ipc-list">摄像头管理</a>
-                    <a href="javascript:;" data-href="#kzsb" class="control-dev">控制设备</a>
-                    <a href="javascript:;" id="ggwz">规格文件</a>
-                    <a href="javascript:;" id="bjsz" >报警设置</a><!--data-href="#bjsz"-->
-                    <a href="javascript:;" data-href="#rjsj" class="upload-rom">软件升级</a>
-                    <a href="javascript:;" class="restart-main-device" data-href="#gqzsb">重启主设备</a>
+              
+              <div class="fieldset">
+                <div class="legend">系统参数配置</div>
+                <div class="fieldset-con">
+                  <table class="mx-table">
+                    <tr>
+                      <th width="15%">设备获取服务器</th>
+                      <td field="s_deviceIdServIp" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th width="15%">日记服务器</th>
+                      <td field="s_logServIp" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th width="15%">图片服务器IP</th>
+                      <td field="s_imgServIP" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                    </tr>
+                    <tr>
+                      <th>警报服务器</th>
+                      <td field="s_alarmServIP" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>效时服务器IP</th>
+                      <td field="s_timeServIP" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>本地IP</th>
+                      <td><input type="text" field="s_localIP" class="text"></td>
+                    </tr>
+                    <tr>
+                      <th>上报服务器IP1</th>
+                      <td field="s_repIpServIp1" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>ADC上报服务器IP1</th>
+                      <td field="s_adcServIp1" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>子网掩码</th>
+                      <td><input type="text" field="s_netmask" class="text"></td>
+                    </tr>
+                    <tr>
+                      <th>上报服务器IP2</th>
+                      <td field="s_repIpServIp2" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>ADC上报服务器IP2</th>
+                      <td field="s_adcServIp2" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>
+                        <div class="mx-checkbox" onclick="var gEl=$(this).parents('tr').find('[field=s_gatewayIP]');if($(this).is('.on')){gEl.hide();}else{gEl.show();}" style="display:inline-block;margin-right:5px"><em></em></div>修改默认网关</th>
+                      <td><input type="text" field="s_gatewayIP" style="display: none"></td>
+                    </tr>
+                    <tr>
+                      <th>上报服务器IP3</th>
+                      <td field="s_repIpServIp3" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>ADC上报服务器IP3</th>
+                      <td field="s_adcServIp3" render="ip_port"><input type="text" class="text">：<input type="text" class="text-sm"></td>
+                      <th>DNS</th>
+                      <td><input field="s_dnsIP" type="text" class="text"></td>
+                    </tr>
+                  </table>
                 </div>
+              </div>
+              
+              <div class="fieldset">
+                <div class="legend">网络参数配置</div>
+                <div class="fieldset-con">
+                  <table class="mx-table">
+                    <tr>
+                      <th width="15%">电源模式</th>
+                      <td><select name="" field="power_mode" id="power_mode">
+                        <option value="0">市电</option>
+                        <option value="1">太阳能电</option>
+                      </select></td>
+                      <th width="15%">ADC上报时间间隔</th>
+                      <td><input type="text" field="adc_cap_time" class="text-sm">&nbsp;秒</td>
+                      <th width="15%" rowspan="2">时间控制</th>
+                      <td field="use_time_ctrl" render="time_str" index="0">从&nbsp;<input type="number" class="text-mm"><input type="number" class="text-mm"><input type="number" class="text-mm"></td>
+                    </tr>
+                    <tr>
+                      <th>控制模式</th>
+                      <td><select name="" field="nouse_ctrl" id="nouse_ctrl">
+                        <option value="0">不控制</option>
+                        <option value="1">时间控制</option>
+                        <option value="2">光照控制</option>
+                      </select></td>
+                      <th>光照度控制</th>
+                      <td><input type="text" field="use_light_ctrl" class="text-sm">&nbsp;0~1000Lux</td>
+
+                      <td field="use_time_ctrl" render="time_str" index="1">到&nbsp;<input type="number" class="text-mm"><input type="number" class="text-mm"><input type="number" class="text-mm"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="mt20 tc">
+            <a href="#" class="btn-lg btn-cfg-save">保存参数</a>
+            <a href="#" class="btn-lg btn-cfg-write">写入设备</a>
+            <a href="#" class="btn-lg btn-cfg-reset">重置</a>
+          </div>
         </div>
-        <div class="sbgl-module">
-            <div id="cspz">
-                <div class="fieldset">
-                    <div class="legend"><span class="device-ip">192.168.1.1</span> 的设备参数</div>
-                    <div class="fieldset-con">
-                        <div class="fieldset">
-                            <div class="legend">系统参数配置</div>
-                            <div class="fieldset-con">
-                                <table class="mx-table">
-                                    <tr>
-                                        <th width="15%">设备获取服务器</th>
-                                        <td field="s_deviceIdServIp" render="ip_port">
-                                            <input type="text"  class="text">：<input type="text" class="text-sm"></td>
-                                        <th width="15%">日记服务器</th>
-                                        <td field="s_logServIp" render="ip_port"><input type="text" class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th width="15%">图片服务器IP</th>
-                                        <td field="s_imgServIP" render="ip_port"><input type="text" class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>警报服务器</th>
-                                        <td field="s_alarmServIP" render="ip_port"><input type="text"
-                                                                                          class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>效时服务器IP</th>
-                                        <td field="s_timeServIP" render="ip_port"><input type="text"
-                                                                                         class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>本地IP</th>
-                                        <td><input type="text" field="s_localIP" class="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>上报服务器IP1</th>
-                                        <td field="s_repIpServIp1" render="ip_port"><input type="text"
-                                                                                           class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>ADC上报服务器IP1</th>
-                                        <td field="s_adcServIp1" render="ip_port"><input type="text"
-                                                                                         class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>子网掩码</th>
-                                        <td><input type="text" field="s_netmask" class="text"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>上报服务器IP2</th>
-                                        <td field="s_repIpServIp2" render="ip_port"><input type="text"
-                                                                                           class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>ADC上报服务器IP2</th>
-                                        <td field="s_adcServIp2" render="ip_port"><input type="text"
-                                                                                         class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>
-                                            <div class="mx-checkbox"
-                                                 onclick='var gEl=$(this).parents("tr").find("[field=s_gatewayIP]");$(this).is(".on")?gEl.hide():gEl.show()'
-                                                 style="display:inline-block;margin-right:5px"><em></em></div>
-                                            修改默认网关
-                                        </th>
-                                        <td><input type="text" field="s_gatewayIP" style="display:none"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>上报服务器IP3</th>
-                                        <td field="s_repIpServIp3" render="ip_port"><input type="text"
-                                                                                           class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>ADC上报服务器IP3</th>
-                                        <td field="s_adcServIp3" render="ip_port"><input type="text"
-                                                                                         class="text">：<input
-                                                type="text" class="text-sm"></td>
-                                        <th>DNS</th>
-                                        <td><input field="s_dnsIP" type="text" class="text"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="fieldset">
-                            <div class="legend">网络参数配置</div>
-                            <div class="fieldset-con">
-                                <table class="mx-table">
-                                    <tr>
-                                        <th width="15%">电源模式</th>
-                                        <td><select name="" field="power_mode" id="power_mode">
-                                            <option value="0">市电</option>
-                                            <option value="1">太阳能电</option>
-                                        </select></td>
-                                        <th width="15%">ADC上报时间间隔</th>
-                                        <td><input type="text" field="adc_cap_time" class="text-sm">&nbsp;秒</td>
-                                        <th width="15%" rowspan="2">时间控制</th>
-                                        <td field="use_time_ctrl" render="time_str" index="0">从&nbsp;<input
-                                                type="number" class="text-mm"><input type="number"
-                                                                                     class="text-mm"><input
-                                                type="number" class="text-mm"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控制模式</th>
-                                        <td><select name="" field="nouse_ctrl" id="nouse_ctrl">
-                                            <option value="0">不控制</option>
-                                            <option value="1">时间控制</option>
-                                            <option value="2">光照控制</option>
-                                        </select></td>
-                                        <th>光照度控制</th>
-                                        <td><input type="text" field="use_light_ctrl" class="text-sm">&nbsp;0~1000Lux
-                                        </td>
-                                        <td field="use_time_ctrl" render="time_str" index="1">到&nbsp;<input
-                                                type="number" class="text-mm"><input type="number"
-                                                                                     class="text-mm"><input
-                                                type="number" class="text-mm"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt20 tc">
-                    <a href="#" class="btn-lg btn-cfg-save">保存参数</a>
-                    <a href="#"class="btn-lg btn-cfg-write">写入设备</a>
-                    <a href="#" class="btn-lg btn-cfg-reset">重置</a></div>
+        
+        <div id="sxtgl">
+          <div class="clearfix mt10">
+            <a href="#" class="fl btn btn-red btn-camera-delete-all">删除选中</a>
+            <div class="fr">
+              <a href="#" class="btn btn-sync-config">同步配置</a>
+              <a href="#" class="btn btn-default" id="tjsxt">添加摄像头</a>
             </div>
-            <div id="sxtgl">
-                <div class="clearfix mt10"><a href="#" class="fl btn btn-red btn-camera-delete-all">删除选中</a>
-                    <div class="fr"><a href="#" class="btn btn-sync-config">同步配置</a> <a href="#" class="btn btn-default"
-                                                                                        id="tjsxt">添加摄像头</a></div>
-                </div>
-                <table class="mx-table2 mt10 tbl-ipc-list">
-                    <thead>
-                    <tr>
-                        <th>
-                            <div class="mx-checkbox"><em></em></div>
-                        </th>
-                        <th>编号</th>
-                        <th>主设备号</th>
-                        <th>设备名称</th>
-                        <th>IP地址</th>
-                        <th>端口</th>
-                        <th>码流</th>
-                        <th>电源控制</th>
-                        <th>同步</th>
-                        <th>状态</th>
-                        <th>参数配置</th>
-                        <th>视频代理</th>
-                        <th>控制代理</th>
-                        <th>视频配置</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td>1</td>
-                        <td>10.11.12.103</td>
-                        <td>1号摄像头</td>
-                        <td>192.168.1.11</td>
-                        <td>80</td>
-                        <td>主码流</td>
-                        <td>不控制</td>
-                        <td>已同步</td>
-                        <td>在线</td>
-                        <td><a href="javascript:;" class="btn-sm">编辑</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td>2</td>
-                        <td>10.11.12.103</td>
-                        <td>2号摄像头</td>
-                        <td>192.168.1.11</td>
-                        <td>80</td>
-                        <td>主码流</td>
-                        <td>不控制</td>
-                        <td>已同步</td>
-                        <td>在线</td>
-                        <td><a href="javascript:;" class="btn-sm">编辑</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td>3</td>
-                        <td>10.11.12.103</td>
-                        <td>3号摄像头</td>
-                        <td>192.168.1.11</td>
-                        <td>80</td>
-                        <td>主码流</td>
-                        <td>不控制</td>
-                        <td>已同步</td>
-                        <td>在线</td>
-                        <td><a href="javascript:;" class="btn-sm">编辑</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td>4</td>
-                        <td>10.11.12.103</td>
-                        <td>4号摄像头</td>
-                        <td>192.168.1.11</td>
-                        <td>80</td>
-                        <td>主码流</td>
-                        <td>不控制</td>
-                        <td>已同步</td>
-                        <td>在线</td>
-                        <td><a href="javascript:;" class="btn-sm">编辑</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                        <td><a href="javascript:;" class="btn-sm">修改</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="kzsb">
-                <div class="clearfix mt10"><a href="#" class="btn-lg fl mr15 btn-ctrl-add">添加控制设备</a>
-                    <div class="btn-groups fl" id="kzsb-list"><a href="javascript:;" data-href="#kwsb"
-                                                                 class="btn-lg btn-df-white">控温设备</a> <a
-                            href="javascript:;" data-href="#kssb" class="btn-lg btn-df-white">控水设备</a> <a
-                            href="javascript:;" data-href="#bgsb" class="btn-lg btn-df-white">补光设备</a></div>
-                </div>
-                <div class="kzsb-module control-form-box">
-                    <div id="kwsb" class="control-form-tpl">
-                        <div class="fieldset">
-                            <div class="legend">控制设备设置</div>
-                            <div class="fieldset-con">
-                                <table class="mx-table control-dev-form">
-                                    <tr>
-                                        <th width="15%">控制设备名称</th>
-                                        <td width="35%" field="ctrl_name"></td>
-                                        <th width="15%">设备类型</th>
-                                        <td><select field="ctrl_type" render="dict" dict="controlType" class="text-lg">
-                                            <option>1</option>
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控制设备别名</th>
-                                        <td field="ctrl_nickname"></td>
-                                        <th>上升通道组号</th>
-                                        <td><input type="text" field="ctrl_down_groupId" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>主控设备ID</th>
-                                        <td field="ctrl_deviceId">10.00.21.82</td>
-                                        <th>上升通道开关号</th>
-                                        <td><input type="text" field="ctrl_down_switchId" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>视频设备ID</th>
-                                        <td field_="
-"><select field="ctrl_mapingdeviceId"
-          class="render-point"></select></td>
-                                        <th>下降通道组号</th>
-                                        <td><input type="text" field="ctrl_raise_groupId" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>映射最大值</th>
-                                        <td><input type="text" field="ctrl_max" class="text-lg"></td>
-                                        <th>下降通道开关号</th>
-                                        <td><input type="text" field="ctrl_raise_switchId" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>映射最小值</th>
-                                        <td><input type="text" field="ctrl_min" class="text-lg"></td>
-                                        <th>计量参数（秒）</th>
-                                        <td><input type="text" field="ctrl_count" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>位置传感器通道</th>
-                                        <td><input type="text" field="ctrl_channel" class="text-lg"></td>
-                                        <th>状态图名称</th>
-                                        <td><select class="text-lg" field="ctrl_picturetype" render="dict"
-                                                    dict="statusPictureName">
-                                            <option>默认</option>
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控温分析通道</th>
-                                        <td><select type="text" field="ctrl_temperature"
-                                                    class="text-lg render-channel"></select></td>
-                                        <th>状态图标题</th>
-                                        <td><input type="text" field="ctrl_picturetitle" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控水分析通道</th>
-                                        <td><select type="text" field="ctrl_water"
-                                                    class="text-lg render-channel"></select></td>
-                                        <th>&nbsp;</th>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="kssb">
-                        <div class="fieldset">
-                            <div class="legend">控制设备设置</div>
-                            <div class="fieldset-con">
-                                <table class="mx-table">
-                                    <tr>
-                                        <th width="15%">控制设备名称</th>
-                                        <td width="35%">控水设备</td>
-                                        <th width="15%">设备类型</th>
-                                        <td><select class="text-lg">
-                                            <option>电机</option>
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控制设备别名</th>
-                                        <td>控水设备</td>
-                                        <th>设备类型</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>主控设备ID</th>
-                                        <td>10.00.21.82</td>
-                                        <th>上升通道开关号</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>视频设备ID</th>
-                                        <td>10.00.21.82</td>
-                                        <th>下降通道组号</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>映射最大值</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>下降通道开关号</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>映射最小值</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>计量参数（秒）</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>位置传感器通道</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>状态图名称</th>
-                                        <td><select class="text-lg">
-                                            <option>默认</option>
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控温分析通道</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>状态图标题</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控水分析通道</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>&nbsp;</th>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="bgsb">
-                        <div class="fieldset">
-                            <div class="legend">控制设备设置</div>
-                            <div class="fieldset-con">
-                                <table class="mx-table">
-                                    <tr>
-                                        <th width="15%">控制设备名称</th>
-                                        <td width="35%">补光设备</td>
-                                        <th width="15%">设备类型</th>
-                                        <td><select class="text-lg">
-                                            <option>电机</option>
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控制设备别名</th>
-                                        <td>补光设备</td>
-                                        <th>设备类型</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>主控设备ID</th>
-                                        <td>10.00.21.82</td>
-                                        <th>上升通道开关号</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>视频设备ID</th>
-                                        <td>10.00.21.82</td>
-                                        <th>下降通道组号</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>映射最大值</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>下降通道开关号</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>映射最小值</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>计量参数（秒）</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>位置传感器通道</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>状态图名称</th>
-                                        <td><select class="text-lg">
-                                            <option>默认</option>
-                                        </select></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控温分析通道</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>状态图标题</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>控水分析通道</th>
-                                        <td><input type="text" class="text-lg"></td>
-                                        <th>&nbsp;</th>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tc mt20 ctrl-control-bar"><a href="javascript:;" class="btn-lg btn-lg-red btn-ctrl-delete">删除设备</a>
-                    <a href="javascript:;" class="btn-lg btn-ctrl-trule" id="yygz">预约规则</a> <a href="javascript:;"
-                                                                                               class="btn-lg btn-ctrl-crule"
-                                                                                               id="znkzgz">智能控制规则</a> <a
-                            href="javascript:;" class="btn-lg btn-ctrl-save">保存参数</a></div>
-            </div>
-            <div id="ggwj">规格文件</div>
-            <!--<div id="bjsz">
-                <div class="mt10 clearfix">
-                    <div class="btn-groups fl"><a href="#" class="btn btn-red">删除选中</a><a href="#" class="btn">添加</a>
-                    </div>
-                    <a href="#" class="btn fr">保存</a></div>
-                <table class="mx-table2">
-                    <tr>
-                        <th width="3%" class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </th>
-                        <th>名称</th>
-                        <th width="15%">传感器</th>
-                        <th width="12%">数值范围</th>
-                        <th width="7%">使能开关</th>
-                        <th width="10%">上升值</th>
-                        <th width="10%">下降值</th>
-                        <th width="6%">生产者</th>
-                        <th width="6%">监管者</th>
-                        <th width="12%">发送内容</th>
-                    </tr>
-                    <tr>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td>
-                            <div class="mx-switch on"><em>开</em><i></i></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td>
-                            <div class="mx-switch on"><em>开</em><i></i></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td>
-                            <div class="mx-switch on"><em>开</em><i></i></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td>
-                            <div class="mx-switch on"><em>开</em><i></i></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td>
-                            <div class="mx-switch"><em>关</em><i></i></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td>
-                            <div class="mx-switch on"><em>开</em><i></i></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                        <td><input type="text" class="text"></td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td class="tc">
-                            <div class="mx-checkbox"><em></em></div>
-                        </td>
-                        <td><input type="text" class="text"></td>
-                    </tr>
-                </table>
-            </div>-->
-            <div id="rjsj">软件升级</div>
-            <div id="gqzsb">重启主设备</div>
+          </div>
+          <table class="mx-table2 mt10 tbl-ipc-list">
+              <thead>
+            <tr>
+              <th>
+                <div class="mx-checkbox"><em></em></div>
+              </th>
+              <th>编号</th>
+              <th>主设备号</th>
+              <th>设备名称</th>
+              <th>IP地址</th>
+              <th>端口</th>
+              <th>码流</th>
+              <th>电源控制</th>
+              <th>同步</th>
+              <th>状态</th>
+              <th>参数配置</th>
+              <th>视频代理</th>
+              <th>控制代理</th>
+              <th>视频配置</th>
+            </tr>
+              </thead><tbody>
+            <tr>
+              <td>
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td>1</td>
+              <td>10.11.12.103</td>
+              <td>1号摄像头</td>
+              <td>192.168.1.11</td>
+              <td>80</td>
+              <td>主码流</td>
+              <td>不控制</td>
+              <td>已同步</td>
+              <td>在线</td>
+              <td><a href="javascript:;" class="btn-sm">编辑</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td>2</td>
+              <td>10.11.12.103</td>
+              <td>2号摄像头</td>
+              <td>192.168.1.11</td>
+              <td>80</td>
+              <td>主码流</td>
+              <td>不控制</td>
+              <td>已同步</td>
+              <td>在线</td>
+              <td><a href="javascript:;" class="btn-sm">编辑</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td>3</td>
+              <td>10.11.12.103</td>
+              <td>3号摄像头</td>
+              <td>192.168.1.11</td>
+              <td>80</td>
+              <td>主码流</td>
+              <td>不控制</td>
+              <td>已同步</td>
+              <td>在线</td>
+              <td><a href="javascript:;" class="btn-sm">编辑</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td>4</td>
+              <td>10.11.12.103</td>
+              <td>4号摄像头</td>
+              <td>192.168.1.11</td>
+              <td>80</td>
+              <td>主码流</td>
+              <td>不控制</td>
+              <td>已同步</td>
+              <td>在线</td>
+              <td><a href="javascript:;" class="btn-sm">编辑</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+              <td><a href="javascript:;" class="btn-sm">修改</a></td>
+            </tr></tbody>
+          </table>
+
         </div>
+        
+        <div id="kzsb">
+          <div class="clearfix mt10">
+            <a href="#" class="btn-lg fl mr15 btn-ctrl-add">添加控制设备</a>
+            <div class="btn-groups fl" id="kzsb-list">
+              <a href="javascript:;" data-href="#kwsb" class="btn-lg btn-df-white">控温设备</a>
+              <a href="javascript:;" data-href="#kssb" class="btn-lg btn-df-white">控水设备</a>
+              <a href="javascript:;" data-href="#bgsb" class="btn-lg btn-df-white">补光设备</a>
+            </div>
+          </div>
+          <div class="kzsb-module control-form-box">
+            
+            <div id="kwsb" class="control-form-tpl">
+              <div class="fieldset">
+                <div class="legend">控制设备设置</div>
+                <div class="fieldset-con">
+                  <table class="mx-table control-dev-form">
+                    <tr>
+                      <th width="15%">控制设备名称</th>
+                      <td width="35%" field="ctrl_name"></td>
+                      <th width="15%">设备类型</th>
+                      <td><select field="ctrl_type" render="dict" dict="controlType" class="text-lg"><option>1</option></select></td>
+                    </tr>
+                    <tr>
+                      <th>控制设备别名</th>
+                      <td field="ctrl_nickname"></td>
+                      <th>上升通道组号</th>
+                      <td><input type="text" field="ctrl_down_groupId" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>主控设备ID</th>
+                      <td field="ctrl_deviceId">10.00.21.82</td>
+                      <th>上升通道开关号</th>
+                      <td><input type="text" field="ctrl_down_switchId" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>视频设备ID</th>
+                      <td field_="ctrl_mapingdeviceId">
+                        <select field="ctrl_mapingdeviceId" class="render-point"></select>
+                      </td>
+                      <th>下降通道组号</th>
+                      <td><input type="text" field="ctrl_raise_groupId" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>映射最大值</th>
+                      <td><input type="text" field="ctrl_max" class="text-lg"></td>
+                      <th>下降通道开关号</th>
+                      <td><input type="text" field="ctrl_raise_switchId" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>映射最小值</th>
+                      <td><input type="text" field="ctrl_min" class="text-lg"></td>
+                      <th>计量参数（秒）</th>
+                      <td><input type="text" field="ctrl_count" class="text-lg"></td>
+                    </tr>
+
+                    <tr>
+                      <th>位置传感器通道</th>
+                      <td><input type="text" field="ctrl_channel" class="text-lg"></td>
+                      <th>状态图名称</th>
+                      <td><select class="text-lg" field="ctrl_picturetype" render="dict" dict="statusPictureName"><option>默认</option></select></td>
+                    </tr>
+                    <tr>
+                      <th>控温分析通道</th>
+                      <td><select type="text" field="ctrl_temperature" class="text-lg render-channel"></select></td>
+                      <th>状态图标题</th>
+                      <td><input type="text" field="ctrl_picturetitle" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>控水分析通道</th>
+                      <td><select type="text" field="ctrl_water" class="text-lg render-channel"></select></td>
+                      <th>&nbsp;</th>
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            
+            <div id="kssb">
+              <div class="fieldset">
+                <div class="legend">控制设备设置</div>
+                <div class="fieldset-con">
+                  <table class="mx-table">
+                    <tr>
+                      <th width="15%">控制设备名称</th>
+                      <td width="35%">控水设备</td>
+                      <th width="15%">设备类型</th>
+                      <td><select class="text-lg"><option>电机</option></select></td>
+                    </tr>
+                    <tr>
+                      <th>控制设备别名</th>
+                      <td>控水设备</td>
+                      <th>设备类型</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>主控设备ID</th>
+                      <td>10.00.21.82</td>
+                      <th>上升通道开关号</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>视频设备ID</th>
+                      <td>10.00.21.82</td>
+                      <th>下降通道组号</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>映射最大值</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>下降通道开关号</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>映射最小值</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>计量参数（秒）</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+
+                    <tr>
+                      <th>位置传感器通道</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>状态图名称</th>
+                      <td><select class="text-lg"><option>默认</option></select></td>
+                    </tr>
+                    <tr>
+                      <th>控温分析通道</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>状态图标题</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>控水分析通道</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>&nbsp;</th>
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            
+            <div id="bgsb">
+              <div class="fieldset">
+                <div class="legend">控制设备设置</div>
+                <div class="fieldset-con">
+                  <table class="mx-table">
+                    <tr>
+                      <th width="15%">控制设备名称</th>
+                      <td width="35%">补光设备</td>
+                      <th width="15%">设备类型</th>
+                      <td><select class="text-lg"><option>电机</option></select></td>
+                    </tr>
+                    <tr>
+                      <th>控制设备别名</th>
+                      <td>补光设备</td>
+                      <th>设备类型</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>主控设备ID</th>
+                      <td>10.00.21.82</td>
+                      <th>上升通道开关号</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>视频设备ID</th>
+                      <td>10.00.21.82</td>
+                      <th>下降通道组号</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>映射最大值</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>下降通道开关号</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>映射最小值</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>计量参数（秒）</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+
+                    <tr>
+                      <th>位置传感器通道</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>状态图名称</th>
+                      <td><select class="text-lg"><option>默认</option></select></td>
+                    </tr>
+                    <tr>
+                      <th>控温分析通道</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>状态图标题</th>
+                      <td><input type="text" class="text-lg"></td>
+                    </tr>
+                    <tr>
+                      <th>控水分析通道</th>
+                      <td><input type="text" class="text-lg"></td>
+                      <th>&nbsp;</th>
+                      <td>&nbsp;</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          
+          <div class="tc mt20 ctrl-control-bar">
+            <a href="javascript:;" class="btn-lg btn-lg-red btn-ctrl-delete">删除设备</a>
+            <a href="javascript:;" class="btn-lg btn-ctrl-trule" id="yygz">预约规则</a>
+            <a href="javascript:;" class="btn-lg btn-ctrl-crule" id="znkzgz">智能控制规则</a>
+            <a href="javascript:;" class="btn-lg btn-ctrl-save">保存参数</a>
+          </div>
+
+
+
+        </div>
+        
+        <div id="ggwj">规格文件</div>
+        
+        <div id="bjsz">
+          
+          <div class="mt10 clearfix">
+            <div class="btn-groups fl">
+              <a href="#" class="btn btn-red">删除选中</a><a href="#" class="btn">添加</a>
+            </div>
+            <a href="#" class="btn fr">保存</a>
+          </div>
+          
+          <table class="mx-table2">
+            <tr>
+              <th width="3%" class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </th>
+              <th>名称</th>
+              <th width="15%">传感器</th>
+              <th width="12%">数值范围</th>
+              <th width="7%">使能开关</th>
+              <th width="10%">上升值</th>
+              <th width="10%">下降值</th>
+              <th width="6%">生产者</th>
+              <th width="6%">监管者</th>
+              <th width="12%">发送内容</th>
+            </tr>
+            <tr>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td>
+                <div class="mx-switch on"><em>开</em><i></i></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+            </tr>
+            <tr>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td>
+                <div class="mx-switch on"><em>开</em><i></i></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+            </tr>
+            <tr>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td>
+                <div class="mx-switch on"><em>开</em><i></i></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+            </tr>
+            <tr>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td>
+                <div class="mx-switch on"><em>开</em><i></i></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+            </tr>
+
+            <tr>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td>
+                <div class="mx-switch"><em>关</em><i></i></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+            </tr>
+            <tr>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td>
+                <div class="mx-switch on"><em>开</em><i></i></div>
+              </td>
+              <td><input type="text" class="text"></td>
+              <td><input type="text" class="text"></td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td class="tc">
+                <div class="mx-checkbox"><em></em></div>
+              </td>
+              <td><input type="text" class="text"></td>
+            </tr>
+
+
+          </table>
+
+        </div>
+        
+        <div id="rjsj">软件升级</div>
+        
+        <div id="gqzsb">重启主设备</div>
+      </div>
     </div>
-</div>
-<div class="xgzsb" id="yygzLayer" style="display:none">
+  </div>
+
+
+  
+  
+  <div class="xgzsb" id="yygzLayer" style="display:none">
+
     <table class="mx-table2 mt10">
-        <thead>
-        <tr>
-            <th width="3%" class="tc">
-                <div class="mx-checkbox select-all"><em></em></div>
-            </th>
-            <th>规则名称</th>
-            <th width="6%">循环周期</th>
-            <th>状态</th>
-            <th width="18%">开始时间</th>
-            <th width="18%">结束时间</th>
-            <th>执行时间</th>
-            <th>执行时长</th>
-            <th width="8%">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="row-tpl">
-            <td class="tc">
-                <div class="mx-checkbox"><em></em></div>
-            </td>
-            <td field="r_name">规则名称1</td>
-            <td field="cycleDay">1</td>
-            <td field="ruleEnable" render="dict" dict="ruleEnable">启用</td>
-            <td field="beginTime">2017-11-01 00:00:00</td>
-            <td field="endTime">2017-11-01 00:00:00</td>
-            <td field="execTime">15:00:00</td>
-            <td field="duration" unit="秒">0.0秒</td>
-            <td><a href="#" class="btn-sm btn-edit">编辑</a></td>
-        </tr>
-        <tr>
-            <td class="tc">
-                <div class="mx-checkbox"><em></em></div>
-            </td>
-            <td>规则名称1</td>
-            <td>1</td>
-            <td>启用</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>15:00:00</td>
-            <td>0.0秒</td>
-            <td><a href="#" class="btn-sm">编辑</a></td>
-        </tr>
-        <tr>
-            <td class="tc">
-                <div class="mx-checkbox"><em></em></div>
-            </td>
-            <td>规则名称1</td>
-            <td>1</td>
-            <td>启用</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>15:00:00</td>
-            <td>0.0秒</td>
-            <td><a href="#" class="btn-sm">编辑</a></td>
-        </tr>
-        <tr>
-            <td class="tc">
-                <div class="mx-checkbox"><em></em></div>
-            </td>
-            <td>规则名称1</td>
-            <td>1</td>
-            <td>启用</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>15:00:00</td>
-            <td>0.0秒</td>
-            <td><a href="#" class="btn-sm">编辑</a></td>
-        </tr>
-        <tr>
-            <td class="tc">
-                <div class="mx-checkbox"><em></em></div>
-            </td>
-            <td>规则名称1</td>
-            <td>1</td>
-            <td>启用</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>15:00:00</td>
-            <td>0.0秒</td>
-            <td><a href="#" class="btn-sm">编辑</a></td>
-        </tr>
-        <tr>
-            <td class="tc">
-                <div class="mx-checkbox"><em></em></div>
-            </td>
-            <td>规则名称1</td>
-            <td>1</td>
-            <td>启用</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>2017-11-01 00:00:00</td>
-            <td>15:00:00</td>
-            <td>0.0秒</td>
-            <td><a href="#" class="btn-sm">编辑</a></td>
-        </tr>
-        </tbody>
+      <thead>
+      <tr>
+        <th width="3%" class="tc">
+          <div class="mx-checkbox select-all"><em></em></div>
+        </th>
+        <th>规则名称</th>
+        <th width="6%">循环周期</th>
+        <th>状态</th>
+        <th width="18%">开始时间</th>
+        <th width="18%">结束时间</th>
+        <th>执行时间</th>
+        <th>执行时长</th>
+        <th width="8%">操作</th>
+      </tr>
+      </thead><tbody>
+    
+      <tr class="row-tpl">
+        <td class="tc">
+          <div class="mx-checkbox"><em></em></div>
+        </td>
+        <td field="r_name">规则名称1</td>
+        <td field="cycleDay">1</td>
+        <td field="ruleEnable" render="dict" dict="ruleEnable">启用</td>
+        <td field="beginTime">2017-11-01 00:00:00</td>
+        <td field="endTime">2017-11-01 00:00:00</td>
+        <td field="execTime">15:00:00</td>
+        <td field="duration" unit="秒">0.0秒</td>
+        <td><a href="#" class="btn-sm btn-edit">编辑</a></td>
+      </tr>
+      <tr>
+        <td class="tc">
+          <div class="mx-checkbox"><em></em></div>
+        </td>
+        <td>规则名称1</td>
+        <td>1</td>
+        <td>启用</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>15:00:00</td>
+        <td>0.0秒</td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td class="tc">
+          <div class="mx-checkbox"><em></em></div>
+        </td>
+        <td>规则名称1</td>
+        <td>1</td>
+        <td>启用</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>15:00:00</td>
+        <td>0.0秒</td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td class="tc">
+          <div class="mx-checkbox"><em></em></div>
+        </td>
+        <td>规则名称1</td>
+        <td>1</td>
+        <td>启用</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>15:00:00</td>
+        <td>0.0秒</td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td class="tc">
+          <div class="mx-checkbox"><em></em></div>
+        </td>
+        <td>规则名称1</td>
+        <td>1</td>
+        <td>启用</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>15:00:00</td>
+        <td>0.0秒</td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td class="tc">
+          <div class="mx-checkbox"><em></em></div>
+        </td>
+        <td>规则名称1</td>
+        <td>1</td>
+        <td>启用</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>2017-11-01 00:00:00</td>
+        <td>15:00:00</td>
+        <td>0.0秒</td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+    </tbody>
+
     </table>
-    <div class="clearfix mt20 tc"><a href="javascript:;" class="btn-lg btn-df-red btn-delete-all">删除选中规则</a> <a
-            href="javascript:;" id="closeParent" class="btn-lg btn-df-gray" onclick="layer.closeAll()">关闭窗口</a> <a
-            href="javascript:;" class="btn-lg btn-df-blue" id="xjgz">新建规则</a></div>
-</div>
-<script type="text/javascript">if (!window.jQuery) {
-    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
-    document.write(html)
-}</script>
-<script src="js/system.js"></script>
+
+    <div class="clearfix mt20 tc">
+      <a href="javascript:;" class="btn-lg btn-df-red btn-delete-all">删除选中规则</a>
+      <a href="javascript:;" id="closeParent" class="btn-lg btn-df-gray" onclick="layer.closeAll();">关闭窗口</a>
+      <a href="javascript:;" class="btn-lg btn-df-blue" id="xjgz">新建规则</a>
+    </div>
+  </div>
+  
+
+  <script type="text/javascript">
+      if (!window.jQuery) {
+          var html =
+              '<script src="js/jquery.min.js"><\/script>\n' +
+              '<script src="js/jquery.scrollTo.min.js"><\/script>\n' +
+              '<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n' +
+              '<script src="js/jquery.ztree.all.min.js"><\/script>\n' +
+              '<script src="js/layer/laydate/laydate.js"><\/script>\n' +
+              '<script src="js/layer/layer.js"><\/script>\n' +
+              '<script src="js/slide.js"><\/script>\n' +
+              '<script src="js/common.js"><\/script>\n' +
+              '<script src="js/purl.js"><\/script>\n' +
+              '<script src="js/api.js"><\/script>\n' +
+              '<script src="js/ui.js"><\/script>';
+          document.write(html);
+      }
+  </script>
+
+  <script src="js/system.js"></script>
+
 </body>
+
 </html>

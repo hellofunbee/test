@@ -1,1 +1,102 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物联网-大数据分析-监测单数据-分析结果</title><link rel="stylesheet" href="css/reset.min.css"><link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css"><link rel="stylesheet" href="css/style.css"></head><body><div class="mx-main" page="big-data-fxjg2"><div class="mx-handle clearfix"><div class="sm-title fl">监测多数据</div></div><div class="mt20"><a href="bigData2.html" onclick='return window.showMainContent(this.getAttribute("href")),!1' target="_parent" class="btn-lg">上一步</a></div><div class="fx-result mt20"><div class="fx-result-list"></div><div class="fx-result-list"></div><div class="fx-result-list"></div><div class="fx-result-list"></div></div></div><script type="text/javascript">if(!window.jQuery){var html='<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';document.write(html)}</script><link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css"><script src="js/jqplot/jquery.jqplot.min.js"></script><script>var init=function(){var i=$('[page="big-data-fxjg2"]'),a=i.parents("div#main_iframe").attr("src")||location.href;API.service("/getStaticData",JSON.parse(purl(a).param("reportParams")),function(a){var e=i.find(".fx-result").empty();$.each(a.object,function(a){console.log(this);for(var i=[],t=0;t<2*Math.PI;t+=.1)i.push([t,Math.cos(t)]);$('<div class="fx-result-list" id="chart_'+a+'"></div>').appendTo(e);$.jqplot("chart_"+a,[i],{series:[{showMarker:!1}],axes:{xaxis:{label:this.deviceName},yaxis:{label:"Cosine"}}})})})};setTimeout(init,100),$(".jcdsj-module>div:not(:first)").hide(),$(".little-menu li").click(function(){$(this).addClass("on").siblings().removeClass("on");var a=$(this).children("a").attr("data-href");$(a).show().siblings().hide()})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>物联网-大数据分析-监测单数据-分析结果</title>
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <div class="mx-main" page="big-data-fxjg2">
+    <div class="mx-handle clearfix">
+      
+      <div class="sm-title fl">
+        监测多数据
+      </div>
+
+    </div>
+    <div class="mt20">
+      <a href="bigData2.html" onclick="window.showMainContent(this.getAttribute('href'));return false;" target="_parent" class="btn-lg">上一步</a>
+    </div>
+    
+    <div class="fx-result mt20">
+      <div class="fx-result-list"></div>
+      <div class="fx-result-list"></div>
+      <div class="fx-result-list"></div>
+      <div class="fx-result-list"></div>
+
+    </div>
+
+  </div>
+
+
+  
+  
+
+  <script type="text/javascript">
+      if (!window.jQuery) {
+          var html =
+              '<script src="js/jquery.min.js"><\/script>\n' +
+              '<script src="js/jquery.scrollTo.min.js"><\/script>\n' +
+              '<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n' +
+              '<script src="js/jquery.ztree.all.min.js"><\/script>\n' +
+              '<script src="js/layer/laydate/laydate.js"><\/script>\n' +
+              '<script src="js/layer/layer.js"><\/script>\n' +
+              '<script src="js/slide.js"><\/script>\n' +
+              '<script src="js/common.js"><\/script>\n' +
+              '<script src="js/purl.js"><\/script>\n' +
+              '<script src="js/api.js"><\/script>\n' +
+              '<script src="js/ui.js"><\/script>';
+          document.write(html);
+      }
+  </script>
+
+  <link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css">
+  <script src="js/jqplot/jquery.jqplot.min.js"></script>
+  <script>
+      var init=function() {
+          var page = $('[page="big-data-fxjg2"]');
+          var url = page.parents('div#main_iframe').attr('src') || location.href;
+          API.service('/getStaticData', JSON.parse(purl(url).param('reportParams')), function (rsp) {
+              var  list=page.find('.fx-result').empty();
+              $.each(rsp.object,function(idx){
+                  console.log(this);
+                  var item=this;
+                  var cosPoints = [];
+                  for (var i=0; i<2*Math.PI; i+=0.1){
+                      cosPoints.push([i, Math.cos(i)]);
+                  }
+                  $('<div class="fx-result-list" id="chart_'+idx+'"></div>').appendTo(list);
+                  var plot1 = $.jqplot('chart_'+idx, [cosPoints], {
+
+                      series:[{showMarker:false}],
+                      axes:{
+                          xaxis:{
+                              // label:'Angle (radians)'
+                              label:item.deviceName
+                          },
+                          yaxis:{
+                              label:'Cosine'
+                          }
+                      }
+                  });
+              })
+          });
+      };
+      setTimeout(init,100);
+    $(".jcdsj-module>div:not(:first)").hide()
+    $('.little-menu li').click(function() {
+      $(this).addClass('on').siblings().removeClass('on');
+      var id = $(this).children('a').attr('data-href');
+      $(id).show().siblings().hide();
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,1 +1,206 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物联网-系统管理-权限管理</title><link rel="stylesheet" href="css/reset.min.css"><link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css"><link rel="stylesheet" href="css/style.css"></head><body><div class="mx-main"><div class="mx-handle clearfix"><div class="sm-title fl">权限管理</div><div class="mx-top-search fr"><input type="text"> <a href="#">搜索</a></div></div><table class="mx-table2 mt10"><tr><th>姓名</th><th>手机号</th><th>角色</th><th width="10%">用户状态</th><th width="13%">修改状态</th><th width="13%">操作</th></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>封停</td><td><a href="#" class="btn-sm btn-hf">恢复</a></td><td><a href="javascript:;" id="bjqx" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr></table><div class="mx-page"><a href="#" class="btn-o">首页</a> <a href="#" class="btn-o">上一页</a> <a href="#" class="cur">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a> <a href="#">8</a> <span>…</span> <a href="#">20</a> <a href="#" class="btn-o">下一页</a> <a href="#" class="btn-o">末页</a></div></div><div class="bjqx-layer"><div class="tjzsb" style="padding-top:60px"><table><tr><th width="20%">姓名</th><td>张三</td></tr><tr><th>角色属性</th><td><select class="text-blue"><option value="">普通用户</option></select></td></tr><tr><th>&nbsp;</th><td class="gray"><input type="radio" name="juese" checked="checked">&nbsp;监管者&nbsp;&nbsp;<input type="radio" name="juese">&nbsp;生产者&nbsp;&nbsp;<input type="radio" name="juese">&nbsp;专家</td></tr></table><div class="tc mt20"><a href="javascript:;" class="btn-lg btn-df-red">取消</a> <a href="javascript:;" class="btn-lg btn-df-blue">保存</a></div></div></div><script type="text/javascript">if(!window.jQuery){var html='<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';document.write(html)}</script><script>$(".yhgl-module>div:not(:first)").hide(),$(".little-menu li").click(function(){$(this).addClass("on").siblings().removeClass("on");$(this).children("a").text();var i=$(this).children("a").attr("data-href");$(i).show().siblings().hide()}),$("#bjqx").click(function(){layer.open({type:1,area:["620px","325px"],title:"编辑权限",skin:"mlayer",content:$(".bjqx-layer")})})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>物联网-系统管理-权限管理</title>
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <div class="mx-main">
+    <div class="mx-handle clearfix">
+      
+      <div class="sm-title fl">
+        权限管理
+      </div>
+      <div class="mx-top-search fr">
+        <input type="text">
+        <a href="#">搜索</a>
+      </div>
+    </div>
+    <table class="mx-table2 mt10">
+      <tr>
+        <th>姓名</th>
+        <th>手机号</th>
+        <th>角色</th>
+        <th width="10%">用户状态</th>
+        <th width="13%">修改状态</th>
+        <th width="13%">操作</th>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>封停</td>
+        <td><a href="#" class="btn-sm btn-hf">恢复</a></td>
+        <td><a href="javascript:;" id="bjqx" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>1372082****</td>
+        <td>管理员</td>
+        <td>正常</td>
+        <td><a href="#" class="btn-sm btn-fh">封号</a></td>
+        <td><a href="#" class="btn-sm">编辑</a></td>
+      </tr>
+
+    </table>
+    
+    <div class="mx-page">
+      <a href="#" class="btn-o">首页</a>
+      <a href="#" class="btn-o">上一页</a>
+      <a href="#" class="cur">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">6</a>
+      <a href="#">7</a>
+      <a href="#">8</a>
+      <span>…</span>
+      <a href="#">20</a>
+      <a href="#" class="btn-o">下一页</a>
+      <a href="#" class="btn-o">末页</a>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="bjqx-layer">
+    <div class="tjzsb" style="padding-top:60px;">
+      <table>
+        <tr>
+          <th width="20%">姓名</th>
+          <td>张三</td>
+        </tr>
+        <tr>
+          <th>角色属性</th>
+          <td><select class="text-blue"><option value="">普通用户</option></select></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td class="gray"><input type="radio" name="juese" checked="checked">&nbsp;监管者&nbsp;&nbsp;<input type="radio" name="juese">&nbsp;生产者&nbsp;&nbsp;<input type="radio" name="juese">&nbsp;专家</td>
+        </tr>
+
+      </table>
+      <div class="tc mt20">
+        <a href="javascript:;" class="btn-lg btn-df-red">取消</a>
+        <a href="javascript:;" class="btn-lg btn-df-blue">保存</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+  <script type="text/javascript">
+      if (!window.jQuery) {
+          var html =
+              '<script src="js/jquery.min.js"><\/script>\n' +
+              '<script src="js/jquery.scrollTo.min.js"><\/script>\n' +
+              '<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n' +
+              '<script src="js/jquery.ztree.all.min.js"><\/script>\n' +
+              '<script src="js/layer/laydate/laydate.js"><\/script>\n' +
+              '<script src="js/layer/layer.js"><\/script>\n' +
+              '<script src="js/slide.js"><\/script>\n' +
+              '<script src="js/common.js"><\/script>\n' +
+              '<script src="js/purl.js"><\/script>\n' +
+              '<script src="js/api.js"><\/script>\n' +
+              '<script src="js/ui.js"><\/script>';
+          document.write(html);
+      }
+  </script>
+
+  <script>
+    $(".yhgl-module>div:not(:first)").hide()
+    $('.little-menu li').click(function() {
+      $(this).addClass('on').siblings().removeClass('on');
+      var text = $(this).children('a').text();
+      var id = $(this).children('a').attr('data-href');
+      $(id).show().siblings().hide();
+    });
+    $('#bjqx').click(function() {
+      layer.open({
+        type: 1,
+        area: ['620px', '325px'],
+        title: '编辑权限',
+        skin: 'mlayer',
+        content: $('.bjqx-layer')
+      });
+    }); // 编辑用户
+  </script>
+
+</body>
+
+</html>

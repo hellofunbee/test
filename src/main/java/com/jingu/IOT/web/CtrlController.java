@@ -13,48 +13,23 @@
 */
 package com.jingu.IOT.web;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.jingu.IOT.entity.ControlEntity;
-import com.jingu.IOT.entity.ControlList;
-import com.jingu.IOT.entity.MonitorEntity;
-import com.jingu.IOT.entity.MotorHBM;
-import com.jingu.IOT.entity.PointEntity;
-import com.jingu.IOT.entity.RuleEntity;
-import com.jingu.IOT.entity.UserEntity;
+import com.jingu.IOT.entity.*;
 import com.jingu.IOT.requset.ControlRequset;
 import com.jingu.IOT.requset.PointRequest;
 import com.jingu.IOT.response.IOTResult;
-import com.jingu.IOT.service.ControlService;
-import com.jingu.IOT.service.CtrlService;
-import com.jingu.IOT.service.GatherService;
-import com.jingu.IOT.service.PointService;
-import com.jingu.IOT.service.RuleService;
-import com.jingu.IOT.service.SettingService;
-import com.jingu.IOT.service.UserService;
+import com.jingu.IOT.service.*;
 import com.jingu.IOT.switcher.VRASwitchBean;
 import com.jingu.IOT.util.Client;
 import com.jingu.IOT.util.PublicMethod;
 import com.jingu.IOT.util.ToolUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -242,7 +217,11 @@ public class CtrlController {
 		return new IOTResult(false, "暂无相关信息", null, 0);
 	}
 
-	// 查看channel
+	/**
+	 * 规格文件 channel 以及该设备下的ipc
+	 * @param pr
+	 * @return
+	 */
 	@CrossOrigin
 	@RequestMapping(value = "/listChannel", method = RequestMethod.POST)
 	public IOTResult listChannel(@RequestBody PointRequest pr) {

@@ -8,9 +8,9 @@ $(function () {
     var lastSelectNode;
     var lastSettingData;
     var onNodeSelect = function (node) {
-        if (node && lastSelectNode && lastSelectNode === node)return;
-        if (!node)node = lastSelectNode;
-        if (!node)return;
+        if (node && lastSelectNode && lastSelectNode === node) return;
+        if (!node) node = lastSelectNode;
+        if (!node) return;
         if (node.oriData["tp_type"] === 4) {
             var pNode = node.getParentNode();
             if (pNode) {
@@ -26,7 +26,7 @@ $(function () {
         UI.findFirstDeviceOnTreeActive($(this).data("z-tree"), 3, onNodeSelect)
     });
     var loadConfigPanel = function () {
-        if (!configEl.is(":visible"))return false;
+        if (!configEl.is(":visible")) return false;
         var node = lastSelectNode;
         treeEl.parents(".tree-cnt").hide();
         var name = node.oriData["tp_name"];
@@ -277,7 +277,7 @@ $(function () {
             btn: ["保存", "取消"],
             yes: function (idx, layero) {
                 var fieldValue = UI.getFieldValue(layero);
-                if (!fieldValue)return true;
+                if (!fieldValue) return true;
                 var ipc = $.extend({deviceId: item.mapingDeviceId, type: type}, fieldValue);
                 ipc.id = oldValue.id;
                 API.service("/updateIPCProxy", {pointEntity: {}, ipc: ipc, id: item.id}, function (rsp) {
@@ -307,7 +307,7 @@ $(function () {
     };
     var editVConfig = function (item) {
         layer.msg("TODO：接口不明确");
-        if (true)return;
+        if (true) return;
         var saveIPCCodeing = function () {
             var obj = {};
             obj.mapingdeviceId = item.mapingDeviceId;
@@ -449,7 +449,7 @@ $(function () {
     };
     var saveControl = function () {
         var newVal = getValueObj();
-        if (!newVal)return false;
+        if (!newVal) return false;
         var defVal = kzsbEl.find("a.btn-device-item.btn-df-blue").data("data");
         var data = $.extend({}, defVal, newVal);
         data.pointEntity = {tp_id: lastSelectNode.oriData["tp_id"]};
@@ -645,7 +645,6 @@ $(function () {
             skin: "mlayer"
         })
     });
-    /*规格文件*/
     $("#ggwz").click(function () {
         var node = lastSelectNode;
         var id = node.oriData["tp_id"];
@@ -660,22 +659,6 @@ $(function () {
             skin: "mlayer"
         })
     });
-    /*报警规则*/
-    $("#bjsz").click(function () {
-        var node = lastSelectNode;
-        var id = node.oriData["tp_id"];
-        var deviceId = node.oriData["deviceId"];
-        layer.open({
-            type: 2,
-            title: "修改规格文件",
-            area: ["1200px", "600px"],
-            maxmin: true,
-            scrollbar: false,
-            content: "xgbjgz.html?deviceId=" + deviceId + "&tp_id=" + id,
-            skin: "mlayer"
-        })
-    });
-    /*摄像头*/
     $("#tjsxt").click(function () {
         var node = lastSelectNode;
         var name = node.oriData["tp_name"];
@@ -790,7 +773,7 @@ $(function () {
     $(".sbgl-module>div:not(:first)").hide();
     $("#sbgl a").click(function () {
         var id = $(this).attr("data-href");
-        if (!id)return;
+        if (!id) return;
         $(this).addClass("on").siblings().removeClass("on");
         $(id).show().siblings().hide()
     });

@@ -1,1 +1,86 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物联网-大数据分析-市场数据</title><link rel="stylesheet" href="css/reset.min.css"><link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css"><link rel="stylesheet" href="css/style.css"></head><body><div class="mx-main"><div class="mx-handle clearfix"><div class="sm-title fl">生产数据</div><ul class="little-menu cleafix fl"><li class="on"><a href="javascript:;" data-href="#kzfx">控制分析</a></li><li><a href="javascript:;" data-href="#trpfx">投入品分析</a></li><li class="last"><a href="javascript:;" data-href="#scfx">生产分析</a></li></ul></div><div class="scsj-module"><div id="kzfx"><div class="mx-build"><img src="images/icon-jsz.png" alt=""><p>功能建设中.....</p></div></div><div id="trpfx"><div class="mx-build"><img src="images/icon-jsz.png" alt=""><p>功能建设中.....</p></div></div><div id="scfx"><div class="mx-build"><img src="images/icon-jsz.png" alt=""><p>功能建设中.....</p></div></div></div></div><script type="text/javascript">if(!window.jQuery){var html='<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';document.write(html)}</script><script>$(".scsj-module>div:not(:first)").hide(),$(".little-menu li").click(function(){$(this).addClass("on").siblings().removeClass("on");var i=$(this).children("a").attr("data-href");$(i).show().siblings().hide()})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>物联网-大数据分析-市场数据</title>
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <div class="mx-main">
+    <div class="mx-handle clearfix">
+      
+      <div class="sm-title fl">
+        生产数据
+      </div>
+      <ul class="little-menu cleafix fl">
+        <li class="on"><a href="javascript:;" data-href="#kzfx">控制分析</a></li>
+        <li><a href="javascript:;" data-href="#trpfx">投入品分析</a></li>
+        <li class="last"><a href="javascript:;" data-href="#scfx">生产分析</a></li>
+      </ul>
+    </div>
+
+    <div class="scsj-module">
+      
+      <div id="kzfx">
+        <div class="mx-build">
+          <img src="images/icon-jsz.png" alt="">
+          <p>功能建设中.....</p>
+        </div>
+      </div>
+      
+      <div id="trpfx">
+        <div class="mx-build">
+          <img src="images/icon-jsz.png" alt="">
+          <p>功能建设中.....</p>
+        </div>
+      </div>
+      
+      <div id="scfx">
+        <div class="mx-build">
+          <img src="images/icon-jsz.png" alt="">
+          <p>功能建设中.....</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+
+  <script type="text/javascript">
+      if (!window.jQuery) {
+          var html =
+              '<script src="js/jquery.min.js"><\/script>\n' +
+              '<script src="js/jquery.scrollTo.min.js"><\/script>\n' +
+              '<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n' +
+              '<script src="js/jquery.ztree.all.min.js"><\/script>\n' +
+              '<script src="js/layer/laydate/laydate.js"><\/script>\n' +
+              '<script src="js/layer/layer.js"><\/script>\n' +
+              '<script src="js/slide.js"><\/script>\n' +
+              '<script src="js/common.js"><\/script>\n' +
+              '<script src="js/purl.js"><\/script>\n' +
+              '<script src="js/api.js"><\/script>\n' +
+              '<script src="js/ui.js"><\/script>';
+          document.write(html);
+      }
+  </script>
+
+  <script>
+    $(".scsj-module>div:not(:first)").hide()
+    $('.little-menu li').click(function() {
+      $(this).addClass('on').siblings().removeClass('on');
+      var id = $(this).children('a').attr('data-href');
+      $(id).show().siblings().hide();
+    });
+  </script>
+
+</body>
+
+</html>

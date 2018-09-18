@@ -102,7 +102,7 @@ $(function () {
             }
         })
     };
-    if (false)handleUnReadMessageTimer = setInterval(handleUnReadMessage, 3e3);
+    if (false) handleUnReadMessageTimer = setInterval(handleUnReadMessage, 3e3);
     $(".mx-topSearch").on("click", "a", function () {
         window.openPageContent("信息发布", "首页资讯", {url: "publish4.html?keyword=" + encodeURIComponent($(".mx-topSearch").find("input").val())})
     })

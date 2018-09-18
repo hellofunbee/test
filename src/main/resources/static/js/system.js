@@ -5,12 +5,18 @@ $(function () {
     var tblIpcList = page.find("table.tbl-ipc-list");
     var ipcTBody = tblIpcList.find("tbody");
     var ipcTHead = tblIpcList.find("thead");
+
     var lastSelectNode;
     var lastSettingData;
+
+    /*ztree*/
     var onNodeSelect = function (node) {
         if (node && lastSelectNode && lastSelectNode === node)return;
+
         if (!node)node = lastSelectNode;
+
         if (!node)return;
+
         if (node.oriData["tp_type"] === 4) {
             var pNode = node.getParentNode();
             if (pNode) {
@@ -19,11 +25,36 @@ $(function () {
                 return
             }
         }
+
+
+        //当点击父节点时，自动选择第一个设备
+        if (node.oriData["tp_type"] < 3) {
+            while (node && node.oriData["tp_type"] < 3) {
+
+                var c = node.children;
+                if (c && c.length > 0) {
+                    node = c[0];
+                    if (node && node.oriData["tp_type"] === 3) {
+                        treeEl.data("z-tree").selectNode(node);
+                        onNodeSelect(node);
+                        return
+                    }
+                } else {
+                    return;
+                }
+            }
+        }
+
         lastSelectNode = node;
         page.trigger("node-change")
     };
     treeEl.on("z-tree-load", function () {
-        UI.findFirstDeviceOnTreeActive($(this).data("z-tree"), 3, onNodeSelect)
+
+        var nodes = $(this).data("z-tree").getNodes();
+        nodes && nodes.length>0 && onNodeSelect(nodes[0]);
+
+
+        // UI.findFirstDeviceOnTreeActive($(this).data("z-tree"), 3, onNodeSelect)
     });
     var loadConfigPanel = function () {
         if (!configEl.is(":visible"))return false;
@@ -41,7 +72,12 @@ $(function () {
         page.find(".sm-userInfo").text(name);
         page.find(".device-ip").text(ip);
         startLoading();
+
+        /* 参数配置 加载*/
         API.service("/getMainDeviceSetting", {deviceId: deviceId, ip: ip, port: port}, function (d) {
+            console.log();
+            console.log(d);
+
             stopLoading();
             var renders = {
                 ip_port: function (el, v) {
@@ -86,7 +122,10 @@ $(function () {
     };
     page.on("node-change", loadConfigPanel);
     page.find("a.load-config-panel").click(loadConfigPanel);
+
     UI.renderPointTree("#treeDemo", onNodeSelect);
+
+    //重置参数
     page.find(".btn-cfg-reset").click(function (e) {
         var node = lastSelectNode;
         lastSelectNode = null;
@@ -94,6 +133,7 @@ $(function () {
         e.preventDefault();
         return false
     });
+    /*保存参数*/
     page.find(".btn-cfg-save").click(function (e) {
         var rsp = lastSettingData;
         if (!rsp || !rsp.object) {
@@ -181,6 +221,8 @@ $(function () {
         e.preventDefault();
         return false
     });
+    /*写入设备*/
+
     page.find(".btn-cfg-write").click(function (e) {
         layer.confirm("确定写入设备配置信息吗？", function (idx) {
             layer.close(idx);
@@ -390,9 +432,17 @@ $(function () {
     var controlFormTpl = page.find("div.control-form-tpl");
     var ctrlControlBar = page.find(".ctrl-control-bar").hide();
     var lastChannels = false;
+
     var renderCtrlFormTpl = function () {
         var tpl = controlFormTpl.clone();
         var rcs = tpl.find(".render-channel").empty();
+
+        console.log('--------------')
+        console.log(lastChannels.listPoint)
+        console.log(lastChannels.listChannel)
+        console.log(lastChannels)
+        console.log('-------------')
+
         $.each(lastChannels.listChannel, function (i) {
             var citem = this;
             rcs.each(function () {
@@ -694,7 +744,7 @@ $(function () {
             type: 2,
             title: "添加摄像头",
             area: ["485px", "420px"],
-            content: "tjsxt.html?" + params,
+            content: "tjsxt-add.html?" + params,
             skin: "mlayer",
             cancel: function (layero) {
                 page.trigger("node-change")

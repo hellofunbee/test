@@ -8,6 +8,7 @@ API.dict = {
     deviceState: {0: "-", 1: "运行中", 2: "停止"},
     ipc_status: {0: "未同步", 1: "已同步"},
     controlType: {1: "电机", 2: "电磁阀"},
+    powerType: {0: "市电", 1: "太阳能电"},
     ruleEnable: {1: "启用", 0: "停用"},
     statusPictureName: {1: "控光", 2: "控温", 3: "控水"},
     encoderType: {0: "私有264", 1: "标准h264", 2: "标准mpeg4", 7: "M-JPEG", 8: "MPEG2", 10: "H.265"},

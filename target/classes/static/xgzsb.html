@@ -1,198 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>物联网-系统管理</title>
-    <link rel="stylesheet" href="css/reset.min.css">
-    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>物联网-系统管理</title>
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
-<div class="tjzsb">
+  <div class="tjzsb">
     <table>
-        <tr>
-            <th width="15%">站点</th>
-            <td width="35%"><select field="siteid" field2="sitename"></select></td>
-            <th width="15%">网络连接方式</th>
-            <td><select name="" field="useIPConnect" class="text-blue">
-                <option value="1" selected="">内网连接</option>
-                <option value="2">外网连接</option>
-                <option value="3">代理连接</option>
-                <option value="4">路由连接</option>
-            </select></td>
-        </tr>
-        <tr>
-            <th>父分类</th>
-            <td><select field="groupid" field2="groupname"></select></td>
-            <th>主设备ID号</th>
-            <td><input type="text" field="deviceId" class="text-blue"></td>
-        </tr>
-        <tr>
-            <th>分类类型</th>
-            <td>主设备</td>
-            <th>所有者姓名</th>
-            <td><input type="text" class="text-blue" field="name"></td>
-        </tr>
-        <tr>
-            <th>软件版本</th>
-            <td>0.0.2.13</td>
-            <th>软件更新端口</th>
-            <td><input type="text" class="text-blue" field="softWareUpdatePort"></td>
-        </tr>
-        <tr>
-            <th>硬件版本</th>
-            <td>0.0.2.13</td>
-            <th>Lat纬度</th>
-            <td><input type="text" class="text-blue" field="x"></td>
-        </tr>
-        <tr>
-            <th>设备序号</th>
-            <td><input type="text" class="text-blue" style="width:120px" field="orderNo"><span
-                    style="color:red;font-size:12px">（升序：较大的排在后边，自然数）</span></td>
-            <th>Lng经度</th>
-            <td><input type="text" class="text-blue" field="y"></td>
-        </tr>
-        <tr>
-            <th>内网IP</th>
-            <td><input type="text" class="text-blue-sm" field="nip">:<input field="nport" type="text"
-                                                                            class="text-blue-mm"></td>
-            <th>ZOOM</th>
-            <td><input type="text" class="text-blue" field="zoom"></td>
-        </tr>
-        <tr>
-            <th>外网IP</th>
-            <td><input type="text" class="text-blue-sm" field="ip">:<input type="text" field="port"
-                                                                           class="text-blue-mm"></td>
-            <th>所在省</th>
-            <td><select name="" id="" class="text-blue" field="province">
-                <option value="">省</option>
-            </select></td>
-        </tr>
-        <tr>
-            <th>代理IP</th>
-            <td><input type="text" class="text-blue-sm" field="proxyIp">:<input field="proxyPort" type="text"
-                                                                                class="text-blue-mm"></td>
-            <th>所在市</th>
-            <td><select name="" class="text-blue" field="city">
-                <option value="">市</option>
-            </select></td>
-        </tr>
-        <tr>
-            <th>监管者姓名</th>
-            <td><select field="superviserid" field2="supervisername" class="text-blue"></select></td>
-            <th>所在区</th>
-            <td><select name="" field="district" class="text-blue">
-                <option value="">区</option>
-            </select></td>
-        </tr>
-        <tr>
-            <th>生产者姓名</th>
-            <td><select name="" field="producerid" field2="producername" class="text-blue">
-                <option value=""></option>
-            </select></td>
-            <th>指导专家</th>
-            <td><select name="" class="text-blue" field="exportorid" field2="exportorname">
-                <option value="">区</option>
-            </select></td>
-        </tr>
+      <tr>
+        <th width="15%">站点</th>
+        <td width="35%">
+          <select field="siteid" field2="sitename"></select>
+          
+        </td>
+        <th width="15%">网络连接方式</th>
+        <td><select name="" field="useIPConnect" class="text-blue">
+            <option value="1" selected="">内网连接</option>
+            <option value="2">外网连接</option>
+            <option value="3">代理连接</option>
+            <option value="4">路由连接</option>
+        </select></td>
+      </tr>
+      <tr>
+        <th>父分类</th>
+        
+        <td><select field="groupid" field2="groupname"></select></td>
+        <th>主设备ID号</th>
+        <td><input type="text" field="deviceId" class="text-blue"></td>
+      </tr>
+      <tr>
+        <th>分类类型</th>
+        <td>主设备</td>
+        <th>所有者姓名</th>
+        <td><input type="text" class="text-blue" field="name"></td>
+      </tr>
+      <tr>
+        <th>软件版本</th>
+        <td>0.0.2.13</td>
+        <th>软件更新端口</th>
+        <td><input type="text" class="text-blue" field="softWareUpdatePort"></td>
+      </tr>
+      <tr>
+        <th>硬件版本</th>
+        <td>0.0.2.13</td>
+        <th>Lat纬度</th>
+        <td><input type="text" class="text-blue" field="x"></td>
+      </tr>
+      <tr>
+        <th>设备序号</th>
+        <td><input type="text" class="text-blue" style="width:120px" field="orderNo"><span style="color:#f00;font-size:12px;">（升序：较大的排在后边，自然数）</span></td>
+        <th>Lng经度</th>
+        <td><input type="text" class="text-blue" field="y"></td>
+      </tr>
+      <tr>
+        <th>内网IP</th>
+        <td><input type="text" class="text-blue-sm" field="nip">:<input field="nport" type="text" class="text-blue-mm"></td>
+        <th>ZOOM</th>
+        <td><input type="text" class="text-blue" field="zoom"></td>
+      </tr>
+      <tr>
+        <th>外网IP</th>
+        <td><input type="text" class="text-blue-sm" field="ip">:<input type="text" field="port" class="text-blue-mm"></td>
+        <th>所在省</th>
+        <td><select name="" id="" class="text-blue" field="province"><option value="">省</option></select></td>
+      </tr>
+      <tr>
+        <th>代理IP</th>
+        <td><input type="text" class="text-blue-sm" field="proxyIp">:<input field="proxyPort" type="text" class="text-blue-mm"></td>
+        <th>所在市</th>
+        <td><select name="" class="text-blue" field="city"><option value="">市</option></select></td>
+      </tr>
+      <tr>
+        <th>监管者姓名</th>
+        <td><select field="superviserid" field2="supervisername" class="text-blue"></select></td>
+        <th>所在区</th>
+        <td><select name="" field="district" class="text-blue"><option value="">区</option></select></td>
+      </tr>
+      <tr>
+        <th>生产者姓名</th>
+        <td>
+          <select name="" field="producerid" field2="producername" class="text-blue">
+            <option value=""></option>
+            </select>
+        </td>
+        <th>指导专家</th>
+        <td><select name="" class="text-blue" field="exportorid" field2="exportorname"><option value="">区</option></select></td>
+      </tr>
+
     </table>
-    <div class="tc mt20"><a href="javascript:;" class="btn-lg btn-save">保存参数</a></div>
-</div>
-<script type="text/javascript">if (!window.jQuery) {
-    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
-    document.write(html)
-}</script>
-<script type="text/javascript">$(function () {
-    var i = purl(location.href),
-            t = i.param("tp_id"),
-            n = i.param("action"),
-            e = (i.param("siteid"),
-                    i.param("sitename"),
-                    i.param("groupid")),
-            o = i.param("groupname"),
-            r = {},
-            a = $('[field="groupid"]').empty(),
-            l = function () {
-                var i = {};
-                return $("input[field],select[field]").each(function () {
-                    i[$(this).attr("field")] = $(this).val()
-                }),
-                        $("select[field2]").each(function () {
-                            i[$(this).attr("field2")] = $(this).find("option:selected").text()
-                        }),
-                        i.pointEntity = {tp_pid: i.groupid}, i
-            },
-            c = $('[field="siteid"]').empty(),
-            d = $("[field=superviserid]").empty(),
-            p = $("[field=producerid]").empty(),
 
-            u = $('[field="province"]').empty(),
-            s = $('[field="city"]').empty(),
-            v = $('[field="district"]').empty(),
+    <div class="tc mt20">
+      <a href="javascript:;" class="btn-lg btn-save">保存参数</a>
+    </div>
 
-            f = function () {
-                API.service("/listPoint3", null, function (i) {
-                    UI.renderSelectByData(c, null, function (i, t) {
-                                return $("<option></option>").text(t.tp_name).val(t.tp_id)
-                            },
-                            i.object.site), r.siteid ? c.val(r.siteid) : c.val(c.find("option").eq(0).attr("value")), UI.renderSelectByData(a, null, function (i, t) {
-                                return $("<option></option>").text(t.tp_name).val(t.tp_id)
-                            },
-                            i.object.group), r.groupid && a.val(r.groupid)
-                }),
-                        API.service("/listUser", {tu_type: 3}, function (i) {
-                            $(i.object).each(function (i) {
-                                var t = this;
-                                $("<option></option>").appendTo(d).val(t.uid).text(t.tu_name), $("<option></option>").appendTo(p).val(t.uid).text(t.tu_name)
-                            }),
-                            r.producerid && p.val(r.producerid),
-                            r.superviserid && d.val(r.superviserid)
-                        }),
 
-                        u.on("init", function () {
-                            if (r.province && r.province !== $(this).val() && $(this).find('option[value="' + r.province + '"]'))return $(this).val(r.province).change(), !1
-                        }),
-                        s.on("init", function () {
-                            if (r.city && r.city !== $(this).val() && $(this).find('option[value="' + r.city + '"]'))return $(this).val(r.city).change(), !1
-                        }),
-                        v.on("init", function () {
-                            if (r.district && r.district !== $(this).val() && $(this).find('option[value="' + r.district + '"]'))return $(this).val(r.district).change(), !1
-                        }),
-                        UI.renderProvince(u, function (i) {
-                            null !== $(this).val()
-                            &&
-                            UI.renderCity(s, $(this).val(), function (i) {
-                                null !== $(this).val()
-                                &&
-                                UI.renderDistrict(v, $(this).val())
-                            })
-                        });
-                var t = $('[field="exportorid"]').empty();
-                API.service("/listProfessor", function (i) {
-                    UI.renderSelectByData(t, null, function (i, t) {
-                        return $("<option></option>").text(t.u_uname).val(t.u_id)
-                    }, i.object), r.exportorid && t.val(r.exportorid)
-                }, function (i) {
+  </div>
+  <script type="text/javascript">
+      if (!window.jQuery) {
+          var html =
+              '<script src="js/jquery.min.js"><\/script>\n' +
+              '<script src="js/jquery.scrollTo.min.js"><\/script>\n' +
+              '<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n' +
+              '<script src="js/jquery.ztree.all.min.js"><\/script>\n' +
+              '<script src="js/layer/laydate/laydate.js"><\/script>\n' +
+              '<script src="js/layer/layer.js"><\/script>\n' +
+              '<script src="js/slide.js"><\/script>\n' +
+              '<script src="js/common.js"><\/script>\n' +
+              '<script src="js/purl.js"><\/script>\n' +
+              '<script src="js/api.js"><\/script>\n' +
+              '<script src="js/ui.js"><\/script>';
+          document.write(html);
+      }
+  </script>
+
+<script type="text/javascript">
+    $(function () {
+        var url = purl(location.href);
+        var tpId = url.param('tp_id');
+        var action = url.param('action');
+        var siteId = url.param('siteid');
+        var siteName = url.param('sitename');
+        var groupId = url.param('groupid');
+        var groupName = url.param('groupname');
+        var defaultValObj = {};
+        var groupEl = $('[field="groupid"]').empty();
+        var getValueObj = function () {
+            var obj = {};
+            $('input[field],select[field]').each(function () {
+                    obj[$(this).attr('field')] = $(this).val();
+                }
+            );
+            $('select[field2]').each(function () {
+                    obj[$(this).attr('field2')] = $(this).find('option:selected').text();
+                }
+            );
+            obj.pointEntity = {tp_pid: obj.groupid};
+            return obj;
+        };
+        var siteEl = $('[field="siteid"]').empty();
+        var superviserSel = $('[field=superviserid]').empty();
+        var producerSel = $('[field=producerid]').empty();
+        var provinceSel = $('[field="province"]').empty();
+        var citySel = $('[field="city"]').empty();
+        var districtSel = $('[field="district"]').empty();
+
+        var initCtrl = function () {
+            API.service('/listPoint3', null, function (rsp) {
+                //IPC|device|group|site
+                UI.renderSelectByData(siteEl, null, function (d, v) {
+                    return $('<option></option>').text(v.tp_name).val(v.tp_id);
+                }, rsp.object.site);
+
+                if(defaultValObj['siteid']){
+                    siteEl.val(defaultValObj['siteid']);
+                }else {
+                    siteEl.val(siteEl.find('option').eq(0).attr("value"));
+                }
+
+                UI.renderSelectByData(groupEl, null, function (d, v) {
+                    return $('<option></option>').text(v.tp_name).val(v.tp_id);
+                }, rsp.object.group);
+                if (defaultValObj['groupid']) {
+                    groupEl.val(defaultValObj['groupid']);
+                }
+            });
+            API.service('/listUser', {tu_type: 3}, function (rsp) {
+                $(rsp.object).each(function (idx) {
+                    var item = this;
+                    $('<option></option>').appendTo(superviserSel).val(item['uid']).text(item['tu_name']);
+                    $('<option></option>').appendTo(producerSel).val(item['uid']).text(item['tu_name']);
+                });
+                if(defaultValObj['producerid']){
+                    producerSel.val(defaultValObj['producerid']);
+                }
+                if(defaultValObj['superviserid']){
+                    superviserSel.val(defaultValObj['superviserid']);
+                }
+            });
+            provinceSel.on('init', function () {
+                if (defaultValObj['province'] && defaultValObj['province'] !== $(this).val()) {
+                    if ($(this).find('option[value="' + defaultValObj['province'] + '"]')) {
+                        $(this).val(defaultValObj['province']).change();
+                        return false;
+                    }
+                }
+            });
+            citySel.on('init', function () {
+                if (defaultValObj['city'] && defaultValObj['city'] !== $(this).val()) {
+                    if ($(this).find('option[value="' + defaultValObj['city'] + '"]')) {
+                        $(this).val(defaultValObj['city']).change();
+                        return false;
+                    }
+                }
+            });
+            districtSel.on('init', function () {
+                if (defaultValObj['district'] && defaultValObj['district'] !== $(this).val()) {
+                    if ($(this).find('option[value="' + defaultValObj['district'] + '"]')) {
+                        $(this).val(defaultValObj['district']).change();
+                        return false;
+                    }
+                }
+            });
+            UI.renderProvince(provinceSel, function (v) {
+                if ($(this).val() !== null) {
+                    UI.renderCity(citySel, $(this).val(), function (c) {
+                        if ($(this).val() !== null) {
+                            UI.renderDistrict(districtSel, $(this).val());
+                        }
+                    })
+                }
+            });
+            var exportoridSel = $('[field="exportorid"]').empty();
+            API.service('/listProfessor', function (rsp) {
+                UI.renderSelectByData(exportoridSel, null, function (d, v) {
+                    return $('<option></option>').text(v.u_uname).val(v.u_id);
+                }, rsp.object);
+                if (defaultValObj['exportorid']) {
+                    exportoridSel.val(defaultValObj['exportorid']);
+                }
+            }, function (e) {
+            });
+        };
+        var load = function () {
+            API.service('/getSetting', {
+                tp_id: 16
+                // tp_name: : "【7号】王明东"
+                , tp_type: 3
+            }, function (rsp) {
+                defaultValObj = rsp.object;
+
+                //for(var n in rsp.object){
+                $('[field]').each(function () {
+                    var val;
+                    var me = $(this);
+                    if ((val = rsp.object[me.attr('field')]) !== null) {
+                        if (val !== me.val())
+                            me.val(val)
+                    }
+                });
+                initCtrl();
+            })
+        };
+        var save = function () {
+            var obj = getValueObj();
+
+            layer.confirm('确定保存吗？',function(idx) {
+                layer.close(idx);
+                API.service('/saveAndUpdateMainDevice', obj, function (rsp) {
+                    layer.msg(rsp.msg);
                 })
-            };
-    "update" === n && t ? API.service("/getSetting", {tp_id: 16, tp_type: 3}, function (e) {
-        r = e.object, $("[field]").each(function () {
-            var i, t = $(this);
-            null !== (i = e.object[t.attr("field")]) && i !== t.val() && t.val(i)
-        }), f()
-    }) : ($("input[field]").val(""), a.val(e), $('[field="groupname"]').text(o), f()), $("a.btn-save").click(function () {
-        var i, t, e;
-        "add" === n ? (e = l(), layer.confirm("确定保存吗？", function (i) {
-            layer.close(i), API.service("/saveAndUpdateMainDevice", e, function (i) {
-                layer.msg(i.msg)
             })
-        })) : (i = l(), t = $.extend({}, r, i), layer.confirm("确定保存修改吗？", function (i) {
-            layer.close(i), API.service("/saveAndUpdateMainDevice", t, function (i) {
-                layer.msg(i.msg)
+        };
+        var update = function () {
+            var newValue = getValueObj();
+            var obj = $.extend({}, defaultValObj, newValue);
+            layer.confirm('确定保存修改吗？',function(idx){
+                layer.close(idx);
+                API.service('/saveAndUpdateMainDevice', obj, function (rsp) {
+                    layer.msg(rsp.msg);
+                })
             })
-        }))
-    })
-})</script>
+        };
+
+        if (action === 'update' && tpId) {
+            //修改
+            load();
+        } else {
+            $('input[field]').val('');
+            // $('[field=siteid]').val(siteId);
+            //$('[field=sitename]').text(siteName);
+            groupEl.val(groupId);
+            $('[field="groupname"]').text(groupName);
+            initCtrl();
+        }
+      $('a.btn-save').click(function(){
+          if(action==='add'){
+              save();
+          }else{
+              update();
+          }
+      })
+  })
+</script>
+
 </body>
+
 </html>

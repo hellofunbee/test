@@ -30,11 +30,6 @@ API.dict = {
     inputPlanStandard: {1: "有机", 2: "绿色", 3: "无公害"}
 };
 API.listHomePage = API.bind("/listHomePage");
-API.listHomePage_edit = API.bind("/listHomePage_edit");
-
-
-
-
 API.login = function (user, pwd, successFunc, errorFunc) {
     API.service("/Login", {tu_username: user, tu_pwd: pwd}, successFunc, errorFunc)
 };

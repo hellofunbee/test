@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-系统管理</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="tjzsb left-info">
+    <form id="formId">
+        <table class="">
+
+
+
+            <tr>
+                <th>电源模式</th>
+                <td><select name="" field="s_power" id="s_power">
+                    <option value="0">市电</option>
+                    <option value="1">太阳能电</option>
+                </select></td>
+            </tr>
+            <tr>
+                <th>在线状态</th>
+                <td><select name="" field="s_online" id="s_online">
+                    <option value="0">不在线</option>
+                    <option value="1">在线</option>
+                </select></td>
+            </tr>
+            <tr>
+                <th>码流</th>
+                <td><select name="" field="s_stream" id="s_stream">
+                    <option value="0">主码流</option>
+                    <option value="1">子码流</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <th>设备名称</th>
+                <td><input type="text" field="name" class="text-blue"></td>
+            </tr>
+
+            <tr>
+                <th>IPC设备地址</th>
+                <td><input type="text"  field="s_ip" class="text-blue-sm">:<input type="text" field="s_port"
+                                                                                  class="text-blue-mm"></td>
+            </tr>
+
+            <tr>
+                <th>节点</th>
+                <td><input type="text" field="s_nod" class="text-blue"></td>
+
+            </tr>
+            <tr>
+                <th>设备用户名</th>
+                <td><input type="text" field="s_username" class="text-blue"></td>
+            </tr>
+            <tr>
+                <th>设备密码</th>
+                <td><input type="text" field="s_password" class="text-blue"></td>
+            </tr>
+        </table>
+    </form>
+    <div class="tc mt20"><a href="javascript:;" class="btn-lg btn-df-red btn-reset">重置</a> <a href="javascript:;"
+                                                                                              class="btn-lg btn-df-blue btn-save">保存</a>
+    </div>
+    <script type="text/javascript">if (!window.jQuery) {
+        var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+        document.write(html)
+    }</script>
+    <script>
+
+
+        var t = [];
+        for (var e in API.dict.ipc_online)
+            t.push('<option value="' + e + '">' + API.dict.ipc_online[e] + "</option>");
+        $('#s_online').html(t.join(""));
+
+        t = [];
+        for (var e in API.dict.ipc_stream)
+            t.push('<option value="' + e + '">' + API.dict.ipc_stream[e] + "</option>");
+        $('#s_stream').html(t.join(""));
+
+        t = [];
+        for (var e in API.dict.powerType)
+            t.push('<option value="' + e + '">' + API.dict.powerType[e] + "</option>");
+        $('#s_power').html(t.join(""));
+
+        var obj = {
+            deviceId: "",
+            pointEntity: {}
+
+        };
+        var url = purl(location.href);
+        var deviceId = url.param("deviceId");
+
+
+
+        var frm = $("#formId");
+
+        $("a.btn-reset").click(function () {
+            frm.get(0).reset()
+        });
+
+        $("a.btn-save").click(function () {
+            $("[field]").each(function () {
+                obj[$(this).attr("field")] = $(this).val()
+            })
+
+            obj.deviceId = deviceId;
+            obj.pointEntity.tp_type =4;//ipc
+            obj.pointEntity.tp_state = 0;
+            obj.pointEntity.tp_name = obj.name;
+            obj.pointEntity.tp_pid = url.param("tp_id");
+            obj.pointEntity.tp_order = parseInt(url.param("max_nod"));
+
+            obj.pointEntity.ip = obj.s_ip // 该设备的ip
+            obj.pointEntity.port=obj.s_port// int(11)  52390 该设备端口
+            obj.pointEntity.uid= sessionStorage.getItem('ckuid') //bigint(11)   添加设备者id
+            obj.pointEntity.deviceId = obj.mapingDeviceId// (255)   设备id
+            obj.pointEntity.t_role=null //(255)   这个设备的监管者等等的id
+            obj.pointEntity.x=0 //double(2557)   纬度
+            obj.pointEntity.y=0 //double(2557)   经度
+            obj.pointEntity.tp_time=new Date() //(255)   上报ip的时间
+            obj.pointEntity.zoom=17// double(102)
+            obj.pointEntity.tp_index=0 //int(10)
+
+            console.log(obj)
+
+            API.service("/addIPC", obj, function (t) {
+                layer.alert(t.msg)
+            })
+        })
+
+    </script>
+</div>
+</body>
+</html>

@@ -12,6 +12,7 @@
 <div class="tjzsb">
     <form id="formId">
         <table class="">
+
             <tr>
                 <th>在线状态</th>
                 <td field="s_online" render="dict" dict="ipc_online">-</td>
@@ -22,7 +23,7 @@
             </tr>
             <tr>
                 <th>设备名称</th>
-                <td><input type="text" field="tp_name" class="text-blue"></td>
+                <td><input type="text" field="name" class="text-blue"></td>
             </tr>
             <tr>
                 <th>IPC设备地址</th>
@@ -46,65 +47,53 @@
         var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
         document.write(html)
     }</script>
-    <script>var obj = {
-        deviceId: "",
-        pointEntity: {tp_pid: "", ip: "", port: "", tp_name: ""},
-        s_nod: 12,
-        s_ip: "",
-        s_port: "",
-        s_username: "",
-        s_password: "",
-        s_stream: "1",
-        s_power: "2",
-        ipc: {s_pwr: "0", s_pwrval: "0", deviceId: ""}
-    }, editMapperFields = {
-        s_ip: "s_host",
-        s_port: "s_hostport",
-        s_username: "username",
-        s_password: "password",
-        tp_name: "name"
-    }, url = purl(location.href), deviceId = url.param("deviceId");
-    obj.deviceId = deviceId, obj.pointEntity.port = url.param("port"), obj.pointEntity.ip = url.param("ip"), obj.pointEntity.tp_pid = url.param("tp_id");
-    var tpName = url.param("name"), maxNo = parseInt(url.param("max_nod")), action = url.param("action"), updateObj = {}, load = function () {
-        var t = url.param("id"), e = url.param("type") || 1;
-        API.service("/getIPCProxy", {pointEntity: {}, ipc: {deviceId: deviceId, type: e}, id: t}, function (i) {
-            console.log(i.object), updateObj = i.object, $("[field]").each(function () {
-                var t = $(this), e = t.attr("field"), a = i.object[e];
-                editMapperFields[e] && (a = i.object[editMapperFields[e]]), t.is("input") ? t.val(a) : t.attr("render") && t.attr("dict") ? t.text(API.dict[t.attr("dict")][a] || "") : t.text(a)
+    <script>
+        var obj = {},
+                url = purl(location.href),
+                id = url.param("id"),
+                maxNo = parseInt(url.param("max_nod")),
+                action = url.param("action"),
+                updateObj = {},
+
+                load = function () {
+                    e = url.param("type") || 1;
+                    API.service("/findIPCById",
+                            {
+
+                                id: id
+                            },
+                            function (i) {
+                                console.log(i),
+                                        console.log(i.object),
+                                        updateObj = i.object,
+                                        $("[field]").each(function () {
+                                            var t = $(this),
+                                                    e = t.attr("field"),
+                                                    a = i.object[e];
+                                            t.is("input") ? t.val(a) : t.attr("render") && t.attr("dict") ? t.text(API.dict[t.attr("dict")][a] || "") : t.text(a)
+                                        })
+                            })
+                };
+        load();
+
+        $("a.btn-reset").click(function () {
+            load();
+        });
+        var doUpdate = function (e) {
+
+            console.log(e)
+            API.service("/updateIPC", e, function (t) {
+                layer.alert(t.msg)
             })
-        })
-    };
-    "update" === action && load(), obj.ipc.deviceId = obj.deviceId, obj.s_nod = maxNo;
-    var frm = $("#formId");
-    $("a.btn-reset").click(function () {
-        "update" === action ? load() : frm.get(0).reset()
-    });
-    var doUpdate = function (t) {
-        var e = {};
-        for (var a in t)editMapperFields[a] ? e[editMapperFields[a]] = t[a] : e[a] = t[a];
-        var i = {
-            pointEntity: (e = $.extend({}, updateObj, e)).pointEntity,
-            s_nod: e.s_nod,
-            s_ip: e.s_host,
-            s_port: e.s_hostport,
-            s_username: e.username,
-            s_password: e.password,
-            ipc: {s_pwr: e.s_pwr, s_pwrval: e.s_pwrval, deviceId: e.deviceId},
-            id: updateObj.id
         };
-        API.service("/updateIPC", i, function (t) {
-            layer.alert(t.msg)
+        $("a.btn-save").click(function () {
+            $("[field]").each(function () {
+                obj[$(this).attr("field")] = $(this).val()
+            });
+            obj.id = id;
+            doUpdate(obj);
         })
-    };
-    $("a.btn-save").click(function () {
-        $("[field]").each(function () {
-            obj[$(this).attr("field")] = $(this).val()
-        }),
-                obj.pointEntity.tp_name = obj.tp_name,
-                "update" === action ? doUpdate(obj) : (obj.s_nod++, API.service("/addIPC", obj, function (t) {
-                    layer.alert(t.msg)
-                }))
-    })</script>
+    </script>
 </div>
 </body>
 </html>
