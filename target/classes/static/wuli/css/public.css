@@ -1,0 +1,54 @@
+*{ margin:0; padding:0; border:0; outline:0; vertical-align:baseline; background:transparent; } 
+input, textarea{margin:0; padding:0; font-size:100%; vertical-align:middle;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display:block;}
+ol, ul, li { list-style:none;} 
+/* remember to define focus styles! */ 
+:focus {outline:0;} 
+/* remember to highlight inserts somehow! */ 
+ins{ text-decoration: none; } 
+del{ text-decoration: line-through; } 
+/* tables still need 'cellspacing="0"' in the markup */ 
+table{border-collapse:collapse; border-spacing: 0;}
+body { background:#fff; font: 12px/2.0 微软雅黑,arial,sans-serif; color:#333;  -webkit-text-size-adjust: none; text-size-adjust: none;} 
+a{text-decoration:none; color:#333;}
+input,select,img{vertical-align:middle;}
+
+.cf:before, .cf:after { content: "\0020"; display: block; height: 0; visibility: hidden; }
+.cf:after { clear: both; }
+.cf { zoom: 1;}
+.clear { clear: both; display: block; overflow: hidden;}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+body{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	}
+/*@media screen and (min-width: 320px) and (max-width: 360px) and (orientation:portrait){
+	html { font-size: 670%; }
+}
+@media screen and (min-width:360px) and (max-width:374px) and (orientation:portrait) {
+    html { font-size: 703%; }
+}
+@media screen and (min-width:375px) and (max-width:383px) and (orientation:portrait) {
+    html { font-size: 732.4%; }
+}
+@media screen and (min-width:384px) and (max-width:399px) and (orientation:portrait) {
+    html { font-size: 750%; }
+}
+@media screen and (min-width:400px) and (max-width:413px) and (orientation:portrait) {
+    html { font-size: 781.25%; }
+}
+@media screen and (min-width:414px) and (max-width:431px) and (orientation:portrait){
+    html { font-size: 808.6%; }
+}
+@media screen and (min-width:432px) and (max-width:479px) and (orientation:portrait){
+    html { font-size: 843.75%; }
+}

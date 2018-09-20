@@ -5,12 +5,18 @@ $(function () {
     var tblIpcList = page.find("table.tbl-ipc-list");
     var ipcTBody = tblIpcList.find("tbody");
     var ipcTHead = tblIpcList.find("thead");
+
     var lastSelectNode;
     var lastSettingData;
+
+    /*ztree*/
     var onNodeSelect = function (node) {
-        if (node && lastSelectNode && lastSelectNode === node) return;
-        if (!node) node = lastSelectNode;
-        if (!node) return;
+        if (node && lastSelectNode && lastSelectNode === node)return;
+
+        if (!node)node = lastSelectNode;
+
+        if (!node)return;
+
         if (node.oriData["tp_type"] === 4) {
             var pNode = node.getParentNode();
             if (pNode) {
@@ -19,14 +25,39 @@ $(function () {
                 return
             }
         }
+
+
+        //当点击父节点时，自动选择第一个设备
+        if (node.oriData["tp_type"] < 3) {
+            while (node && node.oriData["tp_type"] < 3) {
+
+                var c = node.children;
+                if (c && c.length > 0) {
+                    node = c[0];
+                    if (node && node.oriData["tp_type"] === 3) {
+                        treeEl.data("z-tree").selectNode(node);
+                        onNodeSelect(node);
+                        return
+                    }
+                } else {
+                    return;
+                }
+            }
+        }
+
         lastSelectNode = node;
         page.trigger("node-change")
     };
     treeEl.on("z-tree-load", function () {
-        UI.findFirstDeviceOnTreeActive($(this).data("z-tree"), 3, onNodeSelect)
+
+        var nodes = $(this).data("z-tree").getNodes();
+        nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+
+
+        // UI.findFirstDeviceOnTreeActive($(this).data("z-tree"), 3, onNodeSelect)
     });
     var loadConfigPanel = function () {
-        if (!configEl.is(":visible")) return false;
+        if (!configEl.is(":visible"))return false;
         var node = lastSelectNode;
         treeEl.parents(".tree-cnt").hide();
         var name = node.oriData["tp_name"];
@@ -41,7 +72,12 @@ $(function () {
         page.find(".sm-userInfo").text(name);
         page.find(".device-ip").text(ip);
         startLoading();
+
+        /* 参数配置 加载*/
         API.service("/getMainDeviceSetting", {deviceId: deviceId, ip: ip, port: port}, function (d) {
+            console.log();
+            console.log(d);
+
             stopLoading();
             var renders = {
                 ip_port: function (el, v) {
@@ -86,7 +122,10 @@ $(function () {
     };
     page.on("node-change", loadConfigPanel);
     page.find("a.load-config-panel").click(loadConfigPanel);
+
     UI.renderPointTree("#treeDemo", onNodeSelect);
+
+    //重置参数
     page.find(".btn-cfg-reset").click(function (e) {
         var node = lastSelectNode;
         lastSelectNode = null;
@@ -94,6 +133,7 @@ $(function () {
         e.preventDefault();
         return false
     });
+    /*保存参数*/
     page.find(".btn-cfg-save").click(function (e) {
         var rsp = lastSettingData;
         if (!rsp || !rsp.object) {
@@ -181,6 +221,8 @@ $(function () {
         e.preventDefault();
         return false
     });
+    /*写入设备*/
+
     page.find(".btn-cfg-write").click(function (e) {
         layer.confirm("确定写入设备配置信息吗？", function (idx) {
             layer.close(idx);
@@ -273,12 +315,27 @@ $(function () {
             title: "修改" + name + "代理参数",
             skin: "mlayer",
             area: ["500px", "300px"],
-            content: '<div class="tjzsb">\n' + "<form>\n" + '<table class="mx-table">\n' + "  <tr>\n" + "    <th>" + name + "设备地址</th>\n" + '    <td><input type="text" field="s_host" required valid-rule="ip"  class="text-blue"></td>\n' + "  </tr>\n" + "  <tr>\n" + "    <th>" + name + "设备端口</th>\n" + '    <td><input type="text" field="s_hostport"  required valid-rule="port"  class="text-blue"></td>\n' + "  </tr>\n" + "  <tr>\n" + "    <th>" + name + "映射端口</th>\n" + '    <td><input type="text" field="s_proxy"  required valid-rule="port" class="text-blue"></td>\n' + "  </tr>\n" + "</table>\n" + "</form>\n" + "</div>",
+            content: '<div class="tjzsb">\n' +
+            "<form>\n" +
+            '<table class="mx-table">\n' +
+            "<tr>\n" +
+            "    <th>" + name + "设备地址</th>\n" +
+            '    <td><input type="text" field="s_host" required valid-rule="ip"  class="text-blue"></td>\n' +
+            "  </tr>\n" + "  <tr>\n" + "    <th>" + name + "设备端口</th>\n" +
+            '    <td><input type="text" field="s_hostport"  required valid-rule="port"  class="text-blue"></td>\n' +
+            "  </tr>\n" + "  <tr>\n" + "    <th>" +
+            name + "映射端口</th>\n" +
+            '    <td><input type="text" field="s_proxy"  required valid-rule="port" class="text-blue"></td>\n' + "  </tr>\n" + "</table>\n" + "</form>\n" +
+            "</div>",
             btn: ["保存", "取消"],
             yes: function (idx, layero) {
                 var fieldValue = UI.getFieldValue(layero);
-                if (!fieldValue) return true;
-                var ipc = $.extend({deviceId: item.mapingDeviceId, type: type}, fieldValue);
+                if (!fieldValue)return true;
+                var ipc = $.extend({
+                    deviceId: item.deviceId,
+                    mapingDeviceId: item.mapingDeviceId,
+                    type: type
+                }, fieldValue);
                 ipc.id = oldValue.id;
                 API.service("/updateIPCProxy", {pointEntity: {}, ipc: ipc, id: item.id}, function (rsp) {
                     layer.msg(rsp.msg);
@@ -289,12 +346,16 @@ $(function () {
             success: function (layero, index) {
                 API.service("/getIPCProxy", {
                     pointEntity: {},
-                    ipc: {deviceId: item.mapingDeviceId, type: type},
+                    ipc: {deviceId: item.deviceId, mapingDeviceId: item.mapingDeviceId, type: type},
                     id: item.id
                 }, function (rsp) {
                     UI.renderField(layero.find("table.mx-table"), rsp.object);
                     oldValue = rsp.object
-                })
+                }, function (rsp) {
+                    UI.renderField(layero.find("table.mx-table"), null);
+
+
+                });
             }
         });
         return false
@@ -307,7 +368,7 @@ $(function () {
     };
     var editVConfig = function (item) {
         layer.msg("TODO：接口不明确");
-        if (true) return;
+        if (true)return;
         var saveIPCCodeing = function () {
             var obj = {};
             obj.mapingdeviceId = item.mapingDeviceId;
@@ -369,6 +430,7 @@ $(function () {
                 el.find('[field="s_stream"]').text(API.dict.ipc_stream[item["s_stream"]])
             });
             tbody.find(".btn-sm").click(function () {
+
                 var me = $(this);
                 var item = me.parents("tr").data("data");
                 if (me.hasClass("btn-edit-config")) {
@@ -390,9 +452,12 @@ $(function () {
     var controlFormTpl = page.find("div.control-form-tpl");
     var ctrlControlBar = page.find(".ctrl-control-bar").hide();
     var lastChannels = false;
+
     var renderCtrlFormTpl = function () {
         var tpl = controlFormTpl.clone();
         var rcs = tpl.find(".render-channel").empty();
+
+
         $.each(lastChannels.listChannel, function (i) {
             var citem = this;
             rcs.each(function () {
@@ -445,11 +510,11 @@ $(function () {
         })
     };
     var getValueObj = function (targetEl) {
-        return UI.getFormValue(targetEl || controlFormEl)
+        return UI.getFieldValue(targetEl || controlFormEl)
     };
     var saveControl = function () {
         var newVal = getValueObj();
-        if (!newVal) return false;
+        if (!newVal)return false;
         var defVal = kzsbEl.find("a.btn-device-item.btn-df-blue").data("data");
         var data = $.extend({}, defVal, newVal);
         data.pointEntity = {tp_id: lastSelectNode.oriData["tp_id"]};
@@ -473,6 +538,10 @@ $(function () {
     };
     var addControl = function () {
         var content = renderCtrlFormTpl().html();
+        var node = lastSelectNode;
+        var ip = node.oriData["ip"];
+        var port = node.oriData["port"];
+        var deviceId = node.oriData["deviceId"];
         layer.open({
             area: ["900px", "460px"],
             skin: "mlayer",
@@ -480,9 +549,12 @@ $(function () {
             btn: ["保存", "取消"],
             yes: function (index, layo) {
                 var obj = getValueObj(layo);
+                console.log(obj)
                 if (!obj) {
                     return true
                 }
+
+                console.log(obj);
                 obj.pointEntity = {tp_id: lastSelectNode.oriData["tp_id"]};
                 obj["ctrl_deviceId"] = lastSelectNode.oriData["deviceId"];
                 API.service("/addControlSetting", obj, function (d) {
@@ -499,9 +571,9 @@ $(function () {
             content: '<div class="main-body"></div>',
             success: function (layero) {
                 var toEl = layero.find(".main-body");
-                UI.appendFieldTo(content, {}, toEl).find("[field=ctrl_name],[field=ctrl_nickname]").each(function () {
-                    $('<input type="text" class="text-lg">').attr("required", "required").attr("field", $(this).attr("field")).appendTo($(this).removeAttr("field"))
-                })
+                var ctl_el = UI.appendFieldTo(content, {}, toEl);
+
+
             }
         })
     };
@@ -567,12 +639,13 @@ $(function () {
                 var node = lastSelectNode;
                 var id = node.oriData["tp_id"];
                 var deviceId = node.oriData["deviceId"];
-                API.service("/deleteIPC", {
-                    mapingDeviceId: deviceId + "." + data.id,
+                var json = {
                     id: data.id,
                     deviceId: deviceId,
                     _pointEntity: {ip: data.s_ip, port: data.s_port}
-                }, function (rsp) {
+                };
+                console.log(json);
+                API.service("/deleteIPC", json, function (rsp) {
                     layer.msg(rsp.msg);
                     tr.fadeOut().remove()
                 })
@@ -645,6 +718,7 @@ $(function () {
             skin: "mlayer"
         })
     });
+    /*规格文件*/
     $("#ggwz").click(function () {
         var node = lastSelectNode;
         var id = node.oriData["tp_id"];
@@ -659,6 +733,22 @@ $(function () {
             skin: "mlayer"
         })
     });
+    /*报警规则*/
+    $("#bjsz").click(function () {
+        var node = lastSelectNode;
+        var id = node.oriData["tp_id"];
+        var deviceId = node.oriData["deviceId"];
+        layer.open({
+            type: 2,
+            title: "修改规格文件",
+            area: ["1200px", "600px"],
+            maxmin: true,
+            scrollbar: false,
+            content: "xgbjgz.html?deviceId=" + deviceId + "&tp_id=" + id,
+            skin: "mlayer"
+        })
+    });
+    /*摄像头*/
     $("#tjsxt").click(function () {
         var node = lastSelectNode;
         var name = node.oriData["tp_name"];
@@ -676,8 +766,8 @@ $(function () {
         layer.open({
             type: 2,
             title: "添加摄像头",
-            area: ["485px", "420px"],
-            content: "tjsxt.html?" + params,
+            area: ["485px", "520px"],
+            content: "tjsxt-add.html?" + params,
             skin: "mlayer",
             cancel: function (layero) {
                 page.trigger("node-change")
@@ -692,26 +782,71 @@ $(function () {
         var port = node.oriData["port"];
         var deviceId = node.oriData["deviceId"];
         var maxNo = 0;
-        ipcTBody.find("tr").each(function () {
-            var data = $(this).data("data");
-            maxNo = Math.max(data["s_nod"], maxNo)
-        });
-        console.log(node.oriData);
-        var params = "deviceId=" + deviceId + "&ip=" + ip + "&port=" + port + "&max_nod=" + maxNo + "&tp_id=" + id + "&name=" + encodeURIComponent(name);
+
+        var defVal = kzsbEl.find("a.btn-device-item.btn-df-blue").data("data");
+
+        console.log(defVal);
+        console.log('************')
+
+
+        var params = "ctrl_id=" + defVal.ctrl_id + "&type=" + 2+"&deviceId="+deviceId+"&tp_id="+id;
         layer.open({
             type: 2,
             title: "智能控制规则",
-            area: ["1200px", "700px"],
+            area: ["1000px", "600px"],
             content: "znkzgz.html?" + params,
             skin: "mlayer"
         })
     });
+
+
+    /*预约规则*/
     $("#yygz").click(function () {
+        var str = '<table class="mx-table2 mt10">' +
+            '        <thead>' +
+            '        <tr>' +
+            '            <th width="3%" class="tc">' +
+            '                <div class="mx-checkbox select-all"><em></em></div>' +
+            '            </th>' +
+            '            <th>规则名称</th>' +
+            '            <th width="6%">循环周期</th>' +
+            '            <th>状态</th>' +
+            '            <th width="18%">开始时间</th>' +
+            '            <th width="18%">结束时间</th>' +
+            '            <th>执行时间</th>' +
+            '            <th>执行时长</th>' +
+            '            <th width="8%">操作</th>' +
+            '        </tr>' +
+            '        </thead>' +
+            '        <tbody>' +
+            '        <tr class="row-tpl">' +
+            '            <td class="tc">' +
+            '                <div class="mx-checkbox"><em></em></div>' +
+            '            </td>' +
+            '            <td field="r_name">规则名称1</td>' +
+            '            <td field="cycleDay">1</td>' +
+            '            <td field="ruleEnable" render="dict" dict="ruleEnable">启用</td>' +
+            '            <td field="beginTime">2017-11-01 00:00:00</td>' +
+            '            <td field="endTime">2017-11-01 00:00:00</td>' +
+            '            <td field="execTime">15:00:00</td>' +
+            '            <td field="duration" unit="秒">0.0秒</td>' +
+            '            <td><a href="#" class="btn-sm btn-edit">编辑</a></td>' +
+            '        </tr>' +
+            '        </tbody>' +
+            '    </table>' +
+            '    <div class="clearfix mt20 tc">' +
+            '<a href="javascript:;" class="btn-lg btn-df-red btn-delete-all">删除选中规则</a> ' +
+            '<a href="javascript:;" id="closeParent" class="btn-lg btn-df-gray" onclick="layer.closeAll()">关闭窗口</a> ' +
+            '<a href="javascript:;" class="btn-lg btn-df-blue btn-add-gz" id="xjgz">新建规则</a>' +
+            '</div>';
+
+        $(".xxx-layer").html(str);
+
         layer.open({
             type: 1,
             title: "yygz",
-            area: ["1200px", "700px"],
-            content: $("#yygzLayer"),
+            area: ["1000px", "600px"],
+            content: $(".xxx-layer"),
             success: function (layero) {
                 var defVal = kzsbEl.find("a.btn-device-item.btn-df-blue").data("data");
                 layero.on("click", ".mx-checkbox", function () {
@@ -751,29 +886,40 @@ $(function () {
                         layer.close(idx)
                     })
                 });
-                var tpl = layero.data("tpl");
-                if (!tpl) {
-                    tpl = $("<div></div>").append(layero.find(".row-tpl").clone()).html();
-                    $("#yygzLayer").data("tpl", tpl)
-                }
+
                 var tbody = layero.find("table.mx-table2>tbody").empty();
-                API.service(staticPre + "/listRule", {ctrl_id: "" + defVal.ctrl_id, r_type: "1"}, function (rsp) {
+
+                API.service(apiPre + "/listRule", {ctrl_id: "" + defVal.ctrl_id, type: "1"}, function (rsp) {
+
+                    console.log(rsp.object)
                     $.each(rsp.object, function (i) {
+
                         var item = this;
                         UI.appendFieldTo(tpl, item, tbody).data("data", item)
-                    })
-                })
+
+                    });
+
+                });
+                $("#xjgz").click(function () {
+                    layer.open({
+                        type: 2,
+                        title: "新建规则",
+                        area: ["800px", "600px"],
+                        content: "xjgz-add.html?action=add&ctrl_id=" + defVal.ctrl_id + "&type=1",
+                        skin: "mlayer"
+                    });
+                });
             },
-            skin: "mlayer"
+            skin: "mlayer",
+
         })
     });
-    $("#xjgz").click(function () {
-        layer.open({type: 2, title: "新建规则", area: ["800px", "600px"], content: "xjgz.html", skin: "mlayer"})
-    });
+
+
     $(".sbgl-module>div:not(:first)").hide();
     $("#sbgl a").click(function () {
         var id = $(this).attr("data-href");
-        if (!id) return;
+        if (!id)return;
         $(this).addClass("on").siblings().removeClass("on");
         $(id).show().siblings().hide()
     });

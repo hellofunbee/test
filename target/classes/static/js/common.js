@@ -1,9 +1,9 @@
 if (!window.js_common_loaded) {
     window.console = window.console || {
-        log: function () {
-        }, error: function () {
-        }
-    };
+            log: function () {
+            }, error: function () {
+            }
+        };
     window.js_common_loaded = true;
     window.apiPre = window.apiPre || "";
     window.staticPre = window.staticPre || "http://120.132.53.44:8087";
@@ -113,7 +113,6 @@ if (!window.js_common_loaded) {
             API.service(path, data, callback, errorFunc)
         }
     };
-
     function autoBody() {
         var bd = $("body");
         var body_h = bd.height();
@@ -204,7 +203,7 @@ if (!window.js_common_loaded) {
                 }
             });
             location.hash = "#" + $.param({page: define, type: type, nav: navIndex});
-            if (false) $("#main_iframe").load(url, function () {
+            if (false)$("#main_iframe").load(url, function () {
                 $("#main_iframe").attr("src", url);
                 autoBody()
             }).error(function (e) {
@@ -258,5 +257,82 @@ if (!window.js_common_loaded) {
             }
         }
         return format
+    }
+
+    /*auto xwf*/
+    /**
+     *
+     * @param obj input
+     * @returns {boolean}
+     */
+    function check(obj) {
+
+        var fileSize = 0;
+        var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+        if (isIE && !obj.files) {
+            var filePath = obj.value;
+            var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+            var file = fileSystem.GetFile(filePath);
+            fileSize = file.Size;
+        } else {
+            fileSize = obj.get(0).files[0].size;
+        }
+        fileSize = Math.round(fileSize / 1024 * 100) / 100; //单位为KB
+        if (fileSize >= 1024) {
+            layer.alert("照片最大尺寸为1M，请重新上传!");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     *
+     * @param data {key:value}
+     * @param url 请求接口
+     * @param input_id input id
+     * @param img_id img id
+     * @param onSuccess 回调
+     * @param onFail 回调
+     */
+    function uploadImg(data, url, input_id, img_id, onSuccess, onFail) {
+        $.ajaxFileUpload(
+            {
+                url: apiPre + url,
+                secureuri: false, //是否需要安全协议，一般设置为false
+                fileElementId: input_id, //文件上传域的ID
+                dataType: 'json', //返回值类型 一般设置为json
+                data: data,
+                success: function (e) {
+
+                    if (onSuccess) {
+                        onSuccess(data)
+                    }
+                    ;
+
+                    if (e.state == 0) {
+                        $("#" + img_id).attr("src", e.object);
+                        $("#" + img_id).attr("value", e.object)
+
+                    } else if (e.state == 2) {
+                        layer.alert(e.msg, function () {
+                            window.parent.location.href = "./login.html"
+                        })
+
+                    }
+                    layer.alert(e.msg)
+                    layer.close(t);
+
+                },
+                error: function () {
+                    if (onFail) {
+                        onFail(data)
+                    }
+                    ;
+                    layer.alert("请求失败，请重新尝试")
+                }
+            }
+        );
+
     }
 }

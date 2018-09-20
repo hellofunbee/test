@@ -163,6 +163,54 @@ var UI = {
                 return UI.renderSelectByData(targetEl, onChange, render, data.object)
             })
         }
+        //首页资讯
+    }, renderSelectByData_artical: function (targetEl, onChange, render, datas) {
+        var el = $(targetEl);
+        var oldValue = el.val();
+        el.empty();
+        if (onChange) {
+            if (!el.attr("_oldchange")) {
+                el.attr("_oldchange", onChange);
+                el.on("change", onChange)
+            }
+        }
+        if (datas) {
+            $.each(datas, function (idx) {
+                var d = this;
+                if (render) {
+                    $(render({value: d["c_id"], name: d["c_name"]}, d)).appendTo(el)
+                } else {
+                    $("<option></option>").attr("value", d["c_id"]).text(d["c_name"]).appendTo(el)
+                }
+            })
+        }
+        if (el.trigger("init") !== false) {
+            el.change()
+        }
+    }, renderHArtical_class1: function (targetEl, onChange, render) {
+
+        API.service("/listClass1", {c_type: 7, c_lev: 1}, function (data) {
+            return UI.renderSelectByData_artical(targetEl, onChange, render, data.object);
+        })
+
+    }, renderHArtical_class2: function (targetEl, c_rid, onChange, render) {
+
+        if (c_rid != null) {
+            API.service("/listClass2Byrid", {c_type: 7, c_lev: 2, c_rid: c_rid}, function (data) {
+
+                return UI.renderSelectByData_artical(targetEl, onChange, render, data.object);
+            }, function (e) {
+                if (e.status === 404) {
+                    layer.msg("接口开发中 " + this.url)
+                } else {
+                    console.log(e);
+                    layer.alert('二级分类' + (e.statusText || e.msg || e.state || e.status || e.message))
+                }
+                return UI.renderSelectByData_artical(targetEl, onChange, render, null);
+
+            });
+        }
+
     }
 };
 $.fn.selectX = function (data) {
@@ -236,7 +284,7 @@ UI.renderPageBar = function (options) {
                 idx = options.totalPages;
                 i = options.totalPages + 1
             }
-            if (idx > options.totalPages) break;
+            if (idx > options.totalPages)break;
             var el = $('<a href="#" ></a>').text(idx).appendTo(pageEl).click(itemClick);
             if (idx === options.pageNo) {
                 el.addClass("cur")
@@ -401,7 +449,7 @@ var showMessageDetail = function (id, type, title) {
 };
 UI.preZero = function (oriStr, len, maxValue) {
     if (maxValue > 0) {
-        if (oriStr > maxValue) return maxValue
+        if (oriStr > maxValue)return maxValue
     }
     if (("" + oriStr).length > len) {
         return oriStr
@@ -414,7 +462,7 @@ UI.preZero = function (oriStr, len, maxValue) {
     return oriStr
 };
 UI.cutSize = function (str, n) {
-    if (!str) return "";
+    if (!str)return "";
     var r = /[^\x00-\xff]/g;
     if (str.replace(r, "mm").length <= n) {
         return str
@@ -430,13 +478,19 @@ UI.cutSize = function (str, n) {
 UI.validRules = {
     ip: function (ip, el) {
         var exp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
-        var flag = ip.match(exp);
-        if (flag !== undefined && flag !== "") {
+        var objExp = new RegExp(exp);
+        var flag = objExp.test(ip);
+
+        /*  if (flag !== undefined && flag !== "") {
+         return true
+         }*/
+
+        if (flag) {
             return true
         }
-        if (ip.match(/:/g).length <= 7 && /::/.test(ipvalue) ? /^([\da-f]{1,4}(:|::)){1,6}[\da-f]{1,4}$/i.test(ipvalue) : /^([\da-f]{1,4}:){7}[\da-f]{1,4}$/i.test(ipvalue)) {
-            return true
-        }
+        /*if (ip.match(/:/g).length <= 7 && /::/.test(ipvalue) ? /^([\da-f]{1,4}(:|::)){1,6}[\da-f]{1,4}$/i.test(ipvalue) : /^([\da-f]{1,4}:){7}[\da-f]{1,4}$/i.test(ipvalue)) {
+         return true
+         }*/
         if (el) {
             el.focus();
             layer.tips("不正确的IP地址", el, {tips: [2, "#3595CC"], time: 1500})
@@ -444,7 +498,7 @@ UI.validRules = {
         return false
     }, port: function (port, el) {
         port = parseInt(port);
-        if (port > 1 && port < 65536) return true;
+        if (port > 1 && port < 65536)return true;
         if (el) {
             el.focus();
             layer.tips("不正确的端口", el, {tips: [2, "#3595CC"], time: 1500})
@@ -510,7 +564,7 @@ UI.renderField = function (el, data) {
         {
             var text = data[f];
             var rendered = false;
-            if (text === null) {
+            if (!text ) {
                 text = ""
             }
             if (me.attr("date-format")) {
@@ -525,7 +579,7 @@ UI.renderField = function (el, data) {
                     if (tagName === "SELECT" || isMxCheckbox) {
                         var dictVal = API.dict[me.attr("dict")];
                         me.empty();
-                        if (dictVal) for (var n in dictVal) {
+                        if (dictVal)for (var n in dictVal) {
                             if (isMxCheckbox) {
                                 var itemEl = $('<div class="mx-checkbox mr20" style="display:inline-block"><em></em><label></label></div>').appendTo(me).attr("value", n);
                                 itemEl.find("label").text(dictVal[n]);
@@ -543,7 +597,9 @@ UI.renderField = function (el, data) {
                             rendered = true
                         }
                     } else if (tagName === "DIV" || tagName === "SPAN" || tagName === "TD" || tagName === "TH" || tagName === "DD" || tagName === "DT") {
-                        me.attr("value", text).text(API.dict[me.attr("dict")][text] + (unit || "")).change();
+                        var val = API.dict[me.attr("dict")][text];
+                        val =  text?val + (unit || ""):"";
+                        me.attr("value", text).text(val).change();
                         rendered = true
                     }
                 }
@@ -634,3 +690,42 @@ UI.closeIframeDialog = function () {
     }
     return false
 };
+
+UI.setExpType = function (type, tr, ctl_el, c_id) {
+    if (type == 6) {
+        if (ctl_el.find('#exp-class').attr('id')) {
+            ctl_el.find('#exp-class').show();
+            ctl_el.find('#exp-class select').attr('field', 'c_id')
+        } else {
+            API.service("/listClass1", {c_type: 6, c_lev: 1}, function (data) {
+                var str = '';
+                $(data.object).each(function (i, e) {
+                    str += '<option value="' + e.c_id + '">' + e.c_name + '</option>';
+                });
+                var clasz =
+                    '<tr id="exp-class">' +
+                    '   <th>专家类型</th>' +
+                    '    <td><select class="text-lg"  field="c_id">' +
+                    str +
+                    '      </select></td>' +
+                    '  </tr>';
+                tr.after($(clasz));
+                if (ctl_el.find('#exp-class').attr('id') && c_id) {
+                    ctl_el.find('#exp-class select').val(c_id)
+
+                }
+
+            });
+        }
+
+    } else {
+        if (ctl_el.find('#exp-class').attr('id')) {
+            ctl_el.find('#exp-class').hide();
+            ctl_el.find('#exp-class select').attr('field', 'nothing')
+        }
+    }
+
+
+
+}
+

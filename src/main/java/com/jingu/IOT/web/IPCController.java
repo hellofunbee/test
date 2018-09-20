@@ -132,7 +132,7 @@ public class IPCController {
     public IOTResult addIPC(@RequestBody IPCRequest ipcRequest) {
         IOTResult valid = validUser(ipcRequest, false);
         if (valid != null) return valid;
-
+/* TODO 暂时注掉 @ xwf
         // RoleEntity roleEntity = new RoleEntity();
         // roleEntity.setR_name(point.getRole());
         // Map<String, Object> role = roleService.getRole(roleEntity);
@@ -152,7 +152,7 @@ public class IPCController {
             // ipcRequest.getPointEntity().getPort());
             String ipc2 = Client.getIpc2(ipcRequest.getPointEntity().getIp(), ipcRequest.getPointEntity().getPort(),
                     ipcRequest.getDeviceId());
-            if (ipc2.length() > 11) {
+            if (ipc2 != null && ipc2.length() > 11) {
                 int indexOf = ipc2.indexOf(";");
                 String substring = ipc2.substring(indexOf + 1);
                 System.out.println(substring);
@@ -184,20 +184,26 @@ public class IPCController {
             } else {
                 return new IOTResult(false, "添加失败,摄像头ip输入有误", null, 0);
             }
-        }
+        }*/
+
+
+
         PointResult addIPC = ipcService.addIPC(ipcRequest);
-        if (!addIPC.isSuccess()) {
+        /*if (!addIPC.isSuccess()) {
             boolean setIpc12 = Client.setIpc1("delete", config, ipcRequest.getDeviceId(),
                     ipcRequest.getPointEntity().getIp(), ipcRequest.getPointEntity().getPort());
             if (setIpc12) {
                 return new IOTResult(false, "添加失败", null, 5);
             }
-        }
+        }*/
         // List<Map<String,Object>> listPoint =
         // pointService.listPoint2(pointEntity2);
         // HashMap<String,Object> map = new HashMap<>();
         // map.put("point", listPoint.get(0));
         // map.put("ipc", addIPC.getObject());
+        if (!addIPC.isSuccess())
+        return new IOTResult(false, "添加失败", null, 0);
+        else
         return new IOTResult(true, "添加成功", null, 0);
 
     }
@@ -233,9 +239,15 @@ public class IPCController {
 
 
         IPCEntity ipc = ipcService.getIPCById(ipcRequest);
+
+
         if (ipc == null || ipc.getDeviceId() == null || ipc.getDeviceId().toString().trim().length() < 1) {
             return new IOTResult(false, "IPC不存在", null, 4);
         }
+        ipcRequest.setDeviceId(ipc.getDeviceId());
+        ipcRequest.setMapingDeviceId(ipc.getMapingDeviceId());
+
+
         int addIPC = ipcService.deleteIPC(ipcRequest);
 
         String config = "s_nod:" + ipc.getS_nod() + ";s_ip:" + ipc.getS_ip() + ";s_port:" + ipc.getS_port()
@@ -281,11 +293,23 @@ public class IPCController {
         IOTResult valid = validUser(ipcRequest, true);
         if (valid != null) return valid;
 
-        int updateIPCProxy = ipcService.updateIPCProxy(ipcRequest.getIpc());
-        if (updateIPCProxy < 1) {
-            new IOTResult(false, "修改失败", null, 0);
+
+        if (ipcRequest.getIpc().getId() <= 0) {
+            //新建
+            int updateIPCProxy = ipcService.addIPCProxy(ipcRequest.getIpc());
+            if (updateIPCProxy < 1) {
+             return    new IOTResult(false, "修改失败", null, 0);
+            }
+
+        } else {
+            int updateIPCProxy = ipcService.updateIPCProxy(ipcRequest.getIpc());
+            if (updateIPCProxy < 1) {
+                return   new IOTResult(false, "修改失败", null, 0);
+            }
+
         }
-        return new IOTResult(true, "修改成功", updateIPCProxy, 0);
+
+        return new IOTResult(true, "修改成功", 1, 0);
     }
 
     // 修改代理

@@ -1,1 +1,365 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物联网-系统管理-权限管理</title><link rel="stylesheet" href="css/reset.min.css"><link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css"><link rel="stylesheet" href="css/style.css"></head><body><div class="mx-main"><div class="mx-handle clearfix"><div class="sm-title fl">权限管理</div><div class="mx-top-search fr"><input type="text"> <a href="#">搜索</a></div></div><table class="mx-table2 mt10"><tr><th>姓名</th><th>手机号</th><th>角色</th><th width="10%">用户状态</th><th width="13%">修改状态</th><th width="13%">操作</th></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>封停</td><td><a href="#" class="btn-sm btn-hf">恢复</a></td><td><a href="javascript:;" id="bjqx" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr><tr><td>张三</td><td>1372082****</td><td>管理员</td><td>正常</td><td><a href="#" class="btn-sm btn-fh">封号</a></td><td><a href="#" class="btn-sm">编辑</a></td></tr></table><div class="mx-page"><a href="#" class="btn-o">首页</a> <a href="#" class="btn-o">上一页</a> <a href="#" class="cur">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a> <a href="#">8</a> <span>…</span> <a href="#">20</a> <a href="#" class="btn-o">下一页</a> <a href="#" class="btn-o">末页</a></div></div><div class="bjqx-layer"><div class="tjzsb" style="padding-top:60px"><table><tr><th width="20%">姓名</th><td>张三</td></tr><tr><th>角色属性</th><td><select class="text-blue"><option value="">普通用户</option></select></td></tr><tr><th>&nbsp;</th><td class="gray"><input type="radio" name="juese" checked="checked">&nbsp;监管者&nbsp;&nbsp;<input type="radio" name="juese">&nbsp;生产者&nbsp;&nbsp;<input type="radio" name="juese">&nbsp;专家</td></tr></table><div class="tc mt20"><a href="javascript:;" class="btn-lg btn-df-red">取消</a> <a href="javascript:;" class="btn-lg btn-df-blue">保存</a></div></div></div><script type="text/javascript">if(!window.jQuery){var html='<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';document.write(html)}</script><script>$(".yhgl-module>div:not(:first)").hide(),$(".little-menu li").click(function(){$(this).addClass("on").siblings().removeClass("on");$(this).children("a").text();var i=$(this).children("a").attr("data-href");$(i).show().siblings().hide()}),$("#bjqx").click(function(){layer.open({type:1,area:["620px","325px"],title:"编辑权限",skin:"mlayer",content:$(".bjqx-layer")})})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-系统管理-权限管理</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pagination.css">
+</head>
+<body>
+<div class="mx-main">
+    <div class="mx-handle clearfix">
+        <div class="sm-title fl">权限管理</div>
+        <div class="mx-top-search fr">
+            <input type="text" id="top-search"> <a href="#" onclick="serch()">搜索</a></div>
+    </div>
+    <table class="mx-table2 mt10">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>手机号</th>
+            <th>角色</th>
+            <th width="10%">用户状态</th>
+            <th width="13%">修改状态</th>
+            <th width="13%">操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- <tr>
+             <td>张三</td>
+             <td>1372082****</td>
+             <td>管理员</td>
+             <td>封停</td>
+             <td><a href="#" class="btn-sm btn-hf">恢复</a></td>
+             <td><a href="javascript:;" id="bjqx" class="btn-sm">编辑</a></td>
+         </tr>-->
+        </tbody>
+
+
+    </table>
+    <div class="mx-page  m-style">
+    </div>
+</div>
+<div class="xyh-layer"></div>
+
+<div class="bjqx-layer">
+    <div class="tjzsb" style="padding-top:60px">
+        <table>
+            <tr>
+                <th width="20%">姓名</th>
+                <td>张三</td>
+            </tr>
+            <tr>
+                <th>角色属性</th>
+                <td><select class="text-blue">
+                    <option value="">普通用户</option>
+                </select></td>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <td class="gray"><input type="radio" name="juese" checked="checked">&nbsp;监管者&nbsp;&nbsp;<input
+                        type="radio" name="juese">&nbsp;生产者&nbsp;&nbsp;<input type="radio" name="juese">&nbsp;专家
+                </td>
+            </tr>
+        </table>
+        <div class="tc mt20"><a href="javascript:;" class="btn-lg btn-df-red">取消</a> <a href="javascript:;"
+                                                                                        class="btn-lg btn-df-blue">保存</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">if (!window.jQuery) {
+    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+    document.write(html)
+}</script>
+<script src="js/jquery.pagination.js"></script>
+<script>
+    $(".yhgl-module>div:not(:first)").hide(), $(".little-menu li").click(function () {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(this).children("a").text();
+        var i = $(this).children("a").attr("data-href");
+        $(i).show().siblings().hide()
+    });
+    /*$("#bjqx").click(function () {
+     layer.open({
+     type: 1,
+     area: ["620px", "325px"],
+     title: "编辑权限",
+     skin: "mlayer",
+     content: $(".bjqx-layer")
+     })
+     });*/
+
+
+    var tpl =
+            ' <tr>' +
+            '<input field="tu_id" " type="hidden">' +
+            '  <td field="tu_name" ></td>' +
+            '  <td field="tu_phone"></td>' +
+            '  <td field="tu_type"  render="dict" dict="user_type"></td>' +
+
+            '  <td field="tu_state" render="dict" dict="user_state"></td>' +
+            '  <td><a href="javascript:;" class="btn-sm btn-hf a-valid" onclick="valid(this)">恢复</a></td>' +
+            '  <td><a href="javascript:;" class="btn-sm" onclick="edit(this)">编辑</a></td>' +
+            ' </tr>';
+
+    var tpl_edit = ' <div class="tjzsb add-user" style="padding-top:60px">' +
+            '        <table class="mx-table control-dev-form">' +
+            '            <input field="tu_id"  type="hidden">' +
+            '            <tr>' +
+            '                <th width="20%">用户姓名</th>' +
+            '                <td><input field="tu_name" required type="text" class="text-blue"></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>用户登录账号</th>' +
+            '                <td><input field="tu_username" required type="text" class="text-blue"></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>用户登录密码</th>' +
+            '                <td><input field="tu_pwd1" required type="password" class="text-blue"></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>确认密码</th>' +
+            '                <td><input field="tu_pwd" required type="password" class="text-blue"></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>用户类型</th>' +
+            '                <td><select class="text-lg" required field="tu_type" render="dict"' +
+            '                            dict="user_type">' +
+            '                    <option>默认</option>' +
+            '                </select></td>' +
+            '            </tr>' +
+            '            <!--<tr>' +
+            '                <th>是否启用</th>' +
+            '                <td><select class="text-lg" field="tu_state" render="dict"' +
+            '                            dict="user_state">' +
+            '                    <option>默认</option>' +
+            '                </select></td>' +
+            '            </tr>-->' +
+            '            <tr>' +
+            '                <th>电话号</th>' +
+            '                <td><input field="tu_phone" type="text" class="text-blue"></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>邮箱</th>' +
+            '                <td><input field="tu_email" type="text" class="text-blue"></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>性别</th>' +
+            '                <td><select class="text-lg" field="tu_sex" render="dict"' +
+            '                            dict="user_sex">' +
+            '                    <option>默认</option>' +
+            '                </select></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>职务</th>' +
+            '                <td><input field="tu_job" type="text" class="text-blue"></td>' +
+            '            </tr>' +
+            '            <tr>' +
+            '                <th>学历</th>' +
+            '                <td><select class="text-lg" field="tu_edu" render="dict"' +
+            '                            dict="user_edu">' +
+            '                    <option>默认</option>' +
+            '                </select></td>' +
+            '            </tr>' +
+            '        </table>' +
+            '        <div class="tc mt20">' +
+            '            <a href="javascript:;" class="btn-lg btn-df-red reset">重置</a>' +
+            '            <a href="javascript:;" class="btn-lg btn-df-blue save">保存</a>' +
+            '        </div>' +
+            '    </div>';
+
+
+    var ctl_data = {tpl: tpl, toEl: 'mx-page', start: 1};
+    reload();
+
+    function reload(notShowMsg) {
+        var o = ctl_data
+        API.service("/listUserForMap", {
+            pagesize: 10,
+            start: o.start,
+            u_search: $('#top-search').val(),
+        }, function (data) {
+            if(!notShowMsg)
+                layer.msg(data.msg)
+            var toEl = $('.mx-table2').find('tbody');
+            toEl.empty();
+            $.each(data.object, function (i, e) {
+
+                var el = UI.renderField(UI.appendFieldTo(o.tpl, e, toEl), e).data("data", e);
+                if (e.tu_state == 1) {
+                    var a = el.find('.a-valid');
+                    a.text('封号');
+                    a.removeClass('btn-hf');
+                    a.addClass('btn-fh');
+
+                } else {
+                    var a = el.find('.a-valid');
+                    a.text('恢复');
+                    a.removeClass('btn-fh');
+                    a.addClass('btn-hf');
+
+                }
+
+                //解绑
+                /*if (e.unbind && e.unbind== 1) {
+                 } else {
+                 var a = el.find('.unbind');
+                 a.attr("disabled",true);
+                 a.addClass('btn-lock');
+
+                 }
+                 */
+            });
+            pageIt(data.totalpage);
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+//            pageIt(1);
+        });
+
+        /**
+         * 分页
+         * @param o
+         * @param c
+         * @param p
+         */
+        function pageIt(p) {
+
+            $('.' + ctl_data.toEl).pagination(
+                    {
+                        pageCount: p,
+                        jump: true,
+                        current: ctl_data.start,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (api) {
+                            ctl_data.start = api.getCurrent();
+                            reload()
+                        }
+                    }
+            );
+
+        }
+        ;
+
+    }
+    ;
+
+    function valid(el) {
+        var data = $(el).closest('tr').data("data");
+        var word = "";
+        if (data.tu_state == 1) {
+            data.tu_state = 2;
+            word = '确定封号？'
+        } else {
+            data.tu_state = 1;
+            word = '确定恢复？'
+        }
+
+        layer.confirm(word, function (idx) {
+            API.service("/updateUser"
+                    , {
+                        uid: data.tu_id,
+                        tu_state: data.tu_state
+                    }, function (d) {
+                        layer.msg(d.msg);
+                        if (d.success) {
+                            reload(true);
+
+                        }
+                    })
+            layer.close(idx)
+        })
+
+
+    }
+
+    function edit(el) {
+        var data = $(el).closest('tr').data("data");
+
+        var html = tpl_edit;
+        $(".xyh-layer").html('');
+
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: "修改用户",
+            skin: "mlayer",
+            /* btn: ["保存", "取消"],*/
+            content: $(".xyh-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xyh-layer");
+                var ctl_el = UI.appendFieldTo(html, data, toEl);
+
+                if (data.tu_type == 6 && data.c_id) {
+                    var tr = ctl_el.find('[field="tu_type"]').closest('tr');
+                    UI.setExpType(6, tr, ctl_el, data.c_id)
+                }
+
+
+                ctl_el.find('[field="tu_pwd1"]').val(data.tu_pwd);
+
+                /*专家*/
+                ctl_el.find('[field="tu_type"]').on('change', function (v) {
+                    var type = $(this).val();
+                    var tr = $(this).closest('tr');
+                    UI.setExpType(type, tr, ctl_el, null)
+
+                });
+
+
+                ctl_el.find('.reset').on('click', function () {
+                    layer.close(index);
+                    edit(el);
+                });
+                ctl_el.find('.save').on('click', function () {
+                    var obj = UI.getFieldValue(layero);
+                    console.log(obj)
+                    if (!obj) {
+                        return true
+                    }
+                    obj.uid = obj.tu_id;
+
+                    if (!(ctl_el.find('[field="tu_pwd"]').val() === ctl_el.find('[field="tu_pwd1"]').val())) {
+                        layer.alert("两次输入的密码不一样！")
+                        return false;
+                    }
+                    API.service("/updateUser"
+                            , obj, function (d) {
+                                layer.msg(d.msg);
+                                if (d.success) {
+                                    layer.close(index);
+                                    reload(true);
+
+                                }
+                            })
+                });
+
+
+//                        ctl_el.find('[field="s_stream"]').text(API.dict.ipc_stream[item["s_stream"]])
+            }
+        });
+
+    }
+
+
+    function serch() {
+        var name = $('#top-search').val();
+        if (!name) {
+            layer.msg('请输入内容！')
+        }
+
+        ctl_data.start = 1;
+        reload();
+    }
+
+
+</script>
+</body>
+</html>

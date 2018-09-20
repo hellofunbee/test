@@ -104,7 +104,9 @@ public class RelationShipDao {
 	
 	public List<Map<String, Object>> listRelationShip(RelationShipEntity relationShipEntity){
 //		String sql =" select r.*,COALESCE(t.tu_id,0) tu_id,COALESCE(t.tu_name,'') tu_name,COALESCE(t.tu_state,'2') tu_state,tp.tp_name from  relationship r left join t_user t on r.producerid = t.tu_id left join t_point tp on tp.deviceId = r.deviceId   where 1=1";
-		String sql =" select r.*,t.*,tp.tp_name from  relationship r left join t_user t on r.producerid = t.tu_id left join t_point tp on tp.deviceId = r.deviceId   where 1=1";
+		String sql =" select r.*,t.*,tp.tp_name from  relationship r " +
+				"left join t_user t on r.producerid = t.tu_id " +
+				"left join t_point tp on tp.deviceId = r.deviceId   where 1=1";
 
 		
 		List<Object> list = new ArrayList<>();

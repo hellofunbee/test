@@ -43,5 +43,16 @@ public class Types {
     public final static int usr_roducer = 5;
     public final static int usr_expert = 6;
 
+    // 代理类型 1 视频代理 2 控制代理
+
+    public final static int IPC_1 = 1;
+    public final static int IPC_2 = 2;
+
+
+
+
+
+
+
 
 }

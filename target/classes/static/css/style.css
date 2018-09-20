@@ -2075,6 +2075,7 @@ a.mx-logo {
   color: #fff;
 }
 
+
 .upSroll-list .imgCnt .handle .sp-btn.sp-btn-sc {
   background-color: #FF4F24;
 }
@@ -2743,6 +2744,18 @@ a.mx-logo {
 .preview .active-nav img {
   padding: 0;
   border: 1px solid blue;
+}
+
+.sp-btn input[type='file']{
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+
 }
 
 /*# sourceMappingURL=style.css.map */

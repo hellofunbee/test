@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jingu.IOT.dao.MainDeviceDao;
+import com.jingu.IOT.util.Types;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -120,7 +121,15 @@ public class IPCService {
     @Transactional(value = "primaryTransactionManager")
     public PointResult addIPC(IPCRequest ipcRequest) {
 
+        if (ipcRequest.getIpc() == null) ipcRequest.setIpc(new IPCProxyEntity());
         IPCProxyEntity ipc = ipcRequest.getIpc();
+        ipc.setDeviceId(ipcRequest.getDeviceId());
+
+        // TODO  此处的deviceId 自动生成还是用户输入
+        String mapDID = generMapingDeviceId(ipcRequest.getDeviceId());
+        ipcRequest.setMapingDeviceId(mapDID);
+
+
         String intVal2 = toolUtil.getIntVal(ToolUtil.PORT + ipcRequest.getPointEntity().getIp());
         if (intVal2 == null || intVal2.equals("0")) {
             toolUtil.setIntVal(ToolUtil.PORT + ipcRequest.getPointEntity().getIp(), 9000);
@@ -134,8 +143,8 @@ public class IPCService {
         }
         // 检查是否能代理上
         Long port1 = toolUtil.incIntVal(ToolUtil.PORT + ipcRequest.getPointEntity().getIp());
-        ipcRequest.getIpc().setS_proxy(String.valueOf(port1));
-        ipcRequest.getIpc().setS_hostport(8000);
+        ipc.setS_proxy(String.valueOf(port1));
+        ipc.setS_hostport(8000);
         ipc.setS_host(ipcRequest.getS_ip());
         ipc.setS_pwr(1);
 //		IOTResult testProxy = testProxy(IPCRequest);
@@ -148,25 +157,29 @@ public class IPCService {
         ipc.setId(proxyid1.intValue());
         ipc.setS_hostport(8000);
         ipc.setS_proxy(String.valueOf(port1));
+
         ipcRequest.setIpcProxyId(proxyid1.intValue());
+
         ipc.setMapingDeviceId(ipcRequest.getMapingDeviceId());
-        ipc.setType(2);
+        ipc.setType(Types.IPC_2);
         ipc.setS_pwr(ipcRequest.getS_power());
         ipc.setS_pwrval(1);
         ipc.setS_timeout(String.valueOf(180));
         ipc.setUsername(ipcRequest.getS_username());
         ipc.setPassword(ipcRequest.getS_password());
-
         int addProxy1 = ipcDao.addIPCProxy(ipc);
+
+
         Long proxyid2 = toolUtil.incIntVal(ToolUtil.PROXY);
         Long port2 = toolUtil.incIntVal(ToolUtil.PORT + ipcRequest.getPointEntity().getIp());
         ipc.setId(proxyid2.intValue());
         ipc.setS_proxy(String.valueOf(port2));
         ipc.setS_hostport(80);
-        ipc.setType(1);
-
+        ipc.setType(Types.IPC_1);//视频控制
         ipcRequest.setIpcProxyId(proxyid2.intValue());
         ipc.setMapingDeviceId(ipcRequest.getMapingDeviceId());
+
+
         PointEntity pointEntity = ipcRequest.getPointEntity();
         pointEntity.setTp_type(4);
         String maxId = toolUtil.getMaxId(ToolUtil.TREEID);
@@ -182,12 +195,16 @@ public class IPCService {
         pointEntity.setTp_type(4);
         ipcRequest.setId(maxIdInc.intValue());
 
+
+        pointEntity.setRole("");
+        pointEntity.setDeviceId(mapDID);
+
+        ipc.setMapingDeviceId(mapDID);
+
         int addIPC = ipcDao.addIPC(ipcRequest);
         int addProxy2 = ipcDao.addIPCProxy(ipc);
 
-        pointEntity.setRole("");
-        // TODO  此处的deviceId 自动生成还是用户输入
-        pointEntity.setDeviceId(generMapingDeviceId(ipcRequest.getDeviceId()));
+
         int addPoint = pointDao.addPoint(pointEntity);
 
         if (addIPC > 0 && addProxy1 > 0 && addProxy2 > 0 && addPoint > 0) {
@@ -198,21 +215,26 @@ public class IPCService {
 
     /**
      * 生成唯一 mapingDeviceId
+     *
      * @param deviceId
      * @return
      */
     public String generMapingDeviceId(String deviceId) {
         String top_id = null;
         if (deviceId != null) {
-            Map mapingDeviceId = ipcDao.getTopID(deviceId);
+            List<Map<String, Object>> maps = ipcDao.getTopID(deviceId);
+            if (maps == null || maps.size() == 0) {
+                return deviceId + ".01";
+            }
+            Map mapingDeviceId = maps.get(0);
 
             if (mapingDeviceId != null && mapingDeviceId.get("mapingDeviceId") != null) {
 
                 top_id = (String) mapingDeviceId.get("mapingDeviceId");
 
-                String index = top_id.substring(top_id.lastIndexOf(".")+1);
+                String index = top_id.substring(top_id.lastIndexOf(".") + 1);
 
-                int i = Integer.parseInt(index)+1;
+                int i = Integer.parseInt(index) + 1;
 
                 String tail = ".";
                 if (i < 10) {
@@ -224,16 +246,12 @@ public class IPCService {
                 return deviceId + tail;
 
             }
-        }else {
-            return deviceId+".01";
         }
 
 
-        throw new RuntimeException();
+        throw new RuntimeException("自动生成MapingDeviceId失败");
 
     }
-
-
 
 
     public int updateIPC(IPCEntity ipcEntity) {
@@ -253,14 +271,25 @@ public class IPCService {
 
     @Transactional(value = "primaryTransactionManager")
     public int deleteIPC(IPCRequest ipcEntity) {
-        PointEntity pointEntity = new PointEntity();
-        pointEntity.setTp_id(ipcEntity.getId());
-        int deletePoint = pointDao.deletePoint(pointEntity);
+        List<Map<String, Object>> ps = pointDao.getPoint(4, ipcEntity.getMapingDeviceId());
+        if (ps == null || ps.size() != 1) {
+            System.out.println("-------------------\n" + "未找到point");
+
+
+            return 0;
+        }
+        Map m = ps.get(0);
+        PointEntity p = new PointEntity();
+        p.setTp_id((Integer) m.get("tp_id"));
+        int deletePoint = pointDao.deletePoint(p);
+
         int deleteIPC = ipcDao.deleteIPC(ipcEntity);
+        //TODO 删除代理 @ xwf
         if (deletePoint > 0 && deleteIPC > 0) {
             return 1;
         }
-        return 0;
+        throw new RuntimeException("删除数据时出现异常！");
+
     }
 
 
@@ -360,8 +389,14 @@ public class IPCService {
      */
     @Transactional(value = "primaryTransactionManager")
     public PointResult addExitstIPC(IPCRequest ipcRequest) {
-
+        if (ipcRequest.getIpc() == null) ipcRequest.setIpc(new IPCProxyEntity());
         IPCProxyEntity ipc = ipcRequest.getIpc();
+        ipc.setDeviceId(ipcRequest.getDeviceId());
+
+        // TODO  此处的deviceId 自动生成还是用户输入
+        String mapDID = generMapingDeviceId(ipcRequest.getDeviceId());
+        ipcRequest.setMapingDeviceId(mapDID);
+
 //		String intVal2 = toolUtil.getIntVal(ToolUtil.PORT+IPCRequest.getPointEntity().getIp());
 //		if(intVal2 ==null || intVal2.equals("0")){
 //			toolUtil.setIntVal(ToolUtil.PORT+IPCRequest.getPointEntity().getIp(), 9000);
@@ -426,6 +461,13 @@ public class IPCService {
         pointEntity.setTp_type(4);
         pointEntity.setRole("");
         ipcRequest.setId(maxIdInc.intValue());
+
+
+        pointEntity.setRole("");
+        pointEntity.setDeviceId(mapDID);
+
+        ipc.setMapingDeviceId(mapDID);
+
         int addIPC = ipcDao.addIPC(ipcRequest);
         int addProxy2 = ipcDao.addIPCProxy(ipc);
         int addPoint = pointDao.addPoint(pointEntity);

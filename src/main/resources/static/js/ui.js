@@ -204,7 +204,7 @@ var UI = {
                     layer.msg("接口开发中 " + this.url)
                 } else {
                     console.log(e);
-                    layer.alert('二级分类'+(e.statusText || e.msg || e.state || e.status || e.message))
+                    layer.alert('二级分类' + (e.statusText || e.msg || e.state || e.status || e.message))
                 }
                 return UI.renderSelectByData_artical(targetEl, onChange, render, null);
 
@@ -478,13 +478,19 @@ UI.cutSize = function (str, n) {
 UI.validRules = {
     ip: function (ip, el) {
         var exp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
-        var flag = ip.match(exp);
-        if (flag !== undefined && flag !== "") {
+        var objExp = new RegExp(exp);
+        var flag = objExp.test(ip);
+
+        /*  if (flag !== undefined && flag !== "") {
+         return true
+         }*/
+
+        if (flag) {
             return true
         }
-        if (ip.match(/:/g).length <= 7 && /::/.test(ipvalue) ? /^([\da-f]{1,4}(:|::)){1,6}[\da-f]{1,4}$/i.test(ipvalue) : /^([\da-f]{1,4}:){7}[\da-f]{1,4}$/i.test(ipvalue)) {
-            return true
-        }
+        /*if (ip.match(/:/g).length <= 7 && /::/.test(ipvalue) ? /^([\da-f]{1,4}(:|::)){1,6}[\da-f]{1,4}$/i.test(ipvalue) : /^([\da-f]{1,4}:){7}[\da-f]{1,4}$/i.test(ipvalue)) {
+         return true
+         }*/
         if (el) {
             el.focus();
             layer.tips("不正确的IP地址", el, {tips: [2, "#3595CC"], time: 1500})
@@ -558,7 +564,7 @@ UI.renderField = function (el, data) {
         {
             var text = data[f];
             var rendered = false;
-            if (text === null) {
+            if (!text ) {
                 text = ""
             }
             if (me.attr("date-format")) {
@@ -591,7 +597,9 @@ UI.renderField = function (el, data) {
                             rendered = true
                         }
                     } else if (tagName === "DIV" || tagName === "SPAN" || tagName === "TD" || tagName === "TH" || tagName === "DD" || tagName === "DT") {
-                        me.attr("value", text).text(API.dict[me.attr("dict")][text] + (unit || "")).change();
+                        var val = API.dict[me.attr("dict")][text];
+                        val =  text?val + (unit || ""):"";
+                        me.attr("value", text).text(val).change();
                         rendered = true
                     }
                 }
@@ -682,3 +690,42 @@ UI.closeIframeDialog = function () {
     }
     return false
 };
+
+UI.setExpType = function (type, tr, ctl_el, c_id) {
+    if (type == 6) {
+        if (ctl_el.find('#exp-class').attr('id')) {
+            ctl_el.find('#exp-class').show();
+            ctl_el.find('#exp-class select').attr('field', 'c_id')
+        } else {
+            API.service("/listClass1", {c_type: 6, c_lev: 1}, function (data) {
+                var str = '';
+                $(data.object).each(function (i, e) {
+                    str += '<option value="' + e.c_id + '">' + e.c_name + '</option>';
+                });
+                var clasz =
+                    '<tr id="exp-class">' +
+                    '   <th>专家类型</th>' +
+                    '    <td><select class="text-lg"  field="c_id">' +
+                    str +
+                    '      </select></td>' +
+                    '  </tr>';
+                tr.after($(clasz));
+                if (ctl_el.find('#exp-class').attr('id') && c_id) {
+                    ctl_el.find('#exp-class select').val(c_id)
+
+                }
+
+            });
+        }
+
+    } else {
+        if (ctl_el.find('#exp-class').attr('id')) {
+            ctl_el.find('#exp-class').hide();
+            ctl_el.find('#exp-class select').attr('field', 'nothing')
+        }
+    }
+
+
+
+}
+

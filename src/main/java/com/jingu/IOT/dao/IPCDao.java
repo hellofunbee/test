@@ -92,17 +92,46 @@ public class IPCDao {
     // 添加代理
     public int addIPCProxy(IPCProxyEntity pe) {
         // s_host:192.168.0.234;s_rport:8000;s_lport:9001;s_pwr:1;s_pwrval:0;s_timeout:86400;
-        String sql = "insert into t_vartriver_ipcproxy (id,deviceId,mapingDeviceId,s_host,s_hostport,s_proxy,s_proxyport,s_pwr,s_pwrval,s_timeout,stauts,username,password,type) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        return jdbcTemplate.update(sql, pe.getId(), pe.getDeviceId(), pe.getMapingDeviceId(), pe.getS_host(), pe.getS_hostport(), pe.getS_proxy(), pe.getS_proxyport(), pe.getS_pwr(), pe.getS_pwrval(), pe.getS_timeout(), pe.getStatus(), pe.getUsername(), pe.getPassword(), pe.getType());
+        String sql = "insert into t_vartriver_ipcproxy (" +
+                "deviceId," +
+                "mapingDeviceId," +
+                "s_host," +
+                "s_hostport," +
+                "s_proxy," +
+                "s_proxyport," +
+                "s_pwr," +
+                "s_pwrval," +
+                "s_timeout," +
+                "stauts," +
+                "username," +
+                "password," +
+                "type) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return jdbcTemplate.update(sql,
+                pe.getDeviceId(),
+                pe.getMapingDeviceId(),
+                pe.getS_host(),
+                pe.getS_hostport(),
+                pe.getS_proxy(),
+                pe.getS_proxyport(),
+                pe.getS_pwr(),
+                pe.getS_pwrval(),
+                pe.getS_timeout(),
+                pe.getStatus(),
+                pe.getUsername(),
+                pe.getPassword(),
+                pe.getType());
 
     }
 
     // 修改代理
     public int updateIPCProxy(IPCProxyEntity pe) {
         // s_host:192.168.0.234;s_rport:8000;s_lport:9001;s_pwr:1;s_pwrval:0;s_timeout:86400;
+
+
         String sql = "update t_vartriver_ipcproxy set id =? ";
         List<Object> list = new ArrayList<>();
         list.add(pe.getId());
+
         if (pe.getS_host() != null && pe.getS_host().trim().length() > 0) {
             sql += " , s_host =?";
             list.add(pe.getS_host());
@@ -755,8 +784,12 @@ public class IPCDao {
     }
 
     public List<Map<String, Object>> getCtrlProxy(IPCProxyEntity pe) {
-        String sql = "select t.id,t.mapingDeviceId,t.deviceId,t.s_host,t.s_hostport,t.s_proxy,t.s_pwr,t.s_pwrval,t.username,t.password,p.s_stream,p.s_online,p.name,tp.tp_name,p.s_nod,p.s_power,p.id ipcid from t_vartriver_ipcproxy t LEFT JOIN t_vartriver_ipc p on p.deviceId = t.deviceId left join t_point tp on tp.tp_id = p.id  where t.mapingDeviceId =? and type =?";
-        return jdbcTemplate.queryForList(sql, pe.getDeviceId(), pe.getType());
+        String sql =
+                "select t.id,t.mapingDeviceId,t.deviceId,t.s_host,t.s_hostport,t.s_proxy,t.s_pwr,t.s_pwrval,t.username,t.password,p.s_stream,p.s_online,p.name,tp.tp_name,p.s_nod,p.s_power,p.id ipcid from t_vartriver_ipcproxy t " +
+                        "INNER JOIN t_vartriver_ipc p on p.deviceId = t.deviceId and p.mapingDeviceId = t.mapingDeviceId " +
+                        "left join t_point tp on tp.deviceId = p.mapingDeviceId  " +
+                        "where t.mapingDeviceId =? and t.deviceId = ? and type =?";
+        return jdbcTemplate.queryForList(sql, pe.getMapingDeviceId(), pe.getDeviceId(), pe.getType());
     }
 
 
@@ -906,10 +939,12 @@ public class IPCDao {
         return jdbcTemplate.queryForMap(sql, deviceId, deviceId);
     }
 
-    public Map<String, Object> getTopID(String deviceId) {
+    public List<Map<String, Object>> getTopID(String deviceId) {
         String sql = "select mapingDeviceId from t_vartriver_ipc where deviceId = ?";
-        sql += " order by mapingDeviceId desc limit 1";
-        return jdbcTemplate.queryForMap(sql, deviceId);
+        sql += " order by mapingDeviceId desc ";
+
+        List<Map<String, Object>> mdid = jdbcTemplate.queryForList(sql, deviceId);
+        return mdid;
     }
 
 

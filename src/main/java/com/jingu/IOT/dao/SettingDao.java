@@ -128,7 +128,23 @@ public class SettingDao {
     }
 
     public int addControlSetting(ControlEntity ce) {
-        String sql = "insert into control (ctrl_name,ctrl_nickname,ctrl_deviceId,ctrl_mapingdeviceId,ctrl_min,ctrl_max,ctrl_channel,ctrl_type,ctrl_temperature,ctrl_water,ctrl_raise_groupId,ctrl_raise_switchId,ctrl_down_groupId,ctrl_down_switchId,ctrl_count,ctrl_picturetype,ctrl_picturetitle) value (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into control (" +
+                "ctrl_name," +
+                "ctrl_nickname," +
+                "ctrl_deviceId," +
+                "ctrl_mapingdeviceId," +
+                "ctrl_min,ctrl_max," +
+                "ctrl_channel," +
+                "ctrl_type," +
+                "ctrl_temperature," +
+                "ctrl_water," +
+                "ctrl_raise_groupId," +
+                "ctrl_raise_switchId," +
+                "ctrl_down_groupId," +
+                "ctrl_down_switchId," +
+                "ctrl_count," +
+                "ctrl_picturetype," +
+                "ctrl_picturetitle) value (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return jdbcTemplate.update(sql, ce.getCtrl_name(), ce.getCtrl_nickname(), ce.getCtrl_deviceId(), ce.getCtrl_mapingdeviceId(), ce.getCtrl_min(), ce.getCtrl_max(), ce.getCtrl_channel(), ce.getCtrl_type(), ce.getCtrl_temperature(), ce.getCtrl_water(), ce.getCtrl_raise_groupId(), ce.getCtrl_raise_switchId(), ce.getCtrl_down_groupId(), ce.getCtrl_down_switchId(), ce.getCtrl_count(), ce.getCtrl_picturetype(), ce.getCtrl_picturetitle());
     }
 
