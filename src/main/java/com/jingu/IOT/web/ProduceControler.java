@@ -104,13 +104,14 @@ public class ProduceControler {
 		if(check ==null ||!pr.getCksid().equals(check)){
 			return  new IOTResult(false,"登陆失效",null,2);
 		}
+		/*
 		long uid = toolUtil.getbase_uidSid(pr.getCkuid(), pr.getCksid());
 		PointEntity pointEntity = pr.getPointEntity();
 		pointEntity.setUid(uid);
 		List<Map<String,Object>> listPoint = pointService.listPoint(pointEntity);
 		if(listPoint==null || listPoint.isEmpty()){
 			return  new IOTResult(false,"节点不存在",null,3);
-		}
+		}*/
 		int addProducePlan = produceService.updateProducePlan(pr);
 		if(addProducePlan >0){
 			return new IOTResult(true,"生产计划修改成功",null,0);
@@ -131,12 +132,12 @@ public class ProduceControler {
 			return  new IOTResult(false,"登陆失效",null,2);
 		}
 		long uid = toolUtil.getbase_uidSid(pr.getCkuid(), pr.getCksid());
-		PointEntity pointEntity = pr.getPointEntity();
+	/*	PointEntity pointEntity = pr.getPointEntity();
 		
 		List<Map<String,Object>> listPoint = pointService.listPoint(pointEntity);
 		if(listPoint==null || listPoint.isEmpty()){
 			return  new IOTResult(false,"节点不存在",null,3);
-		}
+		}*/
 		int addProducePlan = produceService.deleteProducePlan(pr);
 		if(addProducePlan >0){
 			return new IOTResult(true,"生产计划删除成功",null,0);

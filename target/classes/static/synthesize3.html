@@ -40,24 +40,48 @@
             treeEl = $("#synthesize3_tree"),
             onNodeSelect = function (e) {
 
-                if (maxNodeId = 0, !e || !lastSelectNode || lastSelectNode !== e)
-                    if (e || (e = lastSelectNode), e && e.oriData && 3 === e.oriData.tp_type) {
+                var node = e;
+                if (node && lastSelectNode && lastSelectNode === node)return;
+                if (!node)node = lastSelectNode;
+                if (!node)return;
 
-                        if (e.children.length)
-                            return $("#synthesize3_tree").data("z-tree").selectNode(e.children[0]), void onNodeSelect(e.children[0])
-                    } else if (e && e.oriData && 4 === e.oriData.tp_type) {
-                        lastSelectNode = e,
-                        treeEl.parents(".tree-cnt").hide();
-                        var t = e.oriData.tp_name,
-                            a = (e.oriData.tp_id, e.oriData.deviceId),
+                //当点击父节点时，自动选择第一个设备
+                if (node.oriData["tp_type"] < 4) {
+                    while (node && node.oriData["tp_type"] < 4) {
+                        var c = node.children;
+                        if (c && c.length > 0) {
+                            node = c[0];
+                            if (node && node.oriData["tp_type"] === 4) {
+                                treeEl.data("z-tree").selectNode(node);
+                                onNodeSelect(node);
+                                return
+                            }
+                        } else {
+                            layer.msg('请选择摄像头');
+                            return;
+                        }
+                    }
+                }
+
+                if (e && e.oriData && 4 === e.oriData.tp_type) {
+                    lastSelectNode = e;
+                    treeEl.parents(".tree-cnt").hide();
+                    var t = e.oriData.tp_name;
+                    a = (e.oriData.tp_id, e.oriData.deviceId),
                             i = e.getParentNode();
-                        i && i.oriData && (t = i.oriData.tp_name + " " + t),
-                                $(".sm-userInfo").text(t),
-                                UI.showCamera(a, "#synthesize3_video")
-                    };
+                    i && i.oriData && (t = i.oriData.tp_name + " " + t),
+                            $(".sm-userInfo").text(t),
+                            UI.showCamera(a, "#synthesize3_video")
+                }
+            };
+
+
     UI.renderPointTree("#synthesize3_tree", onNodeSelect),
             $("#synthesize3_tree").on("z-tree-load", function () {
-                UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
+                var nodes = $(this).data("z-tree").getNodes();
+                nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+
+//                UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
             });
     var deviceProj = $("#big_data_analysis_device_proj"),
             deviceFrom = $("#big_data_analysis_device_from"),

@@ -80,20 +80,64 @@
 }</script>
 <script>
 
+    var page = $(".mx-main");
+    var treeEl = page.find("#big_data_analysis_device_tree");
+
+    var lastSelectNode;
+    var onNodeSelect = function (e) {
+        var node = e;
+        if (node && lastSelectNode && lastSelectNode === node)return;
+        if (!node)node = lastSelectNode;
+        if (!node)return;
+
+        //当点击父节点时，自动选择第一个设备
+        if (node.oriData["tp_type"] < 3) {
+            while (node && node.oriData["tp_type"] < 3) {
+                var c = node.children;
+                if (c && c.length > 0) {
+                    node = c[0];
+                    if (node && node.oriData["tp_type"] === 3) {
+                        treeEl.data("z-tree").selectNode(node);
+                        onNodeSelect(node);
+                        return
+                    }
+                } else {
+                    layer.msg('请选择设备');
+                    return;
+                }
+            }
+        }
+
+
+        showInfo(e)
+    }
     var showInfo = function (e) {
-    e && e.oriData.deviceId && API.getMainDeviceInfo(e.oriData.deviceId, e.oriData.tp_id, function (e) {
-        for (var i in e.object)
-            $('[field="' + i + '"]').text(e.object[i])
+        e && e.oriData.deviceId && API.getMainDeviceInfo(e.oriData.deviceId, e.oriData.tp_id, function (e) {
+            for (var i in e.object)
+                $('[field="' + i + '"]').text(e.object[i])
+        })
+    };
+    UI.renderPointTree("#big_data_analysis_device_tree", onNodeSelect, null, {1: !0, 2: !0, 3: !0});
+
+    treeEl.on("z-tree-load", function () {
+        var nodes = $(this).data("z-tree").getNodes();
+        nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+//        UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, showInfo)
+    });
+
+    treeEl.on("z-tree-load", function () {
+        var nodes = $(this).data("z-tree").getNodes();
+        nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+
+//                UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
+    });
+    var deviceProj = $("#big_data_analysis_device_proj"),
+            deviceFrom = $("#big_data_analysis_device_from"),
+            deviceTo = $("#big_data_analysis_device_to");
+    $(".sblb>h3").click(function () {
+        $(this).next().toggle()
     })
-};
-UI.renderPointTree("#big_data_analysis_device_tree", function (e) {
-    showInfo(e)
-}, null, {1: !0, 2: !0, 3: !0}), $("#big_data_analysis_device_tree").on("z-tree-load", function () {
-    UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, showInfo)
-});
-var deviceProj = $("#big_data_analysis_device_proj"), deviceFrom = $("#big_data_analysis_device_from"), deviceTo = $("#big_data_analysis_device_to");
-$(".sblb>h3").click(function () {
-    $(this).next().toggle()
-})</script>
+
+</script>
 </body>
 </html>

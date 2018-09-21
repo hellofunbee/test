@@ -13,19 +13,15 @@
 */ 
 package com.jingu.IOT.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.jingu.IOT.entity.InputEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.jingu.IOT.entity.InputEntity;
-import com.jingu.IOT.entity.MessageEntity;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
 
@@ -47,17 +43,17 @@ public class InputDao {
 //		this.jdbcTemplate = jdbcTemplate;
 //	}
 	public int addInput(InputEntity ie) {
-		String sql =" insert into input (in_ownername,in_class1,in_class2,in_mattername,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id) value (?,?,?,?,?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql,ie.getIn_ownername(),ie.getIn_class1(),ie.getIn_class2(),ie.getIn_mattername(),ie.getIn_total(),ie.getIn_pid(),ie.getIn_pname(),ie.getIn_pstandrad(),ie.getIn_parea(),ie.getIn_time(),ie.getTp_id());
+		String sql =" insert into input (in_ownername,in_class1,in_class2,in_mattername,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id,in_unit) value (?,?,?,?,?,?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql,ie.getIn_ownername(),ie.getIn_class1(),ie.getIn_class2(),ie.getIn_mattername(),ie.getIn_total(),ie.getIn_pid(),ie.getIn_pname(),ie.getIn_pstandrad(),ie.getIn_parea(),ie.getIn_time(),ie.getTp_id(),ie.getIn_unit());
 	}
 	
 	public int addInputList(List<InputEntity> ie) {
-		String sql =" insert into input (in_ownername,in_class1,in_class2,in_mattername,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id) values ";
+		String sql =" insert into input (in_ownername,in_class1,in_class2,in_mattername,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id,in_unit) values ";
 //		for(int i =0;i<ie.size();i++){
 //			sql +=" (?,?,?,?,?,?,?,?,?,?) ,";
 //		}
-		for (InputEntity inputEntity : ie) {
-			sql +=" ('"+inputEntity.getIn_ownername()+"',"+inputEntity.getIn_class1()+","+inputEntity.getIn_class2()+",'"+inputEntity.getIn_mattername()+"','"+inputEntity.getIn_total()+"',"+inputEntity.getIn_pid()+",'"+inputEntity.getIn_pname()+"','"+inputEntity.getIn_pstandrad()+"','"+inputEntity.getIn_parea()+"','"+inputEntity.getIn_time()+"','"+inputEntity.getTp_id()+"') ,";
+		for (InputEntity i : ie) {
+			sql +=" ('"+i.getIn_ownername()+"',"+i.getIn_class1()+","+i.getIn_class2()+",'"+i.getIn_mattername()+"','"+i.getIn_total()+"',"+i.getIn_pid()+",'"+i.getIn_pname()+"','"+i.getIn_pstandrad()+"','"+i.getIn_parea()+"','"+i.getIn_time()+"','"+i.getTp_id()+"','"+i.getIn_unit()+"') ,";
 		}
 		String substring = sql.substring(0, sql.length()-1);
 		return jdbcTemplate.update(substring);
@@ -116,6 +112,10 @@ public class InputDao {
 			sql +=" , tp_id =?";
 			list.add(ie.getTp_id());
 		}
+		if(ie.getIn_unit()>0){
+			sql +=" , in_unit =?";
+			list.add(ie.getIn_unit());
+		}
 		if(list.size()==1){
 			return 0;
 		}
@@ -125,7 +125,8 @@ public class InputDao {
 	}
 	
 	public List<Map<String, Object>> listInput(InputEntity ie) {
-		String sql ="select i.*,c_name class2name from input i left join class c on i.in_class2 = c.c_id  where 1=1";
+		String sql ="select i.*,c_name class2name from input i " +
+				"left join class c on i.in_class2 = c.c_id  where 1=1";
 		ArrayList<Object> list = new ArrayList<>();
 		if(ie.getIn_class1()>0){
 			sql +=" and i.in_class1 = ?";
@@ -140,8 +141,8 @@ public class InputDao {
 			list.add(ie.getIn_pid());
 		}
 		if(ie.getIn_mattername()!=null && ie.getIn_mattername().length()>0){
-			sql +=" and i.in_mattername =?";
-			list.add(ie.getIn_mattername());
+			sql +=" and i.in_mattername like '%"+ie.getIn_mattername()+"%'";
+
 		}
 		if(ie.getIn_ownername()!=null && ie.getIn_ownername().length()>0){
 			sql +=" and i.in_ownername =?";
@@ -210,8 +211,7 @@ public class InputDao {
 			list.add(ie.getIn_pid());
 		}
 		if(ie.getIn_mattername()!=null && ie.getIn_mattername().length()>0){
-			sql +=" and in_mattername =?";
-			list.add(ie.getIn_mattername());
+			sql +=" and in_mattername like '%"+ie.getIn_mattername()+"%'";
 		}
 		if(ie.getIn_ownername()!=null && ie.getIn_ownername().length()>0){
 			sql +=" and in_ownername =?";

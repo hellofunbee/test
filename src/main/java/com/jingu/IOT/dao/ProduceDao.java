@@ -13,18 +13,15 @@
 */ 
 package com.jingu.IOT.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.jingu.IOT.entity.ProduceEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.jingu.IOT.entity.ProduceEntity;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
 
@@ -112,7 +109,9 @@ public class ProduceDao {
 	
 	
 	public List<Map<String, Object>> listProducePlan(ProduceEntity pe){
-		String sql ="select p.*,c1.c_name c1_name,c2.c_name c2_name from  produce p left join class c1 on c1.c_id =p.p_class1 left join class c2 on c2.c_id = p.p_class2 where 1=1 ";
+		String sql ="select p.*,c1.c_name c1_name,c2.c_name c2_name from  produce p " +
+				"left join class c1 on c1.c_id =p.p_class1 " +
+				"left join class c2 on c2.c_id = p.p_class2 where 1=1 ";
 		ArrayList<Object> list = new ArrayList<>();
 		if(pe.getP_class1()>0){
 			sql +=" and p.p_class1 =?";
@@ -131,8 +130,7 @@ public class ProduceDao {
 			list.add(pe.getP_state());
 		}
 		if(pe.getP_name()!=null && pe.getP_name().trim().length()>0){
-			sql +=" and p.p_name =?";
-			list.add(pe.getP_name());
+			sql += " and  p.p_name like '%" + pe.getP_name() + "%'";
 		}
 		if(pe.getP_begintime()!=null && pe.getP_begintime().trim().length()>0){
 			sql +=" and p.p_begintime >= ?";
@@ -174,7 +172,9 @@ public class ProduceDao {
 	
 	
 	public int listProducePlanCount(ProduceEntity pe){
-		String sql ="select count(*) from  produce p left join class c1 on c1.c_id =p.p_class1 left join class c2 on c2.c_id = p.p_class2 where 1=1 ";
+		String sql ="select count(*) from  produce p " +
+				"left join class c1 on c1.c_id =p.p_class1 " +
+				"left join class c2 on c2.c_id = p.p_class2 where 1=1 ";
 		ArrayList<Object> list = new ArrayList<>();
 		if(pe.getP_class1()>0){
 			sql +=" and p.p_class1 =?";
@@ -193,8 +193,7 @@ public class ProduceDao {
 			list.add(pe.getP_state());
 		}
 		if(pe.getP_name()!=null && pe.getP_name().trim().length()>0){
-			sql +=" and p.p_name =?";
-			list.add(pe.getP_name());
+			sql += " and  p.p_name like '%" + pe.getP_name() + "%'";
 		}
 		if(pe.getP_begintime()!=null && pe.getP_begintime().trim().length()>0){
 			sql +=" and p.p_begintime >= ?";

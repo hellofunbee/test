@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.min.css">
     <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pagination.css">
 </head>
 <body>
 <div class="mx-main" page="synthesize">
@@ -90,7 +91,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <!--<tr>
                     <td>2018-07-16 19:00:01</td>
                     <td>2000lux</td>
                     <td>341.2ppm</td>
@@ -98,77 +99,11 @@
                     <td>25℃</td>
                     <td>23%</td>
                     <td>23%</td>
-                </tr>
-                <tr>
-                    <td>2018-07-16 19:00:01</td>
-                    <td>2000lux</td>
-                    <td>341.2ppm</td>
-                    <td>23℃</td>
-                    <td>25℃</td>
-                    <td>23%</td>
-                    <td>23%</td>
-                </tr>
-                <tr>
-                    <td>2018-07-16 19:00:01</td>
-                    <td>2000lux</td>
-                    <td>341.2ppm</td>
-                    <td>23℃</td>
-                    <td>25℃</td>
-                    <td>23%</td>
-                    <td>23%</td>
-                </tr>
-                <tr>
-                    <td>2018-07-16 19:00:01</td>
-                    <td>2000lux</td>
-                    <td>341.2ppm</td>
-                    <td>23℃</td>
-                    <td>25℃</td>
-                    <td>23%</td>
-                    <td>23%</td>
-                </tr>
-                <tr>
-                    <td>2018-07-16 19:00:01</td>
-                    <td>2000lux</td>
-                    <td>341.2ppm</td>
-                    <td>23℃</td>
-                    <td>25℃</td>
-                    <td>23%</td>
-                    <td>23%</td>
-                </tr>
-                <tr>
-                    <td>2018-07-16 19:00:01</td>
-                    <td>2000lux</td>
-                    <td>341.2ppm</td>
-                    <td>23℃</td>
-                    <td>25℃</td>
-                    <td>23%</td>
-                    <td>23%</td>
-                </tr>
-                <tr>
-                    <td>2018-07-16 19:00:01</td>
-                    <td>2000lux</td>
-                    <td>341.2ppm</td>
-                    <td>23℃</td>
-                    <td>25℃</td>
-                    <td>23%</td>
-                    <td>23%</td>
-                </tr>
-                <tr>
-                    <td>2018-07-16 19:00:01</td>
-                    <td>2000lux</td>
-                    <td>341.2ppm</td>
-                    <td>23℃</td>
-                    <td>25℃</td>
-                    <td>23%</td>
-                    <td>23%</td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
         </div>
-        <div class="mx-page"><a href="#" class="btn-o">首页</a> <a href="#" class="btn-o">上一页</a> <a href="#" class="cur">1</a>
-            <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a>
-            <a href="#">8</a> <span>…</span> <a href="#">20</a> <a href="#" class="btn-o">下一页</a> <a href="#"
-                                                                                                     class="btn-o">末页</a>
+        <div class="mx-page m-style">
         </div>
     </div>
 </div>
@@ -176,20 +111,117 @@
     var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
     document.write(html)
 }</script>
-<script>$(function () {
-    var r = $("[page=synthesize]"), d = 1, l = function (e) {
-        var a = r.find("#big_data_analysis_device_tree").data("z-tree").getSelectedNodes();
-        if (a && 0 !== a.length)if (1 === a.length) {
-            if (3 === a[0].oriData.tp_type) {
-                var t = a[0].oriData.deviceId;
-                r.find(".synDeviceName").text(a[0].oriData.tp_name);
-                var i = a[0].oriData.tp_id;
-                e || API.listSensorChartInfo(t, i, function (e) {
+<script src="js/jquery.pagination.js"></script>
+<script>
+    $(function () {
+        var current_page = 1;
+
+        var page = $("[page=synthesize]");
+        var treeEl = page.find("#big_data_analysis_device_tree");
+        var tblIpcList = page.find(".cgxx-cnt");
+        var ipcTBody = tblIpcList.find("tbody");
+        var ipcTHead = tblIpcList.find("thead");
+        var lastSelectNode;
+        var lastSettingData;
+        var onNodeSelect = function (node) {
+//            var node = treeEl.data("z-tree").getSelectedNodes();
+            if (node && lastSelectNode && lastSelectNode === node)return;
+            if (!node)node = lastSelectNode;
+            if (!node)return;
+            if (node.oriData["tp_type"] === 4) {
+                var pNode = node.getParentNode();
+                if (pNode) {
+                    treeEl.data("z-tree").selectNode(pNode);
+                    onNodeSelect(pNode);
+                    return
+                }
+            }
+            //当点击父节点时，自动选择第一个设备
+            if (node.oriData["tp_type"] < 3) {
+                while (node && node.oriData["tp_type"] < 3) {
+                    var c = node.children;
+                    if (c && c.length > 0) {
+                        node = c[0];
+                        if (node && node.oriData["tp_type"] === 3) {
+                            treeEl.data("z-tree").selectNode(node);
+                            onNodeSelect(node);
+                            return
+                        }
+                    } else {
+                        return;
+                    }
+                }
+            }
+
+            lastSelectNode = node;
+            page.trigger("node-change")
+//            treeEl.parents(".tree-cnt").hide();
+        };
+
+
+        /*treeEl.on("z-tree-load", function () {
+         var e = $(this).data("z-tree");
+         UI.findFirstDeviceOnTree(e, 3, function (e) {
+         e ? l() : layer.msg("请选择设备")
+         })
+         })*/
+
+        var loadConfigPanel = function () {
+            var node = lastSelectNode;
+            treeEl.parents(".tree-cnt").hide();
+
+            var tp_type = node.oriData.tp_type;
+            var name = node.oriData["tp_name"];
+            var tp_id = node.oriData["tp_id"];
+            var ip = node.oriData["ip"];
+            var port = node.oriData["port"];
+            var deviceId = node.oriData["deviceId"];
+            var parentNode = node.getParentNode();
+            if (parentNode && parentNode.oriData) {
+                name = parentNode.oriData["tp_name"] + " " + name
+            }
+
+
+            page.find(".sm-userInfo").text(name);
+            startLoading();
+            reload();
+            stopLoading();
+
+        };
+
+        treeEl.on("z-tree-load", function () {
+            var nodes = $(this).data("z-tree").getNodes();
+            nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+            // UI.findFirstDeviceOnTreeActive($(this).data("z-tree"), 3, onNodeSelect)
+        });
+
+        page.on("node-change", loadConfigPanel);
+        UI.renderPointTree("#big_data_analysis_device_tree", onNodeSelect);
+
+        page.find("#big_data_analysis_device_proj"),
+                page.find("#big_data_analysis_device_from"),
+                page.find("#big_data_analysis_device_to");
+        page.find(".sblb>h3").click(function () {
+            $(this).next().toggle()
+        });
+
+        function reload(notShowMsg) {
+            var node = lastSelectNode;
+
+            var tp_type = node.oriData.tp_type;
+            var tp_name = node.oriData["tp_name"];
+            var tp_id = node.oriData["tp_id"];
+            var deviceId = node.oriData["deviceId"];
+
+            if (3 === tp_type) {
+                page.find(".synDeviceName").text(tp_name);
+
+                API.listSensorChartInfo(deviceId, tp_id, function (e) {
                     var t = e.object.data;
                     if (1 === t.length) {
                         t = t[0];
                         var i = e.object.info;
-                        r.find(".userInfo-more span[field]").each(function () {
+                        page.find(".userInfo-more span[field]").each(function () {
                             var e, a = $(this).attr("field");
                             null !== (e = i[a]) && ("state" === a && (e = {
                                         1: "运行中",
@@ -209,12 +241,16 @@
                             })
                         }), UI.renderSynChart(".cgq-list", n)
                     }
-                }), API.listSensorInfo(t, i, Math.max(1, d), function (e) {
+                }), API.listSensorInfo(deviceId, tp_id, Math.max(1, current_page), function (e) {
+
+
                     var a = e.object.unit, t = [{
                         field: "infoDataTime", label: "时间", render: function (e) {
                             return new Date(e).format("yyyy-MM-dd hh:mm:ss")
                         }
                     }], i = ["时间"];
+
+
                     $(a).each(function (e) {
                         var a = this;
                         1 === a.listDisplay && (i.push(a.name), t.push({
@@ -226,37 +262,62 @@
                             }
                         }))
                     });
-                    var n = r.find(".mx-table2").find("thead").empty();
+                    var n = page.find(".mx-table2").find("thead").empty();
                     $(i).each(function (e) {
                         n.append($("<th></th>").append(this))
                     }), UI.renderSimpleTable({
-                        tableEl: r.find(".mx-table2"),
+                        tableEl: page.find(".mx-table2"),
                         fields: t,
-                        paperEl: r.find(".mx-page"),
+                        paperEl: null,
+                        paperEl: page.find(".mx-page"),
                         dataObjectArray: e.object.data,
                         count: e.object.count,
-                        pageNo: d,
+                        pageNo: current_page,
                         totalPages: e.object.totalpage,
                         onPageItemClick: function (e) {
-                            d = e, l(!0)
+                            current_page = e, reload(!0)
                         }
-                    })
+                    });
+                    pageIt(e.object.totalpage);
                 })
+            } else {
+                layer.msg('请选择一个主设备');
             }
-        } else layer.msg("请选择一个设备!"); else layer.msg("请选择设备")
-    };
-    UI.renderPointTree("#big_data_analysis_device_tree", function (e) {
-        e && e.oriData && 3 === e.oriData.tp_type && (r.find("#big_data_analysis_device_tree").parents(".tree-cnt").hide(), l())
+
+        };
+
+
+        /**
+         * 分页
+         * @param o
+         * @param c
+         * @param p
+         */
+        function pageIt(p) {
+            return
+
+            $('.M-box').pagination(
+                    {
+                        pageCount: p,
+                        jump: true,
+                        current: current_page,
+                        coping: true,
+                        homePage: '首页',
+                        endPage: '末页',
+                        prevContent: '上页',
+                        nextContent: '下页',
+                        callback: function (api) {
+                            current_page = api.getCurrent();
+                            reload()
+                        }
+                    }
+            );
+
+        }
+        ;
     });
-    r.find("#big_data_analysis_device_proj"), r.find("#big_data_analysis_device_from"), r.find("#big_data_analysis_device_to");
-    r.find(".sblb>h3").click(function () {
-        $(this).next().toggle()
-    }), r.find("#big_data_analysis_device_tree").on("z-tree-load", function () {
-        var e = $(this).data("z-tree");
-        UI.findFirstDeviceOnTree(e, 3, function (e) {
-            e ? l() : layer.msg("请选择设备")
-        })
-    })
-})</script>
+
+
+</script>
 </body>
 </html>

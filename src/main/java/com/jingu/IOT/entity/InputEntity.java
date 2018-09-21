@@ -29,6 +29,7 @@ public class InputEntity {
 	in_pid,
 	start,
 	tp_id,
+	in_unit,
 	pagesize =20;
 	
 	private String in_ownername,
@@ -208,5 +209,12 @@ public class InputEntity {
 		}
 		this.in_time = in_time;
 	}
-	
+
+	public int getIn_unit() {
+		return in_unit;
+	}
+
+	public void setIn_unit(int in_unit) {
+		this.in_unit = in_unit;
+	}
 }

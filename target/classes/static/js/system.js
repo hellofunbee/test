@@ -549,7 +549,6 @@ $(function () {
             btn: ["保存", "取消"],
             yes: function (index, layo) {
                 var obj = getValueObj(layo);
-                console.log(obj)
                 if (!obj) {
                     return true
                 }
@@ -571,7 +570,19 @@ $(function () {
             content: '<div class="main-body"></div>',
             success: function (layero) {
                 var toEl = layero.find(".main-body");
+
                 var ctl_el = UI.appendFieldTo(content, {}, toEl);
+
+                ctl_el.find("[field=ctrl_name],[field=ctrl_nickname]").each(function () {
+
+                    $(this).empty();
+                    $('<input type="text" class="text-lg">').attr("required", "required").attr("field", $(this).attr("field")).appendTo($(this).removeAttr("field"))
+
+                })
+
+                var pass = ctl_el.find('[field=ctrl_deviceId]').empty();
+
+                $('<input type="text" value="' + deviceId + '" class="text-lg" readonly="readonly">').attr("required", "required").attr("field", $(pass).attr("field")).appendTo($(pass).removeAttr("field"))
 
 
             }

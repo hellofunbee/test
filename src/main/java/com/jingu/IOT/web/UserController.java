@@ -330,7 +330,7 @@ public class UserController {
         if (check == null || !ur.getCksid().equals(check)) {
             return new IOTResult(false, "登陆失效", null, 2);
         }
-        RelationShipEntity relationShipEntity = new RelationShipEntity();
+
         long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
         int ckAdmin = userService.ckSuperAdmin(uid);
         if (ckAdmin == 0) {
@@ -340,7 +340,10 @@ public class UserController {
         if (listUser == null) {
             listUser = new ArrayList<>();
         }
+
+        RelationShipEntity relationShipEntity = new RelationShipEntity();
         for (UserEntity userEntity : listUser) {
+
             if (userEntity.getTu_type() == 3) {
                 int uid2 = userEntity.getUid();
                 relationShipEntity.setProducerid(uid2);

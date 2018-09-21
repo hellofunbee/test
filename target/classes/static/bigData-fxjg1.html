@@ -1,1 +1,54 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物联网-大数据分析-监测单数据-分析结果</title><link rel="stylesheet" href="css/reset.min.css"><link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css"><link rel="stylesheet" href="css/style.css"></head><body><div class="mx-main" page="big-data-fxjg1"><div class="mx-handle clearfix"><div class="sm-title fl">监测单数据</div></div><div class="mt20"><a href="bigData.html" onclick='return window.showMainContent(this.getAttribute("href")),!1' class="btn-lg">上一步</a></div><div class="fx-result mt20"><div class="fx-result-olist" id="chart1"></div></div></div><script type="text/javascript">if(!window.jQuery){var html='<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';document.write(html)}</script><link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css"><script src="js/jqplot/jquery.jqplot.min.js"></script><script>$(function(){setTimeout(function(){$('[page="big-data-fxjg1"]');var a=$("div#main_iframe").attr("src")||location.href,e=purl(a),i={};i.beginTime=e.param("beginTime"),i.endTime=e.param("endTime"),i.deviceList=e.param("deviceList"),i.channelList=e.param("channelList"),API.service("/getStaticData",i,function(a){$.each(a.object,function(a){console.log(this);var e=[];for(a=0;a<2*Math.PI;a+=.1)e.push([a,Math.cos(a)]);$.jqplot("chart1",[e],{series:[{showMarker:!1}],axes:{xaxis:{label:"Angle (radians)"},yaxis:{label:"Cosine"}}})})})},100)})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-大数据分析-监测单数据-分析结果</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="mx-main" page="big-data-fxjg1">
+    <div class="mx-handle clearfix">
+        <div class="sm-title fl">监测单数据</div>
+    </div>
+    <div class="mt20"><a href="bigData.html" onclick='return window.showMainContent(this.getAttribute("href")),!1'
+                         class="btn-lg">上一步</a></div>
+    <div class="fx-result mt20">
+        <div class="fx-result-olist" id="chart1"></div>
+    </div>
+</div>
+<script type="text/javascript">if (!window.jQuery) {
+    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+    document.write(html)
+}</script>
+<link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css">
+<script src="js/jqplot/jquery.jqplot.min.js"></script>
+<script>$(function () {
+    setTimeout(function () {
+        $('[page="big-data-fxjg1"]');
+        var a = $("div#main_iframe").attr("src") || location.href, e = purl(a), i = {};
+        i.beginTime = e.param("beginTime"),
+                i.endTime = e.param("endTime"),
+                i.deviceList = e.param("deviceList"),
+                i.channelList = e.param("channelList");
+
+                API.service("/getStaticData", i, function (a) {
+                    console.log(i);
+                    console.log(a);
+                    $.each(a.object, function (a) {
+//                        console.log(this);
+                        var e = [];
+                        for (a = 0; a < 2 * Math.PI; a += .1)e.push([a, Math.cos(a)]);
+                        $.jqplot("chart1", [e], {
+                            series: [{showMarker: !1}],
+                            axes: {xaxis: {label: "Angle (radians)"},
+                                yaxis: {label: "Cosine"}}
+                        })
+                    })
+                })
+    }, 100)
+})</script>
+</body>
+</html>
