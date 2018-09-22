@@ -141,7 +141,7 @@ API.listSensorChartInfo = function (deviceId, tpId, successFunc, errorFunc) {
     API.service("/listSensorChartInfo", {deviceId: deviceId, tp_id: tpId}, successFunc, errorFunc)
 };
 API.listSensorInfo = function (deviceId, tpId, start, successFunc, errorFunc) {
-    API.service("/listSensorInfo", {deviceId: deviceId, tp_id: tpId, start: start,pagesize:10}, successFunc, errorFunc)
+    API.service("/listSensorInfo", {deviceId: deviceId, tp_id: tpId, start: start}, successFunc, errorFunc)
 };
 API.listMessage = function (type, id, start, successFunc, errorFunc) {
     API.service("/listMessage", {m_type: type, m_id: id, start: start}, successFunc, errorFunc)

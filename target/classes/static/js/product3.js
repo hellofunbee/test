@@ -165,7 +165,13 @@ $(function () {
         return false
     });
     queryIt = function () {
-
+        var data = {
+            p_class1: inClass1.attr("value"),
+            p_class2: inClass2.attr("value"),
+            p_begintime: beginTimeEl.val(),
+            p_endtime: endTimeEl.val(),
+        }
+        console.log(data)
 
         var node = lastSelectNode;
         if (node && node.oriData && node.oriData["tp_type"] === 3) {

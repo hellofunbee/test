@@ -42,10 +42,6 @@ public class SettingDao {
     @Qualifier("primaryJdbcTemplate")
     private JdbcTemplate jdbcTemplate;
 
-    //	@Autowired
-//	public SettingDao(JdbcTemplate jdbcTemplate) {
-//		this.jdbcTemplate = jdbcTemplate;
-//	}
     public String getSettings(VAREntity var) {
         String sql = "select ts_var_configstr from t_setting where ts_deviceId=? limit 1";
         try {

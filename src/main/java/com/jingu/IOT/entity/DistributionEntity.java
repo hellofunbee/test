@@ -39,9 +39,11 @@ public class DistributionEntity {
 	private String p_city;
 	private String p_district;
 	private List<ContentValueEntity> content;
-	
-	
-	
+
+
+	private String orginalName;
+	private String fileName;
+	private int d_procedure;
 	
 	
 	public DistributionEntity() {
@@ -51,7 +53,7 @@ public class DistributionEntity {
 
 	public DistributionEntity(int d_id, int d_type, int d_state, String d_province, String d_city, String d_district,
 			String d_content, String d_value, int d_index, String d_time, String p_province, String p_city,
-			String p_district, List<ContentValueEntity> content) {
+			String p_district, List<ContentValueEntity> content,String orginalName,String fileName,int d_procedure) {
 		super();
 		this.d_id = d_id;
 		this.d_type = d_type;
@@ -67,8 +69,31 @@ public class DistributionEntity {
 		this.p_city = p_city;
 		this.p_district = p_district;
 		this.content = content;
+		this.orginalName = orginalName;
+		this.fileName = fileName;
+		this.d_procedure = d_procedure;
 	}
-	
+
+	public DistributionEntity(int d_id, int d_type, int d_state, String d_province, String d_city, String d_district,
+							  String d_content, String d_value, int d_index, String d_time, String p_province, String p_city,
+							  String p_district, List<ContentValueEntity> content) {
+		super();
+		this.d_id = d_id;
+		this.d_type = d_type;
+		this.d_state = d_state;
+		this.d_province = d_province;
+		this.d_city = d_city;
+		this.d_district = d_district;
+		this.d_content = d_content;
+		this.d_value = d_value;
+		this.d_index = d_index;
+		this.d_time = d_time;
+		this.p_province = p_province;
+		this.p_city = p_city;
+		this.p_district = p_district;
+		this.content = content;
+
+	}
 	public String getP_province() {
 		return p_province;
 	}
@@ -171,7 +196,29 @@ public class DistributionEntity {
 	public void setD_index(int d_index) {
 		this.d_index = d_index;
 	}
-	
-	
-	
+
+
+	public String getOrginalName() {
+		return orginalName;
+	}
+
+	public void setOrginalName(String orginalName) {
+		this.orginalName = orginalName;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public int getD_procedure() {
+		return d_procedure;
+	}
+
+	public void setD_procedure(int d_procedure) {
+		this.d_procedure = d_procedure;
+	}
 }

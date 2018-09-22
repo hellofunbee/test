@@ -17,19 +17,19 @@ import com.jingu.IOT.entity.PointEntity;
 import com.jingu.IOT.entity.SettingEntity;
 import com.jingu.IOT.entity.VAREntity;
 import com.jingu.IOT.requset.PointRequest;
+import com.jingu.IOT.response.IOTResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
-
+ * @author jianghu
  * @ClassName: GatherService
  * @Description: TODO
- * @author jianghu
  * @date 2017年9月8日 下午8:02:42
-
  */
 @Component
 public class GatherService {
@@ -109,5 +109,59 @@ public class GatherService {
 
     public List<Map<String, Object>> listStaticInfo(String field, String deviceId, String beginTime, String endTime) {
         return gatherDao.listStateInfo(field, deviceId, beginTime, endTime);
+    }
+
+
+    public Map<String, Object> getChannalNByField(String field) {
+
+        List<Map<String, Object>> channels = gatherDao.getChannalNByField(field);
+
+        if (channels == null || channels.size() == 0)
+            return null;
+        else {
+            if (channels.get(0).get("name") != null)
+                return channels.get(0);
+            else
+                return null;
+        }
+
+    }
+
+    /**
+     * @param statDisplay 分析显示
+     * @param ids         设备ids
+     * @return
+     */
+    public IOTResult getSttings(int statDisplay, List<String> ids) {
+        List<Map<String, Object>> settings = gatherDao.getSettings(statDisplay, ids);
+
+        if (settings == null || settings.size() == 0)
+            return new IOTResult(false, "无数据", null, 0);
+        int count = ids.size();
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        //取合集
+        List<String> listTemp = new ArrayList();
+        for (int i = 0; i < settings.size(); i++) {
+            if (!listTemp.contains(settings.get(i).get("fieldName"))) {
+                listTemp.add((String) settings.get(i).get("fieldName"));
+            }
+        }
+        //取交集
+        for (String feildName : listTemp) {
+            int c = 0;
+            Map now = null;
+            for (Map s : settings) {
+                if (feildName.equals(s.get("fieldName"))) {
+                    c++;
+                }
+                if (count == c) {
+                    result.add(s);
+                    break;
+                }
+            }
+        }
+
+        return new IOTResult(true, "success", result, 0);
     }
 }

@@ -30,7 +30,8 @@ public class PointRequest extends PointEntity{
 	private int start ;
 	private int app;
 	private String p_time;
-	
+
+
 	public String getP_time() {
 		return p_time;
 	}
@@ -75,5 +76,6 @@ public class PointRequest extends PointEntity{
 		this.cksid = cksid;
 	}
 
-	
+
+
 }

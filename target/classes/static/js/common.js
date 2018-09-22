@@ -311,8 +311,10 @@ if (!window.js_common_loaded) {
                     ;
 
                     if (e.state == 0) {
-                        $("#" + img_id).attr("src", e.object);
-                        $("#" + img_id).attr("value", e.object)
+                        if ($("#" + img_id)) {
+                            $("#" + img_id).attr("src", e.object);
+                            $("#" + img_id).attr("value", e.object)
+                        }
 
                     } else if (e.state == 2) {
                         layer.alert(e.msg, function () {

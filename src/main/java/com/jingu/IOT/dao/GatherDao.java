@@ -26,12 +26,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
-
+ * @author jianghu
  * @ClassName: GatherDao
  * @Description: TODO
- * @author jianghu
  * @date 2017年8月28日 下午3:37:03
-
  */
 @Component
 public class GatherDao {
@@ -47,6 +45,7 @@ public class GatherDao {
 
     /**
      * 获取规格文件【规格文件为取数据（T_VARTRIVER_xxxxxxxx（数据））规则】
+     *
      * @param varEntity 主设备
      * @return
      */
@@ -57,6 +56,7 @@ public class GatherDao {
 
     /**
      * 添加规格文件
+     *
      * @param list
      * @return
      */
@@ -76,6 +76,7 @@ public class GatherDao {
 
     /**
      * 根据设备删除规格文件
+     *
      * @param se
      * @return
      */
@@ -87,6 +88,7 @@ public class GatherDao {
 
     /**
      * 根据设备id删除规格文件
+     *
      * @param se
      * @return
      */
@@ -97,6 +99,7 @@ public class GatherDao {
 
     /**
      * 获取某个（主）设备的规格文件
+     *
      * @param se
      * @return
      */
@@ -107,6 +110,7 @@ public class GatherDao {
 
     /**
      * 根据id删除规格文件
+     *
      * @param se
      * @return
      */
@@ -117,6 +121,7 @@ public class GatherDao {
 
     /**
      * 更新规格文件
+     *
      * @param se
      * @return
      */
@@ -206,6 +211,7 @@ public class GatherDao {
 
     /**
      * 获取采集数据
+     *
      * @param pEntity
      * @return
      */
@@ -224,7 +230,7 @@ public class GatherDao {
         }
         String string = queryForList.get(0).get("name").toString();
 
-         //获取各频道数据
+        //获取各频道数据
         // TODO 数据是否需要转换类型
 
         String sql1 = "select  t." + string + ",t.infoDataTime from " + table + " t order by infoDataTime desc";
@@ -243,6 +249,7 @@ public class GatherDao {
 
     /**
      * 获取首条数据
+     *
      * @param pEntity
      * @return
      */
@@ -265,6 +272,7 @@ public class GatherDao {
 
     /**
      * 获取采集数据单位
+     *
      * @param pEntity
      * @return
      */
@@ -287,6 +295,7 @@ public class GatherDao {
 
     /**
      * 设备通知信息
+     *
      * @param pEntity
      * @return
      */
@@ -297,6 +306,7 @@ public class GatherDao {
 
     /**
      * 根据 规格名称 查找设备下的规格 channel
+     *
      * @param list
      * @return
      */
@@ -306,7 +316,7 @@ public class GatherDao {
         if (list.size() > 1) {
             sql += "and (";
             for (int i = 0; i < list.size() - 1; i++) {
-                s += " or name = ?";
+                s += " or fieldName = ?";
             }
             String substring = s.substring(3);
             sql += substring + ")";
@@ -316,6 +326,7 @@ public class GatherDao {
 
     /**
      * 设备下的采集数据数量
+     *
      * @param pr
      * @return
      */
@@ -328,24 +339,43 @@ public class GatherDao {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
-	
 
     /**
      * 设备的规格数据名称，和字段名（channel）
+     *
      * @param pEntity
      * @return
      */
     public List<Map<String, Object>> listChannel(PointEntity pEntity) {
-        String sql = "select name,fieldName from t_vartriver_parsedata where deviceId= ?";
-        return jdbcTemplate.queryForList(sql, pEntity.getDeviceId());
+        String sql = "select * from t_vartriver_parsedata where deviceId= ?";
+        List<Object> params = new ArrayList<>();
+        params.add(pEntity.getDeviceId());
+
+        if (pEntity.getChartDisplay() > 0) {
+            sql += " and chartDisplay = ?";
+            params.add(pEntity.getChartDisplay());
+
+        }
+        if (pEntity.getListDisplay() > 0) {
+            sql += " and listDisplay = ?";
+            params.add(pEntity.getListDisplay());
+
+        }
+        if (pEntity.getStatDisplay() > 0) {
+            sql += " and statDisplay = ?";
+            params.add(pEntity.getStatDisplay());
+
+        }
+        return jdbcTemplate.queryForList(sql, params.toArray());
     }
 
     /**
      * 查找 日期范围内数据的  日期 和 field对应的数据值
-     * @param field  channel字段
-     * @param deviceId 设备id
+     *
+     * @param field     channel字段
+     * @param deviceId  设备id
      * @param beginTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return
      */
     public List<Map<String, Object>> listStateInfo(String field, String deviceId, String beginTime, String endTime) {
@@ -383,11 +413,35 @@ public class GatherDao {
 
     /**
      * 设备的规格文件的 名称及channel
+     *
      * @param deviceId
      * @return
      */
     public List<Map<String, Object>> listChannelByDeviceId(String deviceId) {
-        String sql = "select name,fieldName from t_vartriver_parsedata where deviceId= ? and statDisplay=1 ";
+        String sql = "select name,fieldName,unit from t_vartriver_parsedata where deviceId= ? and statDisplay=1 ";
         return jdbcTemplate.queryForList(sql, deviceId);
     }
-}	
+
+    public List<Map<String, Object>> getSettings(int statDisplay, List<String> ids) {
+
+        StringBuffer sb = new StringBuffer();
+        for (String id : ids) {
+            sb.append("'");
+            sb.append(id);
+            sb.append("'");
+            sb.append(",");
+        }
+
+
+        String sql = "select name,fieldName,unit from t_vartriver_parsedata where deviceId in (" + sb.substring(0, sb.length() - 1) + ") and statDisplay= " + statDisplay;
+        return jdbcTemplate.queryForList(sql);
+
+    }
+
+    public List<Map<String, Object>> getChannalNByField(String field) {
+
+        String sql = "select * from t_vartriver_parsedata where fieldName = '" + field +
+                "' and unit <> '' and name <> '' limit 1";
+        return jdbcTemplate.queryForList(sql);
+    }
+}

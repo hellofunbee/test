@@ -1,1 +1,295 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>物联网-大数据分析-监测单数据-分析结果</title><link rel="stylesheet" href="css/reset.min.css"><link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css"><link rel="stylesheet" href="css/style.css"></head><body><div class="mx-main" page="big-data-fxjg2"><div class="mx-handle clearfix"><div class="sm-title fl">监测多数据</div></div><div class="mt20"><a href="bigData2.html" onclick='return window.showMainContent(this.getAttribute("href")),!1' target="_parent" class="btn-lg">上一步</a></div><div class="fx-result mt20"><div class="fx-result-list"></div><div class="fx-result-list"></div><div class="fx-result-list"></div><div class="fx-result-list"></div></div></div><script type="text/javascript">if(!window.jQuery){var html='<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';document.write(html)}</script><link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css"><script src="js/jqplot/jquery.jqplot.min.js"></script><script>var init=function(){var i=$('[page="big-data-fxjg2"]'),a=i.parents("div#main_iframe").attr("src")||location.href;API.service("/getStaticData",JSON.parse(purl(a).param("reportParams")),function(a){var e=i.find(".fx-result").empty();$.each(a.object,function(a){console.log(this);for(var i=[],t=0;t<2*Math.PI;t+=.1)i.push([t,Math.cos(t)]);$('<div class="fx-result-list" id="chart_'+a+'"></div>').appendTo(e);$.jqplot("chart_"+a,[i],{series:[{showMarker:!1}],axes:{xaxis:{label:this.deviceName},yaxis:{label:"Cosine"}}})})})};setTimeout(init,100),$(".jcdsj-module>div:not(:first)").hide(),$(".little-menu li").click(function(){$(this).addClass("on").siblings().removeClass("on");var a=$(this).children("a").attr("data-href");$(a).show().siblings().hide()})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-大数据分析-监测单数据-分析结果</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="mx-main" page="big-data-fxjg2">
+    <div class="mx-handle clearfix">
+        <div class="sm-title fl">监测多数据</div>
+    </div>
+    <div class="mt20">
+        <a href="bigData2.html" onclick='return window.showMainContent(this.getAttribute("href")),!1'
+           target="_parent" class="btn-lg">上一步</a>
+        <a class="btn-lg" id="modle" value="1">设备-->检测指标</a>
+    </div>
+    <div class="fx-result mt20">
+        <div class="fx-result-list"></div>
+        <div class="fx-result-list"></div>
+        <div class="fx-result-list"></div>
+        <div class="fx-result-list"></div>
+    </div>
+</div>
+<script type="text/javascript">if (!window.jQuery) {
+    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+    document.write(html)
+}
+</script>
+<link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css">
+<script src="js/jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.logAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasAxisTickRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.barRenderer.js"></script>
+
+<script>
+
+    var rurl = '/getStaticData_Batch';
+    $('#modle').on('click', function () {
+        if ($(this).attr('value') == 1) {
+            $(this).attr('value', 2)
+            $(this).text('检测指标-->设备');
+            rurl = '/getStaticData';
+            init();
+        } else {
+
+            $(this).attr('value', 1)
+            $(this).text('设备-->检测指标');
+            rurl = '/getStaticData_Batch';
+            init();
+        }
+
+    });
+    var init = function () {
+        var a = $("div#main_iframe").attr("src") || location.href;
+        var param = JSON.parse(purl(a).param("reportParams"));
+
+        API.service(rurl, JSON.parse(purl(a).param("reportParams")),
+                function (a) {
+
+                    if ($('#modle').attr('value') == 1)
+                        loadByChannel(a)
+                    else
+                        loadByDV(a);
+
+                })
+    };
+
+    function loadByChannel(a) {
+        var c_el = $(".fx-result").empty();
+        $.each(a.object, function (i, o) {
+
+            var channel = o.channel;
+            var name = o.name + '(' + o.unit + ')';
+            var unit = '(' + o.unit + ')';
+
+            var data1 = [];
+            var series = [];
+            for (var ii in o.data) {
+                var data2 = [];
+                var item = o.data[ii];
+                var deviceId = item.deviceId;
+                var deviceName = item.deviceName;
+
+
+                var vals = item.list;
+                var x_label = "时间";
+                var y_label = deviceName;
+                var title = name + '分析';
+                $(vals).each(function (iii) {
+                    data2.push([vals[iii]['infoDataTime'], parseFloat(vals[iii][channel])]);
+
+                });
+
+                if (data2.length > 0) {
+                    data1.push(data2);
+                    series.push({
+                        fill: false,
+                        label: y_label
+                    });
+                }
+
+
+            }
+
+
+            if (data1.length > 0) {
+                /*class="fx-result-list"*/
+                $('<div  style="height: 450px" id="chart_' + i + '"></div>').appendTo(c_el);
+
+                var plot2 = $.jqplot('chart_' + i, data1, {
+                    title: title,
+                    cursor: {
+                        show: false
+                    },
+                    legend: {
+                        show: true,//设置是否出现分类名称框（即所有分类的名称出现在图的某个位置）
+                        location: 'ne',     // 分类名称框出现位置, nw, n, ne, e, se, s, sw, w.
+                        xoffset: 12,        // 分类名称框距图表区域上边框的距离（单位px）
+                        yoffset: 12,        // 分类名称框距图表区域左边框的距离(单位px)
+                        background: '',       //分类名称框距图表区域背景色
+                        textColor: ''          //分类名称框距图表区域内字体颜色
+                    },
+                    series: series,
+                    highlighter: {
+                        show: true,
+                        showMarker: false,
+                        useAxesFormatters: false,
+                        formatString: '%d, %.1f'
+
+                    },
+                    seriesDefaults: {
+                        showMarker: false,
+                        rendererOptions: {
+                            smooth: true,
+                            animation: {
+                                show: false
+                            }
+                        },
+                    },
+                    axes: {
+                        xaxis: {
+                            renderer: $.jqplot.DateAxisRenderer,
+                            label: x_label,
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+
+                            tickOptions: {
+                                // labelPosition: 'middle',
+                                angle: 30,
+                                formatString: '%Y-%m-%d %H时',
+                            }
+
+                        },
+                        yaxis: {
+                            label: unit,
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                        }
+                    }
+                });
+            }
+
+        })
+    }
+    function loadByDV(a) {
+        var c_el = $(".fx-result").empty();
+        $.each(a.object, function (i, o) {
+
+            var deviceId = o.deviceId;
+            var deviceName = o.deviceName;
+            var deviceId = o.deviceId;
+
+            var date = o.info.date;
+
+            var data1 = [];
+            var series = [];
+            for (var ii in o.info.data) {
+                var data2 = [];
+
+
+                var item = o.info.data[ii];
+
+                var channel = item.channel;
+
+                var vals = item.data;
+
+                var y_lable;
+                //光照度
+                if ('Channel15' == channel) {
+                    y_lable = item.name + '(' + item.unit + '/100)';
+                } else {
+                    y_lable = item.name + '(' + item.unit + ')';
+                }
+
+                var x_label = "时间";
+
+                var title = deviceName + ' 综合分析';
+
+                $(date).each(function (iii) {
+                    if ('Channel15' == channel) {
+                        data2.push([date[iii], parseFloat(vals[iii])/100]);
+                    }else{
+                        data2.push([date[iii], parseFloat(vals[iii])]);
+                    }
+
+                });
+                if (data2.length > 0) {
+                    data1.push(data2);
+                    series.push({
+
+                        label: y_lable
+                    });
+                }
+
+
+            }
+            console.log(data1)
+
+
+            if (data1.length > 0) {
+                $('<div style="height: 450px" id="chart_' + i + '"></div>').appendTo(c_el);
+
+                var plot2 = $.jqplot('chart_' + i, data1, {
+                    title: title,
+                    cursor: {
+                        show: false
+                    }, series: series,
+
+                    legend: {
+                        show: true,//设置是否出现分类名称框（即所有分类的名称出现在图的某个位置）
+                        location: 'ne',     // 分类名称框出现位置, nw, n, ne, e, se, s, sw, w.
+                        xoffset: 12,        // 分类名称框距图表区域上边框的距离（单位px）
+                        yoffset: 12,        // 分类名称框距图表区域左边框的距离(单位px)
+                        background: '',       //分类名称框距图表区域背景色
+                        textColor: ''          //分类名称框距图表区域内字体颜色
+                    },
+                    highlighter: {
+                        show: true,
+                        showMarker: false,
+                        useAxesFormatters: false,
+                        formatString: '%d, %.1f'
+                    },
+                    seriesDefaults: {
+                        showMarker: false,
+                        rendererOptions: {
+                            smooth: true
+                        }
+                    },
+                    axes: {
+                        xaxis: {
+                            renderer: $.jqplot.DateAxisRenderer,
+                            label: x_label,
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+
+                            tickOptions: {
+                                // labelPosition: 'middle',
+                                angle: 30,
+                                formatString: '%Y-%m-%d %H时'
+                            }
+
+                        },
+                        yaxis: {
+                            label: y_lable,
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                        }
+                    }
+                });
+            }
+
+
+            /*$.jqplot("chart_" + a, [i], {
+             series: [{showMarker: !1}],
+             axes: {xaxis: {label: this.deviceName}, yaxis: {label: "Cosine"}}
+             })*/
+        })
+    }
+
+    setTimeout(init, 100),
+            $(".jcdsj-module>div:not(:first)").hide(), $(".little-menu li").click(function () {
+        $(this).addClass("on").siblings().removeClass("on");
+        var a = $(this).children("a").attr("data-href");
+        $(a).show().siblings().hide()
+    })</script>
+</body>
+</html>

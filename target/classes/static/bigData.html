@@ -91,7 +91,8 @@
     function setChannels() {
         API.service("/getGatherSettings", {
             deviceId: lastSelectNode.oriData.deviceId,
-            tp_id: lastSelectNode.oriData.tp_id
+            tp_id: lastSelectNode.oriData.tp_id,
+            statDisplay:1
         }, function (e) {
 
             if (e.object.length == 0)
@@ -140,8 +141,8 @@
                     return layer.msg("请先选择要分析的设备!"), !1;
                 if (10 !== t.beginTime.length || 10 !== t.endTime.length)
                     return layer.msg("请先选择日期范围!"), !1;
-               var r = apiPre+"/bigData-fxjg1.html"+"?" + $.param(t);
-                 showMainContent(r)
+                var r = apiPre+"/bigData-fxjg1.html"+"?" + $.param(t);
+                showMainContent(r)
 
                 return !1
             })

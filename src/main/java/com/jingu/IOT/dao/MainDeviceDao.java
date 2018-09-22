@@ -190,10 +190,10 @@ public class MainDeviceDao {
 		return jdbcTemplate.query(sql,new MainDeviceEntity(),mde.getId());
 	}
 	
-//	public  List<MainDeviceEntity> getMainDeviceById(MainDeviceEntity mde){
-//		String sql = "select * from t_vastriver_ip where id =?";
-//		return jdbcTemplate.query(sql,new MainDeviceEntity(),mde.getId());
-//	}
+	public  Map<String, Object> findById(MainDeviceEntity mde){
+		String sql = "select * from t_vastriver_ip where DeviceId =?";
+		return jdbcTemplate.queryForMap(sql,mde.getDeviceId());
+	}
 	
 	
 	public  int deleteMainDeviceById(PointRequest mdr){

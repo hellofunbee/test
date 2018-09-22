@@ -256,7 +256,7 @@ $(function () {
                     if (node && node.oriData["tp_type"] === 3) {
                         treeEl.data("z-tree").selectNode(node);
                         onNodeSelect(node);
-                        return
+                        retuproduct2rn
                     }
                 } else {
                     layer.msg('请选择设备');

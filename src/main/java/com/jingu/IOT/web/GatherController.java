@@ -38,11 +38,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- *
+ * @author jianghu
  * @ClassName: GatherController
  * @Description: TODO
- * @author jianghu
- * @date 2017年9月8日 下午8:04:00 
+ * @date 2017年9月8日 下午8:04:00
  * 采集
  */
 @RestController
@@ -82,7 +81,25 @@ public class GatherController {
         dataMap.put(Base64.encode("雨量".getBytes()), "rain");
     }
 
-    // 展示规格文件
+    /**
+     * 多个设备的规格文件的交集
+     *
+     * @param pr
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/getSettings", method = RequestMethod.POST)
+    public IOTResult getSettings(@RequestBody Map pr) {
+        String ckuid = (String) pr.get("ckuid");
+        String cksid = (String) pr.get("cksid");
+        int statDisplay = (int) pr.get("statDisplay");
+        List<String> ids = (List<String>) pr.get("dids");
+
+
+        return gatherService.getSttings(statDisplay, ids);
+
+    }
+
     @CrossOrigin
     @RequestMapping(value = "/getGatherSettings", method = RequestMethod.POST)
     public IOTResult getGatherSettings(@RequestBody PointRequest pr) {
@@ -108,9 +125,8 @@ public class GatherController {
         if (ckAdmin == 0) {
             return new IOTResult(false, "权限不足", null, 111);
         }
-        VAREntity varEntity = new VAREntity();
-        varEntity.setDeviceId(pr.getDeviceId());
-        List<Map<String, Object>> gatherSettings = gatherService.getGatherSettings(varEntity);
+
+        List<Map<String, Object>> gatherSettings = gatherService.listChannel(pr);
         if (gatherSettings != null && gatherSettings.size() > 0) {
             return new IOTResult(true, "查看成功", gatherSettings, 0);
         }
@@ -526,143 +542,99 @@ public class GatherController {
 
         List<String> channelList = sRequest.getChannelList();
         // 首先去找设备配置文件如果有
-        for (String string : deviceList) {
-            channelList.add(0, string);
+        for (String deviceID : deviceList) {
+            channelList.add(0, deviceID);
 
-            HashMap<Object, Object> hashMap4 = new HashMap<>();
-
-            List<Map<String, Object>> listPointByDeviceId = pointService.listPointByDeviceId(string);
-
-            Map<String, Object> map = listPointByDeviceId.get(0);
-
+            List<Map<String, Object>> dids = pointService.listPointByDeviceId(deviceID);
+            Map<String, Object> device = dids.get(0);
             List<Map<String, Object>> listStaticData = gatherService.listStaticData(channelList);
+            String fields_str = listStaticData.get(0).get("field").toString();// 要找的栏目
 
-            String string2 = listStaticData.get(0).get("field").toString();// 要找的栏目
-
-            if (string2.trim().length() < 1) {
-
+            if (fields_str.trim().length() < 1) {
+                return new IOTResult(false, "暂无相关信息", null, 0);
             }
-            List<Map<String, Object>> listStaticInfo = gatherService.listStaticInfo(string2, string,
+            List<Map<String, Object>> listStaticInfo = gatherService.listStaticInfo(fields_str, deviceID,
                     sRequest.getBeginTime(), sRequest.getEndTime());// 要找的数据
+
             // 查找规格文件
-            List<Map<String, Object>> listChannelByDeviceId = gatherService.listChannelByDeviceId(string);
+            List<Map<String, Object>> parsedatas = gatherService.listChannelByDeviceId(deviceID);
+            ArrayList<Object> result = new ArrayList<>();
+            HashMap<Object, Object> time = new HashMap<>();
 
-            ArrayList<Object> arrayList = new ArrayList<>();
-
-            HashMap<Object, Object> hashMap = new HashMap<>();
-
-            for (int i = 0; i < listChannelByDeviceId.size(); i++) {
-                Map<String, Object> map1 = listChannelByDeviceId.get(i);
+            for (int i = 0; i < parsedatas.size(); i++) {
+                Map<String, Object> map1 = parsedatas.get(i);
+                String fieldName = (String) map1.get("fieldName");
                 String name = map1.get("name").toString();
-                boolean contains = channelList.contains(name);
-                if (contains) {
-                    HashMap<Object, Object> hashMap3 = new HashMap<>();
-                    String field = map1.get("fieldName").toString();
-                    // List<Map<String,Object>> collect =
-                    // listStaticInfo.stream().filter(x ->
-                    // x.get("fieldName").equals(map1.get("fieldName").toString())).collect(Collectors.toList());
-                    List<Map<String, Object>> collect2 = listStaticInfo.stream().filter(x -> x.get(field) != null)
+                Object unit = map1.get("unit");
+
+                if (fields_str.indexOf(fieldName) != -1) {
+                    HashMap<Object, Object> d = new HashMap<>();
+
+                    /*List<Map<String, Object>> temp = listStaticInfo.stream().filter(x -> x.get(fieldName) != null)
+                            .collect(Collectors.toList());*/
+                    List<Object> collect = listStaticInfo.stream().map(x -> x.get(fieldName))
                             .collect(Collectors.toList());
-                    List<String> collect = collect2.stream().map(x -> x.get(field).toString())
-                            .collect(Collectors.toList());
-                    // System.out.println(collect);
-                    // hashMap.put(name, field);
-                    // hashMap.put("channel",field);
-                    // hashMap.put(field, collect);
-                    hashMap3.put("name", name);
-                    hashMap3.put("data", collect);
-                    hashMap3.put("channel", field);
-                    arrayList.add(hashMap3);
-                    // hashMap3.put(field, collect);
-                    // String encode = Base64.encode(name.getBytes());
-                    // System.out.println(encode);
-                    // //5LqM5rCn5YyW56Kz
-                    // //5LqM5rCn5YyW56KzIA==
-                    // String string4 = dataMap.get(encode);
-                    // System.out.println(string4);
-                    // hashMap3.put(string4, field);
-                    // hashMap.put(string4, hashMap3);
+
+                    d.put("unit", unit);
+                    d.put("name", name);
+                    d.put("data", collect);
+                    d.put("channel", fieldName);
+                    result.add(d);
 
                 }
-                System.out.println(hashMap);
-                if (i == listChannelByDeviceId.size() - 1) {
-                    HashMap<Object, Object> hashMap5 = new HashMap<>();
+
+                if (i == parsedatas.size() - 1) {
+
                     // 2017-12-07 17:44:25.0
-                    List<String> collect = listStaticInfo.stream()
-                            .map(x -> x.get("infoDataTime").toString().substring(0, 19)).collect(Collectors.toList());
+                    List<Object> date = listStaticInfo.stream()
+                            .map(x -> x.get("infoDataTime")).collect(Collectors.toList());
                     List<String> yearMonthDate = listStaticInfo.stream()
                             .map(x -> x.get("infoDataTime").toString().substring(0, 10)).collect(Collectors.toList());
                     List<String> hourMinuteSecond = listStaticInfo.stream()
                             .map(x -> x.get("infoDataTime").toString().substring(11, 19)).collect(Collectors.toList());
-                    // hashMap.put("infoDataTime", collect);
-                    // hashMap2.put("deviceId", string);
-                    // hashMap2.put("info", hashMap);
-                    // dataList.add(hashMap2);
-                    hashMap5.put("name1", "infoDataTime");
-                    hashMap5.put("data1", collect);
-                    hashMap5.put("channel1", "infoDataTime");
-                    hashMap5.put("name2", "yearMonthDate");
-                    hashMap5.put("data2", yearMonthDate);
-                    hashMap5.put("channel2", "yearMonthDate");
 
-                    hashMap5.put("name3", "hourMinuteSecond");
-                    hashMap5.put("data3", hourMinuteSecond);
-                    hashMap5.put("channel3", "hourMinuteSecond");
-                    arrayList.add(hashMap5);
+
+                    time.put("date", date);
+                    time.put("day", yearMonthDate);
+                    time.put("min", hourMinuteSecond);
+
+                    time.put("data", result);
                 }
 
+
             }
-            hashMap4.put("deviceId", string);
-            hashMap4.put("deviceName", map.get("tp_name").toString());
-            hashMap4.put("info", arrayList);
-            dataList.add(hashMap4);
+
+
+            HashMap<Object, Object> item = new HashMap<>();
+            item.put("deviceId", deviceID);
+            item.put("deviceName", device.get("tp_name"));
+            item.put("info", time);
+            dataList.add(item);
         }
         if (dataList.isEmpty()) {
             return new IOTResult(false, "暂无相关信息", null, 0);
         }
         return new IOTResult(true, "查看成功", dataList, 0);
 
-        // sRequest.setUid(uid);
-        // PointEntity pointEntity = new PointEntity();
-        // pointEntity.setUid(1);
-        // pointEntity.setTp_id(pr.getTp_id());
-        // List<Map<String,Object>> listPoint =
-        // pointService.listPoint(pointEntity);
-        // if(listPoint ==null){
-        // return new IOTResult(false,"节点不存在",null,3);
-        // }
-        // if(pr.getIp()==null || pr.getIp().trim().length()<1 ||
-        // pr.getPort()>0){
-        // return new IOTResult(false,"信息不完善",null,3);
-        // }
-        // String sendClientCommand = Client.sendClientCommand("127.0.0.1",
-        // 9999, "startServer");
-        // System.out.println(sendClientCommand);
-        // if(sendClientCommand.equals("true")){
-        // return new IOTResult(true,"采集服务开启成功",null,3);
-        // }
-        // List<Map<String,Object>> listwaring = gatherService.listwaring(pr);
-        // List<Map<String,Object>> listSensorInfoUnit =
-        // gatherService.listSensorInfoUnit(pr);
-        // if(listwaring==null || listwaring.size()<1){
-        // return new IOTResult(false,"暂无相关信息",null,4);
-        // }
-        // return new IOTResult(true,"查询成功",listwaring,0);
 
     }
 
-    // 查找大数据分析的数据(根据deviceId和相应的channel)
+    /**
+     * 以传感器进行 分类
+     *
+     * @param sRequest
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @CrossOrigin
-    @RequestMapping(value = "getStaticData2", method = RequestMethod.POST)
-    public IOTResult getStaticData2(@RequestBody StaticRequest sRequest) throws UnsupportedEncodingException {
-
+    @RequestMapping(value = "getStaticData_Batch", method = RequestMethod.POST)
+    public IOTResult startGather_Batch(@RequestBody StaticRequest sRequest) throws UnsupportedEncodingException {
         if (sRequest.getCkdata() == 1) {
             if (sRequest.getBeginTime().compareTo(sRequest.getEndTime()) > 0) {
                 return new IOTResult(false, "输入的日期有误", null, 3);
             }
             return new IOTResult(true, "日期输入正确", null, 0);
         }
-
         if (sRequest.getCksid() == null || sRequest.getCksid().trim().length() < 1 || sRequest.getCkuid() == null
                 || sRequest.getCkuid() == null) {
             return new IOTResult(false, "信息不规范", null, 1);
@@ -674,115 +646,62 @@ public class GatherController {
         }
         long uid = toolUtil.getbase_uidSid(sRequest.getCkuid(), sRequest.getCksid());
 
-        if (sRequest.getBeginTime().compareTo(sRequest.getEndTime()) <= 0) {
+        if (sRequest.getBeginTime().compareTo(sRequest.getEndTime()) > 0) {
             return new IOTResult(false, "输入的日期有误", null, 3);
         }
+
         byte[] serialize = SerializeUtil.serialize(sRequest);
         toolUtil.setCheck(ToolUtil.ANALYSIS + sRequest.getType() + ToolUtil.DATA + uid, Base64.encode(serialize));
 
-        List<Object> dataList = new ArrayList<>();
 
         List<String> deviceList = sRequest.getDeviceList();
-
-        ArrayList<Object> arrayList = new ArrayList<>();
-
         List<String> channelList = sRequest.getChannelList();
-        // 首先去找设备配置文件如果有
-        for (String string : deviceList) {
-            channelList.add(0, string);
 
-            HashMap<Object, Object> hashMap4 = new HashMap<>();
+        List<Map> result = new ArrayList<>();
 
-            List<Map<String, Object>> listPointByDeviceId = pointService.listPointByDeviceId(string);
-
-            Map<String, Object> map = listPointByDeviceId.get(0);
-
-            List<Map<String, Object>> listStaticData = gatherService.listStaticData(channelList);
-
-            String string2 = listStaticData.get(0).get("field").toString();// 要找的栏目
-
-            if (string2.trim().length() < 1) {
-
+        for (String channel : channelList) {
+            Map cmap = new HashMap();
+            List<Map> devs = new ArrayList<>();
+            Map m = gatherService.getChannalNByField(channel);
+            if (m == null) {
+                continue;
             }
-            List<Map<String, Object>> listStaticInfo = gatherService.listStaticInfo(string2, string,
-                    sRequest.getBeginTime(), sRequest.getEndTime());// 要找的数据
-            // 查找规格文件
-            List<Map<String, Object>> listChannelByDeviceId = gatherService.listChannelByDeviceId(string);
 
-            HashMap<Object, Object> hashMap = new HashMap<>();
 
-            for (int i = 0; i < listChannelByDeviceId.size(); i++) {
-                Map<String, Object> map1 = listChannelByDeviceId.get(i);
-                String name = map1.get("name").toString();
-                boolean contains = channelList.contains(name);
-                if (contains) {
-                    HashMap<Object, Object> hashMap3 = new HashMap<>();
-                    String field = map1.get("fieldName").toString();
-                    // List<Map<String,Object>> collect =
-                    // listStaticInfo.stream().filter(x ->
-                    // x.get("fieldName").equals(map1.get("fieldName").toString())).collect(Collectors.toList());
-                    List<String> collect = listStaticInfo.stream().map(x -> x.get(field).toString())
-                            .collect(Collectors.toList());
-                    // System.out.println(collect);
-                    // hashMap.put(name, field);
-                    // hashMap.put("channel",field);
-                    // hashMap.put(field, collect);
-                    hashMap3.put("name", name);
-                    hashMap3.put("data", collect);
-                    hashMap3.put("channel", field);
-                    hashMap3.put("deviceId", string);
-                    hashMap3.put("deviceName", map.get("tp_name").toString());
-                    // hashMap3.put("info", arrayList);
-                    arrayList.add(hashMap3);
-                    // hashMap3.put(field, collect);
-                    // String encode = Base64.encode(name.getBytes());
-                    // System.out.println(encode);
-                    // //5LqM5rCn5YyW56Kz
-                    // //5LqM5rCn5YyW56KzIA==
-                    // String string4 = dataMap.get(encode);
-                    // System.out.println(string4);
-                    // hashMap3.put(string4, field);
-                    // hashMap.put(string4, hashMap3);
+            for (String deviceId : deviceList) {
+                List<Map<String, Object>> listStaticInfo = gatherService.listStaticInfo(channel, deviceId,
+                        sRequest.getBeginTime(), sRequest.getEndTime());// 要找的数据
 
-                }
-                System.out.println(hashMap);
-                if (i == listChannelByDeviceId.size() - 1) {
-                    HashMap<Object, Object> hashMap5 = new HashMap<>();
-                    List<String> collect = listStaticInfo.stream()
-                            .map(x -> x.get("infoDataTime").toString().substring(0, 19)).collect(Collectors.toList());
-                    List<String> yearMonthDate = listStaticInfo.stream()
-                            .map(x -> x.get("infoDataTime").toString().substring(0, 10)).collect(Collectors.toList());
-                    List<String> hourMinuteSecond = listStaticInfo.stream()
-                            .map(x -> x.get("infoDataTime").toString().substring(11, 19)).collect(Collectors.toList());
-                    // hashMap.put("infoDataTime", collect);
-                    // hashMap2.put("deviceId", string);
-                    // hashMap2.put("info", hashMap);
-                    // dataList.add(hashMap2);
-                    hashMap5.put("name1", "infoDataTime");
-                    hashMap5.put("data1", collect);
-                    hashMap5.put("channel1", "infoDataTime");
+                MainDeviceEntity md = new MainDeviceEntity();
+                md.setDeviceId(deviceId);
+                Map dv  = mainDeviceService.findById(md);
+                if(dv == null || dv.get("name") == null)
+                    continue;
 
-                    hashMap5.put("name2", "yearMonthDate");
-                    hashMap5.put("data2", yearMonthDate);
-                    hashMap5.put("channel2", "yearMonthDate");
+                Map d = new HashMap();
+                d.put("list", listStaticInfo);
+                d.put("deviceId", deviceId);
+                d.put("deviceId", deviceId);
+                d.put("deviceName", dv.get("name"));
 
-                    hashMap5.put("name3", "hourMinuteSecond");
-                    hashMap5.put("data3", hourMinuteSecond);
-                    hashMap5.put("channel3", "hourMinuteSecond");
-                    hashMap5.put("deviceId", string);
-                    hashMap5.put("deviceName", map.get("tp_name").toString());
-                    // hashMap5.put("info", arrayList);
-                    arrayList.add(hashMap5);
-                }
 
+                devs.add(d);
             }
-            dataList.add(hashMap4);
+            cmap.put("data", devs);
+            cmap.put("channel", channel);
+            cmap.put("unit", m.get("unit"));
+            cmap.put("name", m.get("name"));
+
+            result.add(cmap);
+
         }
-        if (arrayList.isEmpty()) {
+
+        if (result.isEmpty()) {
             return new IOTResult(false, "暂无相关信息", null, 0);
         }
-        return new IOTResult(true, "查看成功", arrayList, 0);
+        return new IOTResult(true, "查看成功", result, 0);
     }
+
 
     @CrossOrigin
     @RequestMapping(value = "switchAnalysis", method = RequestMethod.POST)
