@@ -13,18 +13,6 @@
 */ 
 package com.jingu.IOT.service;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Component;
-import org.thymeleaf.expression.Arrays;
-
 import com.jingu.IOT.util.Base64;
 import com.jingu.IOT.util.StringUtils;
 import com.jingu.IOT.util.ToolUtil;
@@ -32,6 +20,11 @@ import com.jingu.IOT.util.excelUtils.xlsx.Cell;
 import com.jingu.IOT.util.excelUtils.xlsx.Sheet;
 import com.jingu.IOT.util.excelUtils.xlsx.Sheet.SheetRowReader;
 import com.jingu.IOT.util.excelUtils.xlsx.SimpleXLSXWorkbook;
+import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -348,9 +341,8 @@ public class ReadExcelService {
 		}
 		return plist;
 	}
-	
-	
-	
+
+
 	public  SimpleXLSXWorkbook getFile(String filePath) {
     	return new SimpleXLSXWorkbook(new File(filePath));
   }

@@ -1,36 +1,147 @@
 $(function () {
-    var distData = [];
-    var renderMapData = function (d) {
-        var index = 0;
+
+    var index = 0;
+    var all = [];//所有区域的中心点数组用于聚焦所有的点
+    var polygon_item = [];//区域，以及数据item
+
+    var marks = [];
+    var isFocused = false;
+
+    var mapEl = $("map2");
+    var map1 = mapEl.data("map");
+    if (!map1) {
+        map1 = new BMap.Map("map2");
+        mapEl.data("map", map1)
+    }
+    map1.enableScrollWheelZoom();
+    map1.enableKeyboard();
+    map1.enableDragging();
+    map1.enableDoubleClickZoom();
+
+    var scaleControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});
+    scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+    map1.addControl(scaleControl);
+    var navControl = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT, type: 0});
+    map1.addControl(navControl);
+    var overviewControl = new BMap.OverviewMapControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: false});
+    map1.addControl(overviewControl);
+    var allControl = new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]});
+    map1.addControl(allControl);
+
+    map1.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+    map1.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+    map1.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+    map1.addEventListener("zoomend", function (evt) {
+        var point = map1.getCenter();
+        var zoom = map1.getZoom();
+        var offsetPoint = new BMap.Pixel(evt.offsetX, evt.offsetY);   //记录鼠标当前点坐标
+
+
+        if (zoom <= 7) {
+
+            if (polygon_item.length > 0) {
+                $(polygon_item).each(function (i, e) {
+                    var point = e.polygon.getBounds().getCenter()
+                    var marker = new BMap.Marker(point);
+                    marks.push(marker);
+                    map1.addOverlay(marker);
+                    marker.addEventListener("click", function () {
+                        showInfo(e.polygon, e.item, false);
+
+                    });
+
+                });
+
+            }
+
+        } else {
+            $(marks).each(function (i, e) {
+                map1.removeOverlay(e)
+
+            });
+            marks = [];
+
+        }
+
+    });
+
+    var showInfo = function (polygon, d, zoom) {
+        var point = polygon.getBounds().getCenter();
         var v = d.province + d.city + d.district;
         var title = "";
         var html = "作物种植面积比例<br/>" + v;
-        var mapEl = $("map2");
-        var map1 = mapEl.data("map");
-        if (!map1) {
-            map1 = new BMap.Map("map2");
-            mapEl.data("map", map1)
+
+
+        var lng = point.lng;
+        var lat = point.lat;
+
+        // map1.addOverlay(new BMap.Marker(point));
+        if (zoom != false) {
+            var pointArray = [];
+            pointArray = pointArray.concat(polygon.getPath())
+            map1.setViewport(pointArray);
         }
-        map1.enableScrollWheelZoom();
-        map1.enableKeyboard();
-        map1.enableDragging();
-        map1.enableDoubleClickZoom();
-        var scaleControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});
-        scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
-        map1.addControl(scaleControl);
-        var navControl = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT, type: 0});
-        map1.addControl(navControl);
-        var overviewControl = new BMap.OverviewMapControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: false});
-        map1.addControl(overviewControl);
-        var allControl = new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]});
-        map1.addControl(allControl);
+
+        var str = "";
+        var str1 = "<p style='color: #115FAD;text-align: center;font-size:.14rem'>" + html + "</p>";
+        var idx = 0;
+        $(d.d_content).each(function (i, el) {
+            var item = this;
+            if (item.d_value && item.d_content) {
+                str += "<p style='color: #115FAD;font-size: .14rem;'><span style='display: inline-block;width:20px'>" + ++idx + "</span> <span style='display: inline-block;width: 120px'>" + item.d_content + "</span><span>" + item.d_value + "</span></p>"
+            }
+        });
+        var sContent = str1 + str;
+        var point = new BMap.Point(lng, lat);
+        // map1.centerAndZoom(point, 13);
+        var opts = {width: 200, title: title, enableMessage: false, message: ""};
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        map1.openInfoWindow(infoWindow, point)
+
+        /*// 创建地址解析器实例
+         var myGeo = new BMap.Geocoder();
+         myGeo.getPoint(v, function(p){
+         if (p) {
+         var lng = p.lng;
+         var lat = p.lat;
+         // map1.addOverlay(new BMap.Marker(point));
+         var str = "";
+         var str1 = "<p style='color: #115FAD;text-align: center;font-size:.14rem'>" + html + "</p>";
+         var idx = 0;
+         $(d.d_content).each(function (i, el) {
+         var item = this;
+         if (item.d_value && item.d_content) {
+         str += "<p style='color: #115FAD;font-size: .14rem;'><span style='display: inline-block;width:20px'>" + ++idx + "</span> <span style='display: inline-block;width: 120px'>" + item.d_content + "</span><span>" + item.d_value + "</span></p>"
+         }
+         });
+         var sContent = str1 + str;
+         var point = new BMap.Point(lng, lat);
+         map1.centerAndZoom(point, 13);
+         var opts = {width: 200, title: title, enableMessage: false, message: ""};
+         var infoWindow = new BMap.InfoWindow(sContent, opts);
+         map1.openInfoWindow(infoWindow, point)
+         }else{
+         layer.msg("您选择地址没有解析到结果!");
+         }
+         }, "北京市");*/
+
+    }
+
+
+    var distData = [];
+
+    var renderMapData = function (d, index) {
+        var v = d.province + d.city + d.district;
         var bdary = new BMap.Boundary;
         bdary.get(v, function (rs) {
             var count = rs.boundaries.length;
             if (count === 0) {
-                layer.msg("未能获取当前输入行政区域");
+                console.log(v)
+                // layer.msg("未能获取当前输入行政区域");
                 return
             }
+            // var pointArray = [];
             for (var i = 0; i < count; i++) {
                 var ply = new BMap.Polygon(rs.boundaries[i], {
                     strokeWeight: 2,
@@ -39,33 +150,50 @@ $(function () {
                     strokeOpacity: 1
                 });
                 map1.addOverlay(ply);
-                var pointArray = [];
-                pointArray = pointArray.concat(ply.getPath())
-            }
-            map1.setViewport(pointArray);
-            var lng = pointArray[0].lng;
-            var lat = pointArray[0].lat;
-            var str = "";
-            var str1 = "<p style='color: #115FAD;text-align: center;font-size:.14rem'>" + html + "</p>";
-            var idx = 0;
-            $(d.d_content).each(function (i, el) {
-                var item = this;
-                if (item.d_value && item.d_content) {
-                    str += "<p style='color: #115FAD;font-size: .14rem;'><span style='display: inline-block;width:20px'>" + ++idx + "</span> <span style='display: inline-block;width: 120px'>" + item.d_content + "</span><span>" + item.d_value + "</span></p>"
+
+                all.push(ply.getBounds().getCenter());
+                polygon_item.push({item: d, polygon: ply});
+
+
+                //TODO 后台获取默认点
+                if (isFocused == false && ply) {
+                    showInfo(ply, d)
+                    isFocused = true;
                 }
-            });
-            var sContent = str1 + str;
-            var point = new BMap.Point(lng, lat);
-            map1.centerAndZoom(point, 13);
-            var opts = {width: 200, title: title, enableMessage: false, message: ""};
-            var infoWindow = new BMap.InfoWindow(sContent, opts);
-            map1.openInfoWindow(infoWindow, point)
+
+                ply.addEventListener("click", function () {
+                    // console.log(this.Ou.Ol)
+                    showInfo(this, d);
+
+
+                });
+
+                // pointArray = pointArray.concat(ply.getPath())
+            }
+
+            // map1.setViewport(pointArray);
+
         })
     };
+
+    $('#showall').on('click', function () {
+        if (all.length == 0) {
+            layer.msg('未发现任何区域');
+        } else {
+            map1.setViewport(all);
+        }
+    });
     API.service("/listDistribution", {d_type: "2"}, function (data) {
         distData = data.object;
         if (distData.length) {
-            renderMapData(distData[0])
+            all = [];
+            polygon_item = [];
+            isFocused = false;
+            $(data.object).each(function (i, e) {
+                renderMapData(e, i)
+            });
+
+
         }
     });
     $(".sblb>h3").click(function () {
@@ -117,14 +245,27 @@ $(function () {
             title: "物种分布信息管理",
             content: $(".xxx-layer"),
             skin: "mlayer",
-            success: function (page) {
+            success: function (page, index) {
+                var d_province = page.find('#gis2_provice').val();
+                var d_city = page.find('#gis2_city').val();
+                var d_district = page.find('#gis2_district').val();
 
                 var dtype = 1;
                 UI.renderProvince("#gis2_provice", function () {
                     UI.renderCity("#gis2_city", $(this).val(), function () {
-                        UI.renderDistrict("#gis2_district", $(this).val())
+                        UI.renderDistrict("#gis2_district", $(this).val(), function () {
+                            // reload();
+                            setParam();
+
+                        });
                     })
                 });
+                function setParam() {
+                    d_province = page.find('#gis2_provice').val();
+                    d_city = page.find('#gis2_city').val();
+                    d_district = page.find('#gis2_district').val();
+                }
+
                 var uploadWrapEL = page.find("a.upload-xls");
 
                 var uploadFileEl = $('<input id="publish-file" name="d_content" style="float:left;left:0;top:0;opacity:0;cursor:pointer" type="file"/>');
@@ -140,64 +281,154 @@ $(function () {
                     }
                 });
 
-                page.find(".btn-upload").click(function () {
+                page.find('.download-model').click(function () {
+                    var url = '/downLoadFile';
+                    var cksid = sessionStorage.getItem("cksid");
+                    var ckuid = sessionStorage.getItem("ckuid");
+                    var data = {
+                        ckuid: ckuid,
+                        cksid: cksid,
+                        file_name: 'model-1.xls'
+                    };
+                    API.formDownlad({url: url, method: 'GET', data: data});
 
+                });
+                page.find('.btn-search').click(function () {
+                    setParam();
+                    reload();
+                });
+                page.find('.btn-search-all').click(function () {
+                    d_province = null;
+                    d_city = null;
+                    d_district = null;
+
+                    reload();
+                });
+                uploadWrapEL.on('change', function () {
+                    page.find(".file-name").text($(this).val())
                     if (!$('#publish-file').val()) {
                         layer.msg('请选择文件')
                         return;
                     }
-                    var obj = {};
-                    obj.ckuid = sessionStorage.getItem("ckuid");
-                    obj.cksid = sessionStorage.getItem("cksid");
-                    obj.d_type = dtype;
-                    obj.d_state = 1;
-                    obj.d_province = page.find("#gis2_provice").val();
-                    obj.d_city = page.find("#gis2_city").val();
-                    obj.d_district = page.find("#gis2_district").val();
+                    layer.alert('确定上传？',
+                        function () {
 
-                    startLoading();
-                    uploadImg(obj,
-                        '/addDistribution2',
-                        'publish-file', '',
-                        function (data) {
-                            if (data.state === 2) {
-                                layer.confirm(data.msg, function (idx) {
-                                    top.location.href = "./login.html"
-                                })
-                            } else {
-                                layer.msg(data.msg)
-                            }
-                        }, function (data) {
-                            uploadFileEl.val("").change();
-                            layer.msg(data.msg)
+
+                            var obj = {};
+                            obj.ckuid = sessionStorage.getItem("ckuid");
+                            obj.cksid = sessionStorage.getItem("cksid");
+                            obj.d_type = dtype;
+                            obj.d_state = 1;
+                            obj.d_province = page.find("#gis2_provice").val();
+                            obj.d_city = page.find("#gis2_city").val();
+                            obj.d_district = page.find("#gis2_district").val();
+
+                            startLoading();
+                            uploadImg(obj,
+                                '/addDistribution2',
+                                'publish-file', '',
+                                function (data) {
+                                    if (data.state === 2) {
+                                        layer.confirm(data.msg, function (idx) {
+                                            top.location.href = "./login.html"
+                                        })
+                                    } else {
+                                        layer.msg(data.msg)
+                                    }
+                                }, function (data) {
+                                    uploadFileEl.val("").change();
+                                    layer.msg(data.msg)
+                                });
+                            stopLoading();
+                        }
+                    )
+                    ;
+
+                });
+
+                /*listDistribute*/
+
+                // reload();
+                function reload() {
+                    API.service("/listDistribution", {
+                        d_type: dtype,
+                        d_province: d_province,
+                        d_city: d_city,
+                        d_district: d_district
+                    }, function (rsp) {
+                        console.log(rsp)
+                        layer.msg(rsp.msg)
+
+                        var tpl =
+                            '<tr class="file-tpl">' +
+                            '<td field="d_originalname"></td>' +
+                            '<td field="is_special" render="dict" dict="yes_no"></td>' +
+                            '<td><a href="#" class="btn-sm btn-fh delete">删除</a></td>' +
+                            '</tr>';
+
+                        /*var tpl = page.find('.file-tpl').clone();*/
+                        var toEl = page.find('.mx-table5 tbody');
+                        toEl.empty();
+                        $(rsp.object).each(function (i, e) {
+
+                            var el = UI.appendFieldTo(tpl, e, toEl).data('data', e);
+                            if (e.is_special == 1)
+                                el.find('[field="is_special"]').text('是');
+                            else
+                                el.find('[field="is_special"]').text('否');
+
+
+                            el.find('.delete').on('click', function () {
+
+                                var data = $(this).closest('tr').data('data');
+                                console.log($(this).closest('tr').data('data'));
+
+                                var info = "确认删除"
+                                if (data.d_originalname)
+                                    info += data.d_originalname;
+
+                                UI.renderProvince("#gis2_provice", function () {
+                                    UI.renderCity("#gis2_city", $(this).val(), function () {
+                                        UI.renderDistrict("#gis2_district", $(this).val())
+                                    })
+                                });
+
+
+                                layer.alert(info, function (l) {
+
+                                    API.service("/deleteDistribution", {
+                                        d_id: data.d_id,
+                                    }, function (result) {
+                                        layer.msg(result.msg)
+                                        if (result.success) {
+                                            reload();
+                                        }
+                                    });
+
+                                    layer.close(l);
+
+                                });
+
+
+                            });
                         });
-                    stopLoading();
 
-                });
-                uploadFileEl.change(function () {
-                    page.find(".file-name").text($(this).val())
-                });
-                API.service("/listDistribute", {d_type: dtype}, function (rsp) {
-                    console.log(rsp)
-
-
-                    var tpl = page.find('#file-tpl').clone();
-                    var toEl = page.find('.mx-table5 tbody').empty();
-                    $(rsp.object).each(function (i, e) {
-                        UI.appendFieldTo(tpl, e, toEl).data('data', e);
-                    });
-
-                }, function (m) {
-                    layer.msg(m.msg);
-                })
+                    }, function (m) {
+                        layer.msg(m.msg);
+                    })
+                };
+                reload();
             }
         })
-    });
+    })
+    ;
     var mainIframe = $("#main_iframe");
     var mapEl = $("#map2");
     mapEl.height(Math.max(500, mainIframe.height() - 150));
     mainIframe.on("body-height", function () {
         var mf = $("#main_iframe");
         $("#map").height(Math.max(500, mf.height() - 65))
-    })
-});
+    });
+
+})
+;

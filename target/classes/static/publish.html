@@ -205,7 +205,29 @@
                                 stopLoading();
 
 
-
+                                /*var e = new FormData;
+                                 e.append("ckuid", sessionStorage.getItem("ckuid")),
+                                 e.append("cksid", sessionStorage.getItem("cksid")),
+                                 e.append("picture", l.get(0).files[0]),
+                                 e.append("oldfile", ""),
+                                 startLoading(),
+                                 $.ajax({
+                                 url: apiPre + "/addPicture",
+                                 type: "post",
+                                 enctype: "multipart/form-data",
+                                 processData: !1,
+                                 contentType: !1,
+                                 data: e,
+                                 cache: !1,
+                                 success: function (e) {
+                                 stopLoading(), 0 === e.state ? l.next("img").attr("src", e.object).attr("value", e.object) : 2 === e.state ? layer.alert(e.msg, function () {
+                                 window.parent.location.href = "./login.html"
+                                 }) : layer.alert(e.msg)
+                                 },
+                                 error: function () {
+                                 stopLoading(), layer.alert("请求失败，请重新尝试")
+                                 }
+                                 })*/
                             }
                         }),
                         API.service("/listClass1", {c_type: 4}, function (e) {

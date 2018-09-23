@@ -116,11 +116,16 @@ public class DistributionController {
         if (!uploadFile3.isSuccess()) {
             return uploadFile3;
         }
+
+        Map m = (Map) uploadFile3.getObject();
+        JSONArray jsonArray = (JSONArray) m.get("jarray");
+
         String originalFilename = d_content.getOriginalFilename();
         String encode = Base64.encode(originalFilename.getBytes());
         String fileName = "distribute" + "_" + 0 + "_" + encode;
 
         DistributionEntity distr = new DistributionEntity();
+        distr.setD_content(jsonArray.toString());
         distr.setD_type(d_type);
         distr.setD_state(d_state);
         distr.setD_province(d_province);
@@ -128,7 +133,7 @@ public class DistributionController {
         distr.setD_district(d_district);
         distr.setOrginalName(originalFilename);
         distr.setFileName(fileName);
-        distr.setD_procedure(d_procedure == null?0:d_procedure);
+        distr.setD_procedure(d_procedure == null ? 0 : d_procedure);
 
         int backStatus = distributionService.addDistribution2(distr);
         if (backStatus > 0)
@@ -161,10 +166,12 @@ public class DistributionController {
         String encode = Base64.encode(originalFilename.getBytes());
         String fileName = "distribute" + "_" + 0 + "_" + encode;
         // readser
+
+
         int addDistribution2 = distributionService.addDistribution2(new DistributionEntity(0, d_type, d_state, "", "",
-                "", "", "", 0, "", "", "", "", null, originalFilename, fileName, d_procedure));
+                "", "", "", 0, "", "", "", "", null, originalFilename, fileName, d_procedure,0));
         List<Map<String, Object>> listDistribution = distributionService.listDistribution3(new DistributionEntity(0,
-                d_type, d_state, "", "", "", "", "", 0, "", "", "", "", null, "", "", d_procedure));
+                d_type, d_state, "", "", "", "", "", 0, "", "", "", "", null, "", "", d_procedure,0));
         if (addDistribution2 > 0) {
             return new IOTResult(true, "上传成功", listDistribution, 0);
         }
@@ -230,22 +237,21 @@ public class DistributionController {
     @CrossOrigin
     @RequestMapping(value = "/listDistribution", method = RequestMethod.POST)
     public IOTResult listDistribution(@RequestBody DistributionRequset dr) {
-        // if(dr.getCksid()==null ||
-        // dr.getCksid().trim().length()<1||dr.getCkuid()==null||dr.getCkuid().trim().length()<1){
-        // return new IOTResult(false,"信息不规范",null,1);
-        // }
-        // // 注册登陆按照什么来????
-        // String check = toolUtil.getCheck(ToolUtil.IOT+dr.getCkuid());
-        // if(check ==null ||!dr.getCksid().equals(check)){
-        // return new IOTResult(false,"登陆失效",null,2);
-        // }
-        // long uid = toolUtil.getbase_uidSid(dr.getCkuid(), dr.getCksid());
-        // int ckAdmin = userService.ckAdmin(uid);
-        // if(ckAdmin ==0 ){
-        // return new IOTResult(false,"权限不足",null,111);
-        // }
-        // List<DistributionEntity> distributionEntity =
-        // dr.getDistributionEntity();
+        if (dr.getCksid() == null ||
+                dr.getCksid().trim().length() < 1 || dr.getCkuid() == null || dr.getCkuid().trim().length() < 1) {
+            return new IOTResult(false, "信息不规范", null, 1);
+        }
+        // 注册登陆按照什么来????
+        String check = toolUtil.getCheck(ToolUtil.IOT + dr.getCkuid());
+        if (check == null || !dr.getCksid().equals(check)) {
+            return new IOTResult(false, "登陆失效", null, 2);
+        }
+        long uid = toolUtil.getbase_uidSid(dr.getCkuid(), dr.getCksid());
+        int ckAdmin = userService.ckAdmin(uid);
+        if (ckAdmin == 0) {
+            return new IOTResult(false, "权限不足", null, 111);
+        }
+
 
         List<Map<String, Object>> listDistribution = distributionService.listDistribution(dr);
 
@@ -255,30 +261,14 @@ public class DistributionController {
         }
         for (Map<String, Object> map : listDistribution) {
             Object object = map.get("d_content");
+            if (object == null)
+                continue;
             JSONArray fromObject = JSONArray.fromObject(object);
             map.put("d_content", fromObject);
         }
         return new IOTResult(true, "查看成功", listDistribution, 0);
     }
 
-    // 查看分布情况
-    @CrossOrigin
-    @RequestMapping(value = "/listDistribution2", method = RequestMethod.POST)
-    public IOTResult listDistribution2(@RequestBody DistributionRequset dr) {
-
-        List<Map<String, Object>> listDistribution = distributionService.listDistribution2(dr);
-
-        if (listDistribution == null || listDistribution.isEmpty()) {
-
-            return new IOTResult(false, "暂无相关信息", null, 0);
-        }
-        // for (Map<String, Object> map : listDistribution) {
-        // Object object = map.get("d_content");
-        // JSONArray fromObject = JSONArray.fromObject(object);
-        // map.put("d_content", fromObject);
-        // }
-        return new IOTResult(true, "查看成功", listDistribution, 0);
-    }
 
     // 查看分布情况
     @CrossOrigin

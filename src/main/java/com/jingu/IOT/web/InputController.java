@@ -193,14 +193,7 @@ public class InputController {
         if (check == null || !ir.getCksid().equals(check)) {
             return new IOTResult2(false, "登陆失效", null, 2, 0, 0);
         }
-        long uid = toolUtil.getbase_uidSid(ir.getCkuid(), ir.getCksid());
-//		PointEntity pointEntity = mr.getPointEntity();
-//		pointEntity.setUid(uid);
-//		pointEntity.setRole(String.valueOf(uid));
-//		PointEntity point = pointService.getPoint(pointEntity);
-//		if(point ==null){
-//			return new IOTResult(false,"节点不存在",null,3);
-//		}
+
         int tp_id = 0;
         PointEntity pointEntity = ir.getPointEntity();
         if (pointEntity != null) {

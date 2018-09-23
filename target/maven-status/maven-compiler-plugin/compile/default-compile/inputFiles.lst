@@ -6,7 +6,6 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/ProduceEntity.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/DistributionDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/SettingService.java
-/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/DistributionEntity2.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/IPCController.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/SpringLoggingHelper.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/response/PointResult.java
@@ -112,7 +111,6 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/xlsx/IndexedObject.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/xlsx/SerializableEntry.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/xlsx/Sheet.java
-/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/DistributionRequset2.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/MainSettingRequset.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/PointService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/switcher/SwitchConfInHBM.java
@@ -135,6 +133,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/StaticEntity.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/MainDeviceRequset.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/ExportEntity.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/ExcelData.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/ExListenableFutureCallback.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/FileText.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/AlarmRuleRequest.java

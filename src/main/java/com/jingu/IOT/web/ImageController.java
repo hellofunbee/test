@@ -17,14 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
 /**
-
+ * @author jianghu
  * @ClassName: ImgController
  * @Description: TODO
- * @author jianghu
  * @date 2017年9月7日 下午5:37:27
  * 图片
  */
@@ -39,41 +40,6 @@ public class ImageController {
     }
 
 
-    //	// 下载文件
-//	@CrossOrigin
-//	@RequestMapping(value = "/getActImage", method = RequestMethod.GET)
-//	public @ResponseBody FileSystemResource getFile(@RequestParam("file_name") String fileName
-//	 @RequestParam("sid") String sid, @RequestParam("uid") String uid ) throws UnsupportedEncodingException {
-//		
-//		 if (null == sid || sid.length() < 1 || null == uid || uid.length() <
-//		 1) { return null; // return new StoryResult(false,"信息不规范",null,0); }
-//		 if (!uid.equals(toolUtil.getWxUser(sid).getSu_id())) { return null;
-//		 // return new StoryResult(false,"您已在其他地方上线",null,1); }
-//		 
-//		if (fileName != null && !"".equals(fileName)) {
-//			File file = new File(ToolUtil.FILEPATH + fileName);
-//			System.out.println(fileName);
-//			System.out.println(file.exists());
-//			if (file.exists()) {
-//				return new FileSystemResource(file);
-//				
-//				 * Map<String, String> map = new HashMap<>(); map.put("picture",
-//				 * "http://192.168.0.124:8080/getActImage?file_name=111111111_0_image.jpg"
-//				 * ); return map;
-//				 
-//				// return new StoryResult(true,"成功",new
-//				// FileSystemResource(file),0);
-//			}
-//		}
-//		System.out.println("...........");
-//		return null;
-//	}
-    public static void main(String[] args) {
-
-        String name = "/vraImage/10.00.21.28.01/10.00.21.28.01_4_20171106_135513.jpg";
-        String substring = name.substring(10);
-        System.out.println(substring);
-    }
 
     // 下载文件
     @CrossOrigin
@@ -82,8 +48,8 @@ public class ImageController {
     @ResponseBody
     FileSystemResource getReportImage(@RequestParam("file_name") String fileName
     /* @RequestParam("sid") String sid, @RequestParam("uid") String uid */) throws UnsupportedEncodingException {
-		/*
-		 * if (null == sid || sid.length() < 1 || null == uid || uid.length() <
+        /*
+         * if (null == sid || sid.length() < 1 || null == uid || uid.length() <
 		 * 1) { return null; // return new StoryResult(false,"信息不规范",null,0); }
 		 * if (!uid.equals(toolUtil.getWxUser(sid).getSu_id())) { return null;
 		 * // return new StoryResult(false,"您已在其他地方上线",null,1); }
@@ -102,8 +68,8 @@ public class ImageController {
             System.out.println(file.exists());
             if (file.exists()) {
                 return new FileSystemResource(file);
-				/*
-				 * Map<String, String> map = new HashMap<>(); map.put("picture",
+                /*
+                 * Map<String, String> map = new HashMap<>(); map.put("picture",
 				 * "http://192.168.0.124:8080/getActImage?file_name=111111111_0_image.jpg"
 				 * ); return map;
 				 */
@@ -116,15 +82,83 @@ public class ImageController {
     }
 
 
+    /**
+     * 下载文件
+     *  
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "downLoadFile")
+    public void downLoadFile(HttpServletRequest request, HttpServletResponse response) {
+        String fileName = request.getParameter("file_name");
+        File file = null;
+        if (fileName != null && !"".equals(fileName)) {
+            if (fileName.startsWith("CMS")) {
+                file = new File(ToolUtil.CMSIMG + fileName);
+                if (!file.exists()) {
+                    file = null;
+                }
+            } else {
+                file = new File(ToolUtil.FILEPATH + fileName);
+
+                if (!file.exists()) {
+                    file = null;
+                }
+            }
+        }
+        if (file == null) {
+            System.out.println("文件不存在，下载失败！");
+            response.reset();
+        }
+
+        BufferedInputStream in = null;
+        ServletOutputStream out = null;
+        byte[] b;
+
+        // 1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+        response.setContentType("multipart/form-data");
+        // 2.设置文件头：最后一个参数是设置下载文件名(假如我们叫a.pdf)
+        try {
+            response.setHeader("Content-Disposition",
+                    "attachment;fileName=" + new String(fileName.getBytes("utf-8"), "iso-8859-1"));
+            response.setCharacterEncoding("utf-8");
+            in = new BufferedInputStream(new FileInputStream(file));
+            b = new byte[1024];
+            out = response.getOutputStream();
+            int len = 0;
+            while ((len = in.read(b)) != -1) {
+                out.write(b, 0, len);
+            }
+            out.flush();
+        } catch (UnsupportedEncodingException e2) {
+            e2.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (in != null)
+                    in.close();
+                if (out != null)
+                    out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
     // 下载文件
     @CrossOrigin
     @RequestMapping(value = "/getActImage", method = RequestMethod.GET)
-    public
     @ResponseBody
-    FileSystemResource getActImage(@RequestParam("file_name") String fileName
-	/* @RequestParam("sid") String sid, @RequestParam("uid") String uid */) throws UnsupportedEncodingException {
-		/*
-		 * if (null == sid || sid.length() < 1 || null == uid || uid.length() <
+    public FileSystemResource getActImage(@RequestParam("file_name") String fileName
+    /* @RequestParam("sid") String sid, @RequestParam("uid") String uid */) throws UnsupportedEncodingException {
+        /*
+         * if (null == sid || sid.length() < 1 || null == uid || uid.length() <
 		 * 1) { return null; // return new StoryResult(false,"信息不规范",null,0); }
 		 * if (!uid.equals(toolUtil.getWxUser(sid).getSu_id())) { return null;
 		 * // return new StoryResult(false,"您已在其他地方上线",null,1); }
@@ -147,14 +181,14 @@ public class ImageController {
                     return new FileSystemResource(file1);
                 }
                 /*
-				 * Map<String, String> map = new HashMap<>(); map.put("picture",
+                 * Map<String, String> map = new HashMap<>(); map.put("picture",
 				 * "http://192.168.0.124:8080/getActImage?file_name=111111111_0_image.jpg"
 				 * ); return map;
 				 */
                 // return new StoryResult(true,"成功",new
                 // FileSystemResource(file),0);
             }
-            System.out.println(fileName+"不存在><><><><><><><><><><");
+            System.out.println(fileName + "不存在><><><><><><><><><><");
         }
         System.out.println("...........");
         return null;

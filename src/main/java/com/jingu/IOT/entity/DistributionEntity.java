@@ -44,7 +44,8 @@ public class DistributionEntity {
 	private String orginalName;
 	private String fileName;
 	private int d_procedure;
-	
+	private int is_special = 0;//精选
+
 	
 	public DistributionEntity() {
 		super();
@@ -53,7 +54,7 @@ public class DistributionEntity {
 
 	public DistributionEntity(int d_id, int d_type, int d_state, String d_province, String d_city, String d_district,
 			String d_content, String d_value, int d_index, String d_time, String p_province, String p_city,
-			String p_district, List<ContentValueEntity> content,String orginalName,String fileName,int d_procedure) {
+			String p_district, List<ContentValueEntity> content,String orginalName,String fileName,int d_procedure,int is_special) {
 		super();
 		this.d_id = d_id;
 		this.d_type = d_type;
@@ -72,11 +73,12 @@ public class DistributionEntity {
 		this.orginalName = orginalName;
 		this.fileName = fileName;
 		this.d_procedure = d_procedure;
+		this.is_special = is_special;
 	}
 
 	public DistributionEntity(int d_id, int d_type, int d_state, String d_province, String d_city, String d_district,
 							  String d_content, String d_value, int d_index, String d_time, String p_province, String p_city,
-							  String p_district, List<ContentValueEntity> content) {
+							  String p_district, List<ContentValueEntity> content,int is_special) {
 		super();
 		this.d_id = d_id;
 		this.d_type = d_type;
@@ -92,6 +94,7 @@ public class DistributionEntity {
 		this.p_city = p_city;
 		this.p_district = p_district;
 		this.content = content;
+		this.is_special = is_special;
 
 	}
 	public String getP_province() {
@@ -220,5 +223,13 @@ public class DistributionEntity {
 
 	public void setD_procedure(int d_procedure) {
 		this.d_procedure = d_procedure;
+	}
+
+	public int getIs_special() {
+		return is_special;
+	}
+
+	public void setIs_special(int is_special) {
+		this.is_special = is_special;
 	}
 }

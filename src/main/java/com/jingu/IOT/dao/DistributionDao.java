@@ -24,12 +24,10 @@ import java.util.Map;
 
 
 /**
-
+ * @author jianghu
  * @ClassName: DistributionDao
  * @Description: TODO
- * @author jianghu
  * @date 2017年10月11日 下午3:15:05
-
  */
 @Component
 public class DistributionDao {
@@ -40,19 +38,19 @@ public class DistributionDao {
 
 
     public int addDistribution(DistributionEntity de) {
-        String sql = "insert into distribution (d_type,d_state,d_province,d_city,d_district,d_content,d_value,d_index,d_time) value (?,?,?,?,?,?,?,?,UNIX_TIMESTAMP()) ";
-        return jdbcTemplate.update(sql, de.getD_type(), de.getD_state(), de.getD_province(), de.getD_city(), de.getD_district(), de.getD_content(), de.getD_value(), de.getD_index());
+        String sql = "insert into distribution (d_type,d_state,d_province,d_city,d_district,d_content,d_value,d_index,is_special,d_time) value (?,?,?,?,?,?,?,?,?,UNIX_TIMESTAMP()) ";
+        return jdbcTemplate.update(sql, de.getD_type(), de.getD_state(), de.getD_province(), de.getD_city(), de.getD_district(), de.getD_content(), de.getD_value(), de.getD_index(), de.getIs_special());
     }
 
     public int addDistribution2(DistributionEntity de) {
-        String sql = "insert into distribution  (d_type,d_state,d_province,d_city,d_district,d_content,d_value,d_index,d_time,d_originalname,d_filename,d_procedure) value (?,?,?,?,?,?,?,?,UNIX_TIMESTAMP(),?,?,?) ";
-        return jdbcTemplate.update(sql, de.getD_type(), de.getD_state(), de.getD_province(), de.getD_city(), de.getD_district(), de.getD_content(), de.getD_value(), de.getD_index(), de.getOrginalName(), de.getFileName(), de.getD_procedure());
+        String sql = "insert into distribution  (d_type,d_state,d_province,d_city,d_district,d_content,d_value,d_index,d_time,d_originalname,d_filename,d_procedure,is_special) value (?,?,?,?,?,?,?,?,UNIX_TIMESTAMP(),?,?,?,?) ";
+        return jdbcTemplate.update(sql, de.getD_type(), de.getD_state(), de.getD_province(), de.getD_city(), de.getD_district(), de.getD_content(), de.getD_value(), de.getD_index(), de.getOrginalName(), de.getFileName(), de.getD_procedure(), de.getIs_special());
     }
 
     public int addDistributionList(List<DistributionEntity> de) {
-        String sql = "insert into distribution (d_type,d_state,d_province,d_city,d_district,d_content,d_value,d_index,d_time) values ";
-        for (DistributionEntity distributionEntity : de) {
-            sql += " (" + distributionEntity.getD_type() + "," + distributionEntity.getD_state() + ",'" + distributionEntity.getD_province() + "','" + distributionEntity.getD_city() + "','" + distributionEntity.getD_district() + "','" + distributionEntity.getD_content() + "','" + distributionEntity.getD_value() + "'," + distributionEntity.getD_index() + ",UNIX_TIMESTAMP()) ,";
+        String sql = "insert into distribution (d_type,d_state,d_province,d_city,d_district,d_content,d_value,d_index,d_time,is_special) values ";
+        for (DistributionEntity d : de) {
+            sql += " (" + d.getD_type() + "," + d.getD_state() + ",'" + d.getD_province() + "','" + d.getD_city() + "','" + d.getD_district() + "','" + d.getD_content() + "','" + d.getD_value() + "'," + d.getD_index() + ",UNIX_TIMESTAMP()) ," + d.getIs_special();
         }
         String substring = sql.substring(0, sql.length() - 1);
         return jdbcTemplate.update(substring);
@@ -102,6 +100,10 @@ public class DistributionDao {
         if (de.getD_time() != null && de.getD_time().trim().length() > 0) {
             sql += " ,d_time =?";
             list.add(de.getD_time());
+        }
+        if (de.getIs_special() > 0) {
+            sql += " ,is_special =?";
+            list.add(de.getIs_special());
         }
         if (list.size() == 1) {
             return 0;
@@ -165,6 +167,10 @@ public class DistributionDao {
         if (de.getP_district() != null && de.getP_district().trim().length() > 0) {
             sql += " and sr.a_name =?";
             list.add(de.getP_district());
+        }
+        if (de.getIs_special() > 0) {
+            sql += " and sr.is_special =?";
+            list.add(de.getIs_special());
         }
         return jdbcTemplate.queryForList(sql, list.toArray());
     }
@@ -230,6 +236,10 @@ public class DistributionDao {
         if (de.getD_procedure() > 0) {
             sql += " and d.d_procedure =?";
             list.add(de.getD_procedure());
+        }
+        if (de.getIs_special() > 0) {
+            sql += " and d.is_special =?";
+            list.add(de.getIs_special());
         }
         sql += " order by d_time desc";
         return jdbcTemplate.queryForList(sql, list.toArray());
@@ -298,6 +308,10 @@ public class DistributionDao {
             sql += " and d.d_procedure =?";
             list.add(de.getD_procedure());
         }
+        if (de.getIs_special() > 0) {
+            sql += " and d.is_special =?";
+            list.add(de.getIs_special());
+        }
         sql += " group by " + groupByString;
         return jdbcTemplate.queryForList(sql, list.toArray());
     }
@@ -365,6 +379,10 @@ public class DistributionDao {
             sql += " and d.d_procedure =?";
             list.add(de.getD_procedure());
         }
+        if (de.getIs_special() > 0) {
+            sql += " and d.is_special =?";
+            list.add(de.getIs_special());
+        }
         sql += " group by " + groupByString;
         return jdbcTemplate.queryForList(sql, list.toArray());
     }
@@ -431,9 +449,13 @@ public class DistributionDao {
         if (groupByString != null) {
             sql += " group by " + groupByString;
         }
-        if (de.getD_procedure()  > 0) {
+        if (de.getD_procedure() > 0) {
             sql += " and d.d_procedure =?";
             list.add(de.getD_procedure());
+        }
+        if (de.getIs_special() > 0) {
+            sql += " and d.is_special =?";
+            list.add(de.getIs_special());
         }
         sql += " order by d_time desc";
         return jdbcTemplate.queryForList(sql, list.toArray());
@@ -445,7 +467,7 @@ public class DistributionDao {
      * TODO
      */
     public List<Map<String, Object>> getLastProcess(Integer type, Integer procedure) {
-        // TODO Auto-generated method stub
+        //  Auto-generated method stub
         String sql = " select * from distribution d left join class c on d.d_procedure = c.c_id where d_type = ? and d_procedure = ? order by d_time desc limit 0,1";
         return jdbcTemplate.queryForList(sql, type, procedure);
 

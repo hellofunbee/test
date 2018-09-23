@@ -23,7 +23,7 @@ API.dict = {
     user_sex: {0: "保密", 1: "男",2:"女"},
     user_edu: {1: "博士", 2: "硕士",3:"本科",4:"专科",0:"无"},
     user_state: {1: "正常", 2: "不正常"},
-    yes_no: {1: "是", 2: "不是"},
+    yes_no: {1: "是", 0: "不是"},
 
     ipc_stream: {0: "主码流", 1: "子码流"},
     ipc_online: {0: "不在线", 1: "在线"},
@@ -153,3 +153,18 @@ API.getUnReadMessage = API.bind("/getUnReadMessage");
 API.getShopCamera = function (deviceId, successFunc, errorFunc) {
     API.service("/getShopCamera", {deviceId: deviceId}, successFunc, errorFunc)
 };
+API.formDownlad = function (options) {
+
+    var config = $.extend(true, {method: 'post'}, options);
+    var $iframe = $('<iframe id="down-file-iframe" />');
+    var $form = $('<form target="down-file-iframe" method="' + config.method + '" />');
+    $form.attr('action', config.url);
+    for (var key in config.data) {
+        $form.append('<input type="hidden" name="' + key + '" value="' + config.data[key] + '" />');
+    }
+    $iframe.append($form);
+    $(document.body).append($iframe);
+    $form[0].submit();
+    $iframe.remove();
+}
+
