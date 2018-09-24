@@ -108,32 +108,33 @@ var page = $('[page="publish2"]'),
         searchBarEl = page.find(".mx-top-search"),
         searClsEl = page.find(".publish2-search-cls"),
         queryIt = function () {
-    var e = {m_type: 2};
-    "" !== searClsEl.attr("value") && (e.m_class = searClsEl.attr("value")),
-    searchBarEl.find("input").val() && (e.m_title = searchBarEl.find("input").val());
-    var l = page.find(".newslist").empty();
-    API.service("/listMessage", e, function (e) {
-        var t = e.object,
+            var e = {m_type: 2};
+            "" !== searClsEl.attr("value") && (e.m_class = searClsEl.attr("value")),
+            searchBarEl.find("input").val() && (e.m_title = searchBarEl.find("input").val());
+            var l = page.find(".newslist").empty();
+            API.service("/listMessage", e, function (e) {
+                console.log(e)
+                var t = e.object;
                 a = '<div class="time">  <div class="close"></div>  <h3>{year}年</h3>  <p>{monthDay}</p></div><div class="info">  <h3 class="news_title">生猪屠宰价格信息</h3>  <p class="news_content">据农业部监测，上周（8月14日-8月20日）全国规模 以上生猪定点屠宰企业生猪平均收购价格为15.03...  </p></div>';
-        $(t).each(function (e) {
-            var t = this,
-                    s = $('<div class="xx-list"></div>').appendTo(l),
-                    i = new Date(1e3 * t.m_time);
-            s.append(a.replace(/{year}/g, i.format("yyyy")).replace(/{monthDay}/g, i.format("MM月dd日"))).find(".news_title").text(t.m_title).end().find(".news_content").text(UI.cutSize(t.m_content, 36)).end().find(".news_title").attr("m_id", t.m_id).click(function () {
-                return showMessageDetail($(this).attr("m_id")), !1
-            }).end().find(".close").attr("m_id", t.m_id).attr("m_title", t.m_title).click(function () {
-                var t = $(this), e = t.attr("m_title");
-                layer.confirm("确定删除[" + e + "]吗？", function (e) {
-                    layer.close(e), API.service("/deleteMessage", {m_id: t.attr("m_id")}, function (e) {
-                        layer.msg(e.msg), queryIt()
+                $(t).each(function (e) {
+                    var t = this,
+                            s = $('<div class="xx-list"></div>').appendTo(l),
+                            i = new Date(1e3 * t.m_time);
+                    s.append(a.replace(/{year}/g, i.format("yyyy")).replace(/{monthDay}/g, i.format("MM月dd日"))).find(".news_title").text(t.m_title).end().find(".news_content").text(UI.cutSize(t.m_content, 36)).end().find(".news_title").attr("m_id", t.m_id).click(function () {
+                        return showMessageDetail($(this).attr("m_id")), !1
+                    }).end().find(".close").attr("m_id", t.m_id).attr("m_title", t.m_title).click(function () {
+                        var t = $(this), e = t.attr("m_title");
+                        layer.confirm("确定删除[" + e + "]吗？", function (e) {
+                            layer.close(e), API.service("/deleteMessage", {m_id: t.attr("m_id")}, function (e) {
+                                layer.msg(e.msg), queryIt()
+                            })
+                        })
                     })
                 })
+            }, function (e) {
+                layer.msg(e.msg)
             })
-        })
-    }, function (e) {
-        layer.msg(e.msg)
-    })
-};
+        };
 $("#fbxx").click(function () {
     layer.open({
         type: 1,

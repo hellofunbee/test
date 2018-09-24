@@ -114,7 +114,15 @@ public class DistributionDao {
     }
 
     public List<Map<String, Object>> listDistribution(DistributionEntity de) {
-        String sql = "select d.*,s.a_name province,sa.a_name city,sr.a_name district from distribution d left join s_area s on s.ar_id =d.d_province left join s_area sa on sa.ar_id =d.d_city left join s_area sr on sr.ar_id = d.d_district  where 1=1";
+        String sql = "select " +
+                "d.*," +
+                "s.a_name province," +
+                "sa.a_name city," +
+                "sr.a_name district " +
+                "from distribution d " +
+                "left join s_area s on s.ar_id =d.d_province " +
+                "left join s_area sa on sa.ar_id =d.d_city " +
+                "left join s_area sr on sr.ar_id = d.d_district  where 1=1";
         List<Object> list = new ArrayList<>();
         if (de.getD_type() > 0) {
             sql += " and d.d_type =?";
@@ -172,67 +180,6 @@ public class DistributionDao {
             sql += " and sr.is_special =?";
             list.add(de.getIs_special());
         }
-        return jdbcTemplate.queryForList(sql, list.toArray());
-    }
-
-    public List<Map<String, Object>> listDistribution2(DistributionEntity de) {
-        String sql = "select d.*,s.a_name province,sa.a_name city,sr.a_name district from distribution d left join s_area s on s.ar_id =d.d_province left join s_area sa on sa.ar_id =d.d_city left join s_area sr on sr.ar_id = d.d_district  where 1=1";
-        List<Object> list = new ArrayList<>();
-        if (de == null) {
-            return jdbcTemplate.queryForList(sql, list.toArray());
-        }
-        if (de.getD_type() > 0) {
-            sql += " and d.d_type =?";
-            list.add(de.getD_type());
-        }
-        if (de.getD_index() > 0) {
-            sql += " and d.d_index =?";
-            list.add(de.getD_index());
-        }
-        if (de.getD_state() > 0) {
-            sql += " and d.d_state =?";
-            list.add(de.getD_state());
-        }
-        if (de.getD_province() != null && de.getD_province().trim().length() > 0) {
-            sql += " and d.d_province =?";
-            list.add(de.getD_province());
-        }
-        if (de.getD_city() != null && de.getD_city().trim().length() > 0) {
-            sql += " and d.d_city =?";
-            list.add(de.getD_city());
-        }
-        if (de.getD_district() != null && de.getD_district().trim().length() > 0) {
-            sql += " and d.d_district =?";
-            list.add(de.getD_district());
-        }
-        if (de.getD_content() != null && de.getD_content().trim().length() > 0) {
-            sql += " and d.d_content =?";
-            list.add(de.getD_content());
-        }
-        if (de.getD_value() != null && de.getD_value().trim().length() > 0) {
-            sql += " and d.d_value =?";
-            list.add(de.getD_value());
-        }
-        if (de.getD_time() != null && de.getD_time().trim().length() > 0) {
-            sql += " and d.d_time =?";
-            list.add(de.getD_time());
-        }
-        if (de.getD_id() > 0) {
-            sql += " and d.d_id =?";
-            list.add(de.getD_id());
-        }
-        if (de.getP_province() != null && de.getP_province().trim().length() > 0) {
-            sql += " and s.a_name =?";
-            list.add(de.getP_province());
-        }
-        if (de.getP_city() != null && de.getP_city().trim().length() > 0) {
-            sql += " and sa.a_name =?";
-            list.add(de.getD_city());
-        }
-        if (de.getP_district() != null && de.getP_district().trim().length() > 0) {
-            sql += " and sr.a_name =?";
-            list.add(de.getP_district());
-        }
         if (de.getD_procedure() > 0) {
             sql += " and d.d_procedure =?";
             list.add(de.getD_procedure());
@@ -241,7 +188,13 @@ public class DistributionDao {
             sql += " and d.is_special =?";
             list.add(de.getIs_special());
         }
-        sql += " order by d_time desc";
+
+        if (de.getSearch() != null && de.getSearch().trim().length() > 0) {
+            sql += " and concat(s.a_name,sa.a_name,sr.a_name) like '%" + de.getSearch() + "%'";
+
+        }
+
+        System.out.println(sql);
         return jdbcTemplate.queryForList(sql, list.toArray());
     }
 

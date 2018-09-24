@@ -305,33 +305,37 @@ if (!window.js_common_loaded) {
                 data: data,
                 success: function (e) {
 
-                    if (onSuccess) {
-                        onSuccess(data)
+                    if (e.state == 2) {
+                        layer.alert(e.msg, function () {
+                            window.parent.location.href = "./login.html"
+                        });
+                        return;
                     }
-                    ;
 
-                    if (e.state == 0) {
+
+                    if (e.success == true) {
                         if ($("#" + img_id)) {
                             $("#" + img_id).attr("src", e.object);
                             $("#" + img_id).attr("value", e.object)
                         }
-
-                    } else if (e.state == 2) {
-                        layer.alert(e.msg, function () {
-                            window.parent.location.href = "./login.html"
-                        })
+                        if (onSuccess) {
+                            onSuccess(e);
+                            return;
+                        }
+                    } else {
+                        if (onFail) {
+                            onFail(e)
+                            return;
+                        }
 
                     }
-                    layer.alert(e.msg)
-                    layer.close(t);
 
+
+                    layer.msg(e.msg)
                 },
-                error: function () {
-                    if (onFail) {
-                        onFail(data)
-                    }
-                    ;
-                    layer.alert("请求失败，请重新尝试")
+                error: function (e) {
+
+                    layer.msg("请求失败，请重新尝试")
                 }
             }
         );

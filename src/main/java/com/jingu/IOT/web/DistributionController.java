@@ -121,8 +121,8 @@ public class DistributionController {
         JSONArray jsonArray = (JSONArray) m.get("jarray");
 
         String originalFilename = d_content.getOriginalFilename();
-        String encode = Base64.encode(originalFilename.getBytes());
-        String fileName = "distribute" + "_" + 0 + "_" + encode;
+        /*String encode = Base64.encode(originalFilename.getBytes());
+        String fileName = "distribute" + "_" + 0 + "_" + encode;*/
 
         DistributionEntity distr = new DistributionEntity();
         distr.setD_content(jsonArray.toString());
@@ -132,7 +132,9 @@ public class DistributionController {
         distr.setD_city(d_city);
         distr.setD_district(d_district);
         distr.setOrginalName(originalFilename);
-        distr.setFileName(fileName);
+
+        distr.setFileName((String) m.get("file"));
+
         distr.setD_procedure(d_procedure == null ? 0 : d_procedure);
 
         int backStatus = distributionService.addDistribution2(distr);
@@ -169,9 +171,9 @@ public class DistributionController {
 
 
         int addDistribution2 = distributionService.addDistribution2(new DistributionEntity(0, d_type, d_state, "", "",
-                "", "", "", 0, "", "", "", "", null, originalFilename, fileName, d_procedure,0));
+                "", "", "", 0, "", "", "", "", null, originalFilename, fileName, d_procedure, 0));
         List<Map<String, Object>> listDistribution = distributionService.listDistribution3(new DistributionEntity(0,
-                d_type, d_state, "", "", "", "", "", 0, "", "", "", "", null, "", "", d_procedure,0));
+                d_type, d_state, "", "", "", "", "", 0, "", "", "", "", null, "", "", d_procedure, 0));
         if (addDistribution2 > 0) {
             return new IOTResult(true, "上传成功", listDistribution, 0);
         }
@@ -354,97 +356,5 @@ public class DistributionController {
         }
     }
 
-    //
-
-    // if(listDistribution ==null || listDistribution.isEmpty()){
-    //
-    // return new IOTResult(false,"暂无相关信息",null,0);
-    // }
-    //// HashMap<String,Object> hashMap = new HashMap<>();
-    //
-    // List<Object> distribute = new ArrayList();
-    //
-    // List<Map<String,Object>> collect =
-    // listDistribution.stream().filter(x->x.get("d_filename")!=null).collect(Collectors.toList());
-    //
-    //
-    // for (Map<String, Object> map : collect) {
-    // String d_province = map.get("d_province").toString();
-    // String d_city = map.get("d_city").toString();
-    // String d_district = map.get("d_district").toString();
-    // String province = map.get("province").toString();
-    // String city = map.get("city").toString();
-    // String district = map.get("district").toString();
-    // String d_originalname = map.get("d_originalname").toString();
-    // HashMap<Object,Object> hashMap = new HashMap<>();
-    //
-    // HashMap<Object,Object> provinceMap = new HashMap<>();
-    // provinceMap.put("provinceName", province);
-    // provinceMap.put("provinceCode", d_province);
-    //
-    // if(hashMap.containsKey(d_province)){
-    // distribute.indexOf(provinceMap);
-    //
-    // }else{
-    // provinceMap.put(d_province, d_province);
-    // hashMap.put(d_province, d_province);
-    //
-    // HashMap<Object,Object> cityMap = new HashMap<>();
-    // cityMap.put("cityName", city);
-    // cityMap.put("cityCode", d_city);
-    //
-    // ArrayList<Object> cityList = new ArrayList<>();
-    // HashMap<Object,Object> districtMap = new HashMap<>();
-    // districtMap.put("districtName", district);
-    // districtMap.put("districtCode", d_district);
-    //
-    // List<String> fileList = new ArrayList<>();
-    // fileList.add(d_originalname);
-    // districtMap.put("fileList", fileList);
-    // cityList.add(districtMap);
-    // distribute.add(cityMap);
-    // }
-
-    // list.add(cityMap);
-    // hashMap.put("citys", list);
-
-    // if(distribute.contains(d_province)){
-    // int indexOf = distribute.indexOf(d_province);
-    // HashMap<String,Object> hashMap2 = distribute.get(indexOf);
-    //
-    // if(hashMap2.containsKey(d_province)){
-    // Map<String, Object> map2 = (Map<String, Object>)
-    // hashMap2.get(d_province);
-    // if(map2.containsKey(d_city)){
-    // List<String> list = (List<String>) map2.get(d_city);
-    // list.add(d_originalname);
-    // }else{
-    // List<String> xList = new ArrayList<>();
-    // xList.add(d_originalname);
-    // map2.put(d_city,xList);
-    // }
-    // map2.put("name",city);
-    // map2.put("provinceName",province);
-    // }else{
-    // Map<String, Object> map3 = new HashMap<>();
-    // List<String> mList = new ArrayList<>();
-    // mList.add(d_originalname);
-    // map3.put(d_city,mList);
-    // map3.put("provinceName",province);
-    // map3.put("name",city);
-    // hashMap2.put(d_province, map3);
-    // }
-    // }else{
-    // HashMap<String,Object> hashMap2 = new HashMap<>();
-    // Map<String, Object> map3 = new HashMap<>();
-    // List<String> mList = new ArrayList<>();
-    // mList.add(d_originalname);
-    // map3.put(d_city,mList);
-    // map3.put("provinceName",province);
-    // map3.put("name",city);
-    // hashMap2.put(d_province, map3);
-    // distribute.add(hashMap2);
-    // }
-    // }
 
 }

@@ -153,6 +153,35 @@ public class MessageController {
 
     // 列表查看消息
     @CrossOrigin
+    @RequestMapping(value = "/listMessageInMap", method = RequestMethod.POST)
+    public IOTResult listMessageInMap(@RequestBody MessageRequset mr) {
+
+        if (mr.getCksid() == null || mr.getCksid().trim().length() < 1 || mr.getCkuid() == null
+                || mr.getCkuid() == null) {
+            return new IOTResult(false, "信息不规范", null, 1);
+        }
+        // 注册登陆按照什么来????
+        String check = toolUtil.getCheck(ToolUtil.IOT + mr.getCkuid());
+        if (check == null || !mr.getCksid().equals(check)) {
+            return new IOTResult(false, "登陆失效", null, 2);
+        }
+        long uid = toolUtil.getbase_uidSid(mr.getCkuid(), mr.getCksid());
+        String intVal = toolUtil.getIntVal(ToolUtil.MESSAGE);
+        if (intVal == null) {
+            intVal = "0";
+        }
+        toolUtil.setIntVal(ToolUtil.MESSAGEREADING + uid + ToolUtil.READ, Integer.parseInt(intVal));
+        //*预警*//*
+        List<Map> listMessage = messageService.messageGroupByPlace(mr);
+        if (listMessage == null || listMessage.isEmpty()) {
+            return new IOTResult(false, "暂无相关信息", null, 10);
+        }
+        return new IOTResult(true, "消息查看成功", listMessage, 0);
+
+    }
+
+    // 列表查看消息
+    @CrossOrigin
     @RequestMapping(value = "/listMessage", method = RequestMethod.POST)
     public IOTResult listMessage(@RequestBody MessageRequset mr) {
 
@@ -174,14 +203,6 @@ public class MessageController {
         toolUtil.setIntVal(ToolUtil.MESSAGEREADING + uid + ToolUtil.READ, Integer.parseInt(intVal));
 
 
-        /*预警*/
-        if (mr.getM_type() == Types.MT_YUJING) {
-            List<Map<String, Object>> listMessage = messageService.listMessage3(mr);
-            if (listMessage == null || listMessage.isEmpty()) {
-                return new IOTResult(false, "暂无相关信息", null, 10);
-            }
-            return new IOTResult(true, "消息查看成功", listMessage, 0);
-        }
         /*首页*/
         if (mr.getM_type() == Types.MT_SHOUYE) {
             List<Map<String, Object>> listMessage = messageService.listMessage1Bygroup(mr);
@@ -215,13 +236,7 @@ public class MessageController {
             return new IOTResult(false, "登陆失效", null, 2);
         }
         long uid = toolUtil.getbase_uidSid(mr.getCkuid(), mr.getCksid());
-        // PointEntity pointEntity = mr.getPointEntity();
-        // pointEntity.setUid(uid);
-        // pointEntity.setRole(String.valueOf(uid));
-        // PointEntity point = pointService.getPoint(pointEntity);
-        // if(point ==null){
-        // return new IOTResult(false,"节点不存在",null,3);
-        // }
+
 
         List<Map<String, Object>> listMessage = messageService.listMessage1Bygroup(mr);
         if (listMessage == null || listMessage.isEmpty()) {

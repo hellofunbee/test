@@ -46,6 +46,8 @@ public class DistributionEntity {
 	private int d_procedure;
 	private int is_special = 0;//精选
 
+	private String search;
+
 	
 	public DistributionEntity() {
 		super();
@@ -231,5 +233,13 @@ public class DistributionEntity {
 
 	public void setIs_special(int is_special) {
 		this.is_special = is_special;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 }

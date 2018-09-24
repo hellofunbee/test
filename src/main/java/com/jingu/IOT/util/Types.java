@@ -24,7 +24,7 @@ public class Types {
     public final static int CT_JINDU = 8;
 
       /*message （m_type）*/
-    /*类型 1 政策 2及时 3 预警 4 首页资讯*/
+    /*类型 1 政策 2即时 3 预警 4 首页资讯*/
 
     public final static int MT_ZHENGCE = 1;
     public final static int MT_JISHI = 2;

@@ -2841,4 +2841,60 @@ a.mx-logo {
   min-height: 500px;
 }
 
+.xxx-layer {
+  display: none;
+  padding: 20px 60px 0;
+}
+
+.xxx-layer h4 {
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+.xxx-layer input[type='text'],
+.xxx-layer select,
+.xxx-layer textarea {
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  border: 1px solid #0061E3;
+}
+
+.xxx-layer textarea {
+  resize: none;
+  height: 240px;
+  padding: 5px;
+}
+
+.xxx-layer .left-info {
+  float: left;
+  width: 350px;
+  margin-right: 30px;
+}
+
+.xxx-layer .right-file {
+  float: left;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+}
+
+.xxx-layer .right-file img {
+  position: relative;
+  z-index: 1;
+}
+
+.xxx-layer .right-file input[type='file'] {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=style.css.map */

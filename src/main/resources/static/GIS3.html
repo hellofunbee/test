@@ -36,7 +36,7 @@
         </div>
         <div class="mx-top-search fr" style="margin-right:0">
             <input type="text">
-            <a href="#">搜索</a>
+            <a href="#" id="gis3-search">搜索</a>
         </div>
         <div class="mx-top-select fr ">
             <h3>农事<em><i></i></em></h3>
@@ -74,7 +74,7 @@
         <div class="fl mr10" style="width:130px">
             <h4>选择农事类型</h4>
             <p>
-                <select name="provice" id="gis3_type">
+                <select field="d_province" id="gis3_type">
                     <option value="">春耕</option>
                 </select>
             </p>
@@ -113,6 +113,7 @@
     document.write(html)
 }</script>
 <script src="js/gis3.js"></script>
+<script src="js/ajaxfileupload.js"></script>
 
 </body>
 </html>

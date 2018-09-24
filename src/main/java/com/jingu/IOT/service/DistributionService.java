@@ -60,9 +60,6 @@ public class DistributionService {
         return distributionDao.listDistribution(de);
     }
 
-    public List<Map<String, Object>> listDistribution2(DistributionEntity de) {
-        return distributionDao.listDistribution2(de);
-    }
 
     public List<Map<String, Object>> listDistribution3(DistributionEntity de) {
         List<Map<String, Object>> listDistribution2 = distributionDao.listDistribution4(de, "d_province");

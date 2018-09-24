@@ -1,7 +1,6 @@
 package com.jingu.IOT.service;
 
 import com.jingu.IOT.response.IOTResult;
-import com.jingu.IOT.util.Base64;
 import com.jingu.IOT.util.ExcelData;
 import com.jingu.IOT.util.ToolUtil;
 import net.sf.json.JSONArray;
@@ -17,6 +16,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Component
 public class UploadService {
@@ -87,9 +87,12 @@ public class UploadService {
 
     public IOTResult uploadFile3(String type, int o_id, MultipartFile file) {
 
-        String originalFilename = file.getOriginalFilename();
+        /*String originalFilename = file.getOriginalFilename();
         String encode = Base64.encode(originalFilename.getBytes());
-        String fileName = type + "_" + o_id + "_" + encode;
+        String fileName = type + "_" + o_id + "_" + encode;*/
+
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String fileName = type + "_" + o_id + "_" + uuid;
         try {
            /*File f_outpath = new File(ToolUtil.FILEPATH + fileName);
             if(!f_outpath.exists())

@@ -183,19 +183,34 @@ $(function () {
             map1.setViewport(all);
         }
     });
-    API.service("/listDistribution", {d_type: "2"}, function (data) {
-        distData = data.object;
-        if (distData.length) {
-            all = [];
-            polygon_item = [];
-            isFocused = false;
-            $(data.object).each(function (i, e) {
-                renderMapData(e, i)
-            });
-
-
+    $('#gis2-search').on('click', function () {
+        if ($(this).prev('input').val()) {
+            reload();
+        } else {
+            layer.msg('请输入内容');
         }
     });
+    var reload = function () {
+        API.service("/listDistribution",
+            {
+                d_type: "2",
+                search: $('#gis2-search').prev('input').val(),
+            },
+            function (data) {
+                distData = data.object;
+                if (distData.length) {
+                    all = [];
+                    polygon_item = [];
+                    isFocused = false;
+                    $(data.object).each(function (i, e) {
+                        renderMapData(e, i)
+                    });
+
+
+                }
+            });
+    }
+    reload();
     $(".sblb>h3").click(function () {
         $(this).next().toggle()
     });
@@ -251,11 +266,20 @@ $(function () {
                 var d_district = page.find('#gis2_district').val();
 
                 var dtype = 1;
+
+                var isClick_ct = true;
                 UI.renderProvince("#gis2_provice", function () {
                     UI.renderCity("#gis2_city", $(this).val(), function () {
                         UI.renderDistrict("#gis2_district", $(this).val(), function () {
                             // reload();
                             setParam();
+                            if (isClick_ct) {
+                                isClick_ct = false;
+                                reload2();
+                                setTimeout(function () {
+                                    isClick_ct = true;
+                                }, 1000);//一秒内不能重复点击
+                            }
 
                         });
                     })
@@ -295,14 +319,14 @@ $(function () {
                 });
                 page.find('.btn-search').click(function () {
                     setParam();
-                    reload();
+                    reload2();
                 });
                 page.find('.btn-search-all').click(function () {
                     d_province = null;
                     d_city = null;
                     d_district = null;
 
-                    reload();
+                    reload2();
                 });
                 uploadWrapEL.on('change', function () {
                     page.find(".file-name").text($(this).val())
@@ -328,15 +352,11 @@ $(function () {
                                 '/addDistribution2',
                                 'publish-file', '',
                                 function (data) {
-                                    if (data.state === 2) {
-                                        layer.confirm(data.msg, function (idx) {
-                                            top.location.href = "./login.html"
-                                        })
-                                    } else {
-                                        layer.msg(data.msg)
-                                    }
+                                    layer.msg(data.msg)
+                                    reload2();
+
+                                    /*uploadFileEl.val("").change();*/
                                 }, function (data) {
-                                    uploadFileEl.val("").change();
                                     layer.msg(data.msg)
                                 });
                             stopLoading();
@@ -349,7 +369,7 @@ $(function () {
                 /*listDistribute*/
 
                 // reload();
-                function reload() {
+                function reload2() {
                     API.service("/listDistribution", {
                         d_type: dtype,
                         d_province: d_province,
@@ -401,7 +421,7 @@ $(function () {
                                     }, function (result) {
                                         layer.msg(result.msg)
                                         if (result.success) {
-                                            reload();
+                                            reload2();
                                         }
                                     });
 
@@ -417,7 +437,7 @@ $(function () {
                         layer.msg(m.msg);
                     })
                 };
-                reload();
+                //reload2();
             }
         })
     })
