@@ -21,54 +21,16 @@
         </div>
     </div>
     <div class="expert-module clearfix">
-        <div class="expert-list">
+        <div class="expert-list tpl" style="display: none">
             <div class="img"><img src="images/people.png" alt=""></div>
-            <div class="name">天知道</div>
-            <div class="education">博士</div>
-            <div class="info"><p><span>专业领域</span>浆果类作物种植、防病虫害</p>
-                <p><span>电子邮箱</span>zhanghan88@hotmail.com</p>
+            <div class="name" field="tu_username">天知道</div>
+            <div class="education" field="tu_edu" render="dict" dict="user_edu">博士</div>
+            <div class="info">
+                <p><span>专业领域</span>浆果类作物种植、防病虫害</p>
+                <p><span>电子邮箱</span> <span field="tu_email"></span></p>
                 <p><span>服务对象</span>2 个</p></div>
         </div>
-        <div class="expert-list">
-            <div class="img"><img src="images/people.png" alt=""></div>
-            <div class="name">天知道</div>
-            <div class="education">博士</div>
-            <div class="info"><p><span>专业领域</span>浆果类作物种植、防病虫害</p>
-                <p><span>电子邮箱</span>zhanghan88@hotmail.com</p>
-                <p><span>服务对象</span>2 个</p></div>
-        </div>
-        <div class="expert-list other">
-            <div class="img"><img src="images/people.png" alt=""></div>
-            <div class="name">天知道</div>
-            <div class="education">博士</div>
-            <div class="info"><p><span>专业领域</span>浆果类作物种植、防病虫害</p>
-                <p><span>电子邮箱</span>zhanghan88@hotmail.com</p>
-                <p><span>服务对象</span>2 个</p></div>
-        </div>
-        <div class="expert-list">
-            <div class="img"><img src="images/people.png" alt=""></div>
-            <div class="name">天知道</div>
-            <div class="education">博士</div>
-            <div class="info"><p><span>专业领域</span>浆果类作物种植、防病虫害</p>
-                <p><span>电子邮箱</span>zhanghan88@hotmail.com</p>
-                <p><span>服务对象</span>2 个</p></div>
-        </div>
-        <div class="expert-list">
-            <div class="img"><img src="images/people.png" alt=""></div>
-            <div class="name">天知道</div>
-            <div class="education">博士</div>
-            <div class="info"><p><span>专业领域</span>浆果类作物种植、防病虫害</p>
-                <p><span>电子邮箱</span>zhanghan88@hotmail.com</p>
-                <p><span>服务对象</span>2 个</p></div>
-        </div>
-        <div class="expert-list other">
-            <div class="img"><img src="images/people.png" alt=""></div>
-            <div class="name">天知道</div>
-            <div class="education">博士</div>
-            <div class="info"><p><span>专业领域</span>浆果类作物种植、防病虫害</p>
-                <p><span>电子邮箱</span>zhanghan88@hotmail.com</p>
-                <p><span>服务对象</span>2 个</p></div>
-        </div>
+
     </div>
 </div>
 <script type="text/javascript">if (!window.jQuery) {
@@ -76,27 +38,65 @@
     document.write(html)
 }</script>
 <script>
+    var field_c_id = 0;
     $(".mx-top-select h3").click(function () {
         $(this).hasClass("on") ? ($(this).removeClass("on"), $(this).next(".mx-top-select-list").hide()) : ($(this).addClass("on"), $(this).next(".mx-top-select-list").show())
     })
 
-    API.service("/listClass1", {c_type: 6, c_lev: 1}, function (data) {
+    reload();
+    function reload() {
+        $('.expert-module').empty();
+        API.service("/listUserForMap", {
+            tu_type: 6,
+        }, function (data) {
+            console.log(data)
+            $(data.object).each(function (i, e) {
+                var tpl = $('.tpl').clone();
+                tpl.css('display', 'block');
+                tpl.removeClass('tpl');
+                UI.appendFieldTo(tpl, e, $('.expert-module'))
+            });
 
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+        });
+    }
+
+    function reload2() {
+        $('.expert-module').empty();
+        API.service("/listUserForMap", {
+            tu_type: 6,
+        }, function (data) {
+            console.log(data)
+            $(data.object).each(function (i, e) {
+                var tpl = $('.tpl').clone();
+                tpl.css('display', 'block');
+                tpl.removeClass('tpl');
+                UI.appendFieldTo(tpl, e, $('.expert-module'))
+            });
+
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+        });
+    }
+
+    API.service("/listClass1", {c_type: 6, c_lev: 1}, function (data) {
         var str = '';
         $(data.object).each(function (i, e) {
             str += '<dd value="' + e.c_id + '">' + e.c_name + '</dd>';
         });
 
         $('.mx-top-select-list').html(str);
-        $("dd").on('click',function () {
+        $("dd").on('click', function () {
             $(".mx-top-select h3").removeClass("on");
             $('.mx-top-select-list').hide()
-            console.log($(this).val())
+            field_c_id = $(this).attr('value');
+            reload();
+
         });
 
 
     })
-
 
 
 </script>

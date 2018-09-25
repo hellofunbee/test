@@ -48,11 +48,20 @@ public class Types {
     public final static int IPC_1 = 1;
     public final static int IPC_2 = 2;
 
+    // 投放标准 有机 1 绿色 2 无公害 3
+    public static String getStandard(int s) {
 
-
-
-
-
+        switch (s) {
+            case 1:
+                return "有机";
+            case 2:
+                return "绿色";
+            case 3:
+                return "无公害";
+            default:
+                return s + "";
+        }
+    }
 
 
 }

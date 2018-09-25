@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input class="input" type="text"/>
+    <button class="send">send</button>
+</div>
+
+
+<!--<script src="/webjars/jquery/jquery.min.js"></script>-->
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+<script>
+
+    var stompClient = null;
+    //连接到服务器
+    function connect() {
+        var socket = new SockJS('/gs-guide-websocket');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            //接收服务端发送给/topic/greetings的订阅消息
+            stompClient.subscribe('/topic/imsg', function (greeting) {
+                console.log(greeting);
+                //JSON.parse(greeting.body);//解析json字符串为对象
+            });
+        });
+        //断开连接
+        function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+            //向服务器发送消息
+            function sendHello() {
+                stompClient.send("/app/sendimsg", {}, "hello server");
+            }
+
+        }
+    }
+    connect();
+
+    $('.send').click(function () {
+        var word = $('.input').val();
+        stompClient.send("/app/sendimsg", {}, word);
+    });
+
+</script>
+</body>
+</html>

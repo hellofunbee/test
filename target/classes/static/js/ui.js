@@ -509,7 +509,7 @@ UI.validRules = {
 UI.getFieldValue = function (targetEl) {
     var obj = {};
     var valid = true;
-    $(targetEl).find("input[field],select[field],div[field][dict]").each(function () {
+    $(targetEl).find("input[field],select[field],div[field][dict],textarea[field]").each(function () {
         var me = $(this);
         var val = me.val();
         if (me.is("div[dict]")) {
@@ -690,42 +690,4 @@ UI.closeIframeDialog = function () {
     }
     return false
 };
-
-UI.setExpType = function (type, tr, ctl_el, c_id) {
-    if (type == 6) {
-        if (ctl_el.find('#exp-class').attr('id')) {
-            ctl_el.find('#exp-class').show();
-            ctl_el.find('#exp-class select').attr('field', 'c_id')
-        } else {
-            API.service("/listClass1", {c_type: 6, c_lev: 1}, function (data) {
-                var str = '';
-                $(data.object).each(function (i, e) {
-                    str += '<option value="' + e.c_id + '">' + e.c_name + '</option>';
-                });
-                var clasz =
-                    '<tr id="exp-class">' +
-                    '   <th>专家类型</th>' +
-                    '    <td><select class="text-lg"  field="c_id">' +
-                    str +
-                    '      </select></td>' +
-                    '  </tr>';
-                tr.after($(clasz));
-                if (ctl_el.find('#exp-class').attr('id') && c_id) {
-                    ctl_el.find('#exp-class select').val(c_id)
-
-                }
-
-            });
-        }
-
-    } else {
-        if (ctl_el.find('#exp-class').attr('id')) {
-            ctl_el.find('#exp-class').hide();
-            ctl_el.find('#exp-class select').attr('field', 'nothing')
-        }
-    }
-
-
-
-}
 

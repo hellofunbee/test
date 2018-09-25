@@ -41,9 +41,22 @@ public class MessageDao {
 //		this.jdbcTemplate = jdbcTemplate;
 //	}
 
+    /**
+     * 添加并返回自增长id
+     * @param me
+     * @return
+     */
     public int addMessage(MessageEntity me) {
         String sql = " insert into message (m_type,m_title,m_content,m_province,m_city,m_district,m_class,m_time,m_authorname,m_cover,m_class2) value (?,?,?,?,?,?,?,UNIX_TIMESTAMP(),?,?,?)";
-        return jdbcTemplate.update(sql, me.getM_type(), me.getM_title(), me.getM_content(), me.getM_province(), me.getM_city(), me.getM_district(), me.getM_class(), me.getM_authorname(), me.getM_cover(), me.getM_class2());
+
+
+        int back = jdbcTemplate.update(sql, me.getM_type(), me.getM_title(), me.getM_content(), me.getM_province(), me.getM_city(), me.getM_district(), me.getM_class(), me.getM_authorname(), me.getM_cover(), me.getM_class2());
+
+        Map m = jdbcTemplate.queryForMap("SELECT LAST_INSERT_ID() id;");
+        if (m != null)
+            return Integer.valueOf(m.get("id").toString());
+        return back;
+
     }
 
     public int updateMessage(MessageEntity me) {

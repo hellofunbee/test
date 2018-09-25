@@ -10,15 +10,18 @@
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body style="overflow:hidden">
 <div class="mx-header">
     <div class="mx-contaniner clearfix"><a href="/" class="mx-logo">物联网综合信息云平台</a>
         <div class="mx-topNocie">
-            <div class="mx-topNocieCnt">
-                <span>滚动消息</span>
-                <span>滚动消息</span>
-                <span>滚动消息</span>
-            </div>
+            <marquee width=400 onmousemove="this.stop()" onmouseout="this.start()" scrollamount=5 align=middle>
+                <div class="mx-topNocieCnt marquee">
+                    <!--<span>滚动消息</span>
+                    <span>滚动消息</span>
+                    <span>滚动消息</span>-->
+                </div>
+            </marquee>
         </div>
         <div class="mx-topSearch">
             <input type="text" placeholder="请输入您想查询的文章标题">
@@ -93,33 +96,78 @@
 }
 </script>
 <script src="js/index.js"></script>
+
+<!--<script src="/webjars/jquery/jquery.min.js"></script>-->
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+
 <script>
 
+    var stompClient = null;
+    //连接到服务器
+    function connect() {
+        var socket = new SockJS('/gs-guide-websocket');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            //接收服务端发送给/topic/greetings的订阅消息
+            stompClient.subscribe('/topic/imsg', function (e) {
+                var e = JSON.parse(e.body);
+
+                var n = $(".mx-topNocieCnt");
+
+                $('<span style="white-space: nowrap;padding-left: 20px;padding-right: 20px" ></span>')
+                        .attr("m_id", e.m_id)
+                        .text(UI.cutSize(e.m_title, 156))
+                        .appendTo(n).click(function () {
+                    showMessageDetail($(this).attr("m_id"));
+                })
+
+
+            });
+        });
+        //断开连接
+        function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+            //向服务器发送消息
+            /*function sendHello() {
+             stompClient.send("/app/sendimsg", {}, "hello server");
+             }*/
+        }
+    }
+    connect();
+
     API.listMessage(2, null, null, function (t) {
-        console.log(t)
         var e = t.object,
-                i = 10 < e.length ? e.slice(0, 10) : e,
+                i = 3 < e.length ? e.slice(0, 3) : e,
                 n = $(".mx-topNocieCnt").empty();
-        $(i).each(function (t) {
-            $("<span></span>").attr("m_id", this.m_id).text(this.m_title).appendTo(n).click(function () {
+        $(i).each(function (i, e) {
+            $('<span style="white-space: nowrap;padding-left: 20px;padding-right: 20px" ></span>').attr("m_id", this.m_id).text(UI.cutSize(e.m_title, 156)).appendTo(n).click(function () {
                 return showMessageDetail($(this).attr("m_id")), !1
             })
         })
-    }), $(".mx-topNocie").slide({
-        mainCell: ".mx-topNocieCnt ",
-        autoPlay: !0,
-        effect: "leftMarquee",
-        interTime: 50,
-        vis: 3,
-        trigger: "click"
     })
+    /*, $(".mx-topNocie").slide({
+     mainCell: ".mx-topNocieCnt ",
+     titCell: ".mx-topNocieCnt span",
+     autoPlay: !0,
+     effect: "leftMarquee",
+     interTime: 50,
+     vis: 3,
+     trigger: "click"
+     })*/
 </script>
 <script>!function (e) {
     var t = document.createElement("script");
     t.src = "https://hm.baidu.com/hm.js?29af1c870a0982d5fcf6059288d2be0d";
     var c = document.getElementsByTagName("script")[0];
     c.parentNode.insertBefore(t, c)
-}()</script>
+}()
+
+</script>
 </body>
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1XR2D1wencMcoyeNTcOt6E7pe6AnUFkp"></script>
 </html>

@@ -276,6 +276,7 @@ $(function () {
     });
 
     //layer content
+    var layer_content = $('.layer-content').clone();
 
     $("#sjdl").click(function () {
         layer.open({
@@ -288,6 +289,9 @@ $(function () {
                 layer.closeAll();
             },
             success: function (page) {
+                page.find(".xxx-layer").empty();
+                UI.appendFieldTo(layer_content, {}, page.find(".xxx-layer"));
+
                 var d_province = page.find('#gis2_provice').val();
                 var d_city = page.find('#gis2_city').val();
                 var d_district = page.find('#gis2_district').val();
@@ -360,9 +364,6 @@ $(function () {
                         uploadFileEl.val("").change()
                     }
                 });
-                uploadFileEl.on('change', function () {
-                    page.find(".file-name").text($(this).val())
-                });
 
                 // 下载模板
                 page.find('.download-model').click(function () {
@@ -377,66 +378,70 @@ $(function () {
                     API.formDownlad({url: url, method: 'GET', data: data});
 
                 });
-                /*page.find('.btn-search').click(function () {
-                 setParam();
-                 reload();
-                 });
-                 page.find('.btn-search-all').click(function () {
-                 d_province = null;
-                 d_city = null;
-                 d_district = null;
+                page.find('.btn-search').click(function () {
+                    setParam();
+                    reload2();
+                });
+                page.find('.btn-search-all').click(function () {
+                    d_province = null;
+                    d_city = null;
+                    d_district = null;
 
-                 reload();
-                 });*/
+                    reload2();
+                });
                 //上传文件
 
-                page.find('.do-upload').on('click', function () {
-                    if (!page.find('#publish-file').val()) {
+                uploadWrapEL.on('change', function () {
+                    page.find(".file-name").text(page.find('#publish-file').val())
+                    if (!$('#publish-file').val()) {
                         layer.msg('请选择文件')
                         return;
                     }
 
-                    var obj = {};
-                    obj.ckuid = sessionStorage.getItem("ckuid");
-                    obj.cksid = sessionStorage.getItem("cksid");
-                    obj.d_type = dtype;
-                    obj.d_procedure = page.find('#gis3_type').val();
-                    obj.d_state = 1;
-                    obj.d_province = page.find("#gis2_provice").val();
-                    obj.d_city = page.find("#gis2_city").val();
-                    obj.d_district = page.find("#gis2_district").val();
+                    layer.alert('确定上传？',
+                        function () {
 
-                    // 验证
-                    if (!obj.d_procedure || obj.d_procedure <= 0) {
-                        layer.msg('请选择农事！')
-                        return;
-                    }
-                    if (!obj.d_province || obj.d_province.length < 1) {
-                        layer.msg('请选择省！')
-                        return;
-                    }
-                    if (!obj.d_city || obj.d_city.length < 1) {
-                        layer.msg('请选择市！')
-                        return;
-                    }
-                    if (!obj.d_district || obj.d_district.length < 1) {
-                        layer.msg('请选择区！')
-                        return;
-                    }
+                            var obj = {};
+                            obj.ckuid = sessionStorage.getItem("ckuid");
+                            obj.cksid = sessionStorage.getItem("cksid");
+                            obj.d_type = dtype;
+                            obj.d_procedure = page.find('#gis3_type').val();
+                            obj.d_state = 1;
+                            obj.d_province = page.find("#gis2_provice").val();
+                            obj.d_city = page.find("#gis2_city").val();
+                            obj.d_district = page.find("#gis2_district").val();
 
-                    startLoading();
-                    uploadImg(obj,
-                        '/addDistribution2',
-                        'publish-file', '',
-                        function (data) {
-                            layer.msg(data.msg)
-                            reload2();
-                            /*uploadFileEl.val("").change();*/
-                        }, function (data) {
-                            layer.msg(data.msg)
+                            // 验证
+                            if (!obj.d_procedure || obj.d_procedure <= 0) {
+                                layer.msg('请选择农事！')
+                                return;
+                            }
+                            if (!obj.d_province || obj.d_province.length < 1) {
+                                layer.msg('请选择省！')
+                                return;
+                            }
+                            if (!obj.d_city || obj.d_city.length < 1) {
+                                layer.msg('请选择市！')
+                                return;
+                            }
+                            if (!obj.d_district || obj.d_district.length < 1) {
+                                layer.msg('请选择区！')
+                                return;
+                            }
+
+                            startLoading();
+                            uploadImg(obj,
+                                '/addDistribution2',
+                                'publish-file', '',
+                                function (data) {
+                                    layer.msg(data.msg)
+                                    reload2();
+                                    /*uploadFileEl.val("").change();*/
+                                }, function (data) {
+                                    layer.msg(data.msg)
+                                });
+                            stopLoading();
                         });
-                    stopLoading();
-
 
                 });
 
@@ -461,7 +466,7 @@ $(function () {
                         var tpl =
                             '<tr class="file-tpl">' +
                             '<td field="d_originalname"></td>' +
-                            '<td field="is_special" render="dict" dict="yes_no"></td>' +
+                            /* '<td field="is_special" render="dict" dict="yes_no"></td>' +*/
                             '<td><a href="#" class="btn-sm btn-fh delete">删除</a></td>' +
                             '</tr>';
 
@@ -471,10 +476,10 @@ $(function () {
                         $(rsp.object).each(function (i, e) {
 
                             var el = UI.appendFieldTo(tpl, e, toEl).data('data', e);
-                            if (e.is_special == 1)
-                                el.find('[field="is_special"]').text('是');
-                            else
-                                el.find('[field="is_special"]').text('否');
+                            /*if (e.is_special == 1)
+                             el.find('[field="is_special"]').text('是');
+                             else
+                             el.find('[field="is_special"]').text('否');*/
 
 
                             el.find('.delete').on('click', function () {
@@ -490,13 +495,16 @@ $(function () {
                                     API.service("/deleteDistribution", {
                                         d_id: data.d_id,
                                     }, function (result) {
-                                        layer.msg(result.msg)
+                                        layer.msg(result.msg);
+                                        layer.close(l);
                                         if (result.success) {
                                             reload2();
                                         }
+                                    },function (e) {
+                                        layer.msg(e.msg);
+                                        layer.close(l);
                                     });
 
-                                    layer.close(l);
 
                                 });
 

@@ -63,14 +63,6 @@ public class InputController {
 
         ProduceEntity produceEntity = new ProduceEntity();
 
-//		if(listProducePlan ==null || listProducePlan.isEmpty()){
-//			
-//		
-//		int tp_id =0;
-//		PointEntity pointEntity = ir.getPointEntity();
-//		if(pointEntity!=null){
-//			tp_id = pointEntity.getTp_id();
-//		}
         List<InputEntity> list = new ArrayList<>();
         List<InputEntity> ips = ir.getInputEntity();
         if (ips != null && ips.size() == 1 && ips.get(0).getIn_id() > 0) {
@@ -119,14 +111,6 @@ public class InputController {
         }
         int addInputList = inputService.addInputList(list);
 
-//		PointEntity pointEntity = mr.getPointEntity();
-//		pointEntity.setUid(uid);
-//		pointEntity.setRole(String.valueOf(uid));
-//		PointEntity point = pointService.getPoint(pointEntity);
-//		if(point ==null){
-//			return new IOTResult(false,"节点不存在",null,3);
-//		}
-        //int addMessage = inputService.addInput(ir);
         if (addInputList > 0) {
             return new IOTResult(true, "投入品记录添加成功", null, 0);
         }
@@ -165,14 +149,8 @@ public class InputController {
         if (check == null || !ir.getCksid().equals(check)) {
             return new IOTResult(false, "登陆失效", null, 2);
         }
-        long uid = toolUtil.getbase_uidSid(ir.getCkuid(), ir.getCksid());
-//		PointEntity pointEntity = mr.getPointEntity();
-//		pointEntity.setUid(uid);
-//		pointEntity.setRole(String.valueOf(uid));
-//		PointEntity point = pointService.getPoint(pointEntity);
-//		if(point ==null){
-//			return new IOTResult(false,"节点不存在",null,3);
-//		}
+
+
         int addMessage = inputService.deleteInput(ir);
         if (addMessage > 0) {
             return new IOTResult(true, "投入品记录删除成功", null, 0);

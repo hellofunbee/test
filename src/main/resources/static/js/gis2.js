@@ -329,15 +329,14 @@ $(function () {
                     reload2();
                 });
                 uploadWrapEL.on('change', function () {
-                    page.find(".file-name").text($(this).val())
+                    page.find(".file-name").text(page.find('#publish-file').val())
+
                     if (!$('#publish-file').val()) {
                         layer.msg('请选择文件')
                         return;
                     }
                     layer.alert('确定上传？',
                         function () {
-
-
                             var obj = {};
                             obj.ckuid = sessionStorage.getItem("ckuid");
                             obj.cksid = sessionStorage.getItem("cksid");
@@ -360,9 +359,8 @@ $(function () {
                                     layer.msg(data.msg)
                                 });
                             stopLoading();
-                        }
-                    )
-                    ;
+                        })
+
 
                 });
 
@@ -382,7 +380,7 @@ $(function () {
                         var tpl =
                             '<tr class="file-tpl">' +
                             '<td field="d_originalname"></td>' +
-                            '<td field="is_special" render="dict" dict="yes_no"></td>' +
+                          /*  '<td field="is_special" render="dict" dict="yes_no"></td>' +*/
                             '<td><a href="#" class="btn-sm btn-fh delete">删除</a></td>' +
                             '</tr>';
 
@@ -392,11 +390,10 @@ $(function () {
                         $(rsp.object).each(function (i, e) {
 
                             var el = UI.appendFieldTo(tpl, e, toEl).data('data', e);
-                            if (e.is_special == 1)
+                            /*if (e.is_special == 1)
                                 el.find('[field="is_special"]').text('是');
                             else
-                                el.find('[field="is_special"]').text('否');
-
+                                el.find('[field="is_special"]').text('否');*/
 
                             el.find('.delete').on('click', function () {
 
@@ -407,25 +404,21 @@ $(function () {
                                 if (data.d_originalname)
                                     info += data.d_originalname;
 
-                                UI.renderProvince("#gis2_provice", function () {
-                                    UI.renderCity("#gis2_city", $(this).val(), function () {
-                                        UI.renderDistrict("#gis2_district", $(this).val())
-                                    })
-                                });
-
 
                                 layer.alert(info, function (l) {
 
                                     API.service("/deleteDistribution", {
                                         d_id: data.d_id,
                                     }, function (result) {
-                                        layer.msg(result.msg)
+                                        layer.msg(result.msg);
+                                        layer.close(l);
                                         if (result.success) {
                                             reload2();
                                         }
+                                    },function (e) {
+                                        layer.msg(e.msg);
+                                        layer.close(l);
                                     });
-
-                                    layer.close(l);
 
                                 });
 

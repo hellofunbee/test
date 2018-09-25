@@ -53,60 +53,65 @@
     <div class="map-cnt1" style="height:900px;width:100%" id="map3"></div>
 </div>
 <div class="xxx-layer">
-    <a href="#" class="btn btn-default download-model">下载模版</a>
-    <div class="clearfix mt10">
 
-        <div class="fl mr10" style="width:130px"><h4>物种分布所在省</h4>
-            <p><select name="provice" id="gis2_provice">
-                <option value="">山西省</option>
-            </select></p>
+    <div class="layer-content">
+        <a href="#" class="btn btn-default download-model">下载模版</a>
+        <div class="clearfix mt10">
+
+            <div class="fl mr10" style="width:130px"><h4>物种分布所在省</h4>
+                <p><select name="provice" id="gis2_provice">
+                    <option value="">山西省</option>
+                </select></p>
+            </div>
+            <div class="fl mr10" style="width:130px"><h4>物种分布所在市</h4>
+                <p><select name="" id="gis2_city">
+                    <option value="">晋中市</option>
+                </select></p>
+            </div>
+            <div class="fl mr10" style="width:130px"><h4>物种分布所在区</h4>
+                <p><select name="" id="gis2_district">
+                    <option value="">太谷镇</option>
+                </select></p>
+            </div>
+            <div class="fl mr10" style="width:130px">
+                <h4>选择农事类型</h4>
+                <p>
+                    <select field="d_province" id="gis3_type">
+                        <option value="">春耕</option>
+                    </select>
+                </p>
+            </div>
+            <div class="fl mr10" style="width:310px;margin-top:-5px"><h4>&nbsp;</h4>
+                <p>
+                    <a href="#" class="btn-lg btn-df-blue btn-search">浏览</a>
+                    <a href="#" class="btn-lg btn-df-blue btn-search-all">全部地区</a>
+
+                </p>
+            </div>
+            <div class="fl" style="width:135px;margin-top:-5px"><h4>&nbsp;</h4>
+                <p>
+                    <a href="#" class="btn-lg btn-df-blue upload-xls">上传</a>
+                    <span class="file-name"></span>
+                </p>
+            </div>
         </div>
-        <div class="fl mr10" style="width:130px"><h4>物种分布所在市</h4>
-            <p><select name="" id="gis2_city">
-                <option value="">晋中市</option>
-            </select></p>
-        </div>
-        <div class="fl mr10" style="width:130px"><h4>物种分布所在区</h4>
-            <p><select name="" id="gis2_district">
-                <option value="">太谷镇</option>
-            </select></p>
-        </div>
-        <div class="fl mr10" style="width:130px">
-            <h4>选择农事类型</h4>
-            <p>
-                <select field="d_province" id="gis3_type">
-                    <option value="">春耕</option>
-                </select>
-            </p>
-        </div>
-        <div class="fl mr10" style="width:310px;margin-top:-5px"><h4>&nbsp;</h4>
-            <p>
-                <a href="#" class="btn-lg btn-df-blue upload-xls">浏览</a>
-                <span class="file-name"></span>
-            </p>
-        </div>
-        <div class="fl" style="width:135px;margin-top:-5px"><h4>&nbsp;</h4>
-            <p>
-                <a href="#" class="btn-lg btn-df-blue do-upload">上传</a>
-            </p>
-        </div>
+        <table class="mx-table5 mt20">
+            <thead>
+            <tr>
+                <th>上传文件名称</th>
+                <!--<th>是否精选</th>-->
+                <th width="10%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr>
+                <td>201801312330taiguxian.xls</td>
+                <td><a href="#" class="btn-sm btn-fh">删除</a></td>
+            </tr>-->
+            </tbody>
+
+        </table>
     </div>
-    <table class="mx-table5 mt20">
-        <thead>
-        <tr>
-            <th>上传文件名称</th>
-            <th>是否精选</th>
-            <th width="10%">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!--<tr>
-            <td>201801312330taiguxian.xls</td>
-            <td><a href="#" class="btn-sm btn-fh">删除</a></td>
-        </tr>-->
-        </tbody>
-
-    </table>
 </div>
 <script type="text/javascript">if (!window.jQuery) {
     var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';

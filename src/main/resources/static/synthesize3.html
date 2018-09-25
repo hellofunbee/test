@@ -36,6 +36,11 @@
 <script src="js/api.js"></script>
 <script src="js/ui.js"></script>
 <script>
+    var lct = $("div#main_iframe").attr("src") || location.href,
+            e = purl(lct);
+    var tp_id_from_url = e.param("tp_id");
+
+
     var lastSelectNode,
             treeEl = $("#synthesize3_tree"),
             onNodeSelect = function (e) {
@@ -78,8 +83,24 @@
 
     UI.renderPointTree("#synthesize3_tree", onNodeSelect),
             $("#synthesize3_tree").on("z-tree-load", function () {
-                var nodes = $(this).data("z-tree").getNodes();
-                nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+                if (tp_id_from_url > 0) {
+                    var treeObj = $.fn.zTree.getZTreeObj('synthesize3_tree');
+                    var nodes = treeObj.getNodes();//父节点
+                    nodes = treeObj.transformToArray(nodes);//获取树所有节点
+                    if (nodes && nodes.length > 0) {
+                        $(nodes).each(function (i, e) {
+                            if (e.oriData.tp_id == tp_id_from_url) {
+                                return onNodeSelect(e);
+                            }
+
+                        });
+                    }
+
+                } else {
+                    var nodes = $(this).data("z-tree").getNodes();
+                    nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+                }
+
 
 //                UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
             });

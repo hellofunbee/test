@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -266,6 +267,7 @@ public class DistributionController {
             if (object == null)
                 continue;
             JSONArray fromObject = JSONArray.fromObject(object);
+            Collections.sort(fromObject, Collections.reverseOrder());
             map.put("d_content", fromObject);
         }
         return new IOTResult(true, "查看成功", listDistribution, 0);

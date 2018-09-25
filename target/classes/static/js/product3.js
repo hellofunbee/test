@@ -91,6 +91,25 @@ $(function () {
         });
         return false
     });
+    //导出EXCEl
+    page.find(".btn-excel-export").click(function () {
+        var node = lastSelectNode;
+        if (node && node.oriData && node.oriData["tp_type"] === 3) {
+
+            API.exportExcel('/produceExcelOut', {
+                p_class1: inClass1.attr("value"),
+                p_class2: inClass2.attr("value"),
+                p_begintime: beginTimeEl.val(),
+                p_endtime: endTimeEl.val(),
+                pointEntity: {tp_id: node.oriData["tp_id"]},
+                start: lastPageNo,
+                pagesize: 10,
+                p_name: $('.mx-top-search input').val()
+            });
+        }
+    });
+
+
     tbody.on("click", "a.btn-item-edit", function () {
         var tr = $(this).parents("tr");
         var item = tr.data("data");

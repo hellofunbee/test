@@ -161,7 +161,7 @@ public class UserDao {
 
     public List<Map<String, Object>> listUserForMap(UserEntity userEntity) {
         String sql = " select t.*,c.c_type,c.c_name from t_user t " +
-                "LEFT join class c on c.c_id = t.c_id "+
+                "LEFT join class c on c.c_id = t.c_id " +
                 "where 1 =1";
         List<Object> list = new ArrayList<>();
         if (userEntity.getTu_pwd() != null && userEntity.getTu_pwd().trim().length() > 0) {
@@ -491,4 +491,15 @@ public class UserDao {
     }
 
 
+    public List<Map<String, Object>> listUserInType(List<Integer> userType) {
+        StringBuffer sb = new StringBuffer();
+        for(int i:userType){
+            sb.append(i);
+            sb.append(",");
+        }
+        String types = sb.substring(0,sb.length());
+        String sql = "select * from t_user where tu_type in (?)";
+        return jdbcTemplate.queryForList(sql, types);
+
+    }
 }

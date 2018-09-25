@@ -13,6 +13,8 @@
 */ 
 package com.jingu.IOT.entity;
 
+import java.util.List;
+
 /**
 
 * @ClassName: ProduceEntity
@@ -39,6 +41,7 @@ public class MessageEntity {
 	m_cover="";
 	
 	private int pageSize,c_id;
+	private List<Integer> towho;
 	
 	
 	
@@ -163,6 +166,12 @@ public class MessageEntity {
 	public void setStart(int start) {
 		this.start = start;
 	}
-	
-	
+
+	public List<Integer> getTowho() {
+		return towho;
+	}
+
+	public void setTowho(List<Integer> towho) {
+		this.towho = towho;
+	}
 }

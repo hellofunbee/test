@@ -16,6 +16,7 @@ import com.jingu.IOT.requset.MessageRequset;
 import com.jingu.IOT.response.IOTResult;
 import com.jingu.IOT.service.MessageService;
 import com.jingu.IOT.service.PointService;
+import com.jingu.IOT.service.SMSService;
 import com.jingu.IOT.service.UserService;
 import com.jingu.IOT.util.ToolUtil;
 import com.jingu.IOT.util.Types;
@@ -38,6 +39,8 @@ public class MessageController {
     private ToolUtil toolUtil;
     private PointService pointService;
     private UserService userService;
+    @Autowired
+    SMSService smsService;
 
     @Autowired
     public MessageController(MessageService messageService, ToolUtil toolUtil, PointService pointService,
@@ -67,13 +70,7 @@ public class MessageController {
         if (ckAdmin == 0) {
             return new IOTResult(false, "权限不足", null, 111);
         }
-        // PointEntity pointEntity = mr.getPointEntity();
-        // pointEntity.setUid(uid);
-        // pointEntity.setRole(String.valueOf(uid));
-        // PointEntity point = pointService.getPoint(pointEntity);
-        // if(point ==null){
-        // return new IOTResult(false,"节点不存在",null,3);
-        // }
+
         if (mr.getM_type() == 2) {
             String intVal = toolUtil.getIntVal(ToolUtil.MESSAGE);
             if (intVal == null) {
@@ -82,7 +79,19 @@ public class MessageController {
             toolUtil.incIntVal(ToolUtil.MESSAGE);
         }
         int addMessage = messageService.addMessage(mr);
+
         if (addMessage > 0) {
+            //发送短信
+            if (mr.getM_type() == 3) {
+                smsService.sendSMSByUserType(mr.getTowho(), mr);
+            }
+
+
+            //发送即时消息
+            if (mr.getM_type() == 2) {
+                mr.setM_id(addMessage);
+                smsService.sendimsg(mr);
+            }
             return new IOTResult(true, "消息发布成功", mr, 0);
         }
         return new IOTResult(false, "消息发布失败", null, 0);
@@ -293,22 +302,7 @@ public class MessageController {
         } else {
             return new IOTResult(false, "暂无相关信息", null, 0);
         }
-        // String check2 = toolUtil.getCheck(ToolUtil.MESSAGEREADING);
-        // if(check2==null){
-        //
-        // int msgCount = userService.getMsgCount(uid);
-        // }
-        // String check3 =
-        // toolUtil.getCheck(ToolUtil.MESSAGEREADING+ToolUtil.READ);
-        // if(check3 ==null ){
-        //// int msgCount = messageService.(uid);
-        // }
-        // List<Map<String,Object>> instanceMessage =
-        // messageService.getInstanceMessage();
-        // if(instanceMessage ==null || instanceMessage.isEmpty()){
-        // return new IOTResult(false,"暂无相关信息",null,0);
-        // }
-        // return new IOTResult(true,"消息查看成功",instanceMessage,0);
+      
 
     }
 

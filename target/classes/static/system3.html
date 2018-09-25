@@ -316,13 +316,6 @@
                 ctl_el.find('select').attr('selectedIndex', 0)
 
 
-                /*专家*/
-                ctl_el.find('[field="tu_type"]').on('change', function (v) {
-                    var type = $(this).val();
-                    var tr = $(this).closest('tr');
-
-                    UI.setExpType(type, tr, ctl_el, null)
-                });
 
 
                 ctl_el.find('.reset').on('click', function () {
@@ -332,7 +325,6 @@
                     ctl_el.find('select').prop('selectedIndex', 0);
                     ctl_el.find('select').attr('selectedIndex', 0)
 
-                    UI.setExpType(1, null, ctl_el, null)
 
                 });
                 ctl_el.find('.save').on('click', function () {
@@ -601,7 +593,6 @@
                 ctl_el.find('select').attr('disabled', true)
 
 
-//                        ctl_el.find('[field="s_stream"]').text(API.dict.ipc_stream[item["s_stream"]])
             }
         });
     }
@@ -624,20 +615,9 @@
                 var toEl = layero.find(".xyh-layer");
                 var ctl_el = UI.appendFieldTo(html, data, toEl);
 
-                if (data.tu_type == 6 && data.c_id) {
-                    var tr = ctl_el.find('[field="tu_type"]').closest('tr');
-                    UI.setExpType(6, tr, ctl_el, data.c_id)
-                }
 
 
                 ctl_el.find('[field="tu_pwd1"]').val(data.tu_pwd);
-                /*专家*/
-                ctl_el.find('[field="tu_type"]').on('change', function (v) {
-                    var type = $(this).val();
-                    var tr = $(this).closest('tr');
-                    UI.setExpType(type, tr, ctl_el, null)
-
-                });
 
 
                 /*重置*/

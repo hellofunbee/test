@@ -30,6 +30,8 @@
                     <p><span class="name">状态</span><span field="state">运行中</span></p></div>
             </div>
         </div>
+        <a href="javascript:;" id="btn-excel-export" class="fr btn btn-default mr15 btn-excel-export">导出Excel</a>
+
         <div class="sm-userInfo fr synDeviceName">[21号] 李娜 土豆</div>
     </div>
     <div class="cgxx-module mt10">
@@ -113,8 +115,15 @@
 }</script>
 <script src="js/jquery.pagination.js"></script>
 <script>
+
     $(function () {
         var current_page = 1;
+
+
+        var lct = $("div#main_iframe").attr("src") || location.href,
+                e = purl(lct);
+        var tp_id_from_url = e.param("tp_id");
+
 
         var page = $("[page=synthesize]");
         var treeEl = page.find("#big_data_analysis_device_tree");
@@ -190,8 +199,25 @@
         };
 
         treeEl.on("z-tree-load", function () {
-            var nodes = $(this).data("z-tree").getNodes();
-            nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+            if (tp_id_from_url > 0) {
+                var treeObj = $.fn.zTree.getZTreeObj('big_data_analysis_device_tree');
+                var nodes = treeObj.getNodes();//父节点
+                nodes = treeObj.transformToArray(nodes);//获取树所有节点
+                if (nodes && nodes.length > 0) {
+                    $(nodes).each(function (i, e) {
+                        if (e.oriData.tp_id == tp_id_from_url) {
+                            return onNodeSelect(e);
+                        }
+
+                    });
+                }
+
+            } else {
+                var nodes = $(this).data("z-tree").getNodes();
+                nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+            }
+
+
             // UI.findFirstDeviceOnTreeActive($(this).data("z-tree"), 3, onNodeSelect)
         });
 
@@ -205,6 +231,21 @@
             $(this).next().toggle()
         });
 
+
+        //导出EXCEl
+        //导出EXCEl
+        page.find(".btn-excel-export").click(function () {
+            var node = lastSelectNode;
+            if (node && node.oriData && node.oriData["tp_type"] === 3) {
+
+                API.exportExcel('/sensorInfoExcelOut', {
+                    deviceId: node.oriData["deviceId"],
+                    tp_id: node.oriData["tp_id"],
+                    start: Math.max(1, current_page),
+                    tp_name: node.oriData["tp_name"],
+                });
+            }
+        });
         function reload(notShowMsg) {
             var node = lastSelectNode;
 
@@ -244,11 +285,16 @@
                 }), API.listSensorInfo(deviceId, tp_id, Math.max(1, current_page), function (e) {
 
 
-                    var a = e.object.unit, t = [{
-                        field: "infoDataTime", label: "时间", render: function (e) {
-                            return new Date(e).format("yyyy-MM-dd hh:mm:ss")
-                        }
-                    }], i = ["时间"];
+                    var a = e.object.unit,
+                            t = [
+                                {
+                                    field: "infoDataTime",
+                                    label: "时间",
+                                    render: function (e) {
+                                        return new Date(e).format("yyyy-MM-dd hh:mm:ss")
+                                    }
+                                }
+                            ], i = ["时间"];
 
 
                     $(a).each(function (e) {

@@ -24,6 +24,26 @@ $(function () {
             })
         }
     });
+
+    //导出EXCEl
+    page.find(".btn-excel-export").click(function () {
+        var node = lastSelectNode;
+        if (node && node.oriData && node.oriData["tp_type"] === 3) {
+
+            API.exportExcel("/inputExcelOut", {
+                in_class1: inClass1.attr("value"),
+                in_class2: inClass2.attr("value"),
+                p_begintime: beginTimeEl.val(),
+                p_endtime: endTimeEl.val(),
+                pointEntity: {tp_id: node.oriData["tp_id"]},
+                start: lastPageNo,
+                pagesize: 10,
+                in_mattername: $('.mx-top-search input').val()
+            });
+        }
+    });
+
+
     page.find(" a.btn-item-add").click(function () {
         page.find(".layer-edit-item").remove();
         var content = page.find(".add-layer").clone().appendTo(page).addClass("layer-edit-item");
@@ -164,7 +184,7 @@ $(function () {
                     pointEntity: {tp_id: lastSelectNode.oriData.tp_id},
                     /* p_id: item.in_pid,*/
                     start: 0,
-                    pagesize:10
+                    pagesize: 10
                 }, function (rsp) {
                     if (rsp.object.length === 0) {
                         layer.msg("没有生产计划");
@@ -195,7 +215,7 @@ $(function () {
         var node = lastSelectNode;
         if (node && node.oriData && node.oriData["tp_type"] === 3) {
 
-            console.log( $('.mx-top-search input').val())
+            console.log($('.mx-top-search input').val())
             API.service("/listInput", {
                 in_class1: inClass1.attr("value"),
                 in_class2: inClass2.attr("value"),
@@ -203,14 +223,14 @@ $(function () {
                 p_endtime: endTimeEl.val(),
                 pointEntity: {tp_id: node.oriData["tp_id"]},
                 start: lastPageNo,
-                pagesize:10,
+                pagesize: 10,
                 in_mattername: $('.mx-top-search input').val()
             }, function (data) {
                 tbody.empty();
-                $(data.object).each(function (i,e) {
+                $(data.object).each(function (i, e) {
 
                     var tpl = rowTpl.clone();
-                    tpl.find('[field="in_total"]').attr('unit',API.dict.in_unit[e.in_unit]);
+                    tpl.find('[field="in_total"]').attr('unit', API.dict.in_unit[e.in_unit]);
 
                     UI.appendFieldTo(tpl, this, tbody).data("data", this);
 

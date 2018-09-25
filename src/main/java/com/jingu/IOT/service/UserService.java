@@ -100,8 +100,7 @@ public class UserService {
 
     public List<Map<String, Object>> listUserForMap(UserEntity userEntity) {
         List<Map<String, Object>> users = userDao.listUserForMap(userEntity);
-        if (users != null && users.size() > 0)
-        {
+        if (users != null && users.size() > 0) {
 
             for (Map u : users) {
                 RelationShipEntity rs = new RelationShipEntity();
@@ -113,7 +112,7 @@ public class UserService {
                     u.put("device_name", m.get("tp_name"));
                     u.put("device_ip", m.get("deviceId"));
                     u.put("r_id", m.get("r_id"));
-                    u.put("unbind",1);
+                    u.put("unbind", 1);
                 }
 
             }
@@ -186,4 +185,8 @@ public class UserService {
     }
 
 
+    public List<Map<String, Object>> listUserInType(List<Integer> userType) {
+
+       return userDao.listUserInType(userType);
+    }
 }

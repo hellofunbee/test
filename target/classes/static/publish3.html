@@ -86,49 +86,66 @@
         </div>
     </div>
 </div>
-<div class="xxx-layer"><h4>标题</h4>
-    <p><input type="text" id="publish3-title"></p>
-    <div class="clearfix">
-        <div class="fl" style="width:200px"><h4>所属一级分类</h4>
-            <p><select name="" id="publish3-class-sel">
-                <option value=""></option>
-            </select></p>
-        </div>
-        <div class="fr" style="width:360px;margin-top:20px">
-            <div>推送设置&nbsp;&nbsp;
-                <div class="mx-checkbox" style="display:inline-block"><em></em>短信推送</div>
+<div class="xxx-layer">
+    <div id="content">
+        <h4>标题</h4>
+        <p>
+            <input type="text" required field="m_title" id="publish3-title">
+        </p>
+        <div class="clearfix">
+            <div class="fl" style="width:200px">
+                <h4>所属一级分类</h4>
+                <p>
+                    <select required field="m_class" id="publish3-class-sel">
+                        <option value=""></option>
+                    </select>
+                </p>
             </div>
-            <div class="mt5">
-                <div class="mx-checkbox" style="display:inline-block"><em></em>专家</div>
-                <div class="mx-checkbox" style="display:inline-block"><em></em>生产者</div>
-                <div class="mx-checkbox" style="display:inline-block"><em></em>管理者</div>
-                <div class="mx-checkbox" style="display:inline-block"><em></em>所有者</div>
-                <div class="mx-checkbox" style="display:inline-block"><em></em>普通用户</div>
+            <div class="fr" style="width:360px;margin-top:20px">
+                <div>推送设置&nbsp;&nbsp;
+                    <div id="send-sms" class="mx-checkbox" style="display:inline-block"><em></em>短信推送</div>
+                </div>
+                <div id="msg-towho" class="mt5">
+                    <div value="6" class="mx-checkbox" style="display:inline-block"><em></em>专家</div>
+                    <div value="5" class="mx-checkbox" style="display:inline-block"><em></em>生产者</div>
+                    <div value="4" class="mx-checkbox" style="display:inline-block"><em></em>管理者</div>
+                    <!--<div value="6"  class="mx-checkbox" style="display:inline-block"><em></em>所有者</div>-->
+                    <div value="3" class="mx-checkbox" style="display:inline-block"><em></em>普通用户</div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="clearfix">
-        <div class="fl mr20" style="width:180px"><h4>预警地所在省</h4>
-            <p><select name="" id="publish3-province">
-                <option value=""></option>
-            </select></p>
+        <div class="clearfix">
+            <div class="fl mr20" style="width:180px"><h4>预警地所在省</h4>
+                <p>
+                    <select required field="m_province" id="publish3-province">
+                        <option value=""></option>
+                    </select>
+                </p>
+            </div>
+            <div class="fl" style="width:180px"><h4>预警地所在市</h4>
+                <p>
+                    <select required field="m_city" id="publish3-city">
+                        <option value=""></option>
+                    </select>
+                </p>
+            </div>
+            <div class="fr" style="width:180px"><h4>预警地所在区</h4>
+                <p>
+                    <select field="m_district" required id="publish3-district">
+                        <option value=""></option>
+                    </select>
+                </p>
+            </div>
         </div>
-        <div class="fl" style="width:180px"><h4>预警地所在市</h4>
-            <p><select name="" id="publish3-city">
-                <option value=""></option>
-            </select></p>
+        <h4>正文信息</h4>
+        <p>
+        <textarea field="m_content" required id="publish3-content" cols="30" rows="10">
+        </textarea>
+        </p>
+        <div class="tc mt20"><a href="#" class="btn-lg btn-df-gray" id="publish3-frm-cancel">取消</a><a href="#"
+                                                                                                      class="btn-lg btn-df-blue"
+                                                                                                      id="publish3-frm-save">保存</a>
         </div>
-        <div class="fr" style="width:180px"><h4>预警地所在区</h4>
-            <p><select name="" id="publish3-district">
-                <option value=""></option>
-            </select></p>
-        </div>
-    </div>
-    <h4>正文信息</h4>
-    <p><textarea name="" id="publish3-content" cols="30" rows="10"></textarea></p>
-    <div class="tc mt20"><a href="#" class="btn-lg btn-df-gray" id="publish3-frm-cancel">取消</a><a href="#"
-                                                                                                  class="btn-lg btn-df-blue"
-                                                                                                  id="publish3-frm-save">保存</a>
     </div>
 </div>
 <script type="text/javascript">if (!window.jQuery) {
@@ -139,6 +156,8 @@
 $(".mx-top-select h3").click(function () {
     $(this).hasClass("on") ? ($(this).removeClass("on"), $(this).next(".mx-top-select-list").hide()) : ($(this).addClass("on"), $(this).next(".mx-top-select-list").show())
 }), $("#yjxx").click(function () {
+    var tpl = $('#content').clone();
+
     layer.open({
         type: 1,
         area: ["720px", "650px"],
@@ -146,6 +165,17 @@ $(".mx-top-select h3").click(function () {
         content: $(".xxx-layer"),
         skin: "mlayer",
         success: function (e, t) {
+
+
+
+            e.find('.xxx-layer').empty();
+            UI.appendFieldTo(tpl,{},e.find('.xxx-layer'));
+            var page = e;
+
+            page.find(".mx-checkbox").on('click',function (e) {
+                $(this).toggleClass("on")
+            });
+
             var i = e.find("#publish3-class-sel").empty(),
                     s = e.find("#publish3-province"),
                     n = e.find("#publish3-city"),
@@ -155,29 +185,56 @@ $(".mx-top-select h3").click(function () {
                     UI.renderDistrict(a, $(this).val())
                 })
             });
-            var l = e.find("#publish3-title").val(""), c = e.find("#publish3-content").val("");
-            API.service("/listClass1", {c_type: 3}, function (e) {
-                $(e.object).each(function (e) {
-                    $("<option>" + this.c_name + "</option>").attr("value", this.c_id).appendTo(i)
-                })
-            }), e.find("#publish3-frm-save,#publish3-frm-cancel").click(function (e) {
-                if (e.preventDefault(), "publish3-frm-save" === $(this).attr("id"))return API.service("/addMessage", {
-                            m_class: i.val(),
-                            m_content: c.val(),
-                            m_title: l.val(),
-                            m_type: "3",
-                            m_province:s.val(),
-                            m_city:n.val(),
-                            m_district:a.val(),
+            var l = e.find("#publish3-title").val(""),
+                    c = e.find("#publish3-content").val("");
+            API.service("/listClass1",
+                    {c_type: 3},
+                    function (e) {
+                        $(e.object).each(function (e) {
+                            $("<option>" + this.c_name + "</option>").attr("value", this.c_id).appendTo(i)
+                        })
+                    }), e.find("#publish3-frm-save,#publish3-frm-cancel").click(function (e) {
+                e.preventDefault()
+                if ("publish3-frm-save" === $(this).attr("id")) {
 
-                        },
-                        function (e) {
-                            layer.msg(e.msg), layer.close(t), queryIt()
-                        }
+                    var o = UI.getFieldValue(page);
+                    if (!o) {
+                        return true
+                    }
 
-                ),
-                        !1;
-                layer.close(t)
+                    var sms = 0;
+                    var towho = [];
+                    var is_s_msg = page.find('#send-sms').hasClass('on');
+                    if (is_s_msg) {
+                        sms = 1;
+
+                        page.find('#msg-towho div.mx-checkbox').each(function () {
+
+                            if ($(this).hasClass('on')) {
+                                towho.push(parseInt($(this).attr('value')))
+                            }
+                        });
+                    }
+
+
+                    API.service("/addMessage", {
+                                m_class: i.val(),
+                                m_content: c.val(),
+                                m_title: l.val(),
+                                m_type: "3",
+                                m_province: s.val(),
+                                m_city: n.val(),
+                                m_district: a.val(),
+                                towho: towho
+
+                            },
+                            function (e) {
+                                layer.msg(e.msg), layer.close(t);
+                                queryIt();
+                            });
+                } else {
+                    layer.close(t)
+                }
             })
         }
     })

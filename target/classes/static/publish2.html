@@ -81,20 +81,22 @@
     </div>
 </div>
 <div class="xxx-layer">
-    <div class="clearfix">
-        <div class="fl" style="width:380px"><h4>标题</h4>
-            <p><input type="text" id="publish2-title"></p></div>
-        <div class="fr" style="width:200px"><h4>所属一级分类</h4>
-            <p><select name="" id="publish2-class-sel">
-                <option value=""></option>
-            </select></p>
+    <div id="layer-content">
+        <div class="clearfix">
+            <div class="fl" style="width:380px"><h4>标题</h4>
+                <p><input type="text" id="publish2-title"></p></div>
+            <div class="fr" style="width:200px"><h4>所属一级分类</h4>
+                <p><select name="" id="publish2-class-sel">
+                    <option value=""></option>
+                </select></p>
+            </div>
         </div>
-    </div>
-    <h4>原文信息</h4>
-    <p><textarea name="" id="publish2-content" cols="30" rows="10"></textarea></p>
-    <div class="tc mt20"><a href="#" class="btn-lg btn-df-gray" id="publish2-frm-cancel">取消</a><a href="#"
-                                                                                                  class="btn-lg btn-df-blue"
-                                                                                                  id="publish2-frm-save">保存并发送</a>
+        <h4>原文信息</h4>
+        <p><textarea name="" id="publish2-content" cols="30" rows="10"></textarea></p>
+        <div class="tc mt20"><a href="#" class="btn-lg btn-df-gray" id="publish2-frm-cancel">取消</a><a href="#"
+                                                                                                      class="btn-lg btn-df-blue"
+                                                                                                      id="publish2-frm-save">保存并发送</a>
+        </div>
     </div>
 </div>
 <script type="text/javascript">if (!window.jQuery) {
@@ -113,9 +115,8 @@ var page = $('[page="publish2"]'),
             searchBarEl.find("input").val() && (e.m_title = searchBarEl.find("input").val());
             var l = page.find(".newslist").empty();
             API.service("/listMessage", e, function (e) {
-                console.log(e)
-                var t = e.object;
-                a = '<div class="time">  <div class="close"></div>  <h3>{year}年</h3>  <p>{monthDay}</p></div><div class="info">  <h3 class="news_title">生猪屠宰价格信息</h3>  <p class="news_content">据农业部监测，上周（8月14日-8月20日）全国规模 以上生猪定点屠宰企业生猪平均收购价格为15.03...  </p></div>';
+                var t = e.object,
+                        a = '<div class="time">  <div class="close"></div>  <h3>{year}年</h3>  <p>{monthDay}</p></div><div class="info">  <h3 class="news_title">生猪屠宰价格信息</h3>  <p class="news_content">据农业部监测，上周（8月14日-8月20日）全国规模 以上生猪定点屠宰企业生猪平均收购价格为15.03...  </p></div>';
                 $(t).each(function (e) {
                     var t = this,
                             s = $('<div class="xx-list"></div>').appendTo(l),
@@ -136,6 +137,8 @@ var page = $('[page="publish2"]'),
             })
         };
 $("#fbxx").click(function () {
+
+    var tpl = $('#layer-content').clone();
     layer.open({
         type: 1,
         area: ["720px", "500px"],
@@ -143,7 +146,12 @@ $("#fbxx").click(function () {
         content: $(".xxx-layer"),
         skin: "mlayer",
         success: function (e, t) {
-            var s = e.find("#publish2-class-sel").empty(), i = e.find("#publish2-title").val(""), a = e.find("#publish2-content").val("");
+
+            e.find('.xxx-layer').empty();
+            UI.appendFieldTo(tpl,{},e.find('.xxx-layer'));
+
+            var s = e.find("#publish2-class-sel").empty(),
+                    i = e.find("#publish2-title").val(""), a = e.find("#publish2-content").val("");
             API.service("/listClass1", {c_type: 5}, function (e) {
                 $(e.object).each(function (e) {
                     $("<option>" + this.c_name + "</option>").attr("value", this.c_id).appendTo(s)

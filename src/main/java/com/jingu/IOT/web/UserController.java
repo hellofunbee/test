@@ -456,47 +456,6 @@ public class UserController {
     }
 
 
-    public static void main(String[] args) {
-//		String string2 ="43595.0;-37.6;null;8.2;735.1;null;-37.7;8.2;null;-39.3;null;8.7;-39.2;8.8;11.7;45.0;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null";
-//		String[] split = string2.split(";");
-//		System.out.println(split.length);
-//		System.out.println(split[0]);
-//		
-//		//找到对应设备的规则
-//		//找到规则相对应的字段
-//		//大于某个值的时候开启,小于某个值的时候关闭  规则控制  关联输入  关联输入取反
-//		String string  ="Channel1";
-//		String string1  ="Channel11";
-//		String substring = string.substring(7);
-//		System.out.println(substring);
-//		try {
-//			int parseInt = Integer.parseInt(substring);
-//			System.out.println(split[parseInt-1]);
-//			if(split[parseInt-1] >)
-//			
-//		} catch (NumberFormatException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-
-    }
-
-
-//	@CrossOrigin
-//	@RequestMapping(value = "/testing", method = RequestMethod.POST)
-//	public @ResponseBody IOTResult testing(@RequestParam("str") String string,@RequestParam("deviceId") String deviceId ) throws UnsupportedEncodingException{
-//		System.out.println(string);
-//		String string2 ="43595.0;-37.6;null;8.2;735.1;null;-37.7;8.2;null;-39.3;null;8.7;-39.2;8.8;11.7;45.0;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null";
-//		String[] split = string2.split(";");
-//		int upSwitch = ctrlService.upSwitch(deviceId,split);
-//		if(upSwitch >0){
-//			System.out.println("执行成功..");
-//		}
-//		System.out.println("执行失败");
-//		return null;
-//	}
-
 
     // 查看专家
     @CrossOrigin
@@ -516,16 +475,8 @@ public class UserController {
             totalpage = listUserCount / u.getPagesize();
         }
 
-
         List<UserEntity> listUser = userService.listUser(ue);
-        /*for (Map<String, Object> map : listUser) {
-//			Object object = map.get("seredproject");
-			map.put("seredproject", JSONArray.fromObject(map.get("seredproject")));
-			map.put("serproject", JSONArray.fromObject(map.get("serproject")));
-			map.put("seruser", JSONArray.fromObject(map.get("seruser")));
-//			map.put("class1name", map.get("classname1").toString());
-//			map.put("class2name", map.get("classname2").toString());
-		}*/
+
         if (listUser != null && !listUser.isEmpty()) {
             return new IOTResult2(true, "查看成功", listUser, 0, totalpage, listUserCount);
         }
@@ -550,13 +501,7 @@ public class UserController {
         if (ckAdmin == 0) {
             return new IOTResult(false, "权限不足", null, 111);
         }
-//		int totalpage =0;
-//		int listUserCount = relationShipService.listRelationShipCount(re);
-//		if(listUserCount%re.getPagesize() >0){
-//			totalpage = listUserCount/re.getPagesize()+1;
-//		}else{
-//			totalpage = listUserCount/re.getPagesize();
-//		}
+
         List<Map<String, Object>> listRelationShip = relationShipService.listRelationShip(re);
         List<Map<String, Object>> collect = listRelationShip.stream().filter(x -> x.get("tu_name") != null).collect(Collectors.toList());
         if (collect != null && !collect.isEmpty()) {
@@ -565,5 +510,7 @@ public class UserController {
         return new IOTResult2(false, "暂无相关信息", null, 0);
 
     }
+
+
 
 }

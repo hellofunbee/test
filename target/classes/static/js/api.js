@@ -19,9 +19,9 @@ API.dict = {
         5: "生产者用户",
         6: "专家用户",
     },
-    in_unit:{1:'亩',2:'公顷'},
-    user_sex: {0: "保密", 1: "男",2:"女"},
-    user_edu: {1: "博士", 2: "硕士",3:"本科",4:"专科",0:"无"},
+    in_unit: {1: '亩', 2: '公顷'},
+    user_sex: {0: "保密", 1: "男", 2: "女"},
+    user_edu: {1: "博士", 2: "硕士", 3: "本科", 4: "专科", 0: "无"},
     user_state: {1: "正常", 2: "不正常"},
     yes_no: {1: "是", 0: "不是"},
 
@@ -55,8 +55,6 @@ API.dict = {
 };
 API.listHomePage = API.bind("/listHomePage");
 API.listHomePage_edit = API.bind("/listHomePage_edit");
-
-
 
 
 API.login = function (user, pwd, successFunc, errorFunc) {
@@ -166,5 +164,39 @@ API.formDownlad = function (options) {
     $(document.body).append($iframe);
     $form[0].submit();
     $iframe.remove();
-}
+};
+//导出EXCEl
+API.exportExcel = function (url, data, onsuc, onfail) {
+
+    API.service(url, data, function (rsp) {
+        if (rsp.success == true) {
+            var url = '/downLoadFile';
+            var cksid = sessionStorage.getItem("cksid");
+            var ckuid = sessionStorage.getItem("ckuid");
+            var data = {
+                    ckuid: ckuid,
+                    cksid: cksid,
+                    file_name: rsp.object
+                }
+                ;
+            API.formDownlad({url: url, method: 'GET', data: data});
+            if (onsuc)
+                return onsuc(rsp);
+
+        } else {
+
+            if (onfail)
+                return onfail(rsp);
+            layer.msg(rsp.msg);
+        }
+
+    }, function (rsp) {
+        if (onfail)
+            return onfail(rsp);
+        layer.msg(rsp.msg);
+
+    })
+
+};
+
 

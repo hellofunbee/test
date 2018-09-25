@@ -1,4 +1,9 @@
 $(function () {
+    var lct = $("div#main_iframe").attr("src") || location.href,
+        e = purl(lct);
+    var tp_id_from_url = e.param("tp_id");
+
+
     var destroyImageSlide = function () {
         var s = ".view .swiper-container";
         var bigSlide = $(s);
@@ -174,7 +179,7 @@ $(function () {
 
 
         if (node && node.oriData && node.oriData["tp_type"] === 3) {
-            if (node.children.length) {
+            if (node.children &&node.children.length) {
                 $("#synthesize2_tree").data("z-tree").selectNode(node.children[0]);
                 onNodeSelect(node.children[0]);
                 return
@@ -205,9 +210,26 @@ $(function () {
         }
     };
     UI.renderPointTree("#synthesize2_tree", onNodeSelect);
+
     $("#synthesize2_tree").on("z-tree-load", function () {
-        var nodes = $(this).data("z-tree").getNodes();
-        nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+        if (tp_id_from_url > 0) {
+            var treeObj = $.fn.zTree.getZTreeObj('synthesize2_tree');
+            var nodes = treeObj.getNodes();//父节点
+            nodes = treeObj.transformToArray(nodes);//获取树所有节点
+            if (nodes && nodes.length > 0) {
+                $(nodes).each(function (i, e) {
+                    if (e.oriData.tp_id == tp_id_from_url) {
+                        return onNodeSelect(e);
+                    }
+
+                });
+            }
+
+        } else {
+            var nodes = $(this).data("z-tree").getNodes();
+            nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+        }
+
 
         // UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
     });

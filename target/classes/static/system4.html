@@ -297,21 +297,10 @@
                 var toEl = layero.find(".xyh-layer");
                 var ctl_el = UI.appendFieldTo(html, data, toEl);
 
-                if (data.tu_type == 6 && data.c_id) {
-                    var tr = ctl_el.find('[field="tu_type"]').closest('tr');
-                    UI.setExpType(6, tr, ctl_el, data.c_id)
-                }
 
 
                 ctl_el.find('[field="tu_pwd1"]').val(data.tu_pwd);
 
-                /*专家*/
-                ctl_el.find('[field="tu_type"]').on('change', function (v) {
-                    var type = $(this).val();
-                    var tr = $(this).closest('tr');
-                    UI.setExpType(type, tr, ctl_el, null)
-
-                });
 
 
                 ctl_el.find('.reset').on('click', function () {
