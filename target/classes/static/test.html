@@ -14,7 +14,11 @@
 <!--<script src="/webjars/jquery/jquery.min.js"></script>-->
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-
+<script type="text/javascript">
+    if (!window.jQuery) {
+        var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+        document.write(html)
+    }</script>
 <script>
 
     var stompClient = null;
@@ -49,6 +53,16 @@
         stompClient.send("/app/sendimsg", {}, word);
     });
 
+    API.service(
+            '/expPro/del',
+            {
+                exp_pro_id:1,
+                exp_pro_title:'11212',
+                tu_id: 3
+            }, function (e) {
+                console.log(e)
+            }
+    );
 </script>
 </body>
 </html>

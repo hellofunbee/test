@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="expert.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="expert.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/expert.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="88" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="103" selection-end-column="7" />
+            <state relative-caret-position="946">
+              <caret line="102" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="126" selection-end-column="7" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -36,11 +36,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/api.js">
+      <file leaf-file-name="expert-xq2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/expert-xq2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="23" column="12" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="250">
+              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="143" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1537964413000" expanded="true" signature="9081:9085" ph="&amp;gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-52">
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1537962024000" expanded="true" signature="3018:3050" ph="..." />
+                <marker date="1537962024000" expanded="true" signature="3052:3058" ph="&amp;##160;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="homepage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/homepage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="179" selection-end-column="14" />
+              <folding>
+                <marker date="1537962024000" expanded="true" signature="12136:12140" ph="&amp;gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="2830" column="1" selection-start-line="2830" selection-start-column="1" selection-end-line="2830" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -79,7 +129,6 @@
         <option value="$PROJECT_DIR$/publish.html" />
         <option value="$PROJECT_DIR$/js/api.js" />
         <option value="$PROJECT_DIR$/js/ajaxfileupload.js" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/GIS3-layer.html" />
         <option value="$PROJECT_DIR$/GIS3.html" />
         <option value="$PROJECT_DIR$/GIS2.html" />
@@ -88,7 +137,6 @@
         <option value="$PROJECT_DIR$/js/common.js" />
         <option value="$PROJECT_DIR$/GIS4.html" />
         <option value="$PROJECT_DIR$/js/gis4.js" />
-        <option value="$PROJECT_DIR$/detail.html" />
         <option value="$PROJECT_DIR$/GIS.html" />
         <option value="$PROJECT_DIR$/js/gis.js" />
         <option value="$PROJECT_DIR$/synthesize.html" />
@@ -97,10 +145,14 @@
         <option value="$PROJECT_DIR$/publish3.html" />
         <option value="$PROJECT_DIR$/js/synthesize2.js" />
         <option value="$PROJECT_DIR$/publish2.html" />
-        <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/ui.js" />
+        <option value="$PROJECT_DIR$/expert-xq.html" />
         <option value="$PROJECT_DIR$/expert.html" />
+        <option value="$PROJECT_DIR$/detail.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/expert-xq2.html" />
+        <option value="$PROJECT_DIR$/test.html" />
       </list>
     </option>
   </component>
@@ -151,7 +203,14 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="Scope" />
       <pane id="Scratches" />
@@ -167,7 +226,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="API&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;exp&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/expert.html&#10;inde&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;publis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;test&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/test.html&#10;UI&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;product&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product.html&#10;product.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;synthesize3.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;synthesize&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html&#10;GIS&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS.html&#10;GIS.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS4.html&#10;index&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;detai&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;style&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/css/style.css&#10;hom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/homepage.html&#10;detail&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;comm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;ui&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;publish3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;gis2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;gis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis2.js&#10;GIS3-layer.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3-layer.html&#10;gi&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis3.js&#10;api&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;gis3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3.html&#10;produ&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;product2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/product2.js&#10;gis2.js&#9;null&#9;null&#10;GIS2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;bigdata-&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg2.html&#10;bigdata.h&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;bigdata2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData2.html&#10;bigData-fxjg1&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.htm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;synthesize3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;product4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product4.html&#10;synthesize.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html&#10;sy&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize4.html&#10;product3.j&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/product3.js&#10;product3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product3.html&#10;synthesize4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize4.html&#10;synthesize2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize2.html&#10;pag&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/css/pagination.css&#10;system4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/system4.html&#10;sys&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/system.js" />
+    <property name="SearchEverywhereHistoryKey" value="test&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/test.html&#10;detai&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;hom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/homepage.html&#10;API&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;style&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/css/style.css&#10;exp&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/expert.html&#10;inde&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;publis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;UI&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;product&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product.html&#10;product.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;synthesize3.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;synthesize&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html&#10;GIS&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS.html&#10;GIS.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS4.html&#10;index&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;detail&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;comm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;ui&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;publish3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;gis2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;gis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis2.js&#10;GIS3-layer.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3-layer.html&#10;gi&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis3.js&#10;api&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;gis3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3.html&#10;produ&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;product2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/product2.js&#10;gis2.js&#9;null&#9;null&#10;GIS2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;bigdata-&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg2.html&#10;bigdata.h&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;bigdata2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData2.html&#10;bigData-fxjg1&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.htm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;synthesize3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;product4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product4.html&#10;synthesize.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html&#10;sy&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize4.html&#10;product3.j&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/product3.js&#10;product3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product3.html&#10;synthesize4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize4.html&#10;synthesize2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize2.html&#10;pag&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/css/pagination.css&#10;system4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/system4.html&#10;sys&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/system.js" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
   <component name="RecentsManager">
@@ -640,15 +699,16 @@
       <workItem from="1537807386184" duration="6186000" />
       <workItem from="1537817535094" duration="2588000" />
       <workItem from="1537846026908" duration="23400000" />
-      <workItem from="1537905993388" duration="2752000" />
+      <workItem from="1537905993388" duration="2826000" />
+      <workItem from="1537930289907" duration="17963000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159855000" />
+    <option name="totallyTimeSpent" value="177892000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="23" width="1236" height="777" extended-state="6" />
+    <frame x="44" y="23" width="1236" height="777" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -657,14 +717,14 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25879398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25879398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -674,8 +734,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -709,27 +769,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/system.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/pagination.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="223" column="10" selection-start-line="223" selection-start-column="10" selection-end-line="223" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/product3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2050">
@@ -892,33 +931,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-777">
-          <caret line="516" column="0" selection-start-line="516" selection-start-column="0" selection-end-line="522" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/homepage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6075">
-          <caret line="243" column="62" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5425">
           <caret line="217" column="6" selection-start-line="217" selection-start-column="6" selection-end-line="217" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -950,25 +966,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/synthesize.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4950">
-          <caret line="198" column="8" selection-start-line="199" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/synthesize4.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="89" column="34" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -983,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1325">
           <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,23 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2225">
           <caret line="89" column="20" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/synthesize2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2225">
-          <caret line="89" column="22" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1325">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,7 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3825">
           <caret line="153" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="172" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,25 +1035,116 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
           <caret line="69" column="0" selection-start-line="47" selection-start-column="16" selection-end-line="69" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/expert-xq.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3002">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/synthesize2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2225">
+          <caret line="89" column="22" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2225">
+          <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-950">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1537962023000" expanded="true" signature="11763:11779" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/synthesize.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="125" column="0" selection-start-line="122" selection-start-column="8" selection-end-line="125" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="-3243">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-52">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1537962024000" expanded="true" signature="3018:3050" ph="..." />
+            <marker date="1537962024000" expanded="true" signature="3052:3058" ph="&amp;##160;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="2830" column="1" selection-start-line="2830" selection-start-column="1" selection-end-line="2830" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/expert.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="88" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="103" selection-end-column="7" />
+        <state relative-caret-position="946">
+          <caret line="102" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="126" selection-end-column="7" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/expert-xq2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="143" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1537964413000" expanded="true" signature="9081:9085" ph="&amp;gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homepage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="179" selection-end-column="14" />
+          <folding>
+            <marker date="1537962024000" expanded="true" signature="12136:12140" ph="&amp;gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -2841,4 +2841,9 @@ a.mx-logo {
   min-height: 500px;
 }
 
+[v-cloak] {
+  opacity: 0;
+}
+
+
 /*# sourceMappingURL=style.css.map */

@@ -381,28 +381,6 @@ public class UserController {
         return new IOTResult2(false, "暂无相关信息", null, 3);
     }
 
-//	@CrossOrigin
-//	@RequestMapping(value="/listProfessor",method=RequestMethod.POST)
-//	public IOTResult listProfessor(@RequestBody UserRequest ur){
-//		if(ur.getCksid()==null || ur.getCksid().trim().length()<1||ur.getCkuid()==null||ur.getCkuid()==null){
-//			return  new IOTResult(false,"信息不规范",null,1);
-//		}
-//		// 注册登陆按照什么来????
-//		String check = toolUtil.getCheck(ToolUtil.IOT+ur.getCkuid());
-//		if(check ==null ||!ur.getCksid().equals(check)){
-//			return  new IOTResult(false,"登陆失效",null,2);
-//		}
-//		long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-//		int ckAdmin = userService.ckSuperAdmin(uid);
-////		if(ckAdmin ==0 ){
-////			return new IOTResult(false,"权限不足",null,111);
-////		}
-//		List<Map<String,Object>> listProfessor = userService.listProfessor(ur);
-//		if(listProfessor !=null && !listProfessor.isEmpty() ){
-//			return new IOTResult(true,"查看成功",listProfessor,0);
-//		}
-//		return new IOTResult(false,"暂无相关信息",null,3);
-//	}
 
     // 上传图片
     @CrossOrigin
@@ -410,11 +388,7 @@ public class UserController {
     public
     @ResponseBody
     IOTResult addPicture(@RequestParam("picture") MultipartFile picture, @RequestParam("cksid") String cksid, @RequestParam("ckuid") String ckuid, @RequestParam("oldfile") String oldfile) {
-//		String check = toolUtil.getCheck(ToolUtil.CMS+ckuid);
-//		if(check==null || !check.equals(cksid)){
-//			return new IOTResult(false,"登陆失效",null,0);
-//		}
-        System.out.println(oldfile);
+
         if (!oldfile.equals("")) {
             String[] split = oldfile.split("file_name=");
             System.out.println(split[1]);
@@ -430,10 +404,6 @@ public class UserController {
     public
     @ResponseBody
     IOTResult addSuperPicture(@RequestParam("picture") MultipartFile picture, @RequestParam("cksid") String cksid, @RequestParam("ckuid") String ckuid, @RequestParam("oldfile") String oldfile) {
-//		String check = toolUtil.getCheck(ToolUtil.CMS+ckuid);
-//		if(check==null || !check.equals(cksid)){
-//			return new IOTResult(false,"登陆失效",null,0);
-//		}
         System.out.println(oldfile);
         if (!oldfile.equals("")) {
             String[] split = oldfile.split("file_name=");

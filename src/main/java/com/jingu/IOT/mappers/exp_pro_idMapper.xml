@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jingu.IOT.exp.dao.exp_pro_idMapper">
+  <resultMap id="BaseResultMap" type="com.jingu.IOT.exp.model.exp_pro_id">
+    <id column="exp_pro_id" jdbcType="INTEGER" property="expProId" />
+    <result column="exp_pro_title" jdbcType="VARCHAR" property="expProTitle" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="tu_id" jdbcType="INTEGER" property="tuId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jingu.IOT.exp.model.exp_pro_id">
+    <result column="exp_pro_content" jdbcType="LONGVARCHAR" property="expProContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    exp_pro_id, exp_pro_title, create_time, update_time, tu_id
+  </sql>
+  <sql id="Blob_Column_List">
+    exp_pro_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from exp_pro
+    where exp_pro_id = #{expProId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exp_pro
+    where exp_pro_id = #{expProId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jingu.IOT.exp.model.exp_pro_id">
+    insert into exp_pro (exp_pro_id, exp_pro_title, create_time, 
+      update_time, tu_id, exp_pro_content
+      )
+    values (#{expProId,jdbcType=INTEGER}, #{expProTitle,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{tuId,jdbcType=INTEGER}, #{expProContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jingu.IOT.exp.model.exp_pro_id">
+    insert into exp_pro
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="expProId != null">
+        exp_pro_id,
+      </if>
+      <if test="expProTitle != null">
+        exp_pro_title,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="tuId != null">
+        tu_id,
+      </if>
+      <if test="expProContent != null">
+        exp_pro_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="expProId != null">
+        #{expProId,jdbcType=INTEGER},
+      </if>
+      <if test="expProTitle != null">
+        #{expProTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tuId != null">
+        #{tuId,jdbcType=INTEGER},
+      </if>
+      <if test="expProContent != null">
+        #{expProContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jingu.IOT.exp.model.exp_pro_id">
+    update exp_pro
+    <set>
+      <if test="expProTitle != null">
+        exp_pro_title = #{expProTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tuId != null">
+        tu_id = #{tuId,jdbcType=INTEGER},
+      </if>
+      <if test="expProContent != null">
+        exp_pro_content = #{expProContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where exp_pro_id = #{expProId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jingu.IOT.exp.model.exp_pro_id">
+    update exp_pro
+    set exp_pro_title = #{expProTitle,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tu_id = #{tuId,jdbcType=INTEGER},
+      exp_pro_content = #{expProContent,jdbcType=LONGVARCHAR}
+    where exp_pro_id = #{expProId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jingu.IOT.exp.model.exp_pro_id">
+    update exp_pro
+    set exp_pro_title = #{expProTitle,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tu_id = #{tuId,jdbcType=INTEGER}
+    where exp_pro_id = #{expProId,jdbcType=INTEGER}
+  </update>
+</mapper>

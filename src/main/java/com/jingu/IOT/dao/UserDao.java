@@ -49,8 +49,16 @@ public class UserDao {
     }
 
     public Map findById(UserEntity userEntity) {
-        String sql = " select * from t_user where  tu_pwd =? " + userEntity.getUid();
-        return jdbcTemplate.queryForMap(sql);
+        String sql = " select t.*," +
+                " (" +
+                " select GROUP_CONCAT(c1.c_name) from exp_field e1 " +
+                " LEFT JOIN class c1 on c1.c_id = e1.c_id " +
+                " where e1.tu_id = t.tu_id " +
+                " ) fields " +
+                " from t_user t where t.tu_id =?";
+
+
+        return jdbcTemplate.queryForMap(sql, userEntity.getUid());
         //return 0;
     }
 
@@ -60,11 +68,6 @@ public class UserDao {
         //return 0;
     }
 
-    public List<UserEntity> getUserByUid(UserEntity userEntity) {
-        String sql = " select * from t_user where tu_id =?";
-        return jdbcTemplate.query(sql, new UserEntity(), userEntity.getUid());
-        //return 0;
-    }
 
     public int addUser(UserEntity userEntity) {
         String sql = " insert into t_user (" +
@@ -160,7 +163,13 @@ public class UserDao {
     }
 
     public List<Map<String, Object>> listUserForMap(UserEntity userEntity) {
-        String sql = " select t.*,c.c_type,c.c_name from t_user t " +
+        String sql = " select t.*,c.c_type,c.c_name," +
+                " (" +
+                " select GROUP_CONCAT(c1.c_name) from exp_field e1 " +
+                " LEFT JOIN class c1 on c1.c_id = e1.c_id " +
+                " where e1.tu_id = t.tu_id " +
+                " ) fields " +
+                " from t_user t " +
                 "LEFT join class c on c.c_id = t.c_id " +
                 "where 1 =1";
         List<Object> list = new ArrayList<>();
@@ -493,11 +502,11 @@ public class UserDao {
 
     public List<Map<String, Object>> listUserInType(List<Integer> userType) {
         StringBuffer sb = new StringBuffer();
-        for(int i:userType){
+        for (int i : userType) {
             sb.append(i);
             sb.append(",");
         }
-        String types = sb.substring(0,sb.length());
+        String types = sb.substring(0, sb.length());
         String sql = "select * from t_user where tu_type in (?)";
         return jdbcTemplate.queryForList(sql, types);
 

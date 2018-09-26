@@ -13,7 +13,8 @@
     <div class="mx-handle clearfix">
         <div class="sm-title fl">专家管理</div>
         <div class="mx-top-search fr"><input type="text"> <a href="#">搜索</a></div>
-        <div class="mx-top-select fr"><h3>专家分类<em><i></i></em></h3>
+        <div class="mx-top-select fr">
+            <h3>专家分类<em><i></i></em></h3>
             <dl class="mx-top-select-list">
                 <dd>专家分类2</dd>
                 <dd>专家分类3</dd>
@@ -23,10 +24,10 @@
     <div class="expert-module clearfix">
         <div class="expert-list tpl" style="display: none">
             <div class="img"><img src="images/people.png" alt=""></div>
-            <div class="name" field="tu_username">天知道</div>
+            <div class="name" field="tu_name">天知道</div>
             <div class="education" field="tu_edu" render="dict" dict="user_edu">博士</div>
             <div class="info">
-                <p><span>专业领域</span>浆果类作物种植、防病虫害</p>
+                <p><span>专业领域</span><span field="fields">浆果类作物种植、防病虫害</span></p>
                 <p><span>电子邮箱</span> <span field="tu_email"></span></p>
                 <p><span>服务对象</span>2 个</p></div>
         </div>
@@ -38,23 +39,37 @@
     document.write(html)
 }</script>
 <script>
-    var field_c_id = 0;
+    var tpl1 = $('.tpl').clone();
+    var exp_c_id = 0;
     $(".mx-top-select h3").click(function () {
         $(this).hasClass("on") ? ($(this).removeClass("on"), $(this).next(".mx-top-select-list").hide()) : ($(this).addClass("on"), $(this).next(".mx-top-select-list").show())
     })
 
-    reload();
+
     function reload() {
-        $('.expert-module').empty();
+        if (exp_c_id > 0)
+            reload2();
+        else
+            reload1();
+    }
+    reload();
+    function reload1() {
+
         API.service("/listUserForMap", {
             tu_type: 6,
+            c_id: exp_c_id
         }, function (data) {
+            $('.expert-module').empty();
             console.log(data)
             $(data.object).each(function (i, e) {
-                var tpl = $('.tpl').clone();
+                var tpl = tpl1.clone();
                 tpl.css('display', 'block');
                 tpl.removeClass('tpl');
-                UI.appendFieldTo(tpl, e, $('.expert-module'))
+
+                var el =  UI.appendFieldTo(tpl, e, $('.expert-module'))
+                el.find('img').on('click',function () {
+                    window.openPageContent('&quot;专家系统&quot;','&quot;'+e.tu_name+'&quot;',{url:'/expert-xq2.html?tu_id='+e.tu_id});
+                });
             });
 
         }, function (rsp) {
@@ -63,16 +78,22 @@
     }
 
     function reload2() {
-        $('.expert-module').empty();
-        API.service("/listUserForMap", {
+        API.service("/listExpByFields", {
             tu_type: 6,
+            c_id: exp_c_id,
         }, function (data) {
             console.log(data)
+            $('.expert-module').empty();
             $(data.object).each(function (i, e) {
-                var tpl = $('.tpl').clone();
+                var tpl = tpl1.clone();
                 tpl.css('display', 'block');
                 tpl.removeClass('tpl');
-                UI.appendFieldTo(tpl, e, $('.expert-module'))
+                var el =  UI.appendFieldTo(tpl, e, $('.expert-module'));
+                el.find('img').on('click',function () {
+                    window.openPageContent('&quot;专家系统&quot;','&quot;'+e.tu_name+'&quot;',{url:'/expert-xq2.html?tu_id='+e.tu_id});
+
+                });
+
             });
 
         }, function (rsp) {
@@ -90,12 +111,14 @@
         $("dd").on('click', function () {
             $(".mx-top-select h3").removeClass("on");
             $('.mx-top-select-list').hide()
-            field_c_id = $(this).attr('value');
+            $('.mx-top-select-list').prev('h3').html('<h3>' + $(this).text() + '<em><i></i></em></h3>');
+
+
+            exp_c_id = $(this).attr('value');
+
             reload();
 
         });
-
-
     })
 
 

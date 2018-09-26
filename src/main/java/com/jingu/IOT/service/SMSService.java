@@ -2,6 +2,7 @@ package com.jingu.IOT.service;
 
 import com.jingu.IOT.entity.MessageEntity;
 import com.jingu.IOT.imsg.WebSocketTemplate;
+import com.jingu.IOT.util.SendMsg_webchinese;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,9 +52,20 @@ public class SMSService {
      */
 
     public static void sendSMS(List<String> phones, MessageEntity message) {
+        String msg = "[物联网]" + message.getM_title() + "\n" + message.getM_content();
 
-        System.out.println(phones);
-        System.out.println(message);
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < phones.size(); i++) {
+            String p = phones.get(i);
+            sb.append(p);
+            sb.append(",");
+
+            if (i != 0 && i % 99 == 0) {
+                String mobs = sb.substring(0, sb.length() - 1);
+                SendMsg_webchinese.send(msg, mobs);
+                sb = new StringBuffer();
+            }
+        }
     }
 
     /**

@@ -13,16 +13,14 @@
 */ 
 package com.jingu.IOT.service;
 
-import java.util.List;
-import java.util.Map;
-
+import com.jingu.IOT.entity.AnswerQuestion;
+import com.jingu.IOT.util.ToolUtil;
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.jingu.IOT.entity.AnswerQuestion;
-import com.jingu.IOT.util.ToolUtil;
-
-import net.sf.json.JSONObject;
+import java.util.List;
+import java.util.Map;
 
 /**
 
@@ -50,6 +48,7 @@ public class AnswerService {
 		if(jsonObject.getBoolean("success")){
 			return jsonObject.getJSONArray("object");
 		}
+
 		return null;
 	}
 	

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jingu.IOT.exp.dao.exp_ans_idMapper">
+  <resultMap id="BaseResultMap" type="com.jingu.IOT.exp.model.exp_ans_id">
+    <id column="exp_ans_id" jdbcType="INTEGER" property="expAnsId" />
+    <result column="exp_ans_title" jdbcType="VARCHAR" property="expAnsTitle" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="tu_id" jdbcType="INTEGER" property="tuId" />
+    <result column="if_delete" jdbcType="INTEGER" property="ifDelete" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jingu.IOT.exp.model.exp_ans_id">
+    <result column="exp_ans_titile" jdbcType="LONGVARCHAR" property="expAnsTitile" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    exp_ans_id, exp_ans_title, create_time, update_time, tu_id, if_delete
+  </sql>
+  <sql id="Blob_Column_List">
+    exp_ans_titile
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from exp_ans
+    where exp_ans_id = #{expAnsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exp_ans
+    where exp_ans_id = #{expAnsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jingu.IOT.exp.model.exp_ans_id">
+    insert into exp_ans (exp_ans_id, exp_ans_title, create_time, 
+      update_time, tu_id, if_delete, 
+      exp_ans_titile)
+    values (#{expAnsId,jdbcType=INTEGER}, #{expAnsTitle,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{tuId,jdbcType=INTEGER}, #{ifDelete,jdbcType=INTEGER}, 
+      #{expAnsTitile,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jingu.IOT.exp.model.exp_ans_id">
+    insert into exp_ans
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="expAnsId != null">
+        exp_ans_id,
+      </if>
+      <if test="expAnsTitle != null">
+        exp_ans_title,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="tuId != null">
+        tu_id,
+      </if>
+      <if test="ifDelete != null">
+        if_delete,
+      </if>
+      <if test="expAnsTitile != null">
+        exp_ans_titile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="expAnsId != null">
+        #{expAnsId,jdbcType=INTEGER},
+      </if>
+      <if test="expAnsTitle != null">
+        #{expAnsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tuId != null">
+        #{tuId,jdbcType=INTEGER},
+      </if>
+      <if test="ifDelete != null">
+        #{ifDelete,jdbcType=INTEGER},
+      </if>
+      <if test="expAnsTitile != null">
+        #{expAnsTitile,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jingu.IOT.exp.model.exp_ans_id">
+    update exp_ans
+    <set>
+      <if test="expAnsTitle != null">
+        exp_ans_title = #{expAnsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tuId != null">
+        tu_id = #{tuId,jdbcType=INTEGER},
+      </if>
+      <if test="ifDelete != null">
+        if_delete = #{ifDelete,jdbcType=INTEGER},
+      </if>
+      <if test="expAnsTitile != null">
+        exp_ans_titile = #{expAnsTitile,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where exp_ans_id = #{expAnsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jingu.IOT.exp.model.exp_ans_id">
+    update exp_ans
+    set exp_ans_title = #{expAnsTitle,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tu_id = #{tuId,jdbcType=INTEGER},
+      if_delete = #{ifDelete,jdbcType=INTEGER},
+      exp_ans_titile = #{expAnsTitile,jdbcType=LONGVARCHAR}
+    where exp_ans_id = #{expAnsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jingu.IOT.exp.model.exp_ans_id">
+    update exp_ans
+    set exp_ans_title = #{expAnsTitle,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tu_id = #{tuId,jdbcType=INTEGER},
+      if_delete = #{ifDelete,jdbcType=INTEGER}
+    where exp_ans_id = #{expAnsId,jdbcType=INTEGER}
+  </update>
+</mapper>

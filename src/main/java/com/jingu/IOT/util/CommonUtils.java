@@ -49,6 +49,12 @@ public class CommonUtils {
     }
 
 
+    /**
+     * 数字？
+     *
+     * @param o
+     * @return
+     */
     public static boolean isNumber(Object o) {
         try {
             if (o instanceof Integer)
@@ -60,6 +66,25 @@ public class CommonUtils {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static boolean has(Object o) {
+        if (o == null) {
+            return false;
+        }
+
+        if ("".equals(null)) {
+            return false;
+        }
+
+        if (o instanceof Integer) {
+            if ((int) o > 0)
+                return true;
+            else
+                return false;
+        }
+
+        return true;
     }
 
 }

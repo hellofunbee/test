@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jingu.IOT.exp.dao.exp_client_idMapper">
+  <resultMap id="BaseResultMap" type="com.jingu.IOT.exp.model.exp_client_id">
+    <id column="exp_client_id" jdbcType="INTEGER" property="expClientId" />
+    <result column="exp_id" jdbcType="INTEGER" property="expId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="if_delete" jdbcType="INTEGER" property="ifDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    exp_client_id, exp_id, user_id, create_time, update_time, if_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exp_client
+    where exp_client_id = #{expClientId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exp_client
+    where exp_client_id = #{expClientId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jingu.IOT.exp.model.exp_client_id">
+    insert into exp_client (exp_client_id, exp_id, user_id, 
+      create_time, update_time, if_delete
+      )
+    values (#{expClientId,jdbcType=INTEGER}, #{expId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{ifDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jingu.IOT.exp.model.exp_client_id">
+    insert into exp_client
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="expClientId != null">
+        exp_client_id,
+      </if>
+      <if test="expId != null">
+        exp_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="ifDelete != null">
+        if_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="expClientId != null">
+        #{expClientId,jdbcType=INTEGER},
+      </if>
+      <if test="expId != null">
+        #{expId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifDelete != null">
+        #{ifDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jingu.IOT.exp.model.exp_client_id">
+    update exp_client
+    <set>
+      <if test="expId != null">
+        exp_id = #{expId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifDelete != null">
+        if_delete = #{ifDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where exp_client_id = #{expClientId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jingu.IOT.exp.model.exp_client_id">
+    update exp_client
+    set exp_id = #{expId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      if_delete = #{ifDelete,jdbcType=INTEGER}
+    where exp_client_id = #{expClientId,jdbcType=INTEGER}
+  </update>
+</mapper>

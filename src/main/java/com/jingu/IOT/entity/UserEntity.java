@@ -59,6 +59,7 @@ public class UserEntity implements RowMapper<UserEntity> {
 
 
 
+
 	public String getPower() {
 		return power;
 	}

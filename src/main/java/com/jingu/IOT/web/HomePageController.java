@@ -57,9 +57,7 @@ public class HomePageController {
         if (check == null || !check.equals(hr.getCksid())) {
             return new IOTResult(false, "登陆失效", null, 2);
         }
-//		if(hr.getH_cover()==null || hr.getH_cover().trim().length()<1 || hr.getH_url()==null || hr.getH_url().trim().length()<1){
-//			hr.setH_state(2);
-//		}
+
         int addHomePagePicture = homePageService.updateHomePagePicture(hr);
         if (addHomePagePicture > 0) {
             return new IOTResult(true, "保存成功", null, 0);
