@@ -24,73 +24,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="expert.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/expert.html">
+      <file leaf-file-name="system.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/system.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="946">
-              <caret line="102" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="126" selection-end-column="7" />
+            <state relative-caret-position="255">
+              <caret line="806" column="22" selection-start-line="806" selection-start-column="21" selection-end-line="806" selection-end-column="22" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1537987729000" expanded="true" signature="9692:9740" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="expert-xq2.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/expert-xq2.html">
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="143" selection-end-column="10" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1537964413000" expanded="true" signature="9081:9085" ph="&amp;gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-52">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h2#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1537962024000" expanded="true" signature="3018:3050" ph="..." />
-                <marker date="1537962024000" expanded="true" signature="3052:3058" ph="&amp;##160;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homepage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/homepage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="179" selection-end-column="14" />
-              <folding>
-                <marker date="1537962024000" expanded="true" signature="12136:12140" ph="&amp;gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="2830" column="1" selection-start-line="2830" selection-start-column="1" selection-end-line="2830" selection-end-column="1" />
+            <state relative-caret-position="550">
+              <caret line="22" column="12" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test.html">
+      <file leaf-file-name="product.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/product.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+            <state relative-caret-position="9400">
+              <caret line="376" column="21" selection-start-line="376" selection-start-column="21" selection-end-line="376" selection-end-column="21" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/product.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="76" column="40" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="system.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8125">
+              <caret line="325" column="77" selection-start-line="325" selection-start-column="70" selection-end-line="325" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="znkzgz.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/znkzgz.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="311" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="320" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xjgz-add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xjgz-add.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1850">
+              <caret line="74" column="45" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xjgz.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xjgz.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="15" column="48" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -111,12 +145,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/system.js" />
         <option value="$PROJECT_DIR$/css/pagination.css" />
         <option value="$PROJECT_DIR$/system4.html" />
         <option value="$PROJECT_DIR$/synthesize2.html" />
         <option value="$PROJECT_DIR$/synthesize4.html" />
-        <option value="$PROJECT_DIR$/product.html" />
         <option value="$PROJECT_DIR$/product3.html" />
         <option value="$PROJECT_DIR$/product2.html" />
         <option value="$PROJECT_DIR$/js/product3.js" />
@@ -153,6 +185,11 @@
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/expert-xq2.html" />
         <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/xjgz.html" />
+        <option value="$PROJECT_DIR$/xjgz-add.html" />
+        <option value="$PROJECT_DIR$/product.html" />
+        <option value="$PROJECT_DIR$/js/system.js" />
+        <option value="$PROJECT_DIR$/znkzgz.html" />
       </list>
     </option>
   </component>
@@ -203,14 +240,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scope" />
       <pane id="Scratches" />
@@ -226,7 +256,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="test&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/test.html&#10;detai&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;hom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/homepage.html&#10;API&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;style&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/css/style.css&#10;exp&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/expert.html&#10;inde&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;publis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;UI&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;product&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product.html&#10;product.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;synthesize3.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;synthesize&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html&#10;GIS&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS.html&#10;GIS.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS4.html&#10;index&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;detail&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;comm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;ui&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;publish3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;gis2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;gis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis2.js&#10;GIS3-layer.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3-layer.html&#10;gi&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis3.js&#10;api&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;gis3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3.html&#10;produ&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;product2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/product2.js&#10;gis2.js&#9;null&#9;null&#10;GIS2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;bigdata-&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg2.html&#10;bigdata.h&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;bigdata2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData2.html&#10;bigData-fxjg1&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.htm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;synthesize3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;product4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product4.html&#10;synthesize.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html&#10;sy&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize4.html&#10;product3.j&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/product3.js&#10;product3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product3.html&#10;synthesize4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize4.html&#10;synthesize2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize2.html&#10;pag&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/css/pagination.css&#10;system4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/system4.html&#10;sys&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/system.js" />
+    <property name="SearchEverywhereHistoryKey" value="product.h&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product.html&#10;API&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;syst&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/system.html&#10;znkzgz.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/znkzgz.html&#10;xjgz-add.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/xjgz-add.html&#10;xjgz.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/xjgz.html&#10;syste&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/system.js&#10;syster&#9;null&#9;null&#10;xj&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg2.html&#10;test&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/test.html&#10;detai&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;hom&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/homepage.html&#10;style&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/css/style.css&#10;exp&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/expert.html&#10;inde&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;publis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;UI&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;product&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product.html&#10;product.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;synthesize3.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;synthesize&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html&#10;GIS&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS.html&#10;GIS.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS4.html&#10;index&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/index.html&#10;detail&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/detail.html&#10;comm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;ui&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/ui.js&#10;publish2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish2.html&#10;publish3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/publish3.html&#10;gis2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;gis&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis2.js&#10;GIS3-layer.html&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3-layer.html&#10;gi&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/gis3.js&#10;api&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/api.js&#10;gis3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS3.html&#10;produ&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product2.html&#10;product2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/js/product2.js&#10;gis2.js&#9;null&#9;null&#10;GIS2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/GIS2.html&#10;bigdata-&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg2.html&#10;bigdata.h&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;bigdata2&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData2.html&#10;bigData-fxjg1&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData-fxjg1.htm&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData-fxjg1.html&#10;bigData&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/bigData.html&#10;synthesize3&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize3.html&#10;product4&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/product4.html&#10;synthesize.&#9;FILE&#9;file:///Users/weifengxu/Downloads/iot/IOT/target/classes/static/synthesize.html" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
   <component name="RecentsManager">
@@ -700,15 +730,16 @@
       <workItem from="1537817535094" duration="2588000" />
       <workItem from="1537846026908" duration="23400000" />
       <workItem from="1537905993388" duration="2826000" />
-      <workItem from="1537930289907" duration="17963000" />
+      <workItem from="1537930289907" duration="30199000" />
+      <workItem from="1537987628402" duration="2735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177892000" />
+    <option name="totallyTimeSpent" value="192863000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="23" width="1236" height="777" extended-state="0" />
+    <frame x="44" y="23" width="1236" height="777" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -717,12 +748,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25879398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25879398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -769,41 +800,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/product3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2050">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="68" column="27" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/product3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4475">
-          <caret line="179" column="55" selection-start-line="179" selection-start-column="16" selection-end-line="179" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/system.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="699" column="38" selection-start-line="699" selection-start-column="38" selection-end-line="699" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xgzsb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="107" column="13" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xgbjgz.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -837,13 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="96" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="121" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bigData-fxjg2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="262" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="294" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -973,20 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="0" column="10908" selection-start-line="0" selection-start-column="10908" selection-end-line="0" selection-end-column="10908" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/product.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1325">
-          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/publish2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -1019,7 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="223" column="0" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1027,7 +1001,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7482">
           <caret line="626" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="693" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1042,7 +1015,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3002">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,7 +1022,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2225">
           <caret line="89" column="22" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1058,7 +1029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2225">
           <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,9 +1036,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-950">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1537962023000" expanded="true" signature="11763:11779" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1076,15 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
           <caret line="125" column="0" selection-start-line="122" selection-start-column="8" selection-end-line="125" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3243">
-          <caret line="22" column="12" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,12 +1050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-52">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1537962024000" expanded="true" signature="3018:3050" ph="..." />
-            <marker date="1537962024000" expanded="true" signature="3052:3058" ph="&amp;##160;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1105,7 +1057,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="2830" column="1" selection-start-line="2830" selection-start-column="1" selection-end-line="2830" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1113,9 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="946">
           <caret line="102" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="126" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1123,10 +1071,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="143" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1537964413000" expanded="true" signature="9081:9085" ph="&amp;gt;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1134,17 +1078,110 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="179" selection-end-column="14" />
-          <folding>
-            <marker date="1537962024000" expanded="true" signature="12136:12140" ph="&amp;gt;" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+        <state relative-caret-position="273">
+          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bigData-fxjg2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="251" column="7" selection-start-line="251" selection-start-column="7" selection-end-line="251" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9400">
+          <caret line="376" column="21" selection-start-line="376" selection-start-column="21" selection-end-line="376" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#1;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#1;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ul#2;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xjgz.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="48" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xjgz-add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1850">
+          <caret line="74" column="45" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8125">
+          <caret line="325" column="77" selection-start-line="325" selection-start-column="70" selection-end-line="325" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/system.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="806" column="22" selection-start-line="806" selection-start-column="21" selection-end-line="806" selection-end-column="22" />
+          <folding>
+            <marker date="1537987729000" expanded="true" signature="9692:9740" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="76" column="40" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/znkzgz.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="311" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="320" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

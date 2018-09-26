@@ -800,7 +800,7 @@ $(function () {
         console.log('************')
 
 
-        var params = "ctrl_id=" + defVal.ctrl_id + "&type=" + 2+"&deviceId="+deviceId+"&tp_id="+id;
+        var params = "ctrl_id=" + defVal.ctrl_id + "&type=" + 2 + "&deviceId=" + deviceId + "&tp_id=" + id;
         layer.open({
             type: 2,
             title: "智能控制规则",
@@ -830,11 +830,18 @@ $(function () {
             '        </tr>' +
             '        </thead>' +
             '        <tbody>' +
-            '        <tr class="row-tpl">' +
+            '        </tbody>' +
+            '    </table>' +
+            '    <div class="clearfix mt20 tc">' +
+            '<a href="javascript:;" class="btn-lg btn-df-red btn-delete-all">删除选中规则</a> ' +
+            '<a href="javascript:;" id="closeParent" class="btn-lg btn-df-gray" onclick="layer.closeAll()">关闭窗口</a> ' +
+            '<a href="javascript:;" class="btn-lg btn-df-blue btn-add-gz" id="xjgz">新建规则</a>' +
+            '</div>';
+        var tpl = '  <tr class="row-tpl">' +
             '            <td class="tc">' +
             '                <div class="mx-checkbox"><em></em></div>' +
             '            </td>' +
-            '            <td field="r_name">规则名称1</td>' +
+            '            <td field="r_name"  >规则名称1</td>' +
             '            <td field="cycleDay">1</td>' +
             '            <td field="ruleEnable" render="dict" dict="ruleEnable">启用</td>' +
             '            <td field="beginTime">2017-11-01 00:00:00</td>' +
@@ -843,19 +850,12 @@ $(function () {
             '            <td field="duration" unit="秒">0.0秒</td>' +
             '            <td><a href="#" class="btn-sm btn-edit">编辑</a></td>' +
             '        </tr>' +
-            '        </tbody>' +
-            '    </table>' +
-            '    <div class="clearfix mt20 tc">' +
-            '<a href="javascript:;" class="btn-lg btn-df-red btn-delete-all">删除选中规则</a> ' +
-            '<a href="javascript:;" id="closeParent" class="btn-lg btn-df-gray" onclick="layer.closeAll()">关闭窗口</a> ' +
-            '<a href="javascript:;" class="btn-lg btn-df-blue btn-add-gz" id="xjgz">新建规则</a>' +
-            '</div>';
 
-        $(".xxx-layer").html(str);
+            $(".xxx-layer").html(str);
 
         layer.open({
             type: 1,
-            title: "yygz",
+            title: "预约规则",
             area: ["1000px", "600px"],
             content: $(".xxx-layer"),
             success: function (layero) {
@@ -876,7 +876,11 @@ $(function () {
                         title: "修改规则",
                         area: ["800px", "600px"],
                         content: "xjgz.html?action=update&r_id=" + item.r_id,
-                        skin: "mlayer"
+                        skin: "mlayer",
+                        end: function () {
+                            qureyIt();
+                        }
+
                     });
                     return false
                 }).on("click", ".btn-delete-all", function () {
@@ -898,26 +902,33 @@ $(function () {
                     })
                 });
 
-                var tbody = layero.find("table.mx-table2>tbody").empty();
 
-                API.service(apiPre + "/listRule", {ctrl_id: "" + defVal.ctrl_id, type: "1"}, function (rsp) {
+                qureyIt();
+                function qureyIt() {
+                    var tbody = layero.find("table.mx-table2>tbody").empty();
 
-                    console.log(rsp.object)
-                    $.each(rsp.object, function (i) {
+                    API.service(apiPre + "/listRule", {ctrl_id: "" + defVal.ctrl_id, type: "1"}, function (rsp) {
 
-                        var item = this;
-                        UI.appendFieldTo(tpl, item, tbody).data("data", item)
+                        console.log(rsp.object)
+                        $.each(rsp.object, function (i) {
+
+                            var item = this;
+                            UI.appendFieldTo(tpl, item, tbody).data("data", item)
+
+                        });
 
                     });
+                }
 
-                });
                 $("#xjgz").click(function () {
                     layer.open({
                         type: 2,
                         title: "新建规则",
                         area: ["800px", "600px"],
                         content: "xjgz-add.html?action=add&ctrl_id=" + defVal.ctrl_id + "&type=1",
-                        skin: "mlayer"
+                        skin: "mlayer", end: function () {
+                            qureyIt();
+                        }
                     });
                 });
             },

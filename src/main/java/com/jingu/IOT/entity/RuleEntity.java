@@ -60,9 +60,9 @@ public class  RuleEntity implements RowMapper<RuleEntity>,Serializable {
 	private String admin;
 	private String execEndTime;
 	private String grade;
-	
-	
-	
+
+
+
 	
 	public String getGrade() {
 		return grade;
@@ -393,7 +393,6 @@ public class  RuleEntity implements RowMapper<RuleEntity>,Serializable {
 //		this.coefficient = coefficient;
 //	}
 
-	
-	
-	
+
+
 }

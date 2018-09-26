@@ -64,23 +64,7 @@ public class CtrlController {
 		this.ctrlService = ctrlService;
 	}
 
-	// @CrossOrigin
-	// @RequestMapping(value = "/", method = RequestMethod.POST)
-	// public IOTResult logs(){
-	// UserEntity userEntity = new UserEntity();
-	// userEntity.setStart(1);
-	// userEntity.setTu_username("这个是什么鬼..");
-	// userEntity.setTu_phone("123456");
-	// logger.debug("为什么不打印名字呢????");
-	// logger.debug(""+userEntity.getTu_username()+userEntity.getTu_phone()+"");
-	// logger.info("This is an info message");
-	// logger.warn("This is a warn message");
-	// logger.error("This is an error message");
-	// logger.error("为什么不打印名字呢????");
-	// logger.error(userEntity.getTu_username()+userEntity.getTu_phone());
-	// new SpringLoggingHelper().helpMethod();
-	// return null;
-	// }
+
 
 	// 添加控制配置
 	@CrossOrigin

@@ -13,37 +13,37 @@
     <table class="form-table">
         <tr>
             <th width="20%">预约规则名称</th>
-            <td><input type="text" field="r_name" class="text-blue" style="width:60%"></td>
+            <td><input type="text" required field="r_name" class="text-blue" style="width:60%"></td>
         </tr>
         <tr>
             <th>规则状态</th>
-            <td><select class="text-blue" field="ruleEnable" render="dict" dict="ruleEnable" style="width:30%">
+            <td><select class="text-blue"  required field="ruleEnable" render="dict" dict="ruleEnable" style="width:30%">
                 <option>启用</option>
             </select></td>
         </tr>
         <tr>
             <th>循环周期</th>
-            <td><input type="text" class="text-blue" field="cycleDay" style="width:60%"> <span
+            <td><input type="text" required class="text-blue" field="cycleDay" style="width:60%"> <span
                     style="color:#767b86;font-size:12px">天（注意：天数为1以上的整数）</span></td>
         </tr>
         <tr>
             <th>执行时间</th>
-            <td><input type="text" field="execTime" required class="text-blue laydate-time" placeholder="HH:mm:ss"
+            <td><input type="text"  field="execTime" required class="text-blue laydate-time" placeholder="HH:mm:ss"
                        style="width:60%"></td>
         </tr>
         <tr>
             <th>开始时间</th>
-            <td><input type="text" field="beginTime" required class="text-blue laydate-datetime"
+            <td><input type="text"   field="beginTime" required class="text-blue laydate-datetime"
                        placeholder="yyyy/MM/dd HH:mm:ss" style="width:60%"></td>
         </tr>
         <tr>
             <th>结束时间</th>
-            <td><input type="text" field="endTime" required class="text-blue laydate-datetime"
+            <td><input type="text"  field="endTime" required class="text-blue laydate-datetime"
                        placeholder="yyyy/MM/dd HH:mm:ss" style="width:60%"></td>
         </tr>
         <tr>
             <th>执行时长</th>
-            <td><input type="text" field="duration" class="text-blue" style="width:60%"> <span
+            <td><input type="text" required field="duration" class="text-blue" style="width:60%"> <span
                     style="font-size:12px">秒</span></td>
         </tr>
     </table>

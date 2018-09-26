@@ -13,16 +13,15 @@
 */ 
 package com.jingu.IOT.service;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.jingu.IOT.dao.SettingDao;
 import com.jingu.IOT.entity.ControlEntity;
 import com.jingu.IOT.entity.PointEntity;
 import com.jingu.IOT.entity.VAREntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Map;
 
 /**
 
@@ -92,7 +91,7 @@ public class SettingService {
 //		return settingDao.listIPCProxy(pe);
 //	}
 	
-	// 记得发送命令封装业务
+	//TODO 记得发送命令封装业务
 	public int addControlSetting(ControlEntity ce){
 		return settingDao.addControlSetting(ce);
 	}

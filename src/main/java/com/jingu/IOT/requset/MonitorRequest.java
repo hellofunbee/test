@@ -15,6 +15,8 @@ package com.jingu.IOT.requset;
 
 import com.jingu.IOT.entity.MonitorEntity;
 
+import java.util.List;
+
 /**
 
 * @ClassName: MonitorRequest
@@ -28,7 +30,7 @@ public class MonitorRequest extends MonitorEntity {
 	private String ckuid;
 	private String cksid;
 	private int type ;
-	
+	private List<MonitorEntity> mList ;
 	
 	public int getType() {
 		return type;
@@ -54,6 +56,12 @@ public class MonitorRequest extends MonitorEntity {
 		}
 		this.cksid = cksid;
 	}
-	
-	
+
+	public List<MonitorEntity> getmList() {
+		return mList;
+	}
+
+	public void setmList(List<MonitorEntity> mList) {
+		this.mList = mList;
+	}
 }
