@@ -20,12 +20,10 @@ import java.sql.SQLException;
 
 
 /**
-
+ * @author jianghu
  * @ClassName: Monitor
  * @Description: TODO
- * @author jianghu
  * @date 2017年11月21日 下午2:32:21
-
  */
 public class MonitorEntity implements Serializable, RowMapper<MonitorEntity> {
 
@@ -52,7 +50,7 @@ public class MonitorEntity implements Serializable, RowMapper<MonitorEntity> {
 
 
     public MonitorEntity(int mo_id, String mo_name, String mo_deviceId, String mo_time, String mo_channel, int mo_type,
-                         int mo_state, double mo_high, double mo_lower, int ctrl_id) {
+                         int mo_state, double mo_high, double mo_lower, int ctrl_id, int order_less, int order_more, int check_interval, int duration) {
         this.mo_id = mo_id;
         this.mo_name = mo_name;
         this.mo_deviceId = mo_deviceId;
@@ -63,6 +61,12 @@ public class MonitorEntity implements Serializable, RowMapper<MonitorEntity> {
         this.mo_high = mo_high;
         this.mo_lower = mo_lower;
         this.ctrl_id = ctrl_id;
+
+        this.order_less = order_less;
+        this.order_more = order_more;
+        this.check_interval = check_interval;
+        this.duration = duration;
+
     }
 
 
@@ -170,7 +174,21 @@ public class MonitorEntity implements Serializable, RowMapper<MonitorEntity> {
     @Override
     public MonitorEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
         // TODO Auto-generated method stub
-        return new MonitorEntity(rs.getInt("mo_id"), rs.getString("mo_name"), rs.getString("mo_deviceId"), rs.getString("mo_time"), rs.getString("mo_channel"), rs.getInt("mo_type"), rs.getInt("mo_state"), rs.getDouble("mo_high"), rs.getDouble("mo_lower"), rs.getInt("ctrl_id"));
+        return new MonitorEntity(rs.getInt("mo_id"),
+                rs.getString("mo_name"),
+                rs.getString("mo_deviceId"),
+                rs.getString("mo_time"),
+                rs.getString("mo_channel"),
+                rs.getInt("mo_type"),
+                rs.getInt("mo_state"),
+                rs.getDouble("mo_high"),
+                rs.getDouble("mo_lower"),
+                rs.getInt("ctrl_id"),
+                rs.getInt("order_less"),
+                rs.getInt("order_more"),
+                rs.getInt("check_interval"),
+                rs.getInt("duration")
+        );
     }
 
     public int getOrder_less() {

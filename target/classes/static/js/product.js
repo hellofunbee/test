@@ -10,19 +10,10 @@ $(function () {
     var treeEl = page.find("#product_device_tree");
     var otherCtrlBox = page.find(".other-control-status");
     var ctrlBox = page.find(".default-control-status");
-    otherCtrlBox.find(".fitbit-handle>span").click(function () {
-        $(this).addClass("on").siblings().removeClass("on");
-        otherCtrlBox.find(".fitbit-handle-result>div").hide().eq($(this).index()).show()
-    });
-    otherCtrlBox.find(".btn-off,.btn-on").click(function () {
-        if ($(this).is(".btn-off")) {
-            $(this).parents(".ctrl-box").find("table").hide()
-        } else {
-            $(this).parents(".ctrl-box").find("table").show()
-        }
-        return false
-    });
+
+
     var appendControlImage = function (data) {
+
         var l = page.find(".chart-list");
         var tmp = $("<ul></ul>").hide().appendTo("body:eq(0)");
         l.find("li.device-info-li").remove();
@@ -31,6 +22,7 @@ $(function () {
         var newUl = $('<ul class="fitbit-box new-fitbit"></ul>').appendTo(l);
         if (data) {
             l.find("li.device-info-li").remove();
+            /*状态图名称 1: "控光", 2: "控温", 3: "控水" */
             var imgSrc = {1: "images/znbg.png", 3: "images/znks.png", 2: "images/znwk.png"};
             var statusInfo = {
                 0: {1: "开启", 2: "关闭"},
@@ -46,7 +38,67 @@ $(function () {
                 deviceInfoLi.find("p").removeClass("close").text()
             }
             ctrlBox.hide();
-            otherCtrlBox.show().find(".fitbit-handle>span:eq(0)").click()
+
+
+            otherCtrlBox.find(".fitbit-handle>span").click(function () {
+                var notSet = false;
+                var index = $(this).index();
+                if (index == 2) {//预约控制
+                    if (!data.rules || data.rules.length == 0) {
+                        layer.msg('请先配置预约控制规则');
+                        notSet = true;
+                    }
+                }
+                if (index == 1) {//智能控制
+                    if (!data.mos || data.mos.length == 0) {
+                        layer.msg('请先配置智能控制规则');
+                        notSet = true;
+
+                    }
+
+                }
+
+                if (!notSet) {
+                    $(this).addClass("on").siblings().removeClass("on");
+                    otherCtrlBox.find(".fitbit-handle-result>div").hide().eq($(this).index()).show()
+
+                }
+            });
+
+
+            //卷帘
+            if (data.ctrl_type == 1) {
+                otherCtrlBox.find(".btn-off,.btn-on").click(function () {
+                    if ($(this).is(".btn-off")) {
+                        $(this).parents(".ctrl-box").find("table").hide()
+                        console.log('拉帘关闭')
+                    } else {
+                        $(this).parents(".ctrl-box").find("table").show()
+                        console.log('拉帘开启')
+                    }
+                    return false
+                });
+            } else {
+                otherCtrlBox.find(".btn-off,.btn-on").click(function () {
+                    if ($(this).is(".btn-off")) {
+
+                        console.log('关闭')
+                    } else {
+                        // 开启
+                        console.log('开启')
+                    }
+                    return false
+                });
+
+            }
+
+            if (data.state_type == 0) {
+                otherCtrlBox.show().find(".fitbit-handle>span:eq(0)").click()
+            } else {
+                otherCtrlBox.show().find(".fitbit-handle>span:eq(" + (data.state_type - 1) + ")").click()
+            }
+
+
         } else {
             tmp.find("li.device-info-li").remove();
             otherCtrlBox.hide();
@@ -80,6 +132,8 @@ $(function () {
                 tp_id: node.oriData.tp_id
             }
         }, function (rsp) {
+
+            console.log(rsp)
             $(rsp.object).each(function () {
                 var li = $('<li class="ctrl-item-nav"></li>').appendTo(ul).data("data", this);
                 $('<a href="javascript:;" ></a>').text(this.ctrl_name).appendTo(li)
@@ -137,11 +191,11 @@ $(function () {
         }
 
 
-
-
         if (node && node.oriData && node.oriData["tp_type"] === 3) {
             initControls(node);
             tryShowCamera(node);
+
+
             API.listSensorChartInfo(node.oriData.deviceId, node.oriData.tp_id, function (rsp) {
                 var data = rsp.object.data;
                 if (data.length !== 1) {

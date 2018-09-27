@@ -48,17 +48,16 @@
                 <div class="mx-switch" field="mo_state"><em>关</em><i></i></div>
             </td>
             <td><select name="" required field="mo_channel" class="text">
-                <option value="">温度传感器</option>
             </select></td>
             <td><input type="text" required field="mo_lower" class="text"></td>
             <td><select name="" required field="order_less" class="text">
                 <option value="1" selected>开启</option>
-                <option value="0">关闭</option>
+                <option value="2">关闭</option>
             </select>
 
             <td><input type="text" required field="mo_high" class="text"></td>
             <td><select name="" required field="order_more" class="text">
-                <option value="0" selected>关闭</option>
+                <option value="2" selected>关闭</option>
                 <option value="1">开启</option>
             </select>
             <td><input type="text" required field="duration" class="text"></td>
@@ -107,35 +106,6 @@
     });
 
 
-    /* API.service("/getGatherSettings", {
-     deviceId: defVal.deviceId,
-     tp_id: defVal.tp_id,
-     listDisplay: 1
-     }, function (e) {
-     var t = [];
-     for (var i in e.object)
-     t.push('<option value="' + e.object[i].channel + '">' + e.object[i].name + "</option>");
-     var select = t.join("");
-
-     UI.appendFieldTo($(select), {}, $("table.mx-table2>tbody").find('[field="channel"]'))
-     tpl = $("<div></div>").append($(".row-tpl").clone()).html();
-     $("table.mx-table2>tbody").empty();
-
-     API.service(apiPre + "/listRule", {
-     ctrl_id: defVal.ctrl_id,
-     type: 2
-     }, function (rsp) {
-     //$("table.mx-table2>tbody").empty();
-     $.each(rsp.object, function (i) {
-     var item = this;
-     UI.appendFieldTo(tpl, item, tbody).find('[field="channel"]').html(select).data("data", item);
-     });
-     }, function (e) {
-     layer.msg(e.msg);
-     });
-     });*/
-
-
     $(".mx-checkbox").on("click", function () {
         var me = $(this);
         var onAll = me.toggleClass("on").is(".select-all");
@@ -182,25 +152,26 @@
     API.service("/getGatherSettings", {deviceId: defVal.deviceId, tp_id: defVal.tp_id, listDisplay: 1}, function (e) {
         var t = [];
         for (var i in e.object)
-            t.push('<option value="' + e.object[i].channel + '">' + e.object[i].name + "</option>");
+            t.push('<option value="' + e.object[i].channel + '">' + e.object[i].name + "</option>\n");
         var select = t.join("");
 
         UI.appendFieldTo($(select), {}, $("table.mx-table2>tbody").find('[field="mo_channel"]'));
 
         tpl = $("<div></div>").append($(".row-tpl").clone().show()).html();
 
-        $("table.mx-table2>tbody").empty();
+        //$("table.mx-table2>tbody").empty();
         var load = function () {
-
-
+            $("table.mx-table2>tbody").empty();
             API.service("/listMonitor", {
                 ctrl_id: defVal.ctrl_id,
                 type: defVal.type
             }, function (rsp) {
+                console.log(rsp)
                 //$("table.mx-table2>tbody").empty();
-                $.each(rsp.object, function (i) {
+                $.each(rsp.object, function (i, e) {
                     var item = this;
-                    UI.appendFieldTo(tpl, item, tbody).find('[field="channel"]').html(select).data("data", item);
+                    addRow(e, true);
+//                    UI.appendFieldTo(tpl, item, tbody).find('[field="channel"]').html(select).data("data", item);
                 });
             }, function (e) {
                 layer.msg(e.msg);
@@ -211,32 +182,36 @@
         getNewValueFromHtml = function (t) {
 
 
-            var a = {ruleEnable: t.find('.mx-switch').hasClass('on') ? 1 : 0};
+            var a = {mo_state: t.find('.mx-switch').hasClass('on') ? 1 : 2};
 
             return t.find("[field]").each(function () {
                 var t = $(this);
                 e = t.attr("field");
-                t.is(".mx-checkbox") ? a[e] = t.hasClass("on") ? 1 : 0 : (t.is("input") || t.is("select") || t.is("textarea")) && (a[e] = t.val())
+                t.is(".mx-checkbox") ? a[e] = t.hasClass("on") ? 1 : 2 : (t.is("input") || t.is("select") || t.is("textarea")) && (a[e] = t.val())
 
 
             }), a
         };
         addRow = function (t, e) {
+
             t || (t = {});
             var a = UI.appendFieldTo(tpl, t, tbody).data("data", t);
             a.find('[field="mo_state"]').html('<em>关</em><i></i>');
-            a.find("select option:first").each(function () {
-                $(this).attr("selected", 'selected');
-                console.log($(this).text());
-            });
+
+            /*a.find("select option:first").each(function () {
+             $(this).attr("selected", 'selected');
+             console.log($(this).text());
+             });*/
 
 
             if (t) {
-                var ala_state = t.ala_state;
-                if (ala_state == 1) {
-                    a.find(".mx-switch").addClass('on');
+                var mo_state = t.mo_state;
+                if (mo_state == 1) {
+                    a.find('[field="mo_state"]').addClass('on');
+                    a.find('[field="mo_state"]').children("em").text("开");
                 } else {
-                    a.find(".mx-switch").removeClass('on');
+                    a.find('[field="mo_state"]').removeClass('on');
+                    a.find('[field="mo_state"]').children("em").text("关");
                 }
             }
 
@@ -251,6 +226,15 @@
                         $(this).children("em").text("关")) : ($(this).addClass("on"),
                         $(this).children("em").text("开"))
             });
+
+            if (!t.mo_id) {
+                console.log(a.html())
+                a.find("select").each(function () {
+                    var option = $(this).find('option:first');
+                    $(this).val(option.val());
+
+                });
+            }
             /* $(".mx-switch").on("click", function (t) {
              if ($(this).hasClass('on')) {
              $(this).removeClass('on');
@@ -273,17 +257,20 @@
 
         $(".btn-save").click(function () {
             var n = [];
+            var empty = false;
             tbody.find("tr").each(function () {
 
                 var t = $(this);
 
                 var e = t.data("data");
+                var obj = UI.getFieldValue(t);
+                if (!obj)
+                    empty = true;
                 var a = getNewValueFromHtml(t);
 
                 if (!a)
                     return !(c = !1);
                 a.deviceid = defVal.deviceId;
-                var i = $.extend({}, e, a);
                 var i = $.extend({}, e, a);
                 i.ctrl_id = defVal.ctrl_id;
                 i.mo_type = defVal.type;
@@ -292,22 +279,29 @@
                 n.push(i)
             });
 
+            if (empty)
+                return false;
             if (!n)
                 return false;
 
-            console.log(n)
-
-            API.service("/addListMonitor", {deviceid: defVal.deviceId, mList: n}, function (t) {
-                layer.msg("保存成功！"), UI.closeIframeDialog() || load()
-            });
+            API.service("/addListMonitor",
+                    {
+                        ctrl_id: defVal.ctrl_id,
+                        deviceid: defVal.deviceId,
+                        mList: n
+                    }, function (t) {
+                        layer.msg("保存成功！"),
+                                /*UI.closeIframeDialog() ||*/ load()
+                    });
         });
         $(".btn-delete").click(function () {
             var t = tbody.find(".mx-checkbox.on:not([field])");
-            t.size() ? t.each(function (t) {
-                $(this).parents("tr").fadeOut(function () {
-                    $(this).remove()
-                }), layer.msg("删除完成!")
-            }) : layer.msg("请选择要删除的行!")
+            t.size() ?
+                    t.each(function (t) {
+                        $(this).parents("tr").fadeOut(function () {
+                            $(this).remove()
+                        }), layer.msg("删除完成!")
+                    }) : layer.msg("请选择要删除的行!")
         });
 
         load();

@@ -17,7 +17,6 @@
     <div class="mt20">
         <a href="bigData2.html" onclick='return window.showMainContent(this.getAttribute("href")),!1'
            target="_parent" class="btn-lg">上一步</a>
-        <a class="btn-lg" id="modle" value="1">设备-->检测指标</a>
     </div>
     <div class="fx-result mt20">
         <div class="fx-result-list"></div>
@@ -44,37 +43,29 @@
 
 <script>
 
-    var rurl = '/getStaticData_Batch';
-    $('#modle').on('click', function () {
-        if ($(this).attr('value') == 1) {
-            $(this).attr('value', 2)
-            $(this).text('检测指标-->设备');
-            rurl = '/getStaticData';
-            init();
-        } else {
+    var rurl = '/getOtherStaticData';
 
-            $(this).attr('value', 1)
-            $(this).text('设备-->检测指标');
-            rurl = '/getStaticData_Batch';
-            init();
-        }
-
-    });
     var init = function () {
         var a = $("div#main_iframe").attr("src") || location.href;
         var param = JSON.parse(purl(a).param("reportParams"));
 
-        API.service(rurl, JSON.parse(purl(a).param("reportParams")),
+        param.interval_type=0;
+        param.data_type=2;
+        API.service(rurl, param,
+
+
                 function (a) {
                     console.log(a)
 
-                    if ($('#modle').attr('value') == 1)
-                        loadByChannel(a)
-                    else
-                        loadByDV(a);
+                    /*if ($('#modle').attr('value') == 1)*/
+                    loadByChannel(a)
+                    /*else
+                     loadByDV(a);*/
 
                 })
     };
+
+    init();
 
     function loadByChannel(a) {
         var c_el = $(".fx-result").empty();
@@ -109,8 +100,6 @@
                         label: y_label
                     });
                 }
-
-
             }
 
 
@@ -208,8 +197,8 @@
 
                 $(date).each(function (iii) {
                     if ('Channel15' == channel) {
-                        data2.push([date[iii], parseFloat(vals[iii])/100]);
-                    }else{
+                        data2.push([date[iii], parseFloat(vals[iii]) / 100]);
+                    } else {
                         data2.push([date[iii], parseFloat(vals[iii])]);
                     }
 

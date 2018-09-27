@@ -13,17 +13,13 @@
 */ 
 package com.jingu.IOT.service;
 
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
+import com.jingu.IOT.dao.RuleDao;
+import com.jingu.IOT.entity.ExListenableFutureCallback;
+import com.jingu.IOT.entity.MonitorEntity;
+import com.jingu.IOT.entity.MotorHBM;
+import com.jingu.IOT.entity.RuleEntity;
+import com.jingu.IOT.response.IOTResult;
+import com.jingu.IOT.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -35,15 +31,10 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
-import com.jingu.IOT.dao.RuleDao;
-import com.jingu.IOT.entity.ExListenableFutureCallback;
-import com.jingu.IOT.entity.MonitorEntity;
-import com.jingu.IOT.entity.MonitorHBM;
-import com.jingu.IOT.entity.MotorHBM;
-import com.jingu.IOT.entity.RuleEntity;
-import com.jingu.IOT.requset.MonitorRequest;
-import com.jingu.IOT.response.IOTResult;
-import com.jingu.IOT.util.ToolUtil;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
 
@@ -217,6 +208,10 @@ public class RuleService {
 	}
 	public int deleteMonitor(MonitorEntity mo) {
 		return ruleDao.deleteMonitor(mo);
+	}
+
+	public int deleteByCtrlId(MonitorEntity mo) {
+		return ruleDao.deleteByCtrlId(mo);
 	}
 	public int updateMonitor(MonitorEntity mo) {
 		return ruleDao.updateMonitor(mo);

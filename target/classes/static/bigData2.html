@@ -13,10 +13,10 @@
     <div class="mx-handle clearfix">
         <div class="sm-title fl">监测多数据</div>
         <ul class="little-menu cleafix fl">
-            <li class="on"><a href="javascript:;" data-href="#ssfx">实时分析</a></li>
-            <li><a href="javascript:;" data-href="#jzfx">均值分析</a></li>
-            <li><a href="javascript:;" data-href="#fzfx">峰值分析</a></li>
-            <li class="last"><a href="javascript:;" data-href="#gzfx">谷值分析</a></li>
+            <li class="on"><a href="javascript:;" index="1" data-href="#ssfx">实时分析</a></li>
+            <li><a href="javascript:;" index="2" data-href="#ssfx">均值分析</a></li>
+            <li><a href="javascript:;" index="3" data-href="#ssfx">峰值分析</a></li>
+            <li class="last"><a href="javascript:;" index="4" data-href="#ssfx">谷值分析</a></li>
         </ul>
     </div>
     <div class="sjjc-module">
@@ -66,7 +66,8 @@
                 </div>
             </div>
             <div class="tc mt20"><a href="bigData-fxjg2.html" id="big_data_analysis_simple" target="_parent"
-                                    class="btn-lg btn-lg-blue">分析</a></div>
+                                    class="btn-lg btn-lg-blue">分析</a>
+            </div>
         </div>
         <div id="jzfx">
             <div class="mx-build"><img src="images/icon-jsz.png" alt="">
@@ -89,143 +90,163 @@
 <script>
     $(function () {
 
-        var lastSelectNode,
-                treeEl = $("#tree-id"),
-                onNodeSelect = function (e) {
 
-                    var node = e;
-                    if (node && lastSelectNode && lastSelectNode === node)return;
-                    if (!node)node = lastSelectNode;
-                    if (!node)return;
+        var reset = function () {
+            var lastSelectNode,
+                    treeEl = $("#tree-id"),
+                    onNodeSelect = function (e) {
 
-                    //当点击父节点时，自动选择第一个设备
-                    if (node.oriData["tp_type"] < 3) {
-                        while (node && node.oriData["tp_type"] < 3) {
-                            var c = node.children;
-                            if (c && c.length > 0) {
-                                node = c[0];
-                                if (node && node.oriData["tp_type"] === 3) {
-                                    treeEl.data("z-tree").selectNode(node);
-                                    onNodeSelect(node);
-                                    return
+                        var node = e;
+                        if (node && lastSelectNode && lastSelectNode === node)return;
+                        if (!node)node = lastSelectNode;
+                        if (!node)return;
+
+                        //当点击父节点时，自动选择第一个设备
+                        if (node.oriData["tp_type"] < 3) {
+                            while (node && node.oriData["tp_type"] < 3) {
+                                var c = node.children;
+                                if (c && c.length > 0) {
+                                    node = c[0];
+                                    if (node && node.oriData["tp_type"] === 3) {
+                                        treeEl.data("z-tree").selectNode(node);
+                                        onNodeSelect(node);
+                                        return
+                                    }
+                                } else {
+                                    layer.msg('请选择设备');
+                                    treeEl.data("z-tree").selectNode(lastSelectNode);
+                                    return;
                                 }
-                            } else {
-                                layer.msg('请选择设备');
-                                treeEl.data("z-tree").selectNode(lastSelectNode);
-                                return;
                             }
                         }
-                    }
 //                    treeEl.data("z-tree").checkNode(node,true,true);
-                    lastSelectNode = node;
+                        lastSelectNode = node;
 //                    setChannels();
-                };
-        var zTreeOnCheck = function (o) {
+                    };
+            var zTreeOnCheck = function (o) {
 
 
-            var e = $("#tree-id").data("z-tree").getCheckedNodes(!0);
-            if (0 === e.length)
-                return;
-            var i = [];
-            $.each(e, function () {
-                3 === this.oriData.tp_type && i.push(this.oriData.deviceId)
-            })
-            if (0 === i.length)
-                return;
-
-            setChannels(i);
-        }
-
-        function setChannels(ids) {
-
-
-            API.service("/getSettings", {
-                deviceId: lastSelectNode.oriData.deviceId,
-                tp_id: lastSelectNode.oriData.tp_id,
-                statDisplay: 1,
-                dids: ids
-            }, function (e) {
-                $('#channels').html('');
-                console.log(e)
-                for (var i in e.object) {
-                    var tpl =
-                            '<div  class="mx-checkbox mt5" value="{fieldName}" data-dan="{unit}"><em></em>' +
-                            '<label for="">{name}{unit}</label>' +
-                            '</div>';
-                    UI.appendFieldTo(tpl, e.object[i], $('#channels'))
-                    console.log(tpl)
-                }
-                $('#channels').change();
-                $(".mx-checkbox").click(function (e) {
-                    $(this).toggleClass("on")
+                var e = $("#tree-id").data("z-tree").getCheckedNodes(!0);
+                if (0 === e.length)
+                    return;
+                var i = [];
+                $.each(e, function () {
+                    3 === this.oriData.tp_type && i.push(this.oriData.deviceId)
                 })
+                if (0 === i.length)
+                    return;
 
-            }, function (e) {
-                $('#channels').html('');
-                layer.msg(e.msg)
+                setChannels(i);
+            }
 
-            })
-        }
+            function setChannels(ids) {
 
-        UI.renderPointTree("#tree-id",
-                onNodeSelect,
-                {
-                    check: {enable: !0},
-                    callback: {
-                        onCheck: zTreeOnCheck
+
+                API.service("/getSettings", {
+                    deviceId: lastSelectNode.oriData.deviceId,
+                    tp_id: lastSelectNode.oriData.tp_id,
+                    statDisplay: 1,
+                    dids: ids
+                }, function (e) {
+                    $('#channels').html('');
+                    console.log(e)
+                    for (var i in e.object) {
+                        var tpl =
+                                '<div  class="mx-checkbox mt5" value="{fieldName}" data-dan="{unit}"><em></em>' +
+                                '<label for="">{name}{unit}</label>' +
+                                '</div>';
+                        UI.appendFieldTo(tpl, e.object[i], $('#channels'))
+                        console.log(tpl)
                     }
-                }, {
-                    1: !0,
-                    2: !0,
-                    3: !0
-                });
+                    $('#channels').change();
+                    $(".mx-checkbox").click(function (e) {
+                        $(this).toggleClass("on")
+                    })
 
-        treeEl.on("z-tree-load", function () {
-            var nodes = $(this).data("z-tree").getNodes();
-            nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
-        });
+                }, function (e) {
+                    $('#channels').html('');
+                    layer.msg(e.msg)
 
-        var n = $("#big_data_analysis_device_from"),
-                r = $("#big_data_analysis_device_to");
-        laydate.render({elem: "#big_data_analysis_device_to"}),
-                laydate.render({elem: "#big_data_analysis_device_from"}),
-                $("#big_data_analysis_simple").click(function () {
-
-                    var e = $("#tree-id").data("z-tree").getCheckedNodes(!0);
-                    if (0 === e.length)
-                        return layer.msg("请先选择要分析的一个设备!"), !1;
-                    var i = [];
-                    if ($.each(e, function () {
-                                3 === this.oriData.tp_type && i.push(this.oriData.deviceId)
-                            }), 0 === i.length)
-                        return layer.msg("请先选择要分析的设备!"), !1;
-                    var a = {};
-                    if (a.deviceList = i, a.channelList = [],
-                                    $(".mx-checkbox.on").each(function (e) {
-                                        a.channelList.push($(this).attr('value'))
-                                    }),
-                                    a.beginTime = n.val(),
-                                    a.endTime = r.val(),
-                            0 === i.length)
-                        return layer.msg("请先选择要分析的设备!"), !1;
-                    if (0 === a.channelList.length)
-                        return layer.msg("请选择要分析的指标!"), !1;
-                    if (10 !== a.beginTime.length || 10 !== a.endTime.length)
-                        return layer.msg("请先选择日期范围!"), !1;
-                    var t = $(this).attr("href") + "?reportParams=" + JSON.stringify(a);
-                    showMainContent(t)
-
-                    return !1
-                }),
-                $(".sjjc-module>div:not(:first)").hide(),
-                $(".little-menu li").click(function () {
-                    $(this).addClass("on").siblings().removeClass("on");
-                    var e = $(this).children("a").attr("data-href");
-                    $(e).show().siblings().hide()
-                }),
-                $(".mx-checkbox").click(function (e) {
-                    $(this).toggleClass("on")
                 })
-    })</script>
+            }
+
+            UI.renderPointTree("#tree-id",
+                    onNodeSelect,
+                    {
+                        check: {enable: !0},
+                        callback: {
+                            onCheck: zTreeOnCheck
+                        }
+                    }, {
+                        1: !0,
+                        2: !0,
+                        3: !0
+                    });
+
+            treeEl.on("z-tree-load", function () {
+                var nodes = $(this).data("z-tree").getNodes();
+                nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+            });
+
+            var n = $("#big_data_analysis_device_from"),
+                    r = $("#big_data_analysis_device_to");
+            laydate.render({elem: "#big_data_analysis_device_to"}),
+                    laydate.render({elem: "#big_data_analysis_device_from"}),
+                    $("#big_data_analysis_simple").click(function () {
+
+                        var e = $("#tree-id").data("z-tree").getCheckedNodes(!0);
+                        if (0 === e.length)
+                            return layer.msg("请先选择要分析的一个设备!"), !1;
+                        var i = [];
+                        if ($.each(e, function () {
+                                    3 === this.oriData.tp_type && i.push(this.oriData.deviceId)
+                                }), 0 === i.length)
+                            return layer.msg("请先选择要分析的设备!"), !1;
+                        var a = {};
+                        if (a.deviceList = i, a.channelList = [],
+                                        $(".mx-checkbox.on").each(function (e) {
+                                            a.channelList.push($(this).attr('value'))
+                                        }),
+                                        a.beginTime = n.val(),
+                                        a.endTime = r.val(),
+                                0 === i.length)
+                            return layer.msg("请先选择要分析的设备!"), !1;
+                        if (0 === a.channelList.length)
+                            return layer.msg("请选择要分析的指标!"), !1;
+                        if (10 !== a.beginTime.length || 10 !== a.endTime.length)
+                            return layer.msg("请先选择日期范围!"), !1;
+                        var t = $(this).attr("href") + "?reportParams=" + JSON.stringify(a);
+                        showMainContent(t)
+
+                        return !1
+                    }),
+                    $(".sjjc-module>div:not(:first)").hide(),
+                    $(".little-menu li").click(function () {
+                        $(this).addClass("on").siblings().removeClass("on");
+                        var e = $(this).children("a").attr("data-href");
+                        $(e).show().siblings().hide()
+                    }),
+                    $(".mx-checkbox").click(function (e) {
+                        $(this).toggleClass("on")
+                    })
+        };
+
+        $('.little-menu a').click(function () {
+
+            var index = parseInt($(this).attr('index'));
+            var url = 'bigData-fxjg' + (1 + index) + '.html';
+            $('#big_data_analysis_simple').attr('href', url);
+
+            reset();
+
+            console.log(index)
+        });
+        reset();
+
+
+    });
+
+</script>
+
 </body>
 </html>

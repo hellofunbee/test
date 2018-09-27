@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by weifengxu on 2018/9/17.
@@ -86,5 +86,94 @@ public class CommonUtils {
 
         return true;
     }
+
+    /**
+     * 以天为单位的平均值
+     *
+     * @param list
+     * @return
+     */
+    public static List<Map<String, Object>> effectToDay(List<Map<String, Object>> list, String field, int span) {
+        List<Map<String, Object>> back = new ArrayList<>();
+        if (list == null || list.size() == 0)
+            return back;
+
+        Timestamp t;
+        long day = 24 * 3600000;
+        float sum = 0;
+        float value;
+        long now;
+        long end = 0;
+        int count = 0;
+        for (Map m : list) {
+            t = (Timestamp) m.get("infoDataTime");
+            value = Float.parseFloat((String) m.get(field));
+
+            now = t.getTime();
+            if (end == 0) {
+                end = now + day;
+            }
+            sum += value;
+            count++;
+
+            if (now >= end) {
+                Map dv = new HashMap();
+                dv.put("infoDataTime", end);
+                dv.put(field, sum / count);
+                back.add(dv);
+
+                end += day;
+                sum = 0;
+                count = 0;
+            }
+        }
+
+        return back;
+    }
+
+
+    /**
+     * 以天为单位的峰值分析
+     *
+     * @param list
+     * @return
+     */
+    public static List<Map<String, Object>> effectToMaxDay(List<Map<String, Object>> list, String field, boolean isMax, int span) {
+        List<Map<String, Object>> back = new ArrayList<>();
+        if (list == null || list.size() == 0)
+            return back;
+
+        List<Float> temp = new ArrayList<>();
+        Timestamp t;
+        long day = 24 * 3600000;
+        float value;
+        long now;
+        long end = 0;
+        for (Map m : list) {
+            t = (Timestamp) m.get("infoDataTime");
+            value = Float.parseFloat((String) m.get(field));
+            now = t.getTime();
+
+            if (end == 0) {
+                end = now + day;
+            }
+            temp.add(value);
+
+            if (now >= end) {
+                Map dv = new HashMap();
+                dv.put("infoDataTime", end);
+                if (isMax)
+                    dv.put(field, Collections.max(temp));
+                else
+                    dv.put(field, Collections.min(temp));
+                back.add(dv);
+                end += day;
+                temp.clear();
+            }
+        }
+
+        return back;
+    }
+
 
 }

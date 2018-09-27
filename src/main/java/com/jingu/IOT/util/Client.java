@@ -4158,7 +4158,13 @@ public class Client {
     }
 
 
-    //直流电机控制命令发送
+    /**
+     * 直流电机控制命令发送
+     * @param ip
+     * @param port
+     * @param deviceId
+     * @return
+     */
     public static byte[] getMotorSensor2(String ip, int port, String deviceId) {
 //		boolean isSucce =false;
         Socket socket = null;

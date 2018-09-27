@@ -13,24 +13,21 @@
 */ 
 package com.jingu.IOT.service;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.jingu.IOT.dao.AlarmDao;
 import com.jingu.IOT.dao.PointDao;
 import com.jingu.IOT.dao.SettingDao;
-import com.jingu.IOT.entity.AlarmRuleEntity;
 import com.jingu.IOT.entity.ControlEntity;
 import com.jingu.IOT.entity.MonitorEntity;
 import com.jingu.IOT.entity.MotorHBM;
 import com.jingu.IOT.entity.PointEntity;
 import com.jingu.IOT.util.Client;
 import com.jingu.IOT.util.ToolUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Map;
 
 /**
 
@@ -99,7 +96,7 @@ public class CtrlService {
 	private void sendMsg(String deviceId, Map<String, Object> grade) {
 		// TODO Auto-generated method stub
 		String ala_content = grade.get("ala_content").toString();
-//		A
+
 		
 	}
 

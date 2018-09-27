@@ -24,6 +24,7 @@ import com.jingu.IOT.util.Client;
 import com.jingu.IOT.util.PublicMethod;
 import com.jingu.IOT.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -409,30 +410,38 @@ public class RuleController {
     }
 
     // 修改预约智能控制规则
+    @Transactional(value = "primaryTransactionManager")
     @CrossOrigin
     @RequestMapping(value = "/addListMonitor", method = RequestMethod.POST)
     public IOTResult addListMonitor(@RequestBody MonitorRequest mr) {
         int ok = 0;
         int er = 0;
+        MonitorEntity m_del = new MonitorEntity();
+        m_del.setCtrl_id(mr.getCtrl_id());
+        ruleService.deleteMonitor(m_del);
+
         List<MonitorEntity> mos = mr.getmList();
         if (mos != null && mos.size() > 0) {
             for (MonitorEntity m : mos) {
-                if (m.getMo_id() > 0) {
+                /*if (m.getMo_id() > 0) {
+
                     int update = ruleService.updateMonitor(m);
                     if (update > 0)
                         ok++;
                     else er++;
                 }
                 if (m.getMo_id() == 0) {
+                */
                     int addRule = ruleService.addMonitor(m);
                     if (addRule > 0)
                         ok++;
                     else er++;
-                }
+                /*}*/
             }
         }
 
-        return new IOTResult(true, "修改成功：" + ok + " 失败：" + er, null, 0);
+
+        return new IOTResult(true, "保存成功" + er, null, 0);
 
     }
 

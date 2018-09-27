@@ -25,12 +25,10 @@ import java.util.List;
 
 
 /**
-
+ * @author jianghu
  * @ClassName: RuleDao
  * @Description: TODO
- * @author jianghu
  * @date 2017年10月24日 上午11:12:43
-
  */
 @Component
 public class RuleDao {
@@ -67,7 +65,7 @@ public class RuleDao {
                 "type," +
                 "ctrl_id," +
                 "execEndTime) value (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,RIGHT(from_unixtime(UNIX_TIMESTAMP(?)+?),8))";
-        return jdbcTemplate.update(sql,  re.getR_name(), re.getR_deviceId(), re.getSwitchGroupId(), re.getSwitchId(), re.getCtrlType(), re.getCycleDay(), re.getExecTime(), re.getBeginTime(), re.getEndTime(), re.getTargetDeviceId(), re.getTargetFieldName(), re.getMaxValue(), re.getMinValue(), re.getDuration(), re.getCoefficient(), re.getRuleEnable(), re.getLastExecDataTime(), re.getType(), re.getCtrl_id(), CommonUtils.getDate(re.getTime(),null), re.getDuration());
+        return jdbcTemplate.update(sql, re.getR_name(), re.getR_deviceId(), re.getSwitchGroupId(), re.getSwitchId(), re.getCtrlType(), re.getCycleDay(), re.getExecTime(), re.getBeginTime(), re.getEndTime(), re.getTargetDeviceId(), re.getTargetFieldName(), re.getMaxValue(), re.getMinValue(), re.getDuration(), re.getCoefficient(), re.getRuleEnable(), re.getLastExecDataTime(), re.getType(), re.getCtrl_id(), CommonUtils.getDate(re.getTime(), null), re.getDuration());
 
     }
 
@@ -135,7 +133,7 @@ public class RuleDao {
         }
         if (re.getTime() != null && re.getTime().trim().length() > 0) {
             sql += " , execEndTime = RIGHT(from_unixtime(UNIX_TIMESTAMP(?)+?),8)";
-            list.add(CommonUtils.getDate(re.getTime(),null));
+            list.add(CommonUtils.getDate(re.getTime(), null));
             list.add(re.getDuration());
         }
         if (list.size() == 1) {
@@ -222,9 +220,9 @@ public class RuleDao {
     /**
      * 2017年11月9日
      * jianghu
+     *
      * @param ids
-     * @return
-     * TODO
+     * @return TODO
      */
     public int deleteRuleIds(String ids) {
         // TODO Auto-generated method stub
@@ -246,14 +244,19 @@ public class RuleDao {
 
 
     public int addMonitor(MonitorEntity mo) {
-        String sql = " insert into t_monitor (mo_name,mo_deviceId,mo_time,mo_channel,mo_type,mo_state,mo_high,mo_lower,ctrl_id) value(?,?,UNIX_TIMESTAMP(),?,?,?,?,?,?)";
-        return jdbcTemplate.update(sql, mo.getMo_name(), mo.getMo_deviceId(), mo.getMo_channel(), mo.getMo_type(), mo.getMo_state(), mo.getMo_high(), mo.getMo_lower(), mo.getCtrl_id());
+        String sql = " insert into t_monitor (mo_name,mo_deviceId,mo_time,mo_channel,mo_type,mo_state,mo_high,mo_lower,ctrl_id,order_less,order_more,check_interval,duration) value(?,?,UNIX_TIMESTAMP(),?,?,?,?,?,?,?,?,?,?)";
+        return jdbcTemplate.update(sql, mo.getMo_name(), mo.getMo_deviceId(), mo.getMo_channel(), mo.getMo_type(), mo.getMo_state(), mo.getMo_high(), mo.getMo_lower(), mo.getCtrl_id(), mo.getOrder_less(), mo.getOrder_more(), mo.getCheck_interval(), mo.getDuration());
     }
 
 
     public int deleteMonitor(MonitorEntity mo) {
         String sql = " delete from t_monitor where mo_id =?";
         return jdbcTemplate.update(sql, mo.getMo_id());
+    }
+
+    public int deleteByCtrlId(MonitorEntity mo) {
+        String sql = " delete from t_monitor where ctrl_id =?";
+        return jdbcTemplate.update(sql, mo.getCtrl_id());
     }
 
     public int updateMonitor(MonitorEntity mo) {
@@ -300,6 +303,25 @@ public class RuleDao {
             sql += " , mo_lower =? ";
             list.add(mo.getMo_lower());
         }
+
+
+        sql += " , order_less =? ";
+        list.add(mo.getOrder_less());
+
+        sql += " , order_more =? ";
+        list.add(mo.getOrder_more());
+
+
+        if (mo.getCheck_interval() > 0) {
+            sql += " , check_interval = ? ";
+            list.add(mo.getCheck_interval());
+        }
+        if (mo.getDuration() > 0) {
+            sql += " , duration =? ";
+            list.add(mo.getDuration());
+        }
+
+
         sql += " where mo_id =?";
         list.add(mo.getMo_id());
         return jdbcTemplate.update(sql, list.toArray());

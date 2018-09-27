@@ -23,10 +23,7 @@ import com.jingu.IOT.service.GatherService;
 import com.jingu.IOT.service.MainDeviceService;
 import com.jingu.IOT.service.PointService;
 import com.jingu.IOT.service.UserService;
-import com.jingu.IOT.util.Base64;
-import com.jingu.IOT.util.Client;
-import com.jingu.IOT.util.SerializeUtil;
-import com.jingu.IOT.util.ToolUtil;
+import com.jingu.IOT.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -593,18 +590,13 @@ public class GatherController {
                     List<String> hourMinuteSecond = listStaticInfo.stream()
                             .map(x -> x.get("infoDataTime").toString().substring(11, 19)).collect(Collectors.toList());
 
-
                     time.put("date", date);
                     time.put("day", yearMonthDate);
                     time.put("min", hourMinuteSecond);
 
                     time.put("data", result);
                 }
-
-
             }
-
-
             HashMap<Object, Object> item = new HashMap<>();
             item.put("deviceId", deviceID);
             item.put("deviceName", device.get("tp_name"));
@@ -674,8 +666,8 @@ public class GatherController {
 
                 MainDeviceEntity md = new MainDeviceEntity();
                 md.setDeviceId(deviceId);
-                Map dv  = mainDeviceService.findById(md);
-                if(dv == null || dv.get("name") == null)
+                Map dv = mainDeviceService.findById(md);
+                if (dv == null || dv.get("name") == null)
                     continue;
 
                 Map d = new HashMap();
@@ -701,6 +693,39 @@ public class GatherController {
         }
         return new IOTResult(true, "查看成功", result, 0);
     }
+
+    // 查找大数据分析的数据(根据deviceId和相应的channel)
+    @CrossOrigin
+    @RequestMapping(value = "getOtherStaticData", method = RequestMethod.POST)
+    public IOTResult startGatherAverage_batch(@RequestBody StaticRequest sRequest) throws UnsupportedEncodingException {
+        IOTResult iotResult = startGather_Batch(sRequest);
+        if (!iotResult.isSuccess())
+            return iotResult;
+        List<Map> result = (List<Map>) iotResult.getObject();
+
+        for (Map cmap : result) {
+            String field = (String) cmap.get("channel");
+            List<Map> devs = (List<Map>) cmap.get("data");
+            for (Map d : devs) {
+                List<Map<String, Object>> list = (List<Map<String, Object>>) d.get("list");
+
+                List<Map<String, Object>> back = new ArrayList<>();
+
+                if (sRequest.getData_type() == 0) {//均值
+                    back = CommonUtils.effectToDay(list, field,sRequest.getInterval_type());
+                } else if (sRequest.getData_type() == 1) {//谷值
+                    back = CommonUtils.effectToMaxDay(list, field, false,sRequest.getInterval_type());
+                } else if (sRequest.getData_type() == 2) {//峰值
+                    back = CommonUtils.effectToMaxDay(list, field, true,sRequest.getInterval_type());
+                }
+
+
+                d.put("list", back);
+            }
+        }
+        return iotResult;
+    }
+
 
 
     @CrossOrigin
