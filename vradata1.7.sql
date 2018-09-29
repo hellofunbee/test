@@ -11,7 +11,7 @@
  Target Server Version : 50641
  File Encoding         : utf-8
 
- Date: 09/28/2018 02:27:30 AM
+ Date: 09/30/2018 00:57:33 AM
 */
 
 SET NAMES utf8;
@@ -227,7 +227,6 @@ CREATE TABLE `input` (
   `in_ownername` varchar(255) DEFAULT NULL COMMENT '所有者姓名',
   `in_class1` int(10) DEFAULT NULL COMMENT '一级分类',
   `in_class2` int(10) DEFAULT NULL COMMENT '二级分类',
-  `in_mattername` varchar(255) DEFAULT NULL COMMENT '投入品名字',
   `in_total` varchar(255) DEFAULT NULL COMMENT '投入总量',
   `in_pid` int(11) DEFAULT NULL COMMENT '排产id',
   `in_pname` varchar(255) DEFAULT NULL COMMENT '排产计划名字',
@@ -236,8 +235,9 @@ CREATE TABLE `input` (
   `in_time` varchar(255) DEFAULT NULL COMMENT '投入时间',
   `tp_id` int(11) DEFAULT '0' COMMENT '主设备节点id',
   `in_unit` int(11) DEFAULT '1' COMMENT '1亩 2公顷',
+  `in_c_id` int(11) DEFAULT '0' COMMENT '投入品类别id',
   PRIMARY KEY (`in_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Table structure for `key_value`
