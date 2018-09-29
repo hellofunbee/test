@@ -19,7 +19,7 @@ API.dict = {
         5: "生产者用户",
         6: "专家用户",
     },
-    in_unit: {1: '亩', 2: '公顷'},
+    in_unit: {1: 'kg', 2: '吨'},
     user_sex: {0: "保密", 1: "男", 2: "女"},
     user_edu: {1: "博士", 2: "硕士", 3: "本科", 4: "专科", 0: "无"},
     user_state: {1: "正常", 2: "不正常"},
@@ -148,6 +148,7 @@ API.getMainDeviceInfo = function (deviceId, tpId, successFunc, errorFunc) {
     API.service("/getMainDeviceInfo", {deviceId: deviceId, tp_id: tpId}, successFunc, errorFunc)
 };
 API.getUnReadMessage = API.bind("/getUnReadMessage");
+API.listInputType = API.bind("/listClass");
 API.getShopCamera = function (deviceId, successFunc, errorFunc) {
     API.service("/getShopCamera", {deviceId: deviceId}, successFunc, errorFunc)
 };

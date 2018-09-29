@@ -607,8 +607,6 @@ public class GatherController {
             return new IOTResult(false, "暂无相关信息", null, 0);
         }
         return new IOTResult(true, "查看成功", dataList, 0);
-
-
     }
 
     /**

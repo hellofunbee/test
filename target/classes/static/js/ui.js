@@ -211,6 +211,60 @@ var UI = {
             });
         }
 
+    },renderInputType: function (targetEl, onClick, setting, showTypes) {
+        var el = $(targetEl).empty();
+        setting = $.extend({}, {
+            check: {chkboxType: {Y: "ps", N: "ps"}},
+            data: {simpleData: {enable: true}},
+            callback: {
+                onClick: function (e, target, selNode) {
+                    if (onClick) {
+                        onClick(selNode)
+                    }
+                }
+            }
+        }, setting);
+        API.listInputType({c_type: 2,c_state:1, u_type: "1"}, function (data) {
+            console.log(data)
+            var zNodes = [];
+            var buildNode = function (data, parents, deep) {
+                $.each(data, function (idx) {
+                    var node = this;
+                    var currenNode = {name: node["c_name"], id: node["c_id"], oriData: node};
+                    if (node["c_lev"] === 1) {
+                        currenNode.icon = "css/zTreeStyle/img/diy/3.png"
+                    } else if (node["c_lev"] === 2) {
+                        currenNode.icon = "css/zTreeStyle/img/diy/3.png"
+                    } else if (node["c_lev"] === 3) {
+                        if (node["state"] === 1) {
+                            currenNode.icon = "css/zTreeStyle/img/diy/44.png"
+                        } else {
+                            currenNode.icon = "css/zTreeStyle/img/diy/33.png"
+                        }
+                    } else if (node["c_lev"] === 4) {
+                        currenNode.icon = "css/zTreeStyle/img/diy/55.png"
+                    }
+                    if (!showTypes || showTypes[node["c_lev"]] === true) {
+                        parents.push(currenNode);
+                        if (node["rank"] && node["rank"].length) {
+                            currenNode.children = [];
+                            buildNode(node["rank"], currenNode.children, deep + 1);
+                            if (currenNode.children.length === 0) {
+                                delete currenNode.children
+                            }
+                            currenNode.open = node["state"] === 1
+                        }
+                    }
+                })
+            };
+            buildNode(data.object, zNodes, 0);
+            var treeObj = $.fn.zTree.init(el, setting, zNodes);
+            el.data("z-tree", treeObj).trigger("z-tree-load");
+            var ctEl = el.parents(".tree-cnt");
+            if ($.fn.bgiframe) {
+                ctEl.bgiframe({conditional: true, width: "291px", height: "250px"})
+            }
+        })
     }
 };
 $.fn.selectX = function (data) {

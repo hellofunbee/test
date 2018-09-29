@@ -18,13 +18,18 @@ import com.jingu.IOT.entity.PointEntity;
 import com.jingu.IOT.entity.ProduceEntity;
 import com.jingu.IOT.response.IOTResult;
 import com.jingu.IOT.response.IOTResult2;
+import com.jingu.IOT.service.ClassService;
 import com.jingu.IOT.service.InputService;
+import com.jingu.IOT.service.PointService;
 import com.jingu.IOT.service.ProduceService;
+import com.jingu.IOT.util.CommonUtils;
 import com.jingu.IOT.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +45,11 @@ public class InputController {
     private ToolUtil toolUtil;
     private InputService inputService;
     private ProduceService produceService;
+    @Autowired
+    private ClassService classService;
+
+    @Autowired
+    private PointService pointService;
 
     @Autowired
     public InputController(ToolUtil toolUtil, InputService inputService, ProduceService produceService) {
@@ -199,5 +209,168 @@ public class InputController {
         return new IOTResult2(true, "投入品查看成功", listInput, 0, totalpage, listInputCount);
 
     }
+
+    /**
+     * 投入品
+     * 以投入品为单位
+     * 时间为横坐标
+     * 设备为纵坐标进行统计
+     *
+     * @param sRequest
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @CrossOrigin
+    @RequestMapping(value = "listInput_Batch", method = RequestMethod.POST)
+    public IOTResult startGather_Batch(@RequestBody InputRequset sRequest) throws UnsupportedEncodingException {
+        if (sRequest.getCkdata() == 1) {
+            if (sRequest.getBeginTime().compareTo(sRequest.getEndTime()) > 0) {
+                return new IOTResult(false, "输入的日期有误", null, 3);
+            }
+            return new IOTResult(true, "日期输入正确", null, 0);
+        }
+        if (sRequest.getCksid() == null || sRequest.getCksid().trim().length() < 1 || sRequest.getCkuid() == null
+                || sRequest.getCkuid() == null) {
+            return new IOTResult(false, "信息不规范", null, 1);
+        }
+        // 注册登陆按照什么来????
+        String check = toolUtil.getCheck(ToolUtil.IOT + sRequest.getCkuid());
+        if (check == null || !sRequest.getCksid().equals(check)) {
+            return new IOTResult(false, "登陆失效", null, 2);
+        }
+        long uid = toolUtil.getbase_uidSid(sRequest.getCkuid(), sRequest.getCksid());
+
+        if (sRequest.getBeginTime().compareTo(sRequest.getEndTime()) > 0) {
+            return new IOTResult(false, "输入的日期有误", null, 3);
+        }
+
+//        byte[] serialize = SerializeUtil.serialize(sRequest);
+        //toolUtil.setCheck(ToolUtil.ANALYSIS + sRequest.getType() + ToolUtil.DATA + uid, Base64.encode(serialize));
+
+
+        List<Integer> tp_ids = sRequest.getTp_ids();
+        List<Integer> c_ids = sRequest.getC_ids();
+        int interval_type = sRequest.getInterval_type();
+
+        List<Map> result = new ArrayList<>();
+
+        for (int c_id : c_ids) {
+            Map cmap = new HashMap();
+            List<Map> devs = new ArrayList<>();
+            Map in_class = classService.findById(c_id);
+            if (in_class == null) {
+                continue;
+            }
+            for (Integer tp_id : tp_ids) {
+                List<Map<String, Object>> ins = inputService.listInputByDID(c_id, tp_id,
+                        sRequest.getBeginTime(), sRequest.getEndTime());// 要找的数据
+                ins = CommonUtils.effectByTime(ins,interval_type);
+
+
+                Map dv = pointService.findById(tp_id);
+                if (dv == null || dv.get("tp_name") == null)
+                    continue;
+                Map d = new HashMap();
+                d.put("list", ins);
+                d.put("deviceId", dv.get("deviceId"));
+                d.put("deviceName", dv.get("tp_name"));
+                devs.add(d);
+            }
+            cmap.put("data", devs);
+            cmap.put("c_id", c_id);
+            //TODO 需调整
+            cmap.put("unit", "KG");
+            cmap.put("name", in_class.get("c_name"));
+
+            result.add(cmap);
+        }
+
+        if (result.isEmpty()) {
+            return new IOTResult(false, "暂无相关信息", null, 0);
+        }
+        return new IOTResult(true, "查看成功", result, 0);
+    }
+
+
+    /**
+     * 投入品
+     * 以设备为单位
+     * 时间为横坐标
+     * 投入品为纵坐标进行统计
+     *
+     * @param sRequest
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @CrossOrigin
+    @RequestMapping(value = "listInput_", method = RequestMethod.POST)
+    public IOTResult startGather_(@RequestBody InputRequset sRequest) throws UnsupportedEncodingException {
+        if (sRequest.getCkdata() == 1) {
+            if (sRequest.getBeginTime().compareTo(sRequest.getEndTime()) > 0) {
+                return new IOTResult(false, "输入的日期有误", null, 3);
+            }
+            return new IOTResult(true, "日期输入正确", null, 0);
+        }
+        if (sRequest.getCksid() == null || sRequest.getCksid().trim().length() < 1 || sRequest.getCkuid() == null
+                || sRequest.getCkuid() == null) {
+            return new IOTResult(false, "信息不规范", null, 1);
+        }
+        // 注册登陆按照什么来????
+        String check = toolUtil.getCheck(ToolUtil.IOT + sRequest.getCkuid());
+        if (check == null || !sRequest.getCksid().equals(check)) {
+            return new IOTResult(false, "登陆失效", null, 2);
+        }
+        long uid = toolUtil.getbase_uidSid(sRequest.getCkuid(), sRequest.getCksid());
+
+        if (sRequest.getBeginTime().compareTo(sRequest.getEndTime()) > 0) {
+            return new IOTResult(false, "输入的日期有误", null, 3);
+        }
+
+        List<Integer> tp_ids = sRequest.getTp_ids();
+        List<Integer> c_ids = sRequest.getC_ids();
+        int interval_type = sRequest.getInterval_type();
+
+        List<Map> result = new ArrayList<>();
+
+        for (Integer tp_id : tp_ids) {
+            Map cmap = new HashMap();
+            List<Map> devs = new ArrayList<>();
+            Map dv = pointService.findById(tp_id);
+            if (dv == null || dv.get("tp_name") == null)
+                continue;
+            for (int c_id : c_ids) {
+
+                List<Map<String, Object>> ins = inputService.listInputByDID(c_id, tp_id,
+                        sRequest.getBeginTime(), sRequest.getEndTime());// 要找的数据
+
+                ins = CommonUtils.effectByTime(ins,interval_type);
+
+                Map in_class = classService.findById(c_id);
+                if (in_class == null) {
+                    continue;
+                }
+
+                //TODO 为适应前台页面 此处名称对应不正确 此处为 投入品 class 信息 so do the same below
+                Map d = new HashMap();
+                d.put("list", ins);
+                d.put("deviceId", in_class.get("c_id"));//c_id
+                d.put("deviceName", in_class.get("c_name"));//c_name
+                devs.add(d);
+            }
+
+            cmap.put("data", devs);
+            cmap.put("c_id", dv.get("deviceId"));
+            //TODO 需调整
+            cmap.put("unit", "KG");
+            cmap.put("name", dv.get("tp_name"));
+            result.add(cmap);
+        }
+
+        if (result.isEmpty()) {
+            return new IOTResult(false, "暂无相关信息", null, 0);
+        }
+        return new IOTResult(true, "查看成功", result, 0);
+    }
+
 
 }

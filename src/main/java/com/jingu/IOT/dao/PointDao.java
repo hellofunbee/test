@@ -23,12 +23,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
-
+ * @author jianghu
  * @ClassName: PointDoa
  * @Description: TODO
- * @author jianghu
  * @date 2017年8月28日 下午5:43:37
-
  */
 @Component
 public class PointDao {
@@ -217,8 +215,8 @@ public class PointDao {
     /**
      * 2017年11月30日
      * jianghu
-     * @param string
-     * TODO
+     *
+     * @param string TODO
      */
     public List<Map<String, Object>> listPointByDeviceId(String string) {
         // TODO Auto-generated method stub
@@ -230,8 +228,8 @@ public class PointDao {
     /**
      * 2017年12月2日
      * jianghu
-     * @return
-     * TODO
+     *
+     * @return TODO
      */
     public int listMaxId() {
         // TODO Auto-generated method stub
@@ -242,9 +240,9 @@ public class PointDao {
     /**
      * 2017年12月20日
      * jianghu
+     *
      * @param deviceId
-     * @return
-     * TODO
+     * @return TODO
      */
     public int updateRole(String deviceId, String role) {
         // TODO Auto-generated method stub
@@ -259,11 +257,14 @@ public class PointDao {
     }
 
 
-
-
-    public List<Map<String, Object>> getPoint(int tp_type,String mapingDeviceId) {
+    public List<Map<String, Object>> getPoint(int tp_type, String mapingDeviceId) {
         String sql = "  SELECT * from t_point where deviceId =? and tp_type= ?";
-        return jdbcTemplate.queryForList(sql, mapingDeviceId,tp_type);
+        return jdbcTemplate.queryForList(sql, mapingDeviceId, tp_type);
 
+    }
+
+    public Map<String, Object> findById(int tp_id) {
+        String sql = "select * from t_point where tp_id = " + tp_id;
+        return jdbcTemplate.queryForMap(sql);
     }
 }

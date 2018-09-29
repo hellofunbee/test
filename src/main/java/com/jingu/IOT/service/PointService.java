@@ -53,6 +53,11 @@ public class PointService {
 		}
 		return point.get(0);
 	}
+	public Map<String, Object> findById(int tp_id){
+
+		return pointDao.findById(tp_id);
+	}
+
 	public List<Map<String, Object>> listPoint(PointEntity  pointEntity){
 //		pointEntity.setTp_pid(0);
 		// 获得角色

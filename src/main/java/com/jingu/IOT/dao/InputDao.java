@@ -13,6 +13,7 @@
 package com.jingu.IOT.dao;
 
 import com.jingu.IOT.entity.InputEntity;
+import com.jingu.IOT.entity.InputRequset;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -23,12 +24,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
-
+ * @author jianghu
  * @ClassName: InputDao
  * @Description: TODO
- * @author jianghu
  * @date 2017年10月10日 下午6:29:11
-
  */
 @Component
 public class InputDao {
@@ -42,17 +41,17 @@ public class InputDao {
 //		this.jdbcTemplate = jdbcTemplate;
 //	}
     public int addInput(InputEntity ie) {
-        String sql = " insert into input (in_ownername,in_class1,in_class2,in_mattername,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id,in_unit) value (?,?,?,?,?,?,?,?,?,?,?,?)";
-        return jdbcTemplate.update(sql, ie.getIn_ownername(), ie.getIn_class1(), ie.getIn_class2(), ie.getIn_mattername(), ie.getIn_total(), ie.getIn_pid(), ie.getIn_pname(), ie.getIn_pstandrad(), ie.getIn_parea(), ie.getIn_time(), ie.getTp_id(), ie.getIn_unit());
+        String sql = " insert into input (in_ownername,in_class1,in_class2,in_c_id,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id,in_unit) value (?,?,?,?,?,?,?,?,?,?,?,?)";
+        return jdbcTemplate.update(sql, ie.getIn_ownername(), ie.getIn_class1(), ie.getIn_class2(), ie.getIn_c_id(), ie.getIn_total(), ie.getIn_pid(), ie.getIn_pname(), ie.getIn_pstandrad(), ie.getIn_parea(), ie.getIn_time(), ie.getTp_id(), ie.getIn_unit());
     }
 
     public int addInputList(List<InputEntity> ie) {
-        String sql = " insert into input (in_ownername,in_class1,in_class2,in_mattername,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id,in_unit) values ";
+        String sql = " insert into input (in_ownername,in_class1,in_class2,in_c_id,in_total,in_pid,in_pname,in_pstandrad,in_parea,in_time,tp_id,in_unit) values ";
 //		for(int i =0;i<ie.size();i++){
 //			sql +=" (?,?,?,?,?,?,?,?,?,?) ,";
 //		}
         for (InputEntity i : ie) {
-            sql += " ('" + i.getIn_ownername() + "'," + i.getIn_class1() + "," + i.getIn_class2() + ",'" + i.getIn_mattername() + "','" + i.getIn_total() + "'," + i.getIn_pid() + ",'" + i.getIn_pname() + "','" + i.getIn_pstandrad() + "','" + i.getIn_parea() + "','" + i.getIn_time() + "','" + i.getTp_id() + "','" + i.getIn_unit() + "') ,";
+            sql += " ('" + i.getIn_ownername() + "'," + i.getIn_class1() + "," + i.getIn_class2() + ",'" + i.getIn_c_id() + "','" + i.getIn_total() + "'," + i.getIn_pid() + ",'" + i.getIn_pname() + "','" + i.getIn_pstandrad() + "','" + i.getIn_parea() + "','" + i.getIn_time() + "','" + i.getTp_id() + "','" + i.getIn_unit() + "') ,";
         }
         String substring = sql.substring(0, sql.length() - 1);
         return jdbcTemplate.update(substring);
@@ -79,9 +78,9 @@ public class InputDao {
             sql += " , in_pid = ?";
             list.add(ie.getIn_pid());
         }
-        if (ie.getIn_mattername() != null && ie.getIn_mattername().length() > 0) {
-            sql += " , in_mattername =?";
-            list.add(ie.getIn_mattername());
+        if (ie.getIn_c_id() > 0) {
+            sql += " , in_c_id =?";
+            list.add(ie.getIn_c_id());
         }
         if (ie.getIn_ownername() != null && ie.getIn_ownername().length() > 0) {
             sql += " , in_ownername =?";
@@ -123,10 +122,15 @@ public class InputDao {
         return jdbcTemplate.update(sql, list.toArray());
     }
 
-    public List<Map<String, Object>> listInput(InputEntity ie) {
-        String sql = "select i.*,c_name class2name from input i " +
+    public List<Map<String, Object>> listInput(InputRequset ie) {
+        String beginTime = ie.getBeginTime();
+        String endTime = ie.getEndTime();
+
+        String sql = "select i.in_id,i.in_c_id,i.in_ownername,i.in_class1,i.in_class2,i.in_total,i.in_pid,i.in_pname,i.in_pstandrad,i.in_parea,i.in_time,i.tp_id,i.in_unit" +
+                ",c.c_name class2name,ic.c_name in_mattername from input i " +
                 "INNER join produce p on p.p_id = i.in_pid " +
-                "left join class c on p.p_class2 = c.c_id  where 1=1";
+                "left join class c on p.p_class2 = c.c_id " +
+                "left join class ic on i.in_c_id = ic.c_id  where 1=1";
         ArrayList<Object> list = new ArrayList<>();
         if (ie.getIn_class1() > 0) {
             sql += " and i.in_class1 = ?";
@@ -140,9 +144,9 @@ public class InputDao {
             sql += " and i.in_pid = ?";
             list.add(ie.getIn_pid());
         }
-        if (ie.getIn_mattername() != null && ie.getIn_mattername().length() > 0) {
-            sql += " and i.in_mattername like '%" + ie.getIn_mattername() + "%'";
-
+        if (ie.getIn_c_id() > 0) {
+            sql += " and in_c_id = ?";
+            list.add(ie.getIn_c_id());
         }
         if (ie.getIn_ownername() != null && ie.getIn_ownername().length() > 0) {
             sql += " and i.in_ownername =?";
@@ -184,6 +188,25 @@ public class InputDao {
             sql += " and i.tp_id = ?";
             list.add(ie.getTp_id());
         }
+
+
+        if (beginTime != null && beginTime.trim().length() > 0) {
+            sql += " and in_time >= ?";
+            list.add(beginTime);
+
+        }
+        if (endTime != null && endTime.trim().length() > 0) {
+            sql += " and in_time <= ?";
+            list.add(endTime);
+
+        }
+
+        if(1 == ie.getOrder()){
+            sql += " ORDER BY i.in_time ";
+        }else {
+            sql += " ORDER BY i.in_time desc";
+        }
+
         if (ie.getStart() > 0) {
             if (ie.getApp() == 1) {
                 sql += " limit " + (ie.getStart() - 1) * ie.getAppPagesize() + "," + ie.getAppPagesize();
@@ -213,8 +236,9 @@ public class InputDao {
             sql += " and in_pid = ?";
             list.add(ie.getIn_pid());
         }
-        if (ie.getIn_mattername() != null && ie.getIn_mattername().length() > 0) {
-            sql += " and in_mattername like '%" + ie.getIn_mattername() + "%'";
+        if (ie.getIn_c_id() > 0) {
+            sql += " and getIn_c_id = ?";
+            list.add(ie.getIn_c_id());
         }
         if (ie.getIn_ownername() != null && ie.getIn_ownername().length() > 0) {
             sql += " and in_ownername =?";

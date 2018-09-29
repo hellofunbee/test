@@ -1,6 +1,7 @@
 package com.jingu.IOT.requset;
 
 import com.jingu.IOT.entity.ClassEntity;
+import com.jingu.IOT.entity.PointEntity;
 
 public class ClassRequest extends ClassEntity{
 	/**
@@ -9,6 +10,8 @@ public class ClassRequest extends ClassEntity{
 	private static final long serialVersionUID = 1L;
 	private String ckuid;
 	private String cksid;
+
+	private PointEntity point;
 
 	public String getCkuid() {
 		return ckuid;
@@ -31,4 +34,11 @@ public class ClassRequest extends ClassEntity{
 	public ClassRequest() {
 	}
 
+	public PointEntity getPoint() {
+		return point;
+	}
+
+	public void setPoint(PointEntity point) {
+		this.point = point;
+	}
 }

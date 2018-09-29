@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-大数据分析-监测单数据-分析结果</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="mx-main" page="big-data-fxjg2">
+    <div class="mx-handle clearfix">
+        <div class="sm-title fl">监测多数据</div>
+    </div>
+    <div class="mt20">
+        <a href="bigData3.html?tab=3" onclick='return window.showMainContent(this.getAttribute("href")),!1'
+           target="_parent" class="btn-lg">上一步</a>
+
+
+    </div>
+    <div class="fx-result mt20">
+        <div class="fx-result-list"></div>
+        <div class="fx-result-list"></div>
+        <div class="fx-result-list"></div>
+        <div class="fx-result-list"></div>
+    </div>
+</div>
+<script type="text/javascript">if (!window.jQuery) {
+    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+    document.write(html)
+}
+</script>
+<link rel="stylesheet" href="js/jqplot/jquery.jqplot.min.css">
+<script src="js/jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.logAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasAxisTickRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.barRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/plugins/jqplot.pieRenderer.js"></script>
+<script>
+
+    var rurl = '/produceAnalysis';
+    jQuery.jqplot.config.enablePlugins = true;
+    var init = function (interval_type) {
+                var a = $("div#main_iframe").attr("src") || location.href;
+                var param = JSON.parse(purl(a).param("reportParams"));
+                if (interval_type)
+                    param.interval_type = interval_type;
+                else
+                    param.interval_type = 0;
+                param.data_type = 1;
+                API.service(rurl, param, function (a) {
+                            if (a.object && a.object.length > 0) {
+                                $(".fx-result").empty();
+                                $(a.object).each(function (i, e) {
+                                    loadByChannel(i, e)
+                                });
+                            } else {
+                                layer.msg('无数据');
+                            }
+
+
+                        }
+                )
+            }
+            ;
+
+    init();
+
+
+    function getKVs(arr) {
+        var back = [];
+        $(arr).each(function (i, e) {
+            var kv = [];
+            kv.push(e.name);
+            kv.push(parseInt(e.val));
+            back.push(kv);
+        });
+
+        return back;
+    }
+
+    function loadByChannel(index, a) {
+
+
+        var c_el = $(".fx-result");
+        var div_id = 'content_' + index;
+
+        var chars = [];
+        var deviceName = a.deviceName;
+        var standard = a.standard;
+        var class1 = a.class1;
+        var class2 = a.class2;
+
+        var standard_arr = [getKVs(standard)];
+        var class1_arr = [getKVs(class1)];
+        var class2_arr = [getKVs(class2)];
+
+
+        if (standard_arr && standard_arr.length > 0 && standard_arr[0].length > 0)
+            chars.push({aar: standard_arr, title: '各排产标准下的排产面积统计情况', unit: '亩'});
+        if (class1_arr && class1_arr.length > 0 && class1_arr[0].length > 0)
+
+            chars.push({aar: class1_arr, title: '各类作物下的排产面积统计情况', unit: '亩'});
+        if (class2_arr && class2_arr.length > 0 && class2_arr[0].length > 0)
+
+            chars.push({aar: class2_arr, title: '各类品种下的排产面积统计情况', unit: '亩'});
+
+
+        console.log(chars)
+        $('<div style="width: 100%;float: left" id="' + div_id + '"> </div>').appendTo(c_el);
+        c_el = $("#" + div_id);
+
+
+        $('<h3 style="width: 100%;text-align: center;font-size: 18px;background-color: aliceblue"> ' + deviceName + '</h3>').appendTo(c_el);
+
+
+        $(chars).each(function (i, e) {
+            var id = 'chart_' + index + '_' + i;
+            $('<div  style="height: 450px;width: 30%;float: left;margin-left: 2% "  id="' + id + '"></div>').appendTo(c_el);
+
+            jQuery.jqplot(id,
+                    e.aar,
+                    {
+                        title: e.title,
+                        seriesDefaults: {
+                            shadow: true,
+                            renderer: jQuery.jqplot.PieRenderer,
+                            rendererOptions: {
+                                showDataLabels: true,
+                                //dataLabels: labelsArr,
+//                                dataLabelFormatString: '%s'
+                            }
+                        },
+                        legend: {show: true},
+                        highlighter: {
+                            show: true,
+                            formatString: '%s',
+                            tooltipLocation: 'sw',
+                            useAxesFormatters: false
+                        }
+                    }
+            );
+
+
+            $('#' + id).bind('jqplotDataHighlight', function (ev, seriesIndex, pointIndex, data) {
+                var $this = $(this);
+                $this.attr('title', data[0] + ":" + data[1]);
+            });
+            $('#' + id).bind('jqplotDataUnhighlight', function (ev, seriesIndex, pointIndex, data) {
+                var $this = $(this);
+                $this.attr('title', "");
+            });
+
+
+        });
+
+
+    }
+
+
+    $(".jcdsj-module>div:not(:first)").hide(), $(".little-menu li").click(function () {
+        $(this).addClass("on").siblings().removeClass("on");
+        var a = $(this).children("a").attr("data-href");
+        $(a).show().siblings().hide()
+    })</script>
+</body>
+</html>

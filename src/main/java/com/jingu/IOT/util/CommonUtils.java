@@ -48,6 +48,19 @@ public class CommonUtils {
         return sdf.format(ts);
     }
 
+    public static long str2Date(String date_str) {
+        try {
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = format.parse(date_str);
+            return date.getTime();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
+
 
     /**
      * 数字？
@@ -169,6 +182,55 @@ public class CommonUtils {
                 back.add(dv);
                 end += day;
                 temp.clear();
+            }
+        }
+
+        return back;
+    }
+
+    /**
+     * 日、月度、年度 投入量分析
+     *
+     * @param list
+     * @return
+     */
+    public static List<Map<String, Object>> effectByTime(List<Map<String, Object>> list, int span) {
+        List<Map<String, Object>> back = new ArrayList<>();
+        if (list == null || list.size() == 0)
+            return back;
+
+        long day = 24 * 3600000;
+        switch (span) {
+            case 0:
+                break;
+            case 1:
+                day = day * 30;
+            case 2:
+                day = day * 360;
+            default:
+                break;
+        }
+        float sum = 0;
+        float value;
+        long now;
+        long end = 0;
+
+        for (Map m : list) {
+            now = str2Date((String) m.get("in_time"));
+            if (now == 0)
+                continue;
+            value = Float.parseFloat((String) m.get("in_total"));
+            if (end == 0) {
+                end = now + day;
+            }
+            sum += value;
+            if (now >= end) {
+                Map dv = new HashMap();
+                dv.put("in_time", end);
+                dv.put("in_total", sum);
+                back.add(dv);
+                end += day;
+                sum = 0;
             }
         }
 

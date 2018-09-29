@@ -44,7 +44,8 @@ public class InputEntity {
 	
 	private int appPagesize =6;
 	private int app;
-	
+	private int in_c_id;
+
 	
 
 
@@ -216,5 +217,13 @@ public class InputEntity {
 
 	public void setIn_unit(int in_unit) {
 		this.in_unit = in_unit;
+	}
+
+	public int getIn_c_id() {
+		return in_c_id;
+	}
+
+	public void setIn_c_id(int in_c_id) {
+		this.in_c_id = in_c_id;
 	}
 }
