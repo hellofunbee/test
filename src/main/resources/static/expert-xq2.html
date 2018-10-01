@@ -12,44 +12,49 @@
 <body>
 <div class="mx-main">
     <div class="mx-handle clearfix">
-        <div class="sm-title fl">专家管理</div>
-        <div class="mx-top-search fr"><input type="text"> <a href="#">搜索</a></div>
-        <div class="mx-top-select fr"><h3>专家分类<em><i></i></em></h3>
+        <div class="sm-title fl">专家详情</div>
+        <!--<div class="mx-top-search fr">
+            <input type="text"> <a href="#">搜索</a></div>
+        <div class="mx-top-select fr">
+            <h3>专家分类<em><i></i></em></h3>
             <dl class="mx-top-select-list">
                 <dd>专家分类2</dd>
                 <dd>专家分类3</dd>
             </dl>
-        </div>
+        </div>-->
     </div>
-    <div id="exp-info" class="expert-xq clearfix" v-cloak>
-        <div class="userPic fl">
-            <img src="{{tu_logo}}" alt="" onerror="this.src= 'images/people-big.png'">
-        </div>
-        <div class="fr info"><h3><span v-cloak> {{tu_name}}</span><span>{{tu_sex}}</span> <span>{{tu_age}}</span> <span>{{tu_job}}</span>
-        </h3>
-            <table>
-                <tr>
-                    <th width="100px">研究领域</th>
-                    <td>{{fields}}</td>
-                </tr>
-                <tr>
-                    <th>电子邮箱</th>
-                    <td>{{tu_email}}</td>
-                </tr>
-                <tr>
-                    <th>个人简介</th>
-                    <td style="font-size:16px">{{tu_info}}
-                    </td>
-                </tr>
-            </table>
+    <div id="exp-info" class="expert-xq clearfix" style="display: none">
+        <div id="info-content">
+            <div class="userPic fl">
+                <img src="{tu_logo}" alt="" onerror="this.src= 'images/people-big.png'">
+            </div>
+            <div class="fr info"><h3><span> {tu_name}</span><span>{tu_sex}</span> <span>{tu_age}</span>
+                <span>{tu_job}</span>
+            </h3>
+                <table>
+                    <tr>
+                        <th width="100px">研究领域</th>
+                        <td>{fields}</td>
+                    </tr>
+                    <tr>
+                        <th>电子邮箱</th>
+                        <td>{tu_email}</td>
+                    </tr>
+                    <tr>
+                        <th>个人简介</th>
+                        <td style="font-size:16px">{tu_info}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
     <div class="clearfix">
         <div class="mx-box fl">
             <div class="mx-box-tit clearfix">专家答疑<a href="#" class="bar-btn fr mr10 mt2"><img
                     src="images/search-icon.png" class="alimg mr5">搜索</a></div>
-            <div class="mx-box-cnt">
-                <div class="qa-cnt"><h3>大葱何时收获适时？</h3>
+            <div class="mx-box-cnt" id="exp-ans">
+                <!--<div class="qa-cnt"><h3>大葱何时收获适时？</h3>
                     <p>
                         育苗、定植、收获适宜时期的确定以自然界温度的变化为依据。育苗分为秋季育苗和春季育苗两种方式。秋季育苗根据各地区的纬度不同，在北纬46°~36°地区，播种由8月下旬至9月下旬；春季育苗播种期为3月中、下旬，只适于北纬34°~40°地区。春季育苗在早春土壤化冻土5厘米深时即可进行。定植期最早为5月上旬，最迟为7月上旬。收获期最早10月上旬，最迟11月中旬。</p>
                 </div>
@@ -60,45 +65,46 @@
                 <div class="qa-cnt"><h3>大葱何时收获适时？</h3>
                     <p>
                         育苗、定植、收获适宜时期的确定以自然界温度的变化为依据。育苗分为秋季育苗和春季育苗两种方式。秋季育苗根据各地区的纬度不同，在北纬46°~36°地区，播种由8月下旬至9月下旬；春季育苗播种期为3月中、下旬，只适于北纬34°~40°地区。春季育苗在早春土壤化冻土5厘米深时即可进行。定植期最早为5月上旬，最迟为7月上旬。收获期最早10月上旬，最迟11月中旬。</p>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="mx-box fr">
-            <div class="mx-box-tit">用户提问<a href="#" class="bar-btn fr mr10 mt2" id="answer">回答</a></div>
+            <div class="mx-box-tit">用户提问<a href="#" class="bar-btn fr mr10 mt2" id="answer">回答</a>
+            </div>
             <div class="mx-box-cnt">
-                <ul class="mx-list">
-                    <li><a href="#">农业专家在线咨询玉米处苗后叶片有的象用水煮了一样是怎么回事，应当怎么解决，请专家帮助解决谢谢！</a></li>
-                    <li><a href="#">葡萄叶子表面有斑点，是什么病？</a></li>
-                    <li><a href="#">黄瓜果实特别干瘪细小，这是怎么回事？</a></li>
-                    <li><a href="#">茄子叶子发黄，这是什么病？</a></li>
-                    <li><a href="#">蘑菇技术去哪学习</a></li>
-                    <li><a href="#">玉米有大斑病打什么药好呢</a></li>
-                    <li><a href="#">小偃60 和81有什么区别，晋南地区更适合那种？？</a></li>
+                <ul class="mx-list" id="user_question">
+                    <!-- <li><a href="#">农业专家在线咨询玉米处苗后叶片有的象用水煮了一样是怎么回事，应当怎么解决，请专家帮助解决谢谢！</a></li>
+                     <li><a href="#">葡萄叶子表面有斑点，是什么病？</a></li>
+                     <li><a href="#">黄瓜果实特别干瘪细小，这是怎么回事？</a></li>
+                     <li><a href="#">茄子叶子发黄，这是什么病？</a></li>
+                     <li><a href="#">蘑菇技术去哪学习</a></li>
+                     <li><a href="#">玉米有大斑病打什么药好呢</a></li>
+                     <li><a href="#">小偃60 和81有什么区别，晋南地区更适合那种？？</a></li>-->
                 </ul>
             </div>
         </div>
         <div class="mx-box fl">
             <div class="mx-box-tit">服务用户</div>
             <div class="mx-box-cnt">
-                <ul class="mx-list">
+                <ul class="mx-list" id="exp-client">
+                    <!--<li><a href="#">[21号] 李娜 土豆</a></li>
                     <li><a href="#">[21号] 李娜 土豆</a></li>
                     <li><a href="#">[21号] 李娜 土豆</a></li>
-                    <li><a href="#">[21号] 李娜 土豆</a></li>
-                    <li><a href="#">[21号] 李娜 土豆</a></li>
+                    <li><a href="#">[21号] 李娜 土豆</a></li>-->
                 </ul>
             </div>
         </div>
         <div class="mx-box fr">
             <div class="mx-box-tit">服务项目</div>
             <div class="mx-box-cnt">
-                <ul class="mx-list">
-                    <li><a href="#">越瓜保护地高产栽培技术推广项目</a><em></em></li>
-                    <li><a href="#">温室大棚蔬菜病虫害绿色防控技术推广项目</a><em></em></li>
-                    <li><a href="#">蔬菜病虫害远程诊断技术推广项目</a><em></em></li>
-                    <li><a href="#">项目名称项目名称项目名称项目名称项目名称</a><em></em></li>
-                    <li><a href="#">项目名称项目名称项目名称</a><em></em></li>
-                    <li><a href="#">项目名称项目名称项目名称项目名称项目名称</a><em></em></li>
-                    <li><a href="#">项目名称项目名称项目名称项目名称</a><em></em></li>
+                <ul class="mx-list" id="exp-pro">
+                    <!-- <li><a href="#">越瓜保护地高产栽培技术推广项目</a><em></em></li>
+                     <li><a href="#">温室大棚蔬菜病虫害绿色防控技术推广项目</a><em></em></li>
+                     <li><a href="#">蔬菜病虫害远程诊断技术推广项目</a><em></em></li>
+                     <li><a href="#">项目名称项目名称项目名称项目名称项目名称</a><em></em></li>
+                     <li><a href="#">项目名称项目名称项目名称</a><em></em></li>
+                     <li><a href="#">项目名称项目名称项目名称项目名称项目名称</a><em></em></li>
+                     <li><a href="#">项目名称项目名称项目名称项目名称</a><em></em></li>-->
                 </ul>
             </div>
         </div>
@@ -143,32 +149,13 @@
     document.write(html)
 }</script>
 
-<script src="js/vue.js"></script>
 <script>
+    var info_content = $('#info-content').clone().html();
     var exp_c_id = 0;
 
     var lct = $("div#main_iframe").attr("src") || location.href,
             e = purl(lct);
     var tu_id = e.param("tu_id");
-
-    var app;
-
-
-    function laod() {
-        API.service("/findUserById", {
-            uid: tu_id,
-        }, function (data) {
-            console.log(data)
-            data.object.tu_age = '';
-            data.object.tu_sex = API.dict.user_sex[data.object.tu_sex];
-            app = new Vue({
-                el: '#exp-info',
-                data: data.object,
-
-            });
-        });
-    }
-    laod();
 
 
     API.service("/listClass1", {c_type: 6, c_lev: 1}, function (data) {
@@ -194,7 +181,7 @@
             '            <h3 class="blue" field="m_title">首红苹果高产栽培技术</h3>' +
             '            <p class="blue" >' +
             '            <span field="class1Name"></span>' +
-            '-'+
+            '-' +
             '            <span field="class2Name"></span>' +
             '            </p>' +
             '            <p class="blue clearfix" >' +
@@ -206,7 +193,21 @@
             '            </p>' +
             '        </div>';
 
-    loadArticals();
+
+    function loadUserInfo() {
+        API.service("/findUserById", {
+            uid: tu_id,
+        }, function (data) {
+            $('#exp-info').empty();
+
+            console.log(data)
+            data.object.tu_age = '';
+            data.object.tu_sex = API.dict.user_sex[data.object.tu_sex];
+            $('#exp-info').html(UI.renderField2(info_content, data.object));
+            $('#exp-info').show();
+        });
+    }
+    // 加载文章
     function loadArticals() {
         var cnt_el = $('#articals');
         cnt_el.empty();
@@ -242,14 +243,193 @@
             }
 
         }, function (e) {
-            layer.alert(e.msg);
+
+            layer.msg(e.msg);
+        });
+    }
+
+    //加载用户问题
+    function loadQuestion() {
+        API.service("/uq/list", {
+            tu_id: tu_id,
+            q_state: 1,
+            u_search: '',
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#user_question');
+            toEl.empty();
+            var arr = data.object;
+            arr = 10 < arr.length ? arr.slice(0, 10) : arr;
+
+            $.each(arr, function (i, e) {
+                var tpl = $('<li><a></a></li>');
+                tpl.data('data', e);
+
+                tpl.find('a').text(UI.cutSize(e.q_title, 80));
+                tpl.find('a').on('click', function () {
+
+                    showDetail({
+                        id: $(this).parents('li').data('data').user_question_id,
+                        type: 2
+                    });
+                });
+
+                toEl.append(tpl)
+
+            });
+
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
+        });
+    }
+
+    //加载专家答疑
+    function loadAns() {
+        API.service("/expAns/list", {
+            /*tu_id: tu_id,
+             q_state: 1,
+             u_search: '',*/
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#exp-ans');
+            toEl.empty();
+            var arr = data.object;
+            arr = 5 < arr.length ? arr.slice(0, 5) : arr;
+            $.each(arr, function (i, e) {
+                var tpl = $(' <div class="qa-cnt"><h3></h3><p></p></div>');
+                tpl.data('data', e);
+
+                tpl.find('h3').text(UI.cutSize(e.exp_ans_title, 80));
+                tpl.find('p').text(UI.cutSize(e.exp_ans_content, 200));
+                tpl.find('p').on('click', function () {
+                    showDetail({
+                        id: $(this).parents('div').data('data').exp_ans_id,
+                        type: 1
+                    });
+                });
+
+                toEl.append(tpl)
+
+            });
+
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
         });
 
     }
+
+    //加载服务项目
+    function loadExpPro() {
+        API.service("/expPro/list", {
+            /*tu_id: tu_id,
+             q_state: 1,
+             u_search: '',*/
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#exp-pro');
+            toEl.empty();
+
+            var arr = data.object;
+            arr = 10 < arr.length ? arr.slice(0, 10) : arr;
+            $.each(arr, function (i, e) {
+                /*<em></em>*/
+                var tpl = $(' <li><a></a></li>');
+                tpl.data('data', e);
+
+                tpl.find('a').text(UI.cutSize(e.exp_pro_title, 80));
+                tpl.find('a').on('click', function () {
+                    showDetail({
+                        id: $(this).parents('li').data('data').exp_pro_id,
+                        type: 4
+                    });
+//                        showMessageDetail($(this).closest('div').data('data').m_id, 4, '查看');
+                });
+                /*tpl.find('em').on('click', function () {
+                 layer.msg(2)
+                 //                        showMessageDetail($(this).closest('div').data('data').m_id, 4, '查看');
+                 });*/
+
+                toEl.append(tpl)
+
+            });
+
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
+        });
+
+    }
+
+    //服务用户
+    function loadExpClient() {
+        API.service("/expClient/list", {
+            tu_id: tu_id,
+            q_state: 1,
+            u_search: '',
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#exp-client');
+            toEl.empty();
+            var arr = data.object;
+            arr = 10 < arr.length ? arr.slice(0, 10) : arr;
+
+            $.each(arr, function (i, e) {
+                var tpl = $('<li><a></a></li>');
+                console.log(e)
+                tpl.data('data', e);
+                tpl.find('a').text(UI.cutSize(e.device_name, 80));
+                tpl.find('a').on('click', function () {
+
+                    showDetail({
+                        id: $(this).parents('li').data('data').deviceId,
+                        type: 3,
+                        type2: 2
+                    });
+                });
+
+                toEl.append(tpl)
+
+            });
+
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
+        });
+    }
+
+
     $("#answer").click(function (t) {
         layer.open({type: 1, title: "回答提问", skin: "mlayer", area: ["720px", "700px"], content: $(".answer-layer")})
     }), $(".mx-top-select h3").click(function () {
         $(this).hasClass("on") ? ($(this).removeClass("on"), $(this).next(".mx-top-select-list").hide()) : ($(this).addClass("on"), $(this).next(".mx-top-select-list").show())
-    })</script>
+    })
+
+    function load() {
+        loadUserInfo();
+        loadArticals();
+        loadQuestion();
+        loadAns();
+        loadExpPro();
+        loadExpClient();
+    }
+
+
+    function showDetail(o) {
+//        type 1:答疑,2：提问,3：服务,4：项目
+
+        if (!o.type2) {
+            o.type2 = 1;
+        }
+        showMessageDetail(o.id, o.type, '查看', o.type2);
+
+    }
+    $(function () {
+        load();
+    })
+
+
+</script>
 </body>
 </html>

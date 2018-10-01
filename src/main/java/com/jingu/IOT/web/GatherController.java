@@ -752,15 +752,5 @@ public class GatherController {
         return new IOTResult(false, "采集服务重启失败", unserialize, 0);
     }
 
-    public static void main(String[] args) {
-
-        String string = "2017-12-07 17:44:25.0";
-        String substring = string.substring(0, 10);
-        System.out.println(substring);
-        String substring1 = string.substring(11, 19);
-        System.out.println(substring1);
-        String substring2 = string.substring(0, 19);
-        System.out.println(substring2);
-    }
 
 }

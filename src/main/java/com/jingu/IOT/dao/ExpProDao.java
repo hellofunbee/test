@@ -41,6 +41,8 @@ public class ExpProDao {
 
         sql += " ,update_time = NOW()";
 
+        sql += " where exp_pro_id = ?";
+        p.add(pd.get("exp_pro_id"));
 
 
         return jdbcTemplate.update(sql, p.toArray());
@@ -68,7 +70,9 @@ public class ExpProDao {
 
     public List<Map<String, Object>> list(PageData pd) {
 
-        String sql = "select * from exp_pro where 1 = 1 ";
+        String sql = "select e.*,u.tu_name tu_name from exp_pro e " +
+                " LEFT JOIN t_user u on u.tu_id = e.tu_id "+
+                "where 1 = 1 ";
 
         List<Object> p = new ArrayList<>();
 
@@ -87,7 +91,7 @@ public class ExpProDao {
             p.add(pd.get("exp_pro_content"));
         }
         if (CommonUtils.has(pd.get("tu_id"))) {
-            sql += " and tu_id = ? ";
+            sql += " and e.tu_id = ? ";
             p.add(pd.get("tu_id"));
         }
 

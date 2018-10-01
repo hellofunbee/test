@@ -44,6 +44,7 @@ public class SMSService {
 
     }
 
+
     /**
      * 发送短信
      *
@@ -60,7 +61,7 @@ public class SMSService {
             sb.append(p);
             sb.append(",");
 
-            if (i != 0 && i % 99 == 0) {
+            if (i != 0 && i % 99 == 0||i == phones.size() -1) {
                 String mobs = sb.substring(0, sb.length() - 1);
                 SendMsg_webchinese.send(msg, mobs);
                 sb = new StringBuffer();

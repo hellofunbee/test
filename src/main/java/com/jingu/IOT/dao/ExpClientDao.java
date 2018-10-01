@@ -29,9 +29,9 @@ public class ExpClientDao {
             sql += " , exp_id = ? ";
             p.add(pd.get("exp_id"));
         }
-        if (CommonUtils.has(pd.get("user_id"))) {
-            sql += " , user_id = ? ";
-            p.add(pd.get("user_id"));
+        if (CommonUtils.has(pd.get("deviceId"))) {
+            sql += " , deviceId = ? ";
+            p.add(pd.get("deviceId"));
         }
 
         if (CommonUtils.has(pd.get("if_delete"))) {
@@ -40,6 +40,8 @@ public class ExpClientDao {
         }
 
         sql += " ,update_time = NOW()";
+        sql += " where exp_client_id = ?";
+        p.add(pd.get("exp_client_id"));
 
 
         return jdbcTemplate.update(sql, p.toArray());
@@ -53,13 +55,13 @@ public class ExpClientDao {
     public int save(PageData pd) {
         String sql = "insert into exp_client (" +
                 "exp_id," +
-                "user_id," +
+                "deviceId," +
                 "if_delete," +
                 "update_time," +
                 "create_time) VALUES (?,?,?,NOW(),NOW())";
         List<Object> p = new ArrayList<>();
         p.add(pd.get("exp_id"));
-        p.add(pd.get("user_id"));
+        p.add(pd.get("deviceId"));
         p.add(pd.get("if_delete"));
 
         return jdbcTemplate.update(sql, p.toArray());
@@ -67,7 +69,9 @@ public class ExpClientDao {
 
     public List<Map<String, Object>> list(PageData pd) {
 
-        String sql = "select * from exp_client where 1 = 1 ";
+        String sql = "select e.*,dv.name device_name,dv.IP device_ip from exp_client e " +
+                " LEFT JOIN t_vastriver_ip dv on dv.DeviceId = e.deviceId " +
+                "where 1 = 1 ";
 
         List<Object> p = new ArrayList<>();
 
@@ -81,9 +85,9 @@ public class ExpClientDao {
             p.add(pd.get("exp_id"));
         }
 
-        if (CommonUtils.has(pd.get("user_id"))) {
-            sql += " and user_id = ? ";
-            p.add(pd.get("user_id"));
+        if (CommonUtils.has(pd.get("deviceId"))) {
+            sql += " and e.deviceId = ? ";
+            p.add(pd.get("deviceId"));
         }
         if (CommonUtils.has(pd.get("exp_client_id"))) {
             sql += " and exp_client_id = ? ";

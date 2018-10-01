@@ -103,7 +103,7 @@
                 '            <td><input field="ala_name" type="text" class="text"></td>' +
                 '            <td><select field="ala_channel" name="" class="text">' + select + ' </select></td>' +
                 '            <td><input field="ala_range" type="text" class="text"></td>' +
-                '            <td><div  class="mx-switch on"><em>开</em><i></i></div></td>' +
+                '            <td><div field="ala_state" class="mx-switch on"><em>开</em><i></i></div></td>' +
                 '            <td><input field = "ala_up" type="text" class="text"></td>' +
                 '            <td><input field = "ala_low" type="text" class="text"></td>' +
                 '            <td class="tc"><div field = "ala_producer" class="mx-checkbox"><em></em></div></td>' +
@@ -152,13 +152,26 @@
         addRow = function (t, e) {
             t || (t = {});
             var a = UI.appendFieldTo(tpl, t, tbody).data("data", t);
+            a.find('[field="ala_state"]').html('<em>关</em><i></i>');
 
-            var ala_state = t.ala_state;
+            if (t) {
+                var ala_state = t.ala_state;
+                if (ala_state == 1) {
+                    a.find('[field="ala_state"]').addClass('on');
+                    a.find('[field="ala_state"]').children("em").text("开");
+                } else {
+                    a.find('[field="ala_state"]').removeClass('on');
+                    a.find('[field="ala_state"]').children("em").text("关");
+                }
+            }
+
+
+/*
             if (ala_state == 1) {
                 a.find(".mx-switch").addClass('on');
             } else {
                 a.find(".mx-switch").removeClass('on');
-            }
+            }*/
 
 
             !0 === e && setTimeout(function () {
@@ -166,12 +179,18 @@
             }, 100);
 
 
-            $(".mx-switch").on("click", function (t) {
+            /*$(".mx-switch").on("click", function (t) {
                 if ($(this).hasClass('on')) {
                     $(this).removeClass('on');
                 } else {
                     $(this).addClass('on');
                 }
+            });*/
+            a.find(".mx-switch").click(function () {
+                var t = $(this).children("em").text();
+                "开" == t ? ($(this).removeClass("on"),
+                        $(this).children("em").text("关")) : ($(this).addClass("on"),
+                        $(this).children("em").text("开"))
             });
 
         };

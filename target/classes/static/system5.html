@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-系统管理-专家管理</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pagination.css">
+</head>
+<body>
+<div class="mx-main">
+    <div class="mx-handle clearfix" page="user-list">
+        <div class="sm-title fl">用户管理</div>
+        <ul class="little-menu cleafix fl">
+            <li class="on" utype="">
+                <a href="javascript:;" data-href="#zjyh">专家答疑</a>
+            </li>
+            <li utype="">
+                <a href="javascript:;" data-href="#ptyh">用户提问</a>
+            </li>
+            <li utype="">
+                <a href="javascript:;" data-href="#sczyh">服务用户</a>
+            </li>
+            <li utype="">
+                <a href="javascript:;" data-href="#glzyh">服务项目</a>
+            </li>
+            <li class="last" utype="">
+                <a href="javascript:;" data-href="#user_profile">基本信息管理</a>
+            </li>
+        </ul>
+    </div>
+    <div class="yhgl-module cleafix">
+        <div id="zjyh">
+            <div class="mx-nrhandle">
+                <a href="javascript:;" class="btn btn-default fr tjxyh" index="0">新建答疑</a>
+
+                <div class="mx-top-search fr">
+                    <input class="c-0" index="0" type="text" name="searchKeyword">
+                    <a href="#" class="btn-search a-s">搜索</a>
+                </div>
+            </div>
+            <table class="mx-table2">
+                <thead>
+                <tr>
+                    <th width="8%">专家姓名</th>
+                    <th width="27%">答疑问题</th>
+                    <th width="30%">答疑内容</th>
+                    <th width="10%">更新时间</th>
+                    <th width="25%"> 操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+
+            </table>
+            <div class="mx-page zjyh m-style"></div>
+        </div>
+        <div id="ptyh">
+            <div class="mx-nrhandle">
+                <!--<a href="javascript:;" class="btn btn-default fr tjxyh" index="1">添加新用户</a>-->
+                <div class="mx-top-search fr">
+                    <input class="c-1" index="1" type="text"> <a href="#" class="a-s">搜索</a>
+                </div>
+            </div>
+            <div style="margin:auto">
+                <table class="mx-table2">
+                    <thead>
+                    <tr>
+                        <th width="10%">用户名</th>
+                        <th width="25%">用户问题</th>
+                        <th width="35%">专家答案</th>
+                        <th width="10%">更新时间</th>
+                        <th width="20%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="mx-page ptyh m-style"></div>
+        </div>
+        <div id="sczyh">
+            <div class="mx-nrhandle">
+                <a href="javascript:;" class="btn btn-default fr tjxyh" index="2">添加设备</a>
+
+                <div class="mx-top-search fr">
+                    <input class="c-2" index="2" type="text"> <a href="#" class="a-s">搜索</a>
+                </div>
+            </div>
+            <table class="mx-table2">
+                <thead>
+                <tr>
+                    <th width="20%">主设备名</th>
+                    <th width="30%">主设备IP</th>
+                    <th width="10%">更新时间</th>
+                    <th width="30%">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+
+            </table>
+            <div class="mx-page sczyh m-style"></div>
+        </div>
+        <div id="glzyh">
+            <div class="mx-nrhandle">
+                <a href="javascript:;" class="btn btn-default fr tjxyh" index="3">添加服务项目</a>
+                <div class="mx-top-search fr">
+                    <input class="c-3" index="3" type="text"> <a href="#" class="a-s">搜索</a>
+                </div>
+            </div>
+            <table class="mx-table2">
+                <thead>
+                <tr>
+                    <th width="8%">专家姓名</th>
+                    <th width="27%">项目名称</th>
+                    <th width="30%">项目内容</th>
+                    <th width="10%">更新时间</th>
+                    <th width="25%"> 操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+
+            </table>
+            <div class="mx-page glzyh m-style"></div>
+        </div>
+
+        <div id="user_profile">
+            <div class="tjzsb add-user " style="padding-top:60px;width: 700px;margin:auto">
+                <div class="" style="width: 100px;margin: auto">
+                    <input type="file" hidden name="picture" accept="image/*" id="publish-file">
+                    <img src="" id="cms-cover" field="tu_logo" class="round_icon" alt=""
+                         onerror="this.src= 'images/people-big.png'">
+                </div>
+                <table class="mx-table  control-dev-form">
+                    <input field="tu_id" type="hidden">
+                    <tr>
+                        <th>登录账号</th>
+                        <td field="tu_username"></td>
+                    </tr>
+
+
+                    <tr>
+                        <th>登录密码</th>
+                        <td><input field="tu_pwd1" required type="password" class="text-blue"></td>
+                    </tr>
+                    <tr>
+                        <th>确认密码</th>
+                        <td><input field="tu_pwd" required type="password" class="text-blue"></td>
+                    </tr>
+
+
+                    <tr>
+                        <th width="20%">姓名</th>
+                        <td><input field="tu_name" required type="text" class="text-blue"></td>
+                    </tr>
+
+                    <tr>
+                        <th>性别</th>
+
+                        <td><select class="text-lg" field="tu_sex" render="dict"
+                                    dict="user_sex">
+                            <option>默认</option>
+
+                        </select></td>
+
+                    </tr>
+
+                    <tr>
+                        <th>年龄</th>
+
+                        <td><input field="tu_age" type="text" class="text-blue"></td>
+
+                    </tr>
+                    <tr>
+                        <th>电话号</th>
+
+                        <td><input field="tu_phone" type="text" class="text-blue"></td>
+
+                    </tr>
+
+                    <tr>
+                        <th>邮箱</th>
+
+                        <td><input field="tu_email" type="text" class="text-blue"></td>
+
+                    </tr>
+                    <tr>
+                        <th>职务</th>
+
+                        <td><input field="tu_job" type="text" class="text-blue"></td>
+
+                    </tr>
+                    <tr>
+                        <th>学历</th>
+
+                        <td><select class="text-lg" field="tu_edu" render="dict"
+                                    dict="user_edu">
+                            <option>默认</option>
+
+                        </select></td>
+
+                    </tr>
+
+                </table>
+
+                <div class="tc mt20">
+                    <a href="javascript:;" class="btn-lg btn-df-red reset">重置</a>
+                    <a href="javascript:;" class="btn-lg btn-df-blue save">保存</a>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="xxx-layer">
+</div>
+<div class="ckscz-layer">
+</div>
+<div class="glz-layer">
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="js/jquery.ztree.all.min.js"></script>
+<script src="js/jquery.pagination.js"></script>
+<script src="js/system3.js"></script>
+<script src="js/ajaxfileupload.js"></script>
+
+<script>
+
+    var page = $('[page="user-list"]');
+
+    $(function () {
+        var e = function () {
+            var e = page.find('[name="searchKeyword"]').val();
+            API.system.user.listUser(0, 3, e, function (e) {
+                console.log(e)
+            })
+        };
+        page.find(".btn-search").click(e).click(), e();
+
+    });
+    $(".yhgl-module>div:not(:first)").hide(),
+            $(".little-menu li").click(function () {
+                $(this).addClass("on").siblings().removeClass("on");
+                $(this).children("a").text();
+                var e = $(this).children("a").attr("data-href");
+                $(e).show().siblings().hide()
+            }), $('.a-s').click(function () {
+        search(this)
+
+    });
+
+
+    //添加入口
+    $(".tjxyh").click(function () {
+        var e = aar[$(this).attr('index')];
+        e.addFunc(e);
+    });
+    //详情入口
+    function detail(el) {
+        var e = aar[$(el).attr('index')];
+        e.detailFunc(e, el);
+    }
+    //详情入口
+    function edit(el) {
+        var e = aar[$(el).attr('index')];
+        e.editFunc(e, el);
+    }
+
+    //删除
+    function del(el) {
+        var e = aar[$(el).attr('index')];
+        e.delFunc(e, el);
+    }
+
+    //删除
+    function check(el) {
+        var e = aar[$(el).attr('index')];
+        e.checkFunc(e, el);
+    }
+
+
+    //    专家答疑
+    var tpl_add1 =
+            ' <div id="layer-content">' +
+            '        <div class="clearfix">' +
+            '            <div >' +
+            '                <h4>标题</h4>' +
+            '                <p>' +
+            '                    <input type="text" style="width: 100%" field="exp_ans_title">' +
+            '                </p>' +
+            '            </div>' +
+            '        </div>' +
+            '        <h4>答疑</h4>' +
+            '        <p><textarea name="" field="exp_ans_content" cols="30" rows="10"></textarea></p>' +
+            '        <div class="tc mt20">' +
+            '            <a href="#" class="btn-lg btn-df-gray cancel">取消</a>' +
+            '            <a href="#" class="btn-lg btn-df-blue save" >保存</a>' +
+            '        </div>' +
+            '    </div>';
+
+    var tpl_add2 =
+            ' <div id="layer-content">' +
+            '        <div class="clearfix">' +
+            '            <div >' +
+            '                <h4>用户问题</h4>' +
+            '                <p>' +
+            '                    <input type="text" readonly style="width: 100%" field="q_title">' +
+            '                </p>' +
+            '            </div>' +
+            '        </div>' +
+            '        <h4>专家答案</h4>' +
+            '        <p><textarea name="" field="q_ans" cols="30" rows="10"></textarea></p>' +
+            '        <div class="tc mt20">' +
+            '            <a href="#" class="btn-lg btn-df-gray cancel">取消</a>' +
+            '            <a href="#" class="btn-lg btn-df-blue save" >保存</a>' +
+            '        </div>' +
+            '    </div>';
+
+    var tpl_add3 =
+            '<div id="layer-content">' +
+            '<div class="clearfix">' +
+            '<div >' +
+            '<h4>服务对象</h4>' +
+            '<div class="fieldset">' +
+            '<div class="legend orange">请选择设备</div>' +
+            '<div class="fieldset-con" style="height:320px;overflow-y:auto">' +
+            '<ul id="tree-id" class="ztree"></ul>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="tc mt20">' +
+            '<a href="#" class="btn-lg btn-df-gray cancel">取消</a>' +
+            '<a href="#" class="btn-lg btn-df-blue save" >保存</a>' +
+            '</div>' +
+            '</div>';
+
+    //    专家项目
+    var tpl_add4 =
+            ' <div id="layer-content">' +
+            '        <div class="clearfix">' +
+            '            <div >' +
+            '                <h4>项目标题</h4>' +
+            '                <p>' +
+            '                    <input type="text" style="width: 100%" field="exp_pro_title">' +
+            '                </p>' +
+            '            </div>' +
+            '        </div>' +
+            '        <h4>项目内容</h4>' +
+            '        <p><textarea name="" field="exp_pro_content" cols="30" rows="10"></textarea></p>' +
+            '        <div class="tc mt20">' +
+            '            <a href="#" class="btn-lg btn-df-gray cancel">取消</a>' +
+            '            <a href="#" class="btn-lg btn-df-blue save" >保存</a>' +
+            '        </div>' +
+            '    </div>';
+
+
+    //专家答疑
+    var tpl1 = ' <tr>' +
+            '<input field="exp_ans_id"  type="hidden">' +
+            '<td field="tu_name"></td>' +
+            '    <td field="exp_ans_title"></td>' +
+            '    <td field="exp_ans_content"></td>' +
+            '    <td field="update_time"></td>' +
+            '    <td>' +
+            '<a href="#" class="btn-sm" index="0" onclick="detail(this)">查看</a>' +
+            '<a href="#" class="btn-sm" index="0" onclick="edit(this)">编辑</a>' +
+            '<a href="#" class="btn-sm btn-fh" index="0" onclick="del(this)">删除</a>' +
+            '</td>' +
+            '    </tr>';
+
+    //用户问题
+    var tpl2 =
+            ' <tr>' +
+            '  <td field="q_user_name" ></td>' +
+            '  <td field="q_title"></td>' +
+            '  <td field="q_ans"></td>' +
+            '  <td field="update_time"</td>' +
+            '<td>' +
+            '<a href="#" class="btn-sm ck" index="1" onclick="check(this)">审核通过</a>' +
+            '<a href="#" class="btn-sm" index="1" onclick="detail(this)">查看</a>' +
+            '<a href="#" class="btn-sm" index="1" onclick="edit(this)">编辑</a>' +
+            /*'<a href="#" class="btn-sm btn-fh" index="1" onclick="del(this)">删除</a>' +*/
+            '</td>' +
+            ' </tr>';
+    ;//服务用户
+    var tpl3 =
+            '<tr>' +
+
+            '  <td field="device_name"></td>' +
+            '  <td  field="deviceId"></td>' +
+            '  <td field="update_time"></td>' +
+            '<td>' +
+            /* '<a href="#" class="btn-sm" index="2" onclick="edit(this)">编辑</a>' +*/
+            '<a href="#" class="btn-sm btn-fh" index="2" onclick="del(this)">删除</a>' +
+            '</td>' +
+            ' </tr>';
+    ;//专家项目
+
+    var tpl4 = ' <tr>' +
+            '<input field="exp_pro_id"  type="hidden">' +
+            '<td field="tu_name"></td>' +
+            '    <td field="exp_pro_title"></td>' +
+            '    <td field="exp_pro_content"></td>' +
+            '    <td field="update_time"></td>' +
+            '    <td>' +
+            '<a href="#" class="btn-sm" index="3" onclick="detail(this)">查看</a>' +
+            '<a href="#" class="btn-sm" index="3" onclick="edit(this)">编辑</a>' +
+            '<a href="#" class="btn-sm btn-fh" index="3" onclick="del(this)">删除</a>' +
+            '</td>' +
+            '    </tr>';
+    //管理者用户
+
+    var aar =
+            [
+                {
+                    title: '添加答疑',
+                    tpl: tpl1,
+                    tpl_add: tpl_add1,
+                    type: 6,
+                    toEl: 'zjyh',
+                    start: 1,
+                    loadFunc: loadInfo0,
+                    addFunc: add0,
+                    detailFunc: detail0,
+                    editFunc: edit0,
+                    delFunc: delete0,
+                },
+                {
+                    title: '用户问题',
+                    tpl: tpl2,
+                    tpl_add: tpl_add2,
+                    type: 3,
+                    toEl: 'ptyh',
+                    start: 1,
+                    loadFunc: loadInfo1,
+                    addFunc: '',
+                    detailFunc: detail1,
+                    editFunc: edit1,
+                    delFunc: delete1,
+                    checkFunc: check1,
+
+                },
+                {
+                    title: '服务对象',
+                    tpl: tpl3,
+                    tpl_add: tpl_add3,
+                    type: 5,
+                    toEl: 'sczyh',
+                    start: 1,
+                    loadFunc: loadInfo2,
+                    addFunc: add2,
+                    /*detailFunc: detail2,
+                     editFunc: edit2,*/
+                    delFunc: delete2,
+                },
+                {
+                    title: '专家项目',
+                    tpl: tpl4,
+                    tpl_add: tpl_add4,
+                    type: 2,
+                    toEl: 'glzyh',
+                    start: 1,
+                    loadFunc: loadInfo3,
+                    addFunc: add3,
+                    detailFunc: detail3,
+                    editFunc: edit3,
+                    delFunc: delete3,
+                },
+            ];
+
+
+    reload();
+    function reload() {
+        $.each(aar, function (i, e) {
+            aar[i].loadFunc(e, i)
+
+        });
+
+    }
+
+    //专家答疑列表
+    function loadInfo0(o, c) {
+        API.service("/expAns/list", {
+            tu_id: sessionStorage.getItem("ckuid"),
+            pagesize: 10,
+            start: o.start,
+            u_search: $('.c-' + c).val(),
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#' + o.toEl).find('tbody');
+            toEl.empty();
+            $.each(data.object, function (i, e) {
+                var update_time = new Date(e.update_time);
+
+                var el = UI.renderField(UI.appendFieldTo(o.tpl, e, toEl), e).data("data", e);
+
+                el.find('[field=update_time]').text(update_time.format("yyyy-MM-dd"));
+                el.find('[field=exp_ans_title]').text(UI.cutSize(e.exp_ans_title, 80));
+                el.find('[field=exp_ans_content]').text(UI.cutSize(e.exp_ans_content, 80));
+
+            });
+            pageIt(o, c, data.totalpage);
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
+//            pageIt(o, c, 1);
+        });
+
+    }
+    //添加专家答疑
+    function add0(e) {
+        var html = e.tpl_add;
+        $(".xxx-layer").empty('');
+
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: e.title,
+            skin: "mlayer",
+            /* btn: ["保存", "取消"],*/
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, {}, toEl);
+                ctl_el.find('.cancel').on('click', function () {
+                    layer.close(index);
+                })
+
+                ctl_el.find('.save').on('click', function () {
+                    var obj = UI.getFieldValue(layero);
+                    console.log(obj)
+
+                    if (!obj) {
+                        return true
+                    }
+                    obj.tu_id = sessionStorage.getItem("ckuid");
+
+                    API.service("/expAns/save"
+                            , obj, function (d) {
+                                layer.msg(d.msg);
+                                layer.close(index);
+                                reload();
+
+                            })
+                });
+
+            }
+        });
+    }
+
+    function detail0(e, el) {
+        var data = $(el).closest('tr').data("data");
+        var html = e.tpl_add;
+        console.log(data)
+        $(".xxx-layer").html('');
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: "详情",
+            skin: "mlayer",
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, data, toEl);
+                ctl_el.find('.mt20').remove();
+                ctl_el.find('input').attr('readonly', "readonly")
+                ctl_el.find('textarea').attr('readonly', "readonly")
+                ctl_el.find('select').attr('disabled', true)
+            }
+        });
+    }
+
+    function edit0(e, el) {
+        var data = $(el).closest('tr').data("data");
+        var html = e.tpl_add;
+        $(".xxx-layer").html('');
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: "编辑",
+            skin: "mlayer",
+            /* btn: ["保存", "取消"],*/
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, data, toEl);
+                /*重置*/
+                ctl_el.find('.reset').on('click', function () {
+                    layer.close(index);
+                    edit(el);
+                });
+
+                /*保存*/
+                ctl_el.find('.save').on('click', function () {
+                    var obj = UI.getFieldValue(layero);
+                    if (!obj) {
+                        return true
+                    }
+                    obj.exp_ans_id = data.exp_ans_id;
+                    API.service("/expAns/update"
+                            , obj, function (d) {
+                                layer.msg(d.msg);
+                                if (d.success) {
+                                    layer.close(index);
+                                    reload();
+
+                                }
+                            })
+                });
+            }
+        });
+    }
+    function delete0(e, el) {
+        var data = $(el).closest('tr').data("data");
+        layer.confirm("确定要删除", function (index) {
+            API.service("/expAns/del"
+                    , data, function (d) {
+                        layer.msg(d.msg);
+                        reload();
+                        layer.close(index);
+
+
+                    })
+        });
+
+
+    }
+
+    //---------------------用户问题---------------
+
+    function loadInfo1(o, c) {
+        API.service("/uq/list", {
+            tu_id: sessionStorage.getItem("ckuid"),
+            pagesize: 10,
+            start: o.start,
+            u_search: $('.c-' + c).val(),
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#' + o.toEl).find('tbody');
+            toEl.empty();
+            $.each(data.object, function (i, e) {
+                var update_time = new Date(e.update_time);
+
+                var el = UI.renderField(UI.appendFieldTo(o.tpl, e, toEl), e).data("data", e);
+
+                el.find('[field=update_time]').text(update_time.format("yyyy-MM-dd"));
+                el.find('[field=q_title]').text(UI.cutSize(e.q_title, 80));
+                el.find('[field=q_ans]').text(UI.cutSize(e.q_ans, 80));
+
+                if (e.q_state == 2) {
+                    var a = el.find('.ck');
+                    a.text('审核通过');
+
+                    a.removeClass('btn-fh');
+                    a.addClass('btn-hf');
+
+                } else {
+                    var a = el.find('.ck');
+                    a.text('移除审核');
+                    a.removeClass('btn-hf');
+                    a.addClass('btn-fh');
+
+                }
+            });
+            pageIt(o, c, data.totalpage);
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
+//            pageIt(o, c, 1);
+        });
+
+    }
+
+    function detail1(e, el) {
+        var data = $(el).closest('tr').data("data");
+        var html = e.tpl_add;
+        console.log(data)
+        $(".xxx-layer").html('');
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: "详情",
+            skin: "mlayer",
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, data, toEl);
+                ctl_el.find('.mt20').remove();
+                ctl_el.find('input').attr('readonly', "readonly")
+                ctl_el.find('textarea').attr('readonly', "readonly")
+                ctl_el.find('select').attr('disabled', true)
+            }
+        });
+    }
+
+    function edit1(e, el) {
+        var data = $(el).closest('tr').data("data");
+        var html = e.tpl_add;
+        $(".xxx-layer").html('');
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: "编辑",
+            skin: "mlayer",
+            /* btn: ["保存", "取消"],*/
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, data, toEl);
+                /*重置*/
+                ctl_el.find('.reset').on('click', function () {
+                    layer.close(index);
+                    edit(el);
+                });
+
+                /*保存*/
+                ctl_el.find('.save').on('click', function () {
+                    var obj = UI.getFieldValue(layero);
+                    if (!obj) {
+                        return true
+                    }
+                    obj.user_question_id = data.user_question_id;
+                    API.service("/uq/update"
+                            , obj, function (d) {
+                                layer.msg(d.msg);
+                                if (d.success) {
+                                    layer.close(index);
+                                    reload();
+
+                                }
+                            })
+                });
+
+
+            }
+        });
+    }
+
+
+    /**
+     * 审核
+     * @param e
+     * @param el
+     */
+
+    function check1(e, el) {
+        var data = $(el).closest('tr').data("data");
+        var word = "";
+        if (data.q_state == 1) {
+            data.q_state = 2;
+            word = '确定撤销审核？'
+        } else {
+            data.q_state = 1;
+            word = '确定审核通过？'
+        }
+        var obj = {};
+        obj.user_question_id = data.user_question_id;
+        obj.q_state = data.q_state;
+
+        API.service("/uq/update"
+                , obj, function (d) {
+                    layer.msg(d.msg);
+                    if (d.success) {
+                        reload();
+
+                    }
+                })
+
+    }
+    function delete1(e, el) {
+        var data = $(el).closest('tr').data("data");
+        layer.confirm("确定要删除", function (index) {
+            API.service("/uq/del"
+                    , data, function (d) {
+                        layer.msg(d.msg);
+                        reload();
+                        layer.close(index);
+
+
+                    })
+        });
+
+
+    }
+
+    //---------------------服务对象---------------
+
+    function add2(e) {
+        var html = e.tpl_add;
+        $(".xxx-layer").empty('');
+
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: e.title,
+            skin: "mlayer",
+            /* btn: ["保存", "取消"],*/
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, {}, toEl);
+                ctl_el.find('.cancel').on('click', function () {
+                    layer.close(index);
+                })
+
+                ctl_el.find('.save').on('click', function () {
+                    var obj = UI.getFieldValue(layero);
+                    console.log(obj)
+
+                    if (!obj) {
+                        return true
+                    }
+
+                    obj.tu_id = sessionStorage.getItem("ckuid");
+                    obj.dids = get_devs();
+
+                    if (!obj.dids || obj.dids.length == 0) {
+                        layer.msg("请选择设备！");
+                        return false;
+                    }
+
+                    API.service("/expClient/saveList"
+                            , obj, function (d) {
+                                layer.msg(d.msg);
+                                layer.close(index);
+                                reload();
+
+                            })
+                });
+
+
+//                tree
+
+                var get_devs = function () {
+                    var e = $("#tree-id").data("z-tree").getCheckedNodes(!0);
+                    if (0 === e.length) {
+                        return null;
+                    }
+                    var arr = [];
+                    $.each(e, function () {
+                        3 === this.oriData.tp_type && arr.push(this.oriData.deviceId)
+                    });
+                    if (0 === arr.length) {
+                        return null;
+                    }
+
+                    return arr;
+                }
+                var lastSelectNode;
+                treeEl = ctl_el.find("#tree-id");
+                var onNodeSelect = function (e) {
+
+                    var node = e;
+                    if (node && lastSelectNode && lastSelectNode === node)return;
+                    if (!node)node = lastSelectNode;
+                    if (!node)return;
+
+                    //当点击父节点时，自动选择第一个设备
+                    if (node.oriData["tp_type"] < 3) {
+                        while (node && node.oriData["tp_type"] < 3) {
+                            var c = node.children;
+                            if (c && c.length > 0) {
+                                node = c[0];
+                                if (node && node.oriData["tp_type"] === 3) {
+                                    treeEl.data("z-tree").selectNode(node);
+                                    onNodeSelect(node);
+                                    return
+                                }
+                            } else {
+                                layer.msg('请选择设备');
+                                treeEl.data("z-tree").selectNode(lastSelectNode);
+                                return;
+                            }
+                        }
+                    }
+//                    treeEl.data("z-tree").checkNode(node,true,true);
+                    lastSelectNode = node;
+
+                };
+                var zTreeOnCheck = function (o) {
+
+
+                    var e = ctl_el.find("#tree-id").data("z-tree").getCheckedNodes(!0);
+                    if (0 === e.length)
+                        return;
+                    var i = [];
+                    $.each(e, function () {
+                        3 === this.oriData.tp_type && i.push(this.oriData.deviceId)
+                    })
+                    if (0 === i.length)
+                        return;
+
+                }
+                UI.renderPointTree(treeEl,
+                        onNodeSelect,
+                        {
+                            check: {enable: !0},
+                            callback: {
+                                onCheck: zTreeOnCheck
+                            }
+                        }, {
+                            1: !0,
+                            2: !0,
+                            3: !0
+                        });
+
+                treeEl.on("z-tree-load", function () {
+                    var nodes = $(this).data("z-tree").getNodes();
+                    nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+                });
+
+            }
+        });
+    }
+
+    function loadInfo2(o, c) {
+        API.service("/expClient/list", {
+            tu_id: sessionStorage.getItem("ckuid"),
+            pagesize: 10,
+            start: o.start,
+            u_search: $('.c-' + c).val(),
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#' + o.toEl).find('tbody');
+            toEl.empty();
+            $.each(data.object, function (i, e) {
+                var update_time = new Date(e.update_time);
+
+                var el = UI.renderField(UI.appendFieldTo(o.tpl, e, toEl), e).data("data", e);
+
+                el.find('[field=update_time]').text(update_time.format("yyyy-MM-dd"));
+
+            });
+            pageIt(o, c, data.totalpage);
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+        });
+
+    }
+
+    function delete2(e, el) {
+        var data = $(el).closest('tr').data("data");
+        layer.confirm("确定要删除", function (index) {
+            API.service("/expClient/del"
+                    , data, function (d) {
+                        layer.msg(d.msg);
+                        reload();
+                        layer.close(index);
+
+
+                    })
+        });
+
+
+    }
+
+
+    //*******************专家项目*********************************
+
+    //专家答疑列表
+    function loadInfo3(o, c) {
+        API.service("/expPro/list", {
+            tu_id: sessionStorage.getItem("ckuid"),
+            pagesize: 10,
+            start: o.start,
+            u_search: $('.c-' + c).val(),
+        }, function (data) {
+            console.log(data)
+            var toEl = $('#' + o.toEl).find('tbody');
+            toEl.empty();
+            $.each(data.object, function (i, e) {
+                var update_time = new Date(e.update_time);
+
+                var el = UI.renderField(UI.appendFieldTo(o.tpl, e, toEl), e).data("data", e);
+
+                el.find('[field=update_time]').text(update_time.format("yyyy-MM-dd"));
+                el.find('[field=exp_pro_title]').text(UI.cutSize(e.exp_pro_title, 80));
+                el.find('[field=exp_pro_content]').text(UI.cutSize(e.exp_pro_content, 80));
+
+            });
+            pageIt(o, c, data.totalpage);
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
+//            pageIt(o, c, 1);
+        });
+
+    }
+    //添加专家答疑
+    function add3(e) {
+        var html = e.tpl_add;
+        $(".xxx-layer").empty('');
+
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: e.title,
+            skin: "mlayer",
+            /* btn: ["保存", "取消"],*/
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, {}, toEl);
+                ctl_el.find('.cancel').on('click', function () {
+                    layer.close(index);
+                })
+
+                ctl_el.find('.save').on('click', function () {
+                    var obj = UI.getFieldValue(layero);
+                    console.log(obj)
+
+                    if (!obj) {
+                        return true
+                    }
+                    obj.tu_id = sessionStorage.getItem("ckuid");
+
+                    API.service("/expPro/save"
+                            , obj, function (d) {
+                                layer.msg(d.msg);
+                                layer.close(index);
+                                reload();
+
+                            })
+                });
+
+            }
+        });
+    }
+
+    function detail3(e, el) {
+        var data = $(el).closest('tr').data("data");
+        var html = e.tpl_add;
+
+        console.log(data)
+        $(".xxx-layer").html('');
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: "详情",
+            skin: "mlayer",
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, data, toEl);
+                ctl_el.find('.mt20').remove();
+                ctl_el.find('input').attr('readonly', "readonly")
+                ctl_el.find('textarea').attr('readonly', "readonly")
+                ctl_el.find('select').attr('disabled', true)
+            }
+        });
+    }
+
+    function edit3(e, el) {
+        var data = $(el).closest('tr').data("data");
+        var html = e.tpl_add;
+        $(".xxx-layer").html('');
+        layer.open({
+            type: 1,
+            area: ["820px", "608px"],
+            title: "编辑",
+            skin: "mlayer",
+            /* btn: ["保存", "取消"],*/
+            content: $(".xxx-layer"),
+            success: function (layero, index) {
+                var toEl = layero.find(".xxx-layer");
+                var ctl_el = UI.appendFieldTo(html, data, toEl);
+                /*重置*/
+                ctl_el.find('.reset').on('click', function () {
+                    layer.close(index);
+                    edit(el);
+                });
+
+                /*保存*/
+                ctl_el.find('.save').on('click', function () {
+                    var obj = UI.getFieldValue(layero);
+                    if (!obj) {
+                        return true
+                    }
+                    obj.exp_pro_id = data.exp_pro_id;
+                    API.service("/expPro/update"
+                            , obj, function (d) {
+                                layer.msg(d.msg);
+                                if (d.success) {
+                                    layer.close(index);
+                                    reload();
+
+                                }
+                            })
+                });
+            }
+        });
+    }
+    function delete3(e, el) {
+        var data = $(el).closest('tr').data("data");
+        layer.confirm("确定要删除", function (index) {
+            API.service("/expPro/del"
+                    , data, function (d) {
+                        layer.msg(d.msg);
+                        reload();
+                        layer.close(index);
+
+
+                    })
+        });
+
+
+    }
+
+
+    function pageIt(o, c, p) {
+        return false;
+
+        var c_ = c;
+        $('.' + o.toEl).pagination(
+                {
+                    pageCount: p,
+                    jump: false,
+                    current: aar[c].start,
+                    coping: true,
+                    homePage: '首页',
+                    endPage: '末页',
+                    prevContent: '上页',
+                    nextContent: '下页',
+                    callback: function (api) {
+                        aar[c_].start = api.getCurrent();
+                        aar[c_].loadFunc(o, c_)
+                    }
+                }
+        );
+    }
+    function search(o) {
+        var index = $(o).prev()
+        i = index.attr('index');
+        var name = $(o).prev().val();
+
+        /*if (!name || name == '') {
+         layer.msg('请输入内容！')
+         }*/
+        aar[i].s
+        aar[i].loadFunc(aar[i], i);
+
+    }
+    loadUInfo();
+    //修改用户信息
+    function loadUInfo() {
+        API.service("/listUserForMap", {
+            tu_id: sessionStorage.getItem("ckuid"),
+        }, function (data) {
+            var data = data.object[0];
+
+
+            var html = $('#user_profile');
+
+
+            $("#cms-cover").attr('value',data.tu_logo);
+            $("#cms-cover").attr('src',data.tu_logo);
+
+            var ctl_el = UI.renderField(html, data);
+
+            ctl_el.find('[field="tu_pwd1"]').val(data.tu_pwd);
+
+            ctl_el.find('.reset').on('click', function () {
+
+                loadUInfo();
+            });
+            ctl_el.find('.save').on('click', function () {
+                var obj = UI.getFieldValue(html);
+                console.log(obj)
+                if (!obj) {
+                    return true
+                }
+                obj.uid = obj.tu_id;
+                obj.tu_logo = $("#cms-cover").attr('value');
+
+                if (!(ctl_el.find('[field="tu_pwd"]').val() === ctl_el.find('[field="tu_pwd1"]').val())) {
+                    layer.alert("两次输入的密码不一样！")
+                    return false;
+                }
+                API.service("/updateUser"
+                        , obj, function (d) {
+                            layer.msg(d.msg);
+
+                        })
+            });
+
+
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+
+        });
+    }
+
+    var img_input = $("#publish-file");
+    var cover = $("#cms-cover");
+    cover.on('click',function () {
+        img_input.click();
+    });
+    img_input.on("change", function () {
+        if ($(this).val()) {
+            var data = {
+                ckuid: sessionStorage.getItem("ckuid"),
+                cksid: sessionStorage.getItem("cksid"),
+                oldfile: "",
+            };
+            startLoading();
+            uploadImg(data, '/addPicture', 'publish-file', 'cms-cover');
+            stopLoading();
+
+        }
+    });
+
+
+</script>
+</body>
+</html>

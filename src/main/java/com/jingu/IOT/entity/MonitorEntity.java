@@ -223,4 +223,24 @@ public class MonitorEntity implements Serializable, RowMapper<MonitorEntity> {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
+    @Override
+    public String toString() {
+        return "MonitorEntity{" +
+                "mo_id=" + mo_id +
+                ", mo_name='" + mo_name + '\'' +
+                ", mo_deviceId='" + mo_deviceId + '\'' +
+                ", mo_time='" + mo_time + '\'' +
+                ", mo_channel='" + mo_channel + '\'' +
+                ", mo_type=" + mo_type +
+                ", mo_state=" + mo_state +
+                ", mo_high=" + mo_high +
+                ", mo_lower=" + mo_lower +
+                ", ctrl_id=" + ctrl_id +
+                ", order_less=" + order_less +
+                ", order_more=" + order_more +
+                ", check_interval=" + check_interval +
+                ", duration=" + duration +
+                '}';
+    }
 }

@@ -14,7 +14,9 @@ package com.jingu.IOT.service;
 
 import com.jingu.IOT.dao.PointDao;
 import com.jingu.IOT.dao.RelationShipDao;
+import com.jingu.IOT.dao.UserDao;
 import com.jingu.IOT.entity.RelationShipEntity;
+import com.jingu.IOT.entity.UserEntity;
 import com.jingu.IOT.requset.RelationShipRequset;
 import com.jingu.IOT.requset.UserRequest;
 import org.apache.commons.lang.StringUtils;
@@ -35,6 +37,8 @@ public class RelationShipService {
 
     private RelationShipDao relationShipDao;
     private PointDao pointDao;
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
     public RelationShipService(RelationShipDao relationShipDao, PointDao pointDao) {
@@ -136,4 +140,53 @@ public class RelationShipService {
 
     }
 
+    /**
+     * 根据设备 查找该设备的生产者
+     *
+     * @param deviceid
+     * @return
+     */
+    public Map findProducerByDviceId(String deviceid) {
+        try {
+            RelationShipEntity rs = new RelationShipEntity();
+            rs.setDeviceId(deviceid);
+
+            List<Map<String, Object>> rses = relationShipDao.listRelationShip(rs);
+            if (rses == null || rses.size() == 0) {
+                return null;
+            }
+
+            UserEntity u = new UserEntity();
+            u.setUid((Integer) rses.get(0).get("producerid"));
+            return userDao.findById(u);
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    /**
+     * 根据设备 查找监管者
+     * @param deviceid
+     * @return
+     */
+
+    public Map findSupervisorByDviceId(String deviceid) {
+        try {
+            RelationShipEntity rs = new RelationShipEntity();
+            rs.setDeviceId(deviceid);
+
+            List<Map<String, Object>> rses = relationShipDao.listRelationShip(rs);
+            if (rses == null || rses.size() == 0) {
+                return null;
+            }
+
+            UserEntity u = new UserEntity();
+            u.setUid((Integer) rses.get(0).get("superviserid"));
+            return userDao.findById(u);
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 }

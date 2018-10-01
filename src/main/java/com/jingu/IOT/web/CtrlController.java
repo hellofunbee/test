@@ -189,10 +189,10 @@ public class CtrlController {
             return new IOTResult(false, "节点不存在", null, 3);
         }
         cr.setCtrl_deviceId(cr.getPointEntity().getDeviceId());
-        List<Map<String, Object>> listControlSetting = settingService.listControlSetting(cr);
-        if (listControlSetting != null && !listControlSetting.isEmpty()) {
+        List<Map<String, Object>> settings = settingService.listControlSetting(cr);
+        if (settings != null && !settings.isEmpty()) {
 
-            for (Map m : listControlSetting) {
+            for (Map m : settings) {
                 RuleEntity re = new RuleEntity();
                 re.setCtrl_id((Integer) m.get("ctrl_id"));
                 List<RuleEntity> rules = ruleService.listRule(re);
@@ -202,24 +202,30 @@ public class CtrlController {
                 mo.setCtrl_id((Integer) m.get("ctrl_id"));
                 List<MonitorEntity> mos = ruleService.listMonitor(mo);
                 m.put("mos", mos);
-                //自动控制 && 开启状态 && 卷帘 获取状态
+                //自动控制 && 开启状态 && 卷帘   获取状态
+
                 if (1 == (Integer) m.get("state_type")
                         && 1 == (Integer) m.get("s_state")
                         && 1 == (Integer) m.get("ctrl_type")
                         ) {
+
+                try {
 
                     ControlRequset ctrl_r = new ControlRequset();
                     ctrl_r.setPointEntity(pointEntity);
                     ctrl_r.setCtrl_id((Integer) m.get("ctrl_id"));
                     IOTResult r = getControlDevStatus(ctrl_r);
                     m.put("status", r.getObject());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 }
 
 
             }
 
 
-            return new IOTResult(true, "查看成功", listControlSetting, 0);
+            return new IOTResult(true, "查看成功", settings, 0);
         }
         return new IOTResult(false, "暂无相关信息", null, 0);
     }
@@ -324,44 +330,19 @@ public class CtrlController {
         return new IOTResult(false, "暂无相关信息", null, 0);
     }
 
-    // 开启远程远程控制
-    @CrossOrigin
-    @RequestMapping(value = "/controlMode", method = RequestMethod.POST)
-    public IOTResult ControlMode(@RequestBody ControlRequset cr) {
-        if (cr.getCksid() == null || cr.getCksid().trim().length() < 1 || cr.getCkuid() == null
-                || cr.getCkuid().trim().length() < 1) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + cr.getCkuid());
-        if (check == null || !cr.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        cr.setState_type(1);
-        int updateControlSetting = settingService.updateControlSetting(cr);
-        if (updateControlSetting > 0) {
-            // if(cr.getState_type()==1){
-            return new IOTResult(true, "自动控制启用成功", null, 0);
-            // }
-            // if(cr.getState_type()==0){
-            // return new IOTResult(true,"模式关闭成功",null,0);
-            // }
-        }
-        return new IOTResult(false, "自动控制启用失败", null, 0);
-
-    }
 
     // 控制设备
     @CrossOrigin
     @RequestMapping(value = "/controlDev", method = RequestMethod.POST)
     public IOTResult ControlDev(@RequestBody ControlRequset cr) {
         PointEntity point = null;
-        ControlEntity controlEntity = new ControlEntity();
-        controlEntity.setCtrl_id(cr.getCtrl_id());
+        ControlEntity ctrl = new ControlEntity();
+        ctrl.setCtrl_id(cr.getCtrl_id());
+
+        //预约控制中
         if (cr.getRuleEntity().getAdmin() != null && cr.getRuleEntity().getAdmin().equals("IOTDevice")) {
             System.out.println("控制中...");
-            point = cr.getRuleEntity().getPointEntity();
-            controlEntity.setState_type(2);
+            ctrl.setState_type(2);
         } else {
             if (cr.getCksid() == null || cr.getCksid().trim().length() < 1 || cr.getCkuid() == null
                     || cr.getCkuid().trim().length() < 1) {
@@ -373,30 +354,21 @@ public class CtrlController {
                 return new IOTResult(false, "登陆失效", null, 2);
             }
             if (cr.getModel() == 1) {
-                controlEntity.setState_type(1);
-                int updateControlSetting = settingService.updateControlSetting(controlEntity);
+                ctrl.setState_type(1);
+                int updateControlSetting = settingService.updateControlSetting(ctrl);
                 if (updateControlSetting > 0) {
                     return new IOTResult(true, "控制模式开启成功", null, 0);
                 }
                 return new IOTResult(false, "控制模式开启失败", null, 0);
             }
-            controlEntity.setState_type(1);
-            // 检测是否有这个点
-            long uid = toolUtil.getbase_uidSid(cr.getCkuid(), cr.getCksid());
-            PointEntity pointEntity = cr.getPointEntity();
-            // pointEntity.setDeviceId(cr.getCtrl_deviceId());
-            // pointEntity.setUid(uid);
-            // pointEntity.setRole(String.valueOf(uid));
-            point = pointService.getPoint(pointEntity);
-            if (point == null) {
-                return new IOTResult(false, "节点不存在", null, 3);
-            }
+            ctrl.setState_type(1);
+
         }
-        Map<String, Object> controlSetting = settingService.getControlSetting(cr);
-        if (controlSetting == null || controlSetting.isEmpty()) {
+        Map<String, Object> cSeting = settingService.getControlSetting(cr);
+        if (cSeting == null || cSeting.isEmpty()) {
             return new IOTResult(false, "控制设备不存在", null, 0);
         }
-        // controlEntity.setState_type(1);
+        // ctrl.setState_type(1);
         // b=new byte[12];
         // b[0]=(byte)this.getCtrlType();
         // b[1]=(byte)Integer.parseInt(this.getRaiseGroupId());
@@ -426,36 +398,47 @@ public class CtrlController {
         // }
         point = cr.getPointEntity();
         MotorHBM hbm = cr.getHbm();
+        ////行程1-100,时间 0关  -1 常开
         if (hbm.getDistanceOrDuration() == 0) {
             hbm.setDistanceOrDuration(cr.getDistanceOrDuration());
         }
-        hbm.setCtrlType(Integer.parseInt(controlSetting.get("ctrl_type").toString()));
-        hbm.setRaiseGroupId((controlSetting.get("ctrl_raise_groupId").toString()));
-        hbm.setRaiseSwitchId((controlSetting.get("ctrl_raise_switchId").toString()));
-        hbm.setSkinGroupId((controlSetting.get("ctrl_down_groupId").toString()));
-        hbm.setSkinSwitchId((controlSetting.get("ctrl_down_switchId").toString()));
+        hbm.setCtrlType(Integer.parseInt(cSeting.get("ctrl_type").toString()));
+        hbm.setRaiseGroupId((cSeting.get("ctrl_raise_groupId").toString()));
+        hbm.setRaiseSwitchId((cSeting.get("ctrl_raise_switchId").toString()));
+        hbm.setSkinGroupId((cSeting.get("ctrl_down_groupId").toString()));
+        hbm.setSkinSwitchId((cSeting.get("ctrl_down_switchId").toString()));
 
-        if (controlSetting.get("ctrl_type").toString().equals("1")) {
-            hbm.setPosSensorCH(Integer.parseInt(controlSetting.get("ctrl_channel").toString()));
+        //ctrl_type: 1：卷帘 2：直流电机
+        if (cSeting.get("ctrl_type").toString().equals("1")) {
+            //点击位置传感器，通道号1-16
+            hbm.setPosSensorCH(Integer.parseInt(cSeting.get("ctrl_channel").toString()));
+            //TODO 这块逻辑还需理解
+            //控制方向 控制运动方向，0x1：上升，0x2：下降，0x3:停止
             if (hbm.getDirection() == 1 && hbm.getDistanceOrDuration() == 100) {
-                controlEntity.setMontor_state(1);
+                ctrl.setMontor_state(1);//上升到最高
             } else if (hbm.getDirection() == 2 && hbm.getDistanceOrDuration() == 0) {
-                controlEntity.setMontor_state(2);
+                ctrl.setMontor_state(2);//下降到最低
             } else if (hbm.getDirection() == 3 && hbm.getDistanceOrDuration() == 0) {
-                controlEntity.setMontor_state(3);
+                ctrl.setMontor_state(3);//停止 初始位置
             } else if (hbm.getDirection() == 0) {
-                // controlEntity.setMontor_state(3);
-                // 计算当前开启度
+                // ctrl.setMontor_state(3);
+                // TODO 暂时先按照理解这样做
+                //
+                ctrl.setMontor_state(hbm.getDistanceOrDuration());//开启度
             }
 
         }
-        // 分成了几种情况 // 1电机一直升上 一直下降 停止 并且保存状态
+        // 分成了几种情况
+        // 1电机一直升上 一直下降 停止 并且保存状态
         // 2输入了开启度点击执行
 
         System.out.println(point.getIp());
         System.out.println(point.getPort());
         System.out.println(point.getDeviceId());
         System.out.println(hbm.toByteCmd());
+
+
+        /*直流电机控制命令发送*/
         boolean motorsCtrl2 = Client.motorsCtrl2(point.getIp(), point.getPort(), point.getDeviceId(), hbm.toByteCmd(),
                 (byte) 0x17);
         System.out.println(motorsCtrl2);
@@ -466,36 +449,22 @@ public class CtrlController {
         // 104]
         if (motorsCtrl2) {
             System.out.println("------------------------------");
-            if (hbm.getDistanceOrDuration() == -1) {
-                controlEntity.setS_state(1);
+            if (hbm.getDistanceOrDuration() == -1) {//常开
+                ctrl.setS_state(1);
             }
-            if (hbm.getDistanceOrDuration() == 0) {
-                controlEntity.setS_state(2);
+            if (hbm.getDistanceOrDuration() == 0) {//关闭
+                ctrl.setS_state(2);
             }
             if (hbm.getDistanceOrDuration() > 0) {
-                hbm.setDistanceOrDuration(-1);
-                ;
+                hbm.setDistanceOrDuration(-1);//常开
             }
-            int updateControlSetting = settingService.updateControlSetting(controlEntity);
+            int updateControlSetting = settingService.updateControlSetting(ctrl);
             return new IOTResult(true, "命令发送成功", hbm.getDistanceOrDuration(), 0);
         }
         return new IOTResult(false, "命令发送失败", null, 10);
     }
 
-    // 只能控制
-    @CrossOrigin
-    @RequestMapping(value = "/testing", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    IOTResult testing(@RequestParam("str") String string,
-                      @RequestParam("deviceId") String deviceId) throws UnsupportedEncodingException {
-        System.out.println(string);
-        String string2 = "43595.0;-37.6;null;8.2;735.1;null;-37.7;8.2;null;-39.3;null;8.7;-39.2;8.8;11.7;45.0;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null;null";
-        String[] split = string.split(";");
-        ctrlService.upSwitch(deviceId, split);
-        System.out.println("test方法运行了");
-        return null;
-    }
+
 
     // @CrossOrigin
     // @RequestMapping(value = "/testing", method = RequestMethod.POST)
@@ -719,12 +688,15 @@ public class CtrlController {
             return new IOTResult(false, "控制设备不存在", null, 0);
         }
         MotorHBM hbm = cr.getHbm();
+        if (hbm == null)
+            hbm = new MotorHBM();
         hbm.setCtrlType(Integer.parseInt(ctrl.get("ctrl_type").toString()));
         hbm.setRaiseGroupId((ctrl.get("ctrl_raise_groupId").toString()));
         hbm.setRaiseSwitchId((ctrl.get("ctrl_raise_switchId").toString()));
         hbm.setSkinGroupId((ctrl.get("ctrl_down_groupId").toString()));
         hbm.setSkinSwitchId((ctrl.get("ctrl_down_switchId").toString()));
         hbm.setPosSensorCH(Integer.parseInt(ctrl.get("ctrl_channel").toString()));
+
         int ctrl_type = Integer.parseInt(ctrl.get("ctrl_type").toString());
         //卷帘
         if (ctrl_type == 1) {

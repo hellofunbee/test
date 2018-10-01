@@ -2,10 +2,12 @@ package com.jingu.IOT.service;
 
 import com.jingu.IOT.dao.ExpClientDao;
 import com.jingu.IOT.response.IOTResult;
+import com.jingu.IOT.util.CommonUtils;
 import com.jingu.IOT.util.PageData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,35 @@ public class ExpClientService {
         return new IOTResult(false, "保存失败", null, 0);
 
     }
+
+    public IOTResult saveList(PageData pd) {
+        pd.put("exp_id", pd.get("tu_id"));
+
+        List<Map<String, Object>> exps = expClientDao.list(pd);
+        if (pd != null && pd.get("dids") != null) {
+            List<String> dids = (List<String>) pd.get("dids");
+            for (String did : dids) {
+
+                Map device = new HashMap();
+                device.put("deviceId", did);
+                if (CommonUtils.hasObj(device, exps, "deviceId")) {
+                    continue;
+                }
+
+                PageData saveData = new PageData();
+                saveData.put("deviceId", did);
+                saveData.put("exp_id", pd.get("tu_id"));
+                expClientDao.save(saveData);
+
+            }
+
+
+        }
+
+        return new IOTResult(true, "保存成功", null, 0);
+    }
+
+
 
     public IOTResult del(PageData pd) {
         int back = expClientDao.del(pd);
@@ -49,4 +80,6 @@ public class ExpClientService {
         return new IOTResult(false, "暂无数据", null, 0);
 
     }
+
+
 }

@@ -492,12 +492,20 @@ UI.renderSynChart = function (ulEL, chartData, callbackHtml) {
 UI.cleanHtml = function (html) {
     return html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "").replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, "").replace(/<link\b[^<]*(?:(?!<\/>)<[^<]*)*<\/>/gi, "").replace(/onmouse/gi, "_onmouse").replace(/onclick/gi, "_onclick")
 };
-var showMessageDetail = function (id, type, title) {
+var showMessageDetail = function (id, type, title,type2) {
     var url = "detail.html";
     if (type === 4) {
         url = "news.html"
     }
+
+    if(type2 == 1)
+        url = "detail-exp.html";
+    if(type2 == 2)
+        url = "device-gover.html";
+
     var options = {url: url + "?id=" + id + "&type=" + (type || 2)};
+
+
     window.openPageContent("信息发布", "首页资讯", options);
     return false
 };
@@ -688,6 +696,18 @@ UI.appendFieldTo = function (tpl, data, toEl) {
         }
     }
     return UI.renderField($(tpl), data).appendTo(toEl)
+};
+
+UI.renderField2 = function (tpl, data) {
+    if (!data) {
+        data = {}
+    }
+    if (tpl && typeof tpl === "string") {
+        for (var n in data) {
+            tpl = tpl.replace(new RegExp("{" + n + "}", "gi"), data[n]?data[n]:"")
+        }
+    }
+    return tpl;
 };
 UI.showCamera = function (deviceId, elSelector) {
     var renderCameraTo = function (el, deviceIp, devicePort, deviceUser, devicePwd, protocolType) {

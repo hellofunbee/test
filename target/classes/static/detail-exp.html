@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-发布信息-即时信息</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="mx-main" page="page-news-detail">
+    <div class="mx-handle clearfix">
+        <div class="sm-title fl">文章详情</div>
+        <div class="fl" style="margin-left:35px;padding-top:10px;font-size:14px;color:#fff">
+            <span class="news-index" style="cursor:pointer">即时信息</span>
+            &gt; <span class="news-title">信息不存在</span>
+        </div>
+    </div>
+    <div class="xxfb-module" style="margin-left:120px">
+        <div class="clearfix" style="width:800px">
+            <h2 style="font-size:24px;color:#001cb9" class="news-title"></h2>
+            <div style="height:1px;background-color:#001cb9;overflow:hidden;margin-top:20px;margin-bottom:10px">
+                &#160;</div>
+            <div class="fr"><span class="news-author">张三</span>&#160;&#160;<span class="news-time">2017-01-01</span>
+            </div>
+            <div class="clearfix"></div>
+            <p class="news-content clearfix" style="margin-top:10px"></p></div>
+    </div>
+</div>
+<script type="text/javascript">if (!window.jQuery) {
+    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+    document.write(html)
+}</script>
+<script>
+    $(function () {
+        var page = $('[page="page-news-detail"]'),
+                e = page.parents("div#main_iframe").attr("src") || location.href,
+                id = purl(e).param("id"),
+                type = purl(e).param("type");
+        //type 1:答疑,2：提问,3：服务,4：项目
+
+        var url = '';
+        var data = {};
+        if (type == 1) {
+            url = '/expAns/list';
+            data.exp_ans_id = id;
+        }
+        if (type == 2) {
+            url = '/uq/list';
+            data.user_question_id = id;
+        }
+        if (type == 3) {
+            url = '/expClient/list';
+            data.exp_client_id = id;
+        }
+        if (type == 4) {
+            url = '/expPro/list';
+            data.exp_pro_id = id;
+        }
+
+
+        API.service(url, data, function (data) {
+            var e = data.object[0];
+
+            var c1 = '专家系统';
+            var c2 = "专家管理"
+            var title = "";
+            var content = "";
+            var author = "";
+
+            if (type == 1) {
+                title = e.exp_ans_title;
+                content = e.exp_ans_content;
+                author = e.tu_name;
+            }
+            if (type == 2) {
+                title = e.q_title;
+                content = e.q_ans;
+                author = e.q_user_name;
+            }
+            if (type == 3) {
+                title = e.exp_client_title;
+                content = e.exp_client_content;
+                author = e.tu_name;
+            }
+            if (type == 4) {
+                title = e.exp_pro_title;
+                content = e.exp_pro_content;
+                author = e.tu_name;
+            }
+
+
+            page.find('.news-index').text(c2);
+            page.find('.news-index').on('click', function () {
+                window.openPageContent(c1, c2);
+
+
+            });
+            page.find(".news-title").text(title)
+                    .end()
+                    .find(".news-content").text(content).prepend('<span style="width:30px;display: inline-block">&#160;</span>')
+                    .end()
+                    .find(".news-author").text(author || "")
+                    .end()
+                    .find(".news-time").text(new Date(e.update_time).format("yyyy年MM月dd日"))
+                    .end()
+        })
+    })</script>
+</body>
+</html>

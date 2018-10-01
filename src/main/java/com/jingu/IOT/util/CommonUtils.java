@@ -238,4 +238,25 @@ public class CommonUtils {
     }
 
 
+    /**
+     * 查找map 与list<Map>是否存在key为field的元相同素
+     * @param m
+     * @param list
+     * @param field
+     * @return
+     */
+    public static boolean hasObj(Map m, List<Map<String, Object>> list, String field) {
+
+        if (m == null || list == null || field == null)
+            return false;
+        for (Map src : list) {
+            if (src.get(field) != null && src.get(field).equals(m.get(field))) {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
 }

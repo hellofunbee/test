@@ -113,9 +113,7 @@ public class GatherService {
 
 
     public Map<String, Object> getChannalNByField(String field) {
-
         List<Map<String, Object>> channels = gatherDao.getChannalNByField(field);
-
         if (channels == null || channels.size() == 0)
             return null;
         else {
@@ -163,5 +161,21 @@ public class GatherService {
         }
 
         return new IOTResult(true, "success", result, 0);
+    }
+
+    /**
+     * 根据deviceId 和channel 的field 查找top 1 数据
+     * @param params
+     * @return
+     */
+    public Map<String,Object> findTopval(Map params){
+
+        try {
+            return gatherDao.findTopval(params);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

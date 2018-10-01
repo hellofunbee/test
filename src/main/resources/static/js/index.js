@@ -56,7 +56,8 @@ $(function () {
             "设备管理": "system.html",
             "分类管理": "system2.html",
             "用户管理": "system3.html",
-            "权限管理": "system4.html"
+            "权限管理": "system4.html",
+            "专家管理": "system5.html"
         };
         var pageNav = $(".mx-nav>li").click(function () {
             var content = $(this).children("a").text();

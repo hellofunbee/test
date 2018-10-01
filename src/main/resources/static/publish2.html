@@ -83,9 +83,14 @@
 <div class="xxx-layer">
     <div id="layer-content">
         <div class="clearfix">
-            <div class="fl" style="width:380px"><h4>标题</h4>
-                <p><input type="text" id="publish2-title"></p></div>
-            <div class="fr" style="width:200px"><h4>所属一级分类</h4>
+            <div class="fl" style="width:380px">
+                <h4>标题</h4>
+                <p>
+                    <input type="text" id="publish2-title">
+                </p>
+            </div>
+            <div class="fr" style="width:200px">
+                <h4>所属一级分类</h4>
                 <p><select name="" id="publish2-class-sel">
                     <option value=""></option>
                 </select></p>
@@ -93,9 +98,9 @@
         </div>
         <h4>原文信息</h4>
         <p><textarea name="" id="publish2-content" cols="30" rows="10"></textarea></p>
-        <div class="tc mt20"><a href="#" class="btn-lg btn-df-gray" id="publish2-frm-cancel">取消</a><a href="#"
-                                                                                                      class="btn-lg btn-df-blue"
-                                                                                                      id="publish2-frm-save">保存并发送</a>
+        <div class="tc mt20">
+            <a href="#" class="btn-lg btn-df-gray" id="publish2-frm-cancel">取消</a>
+            <a href="#" class="btn-lg btn-df-blue" id="publish2-frm-save">保存并发送</a>
         </div>
     </div>
 </div>
@@ -148,7 +153,7 @@ $("#fbxx").click(function () {
         success: function (e, t) {
 
             e.find('.xxx-layer').empty();
-            UI.appendFieldTo(tpl,{},e.find('.xxx-layer'));
+            UI.appendFieldTo(tpl, {}, e.find('.xxx-layer'));
 
             var s = e.find("#publish2-class-sel").empty(),
                     i = e.find("#publish2-title").val(""), a = e.find("#publish2-content").val("");

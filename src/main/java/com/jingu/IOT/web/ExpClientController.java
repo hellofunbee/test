@@ -23,6 +23,14 @@ public class ExpClientController {
         return expClientService.save(pd);
     }
 
+    // 添加规则
+    @CrossOrigin
+    @RequestMapping(value = "/expClient/saveList", method = RequestMethod.POST)
+    public IOTResult saveList(@RequestBody PageData pd) {
+
+        return expClientService.saveList(pd);
+    }
+
     @CrossOrigin
     @RequestMapping(value = "/expClient/del", method = RequestMethod.POST)
     public IOTResult del(@RequestBody PageData pd) {

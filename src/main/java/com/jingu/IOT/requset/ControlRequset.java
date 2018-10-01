@@ -37,11 +37,6 @@ public class ControlRequset extends ControlEntity {
 	private int model;
 	private int app;
 	
-	
-	
-	
-	
-	
 	public int getApp() {
 		return app;
 	}

@@ -44,8 +44,17 @@ public class UserQuestionDao {
             p.add(pd.get("q_ans"));
         }
 
+        if (CommonUtils.has(pd.get("q_state"))) {
+            sql += " , q_state = ? ";
+            p.add(pd.get("q_state"));
+        }
+
+
 
         sql += " ,update_time = NOW()";
+
+        sql += " where user_question_id=?";
+        p.add(pd.get("user_question_id"));
 
 
         return jdbcTemplate.update(sql, p.toArray());
@@ -77,7 +86,9 @@ public class UserQuestionDao {
 
     public List<Map<String, Object>> list(PageData pd) {
 
-        String sql = "select * from user_question where 1 = 1";
+        String sql = "select q.*,u.tu_name q_user_name from user_question q " +
+                "LEFT JOIN t_user u on u.tu_id = q.q_user_id "+
+                "where 1 = 1";
 
         List<Object> p = new ArrayList<>();
         if (CommonUtils.has(pd.get("q_title"))) {

@@ -50,8 +50,12 @@ public class ExpAnsDao {
             p.add(pd.get("tu_id"));
         }
 
+
+
         sql += " ,update_time = NOW()";
 
+        sql += " where exp_ans_id=?";
+        p.add(pd.get("exp_ans_id"));
 
         return jdbcTemplate.update(sql, p.toArray());
     }
@@ -81,10 +85,12 @@ public class ExpAnsDao {
     }
 
     public List<Map<String, Object>> list(PageData pd) {
-
-        String sql = "select * from exp_ans where 1 = 1";
-
         List<Object> p = new ArrayList<>();
+        String sql = "select e.*,t.tu_name from exp_ans e" +
+                " left join t_user t on t.tu_id= e.tu_id "+
+                "where 1 = 1";
+
+
         if (CommonUtils.has(pd.get("exp_ans_title"))) {
             sql += " and exp_ans_title like  '%" + pd.get("exp_ans_title") + "%'";
         }
@@ -100,7 +106,7 @@ public class ExpAnsDao {
         }
 
         if (CommonUtils.has(pd.get("tu_id"))) {
-            sql += " and tu_id = ? ";
+            sql += " and e.tu_id = ? ";
             p.add(pd.get("tu_id"));
         }
 

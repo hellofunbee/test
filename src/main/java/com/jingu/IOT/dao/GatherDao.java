@@ -444,4 +444,12 @@ public class GatherDao {
                 "' and unit <> '' and name <> '' limit 1";
         return jdbcTemplate.queryForList(sql);
     }
+
+    public Map<String, Object> findTopval(Map params)throws Exception{
+        String field = (String) params.get("field");
+        String table_name = (String) params.get("table_name");
+
+        String sql = "select " + field + " val from " + table_name + " order by infoDataTime desc limit 1";
+        return jdbcTemplate.queryForMap(sql);
+    }
 }

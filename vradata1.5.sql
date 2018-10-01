@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `exp_ans`;
 CREATE TABLE `exp_ans` (
   `exp_ans_id` int(11) NOT NULL,
   `exp_ans_title` varchar(255) DEFAULT NULL,
-  `exp_ans_titile` text,
+  `exp_ans_content` text,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   `tu_id` int(11) DEFAULT NULL,

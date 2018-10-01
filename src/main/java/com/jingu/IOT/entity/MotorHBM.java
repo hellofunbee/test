@@ -1,8 +1,8 @@
 package com.jingu.IOT.entity;
 
-import java.io.Serializable;
-
 import com.jingu.IOT.util.PublicMethod;
+
+import java.io.Serializable;
 //薇甘菊踏查记录
 public class MotorHBM extends ActionForm implements Serializable {
 		
@@ -16,7 +16,7 @@ public class MotorHBM extends ActionForm implements Serializable {
 	 	private String raiseSwitchId;//开关号，或者上升开关号		
 	 	private String skinGroupId;	 	
 	    private String skinSwitchId;	    
-	    private int direction=0;//控制方向 //控制运动方向，0x1：上升，0x2：下降，0x3:停止
+	    private int direction=0;//控制方向 控制运动方向，0x1：上升，0x2：下降，0x3:停止
 	    private int distanceOrDuration=0;//行程1-100,时间 0关  -1 常开
 	    private int posSensorCH=0; //点击位置传感器，通道号1-16
 	    private String maxValue="0";
@@ -115,26 +115,26 @@ public class MotorHBM extends ActionForm implements Serializable {
 //			if(smartTempCtrl!=null&&smartTempCtrl.equals("1")) this.setSmartCtrlType("1");
 			this.smartTempCtrl = smartTempCtrl;
 		}
-//	    public byte[] toByteCmd(){
-//	     byte[] b=new byte[9];
-//	     b[0]=(byte)this.getCtrlType();
-//	     if(b[0]==0x1){
-//	    	 b[1]=(byte)Integer.parseInt(this.getRaiseGroupId());
-//		     b[2]=(byte)Integer.parseInt(this.getRaiseSwitchId());
-//		     b[3]=(byte)Integer.parseInt(this.getSkinGroupId());
-//		     b[4]=(byte)Integer.parseInt(this.getSkinSwitchId());
-//		     b[5]=(byte)this.getDirection();
-//		     b[6]=(byte)this.getDistanceOrDuration();
-//		     b[7]=(byte)this.getPosSensorCH();
-//	     }
-//	     if(b[0]==0x2){
-//	    	 b[1]=(byte)Integer.parseInt(this.getRaiseGroupId());
-//		     b[2]=(byte)Integer.parseInt(this.getRaiseSwitchId());
-//		     byte[] durationByte=PublicMethod.int4bytes(this.getDistanceOrDuration());
-//		     System.arraycopy(durationByte, 0, b, 3, 4);
-//	     }
-//	     return b;
-//	    }
+	    /*public byte[] toByteCmd(){
+	     byte[] b=new byte[9];
+	     b[0]=(byte)this.getCtrlType();
+	     if(b[0]==0x1){
+	    	 b[1]=(byte)Integer.parseInt(this.getRaiseGroupId());
+		     b[2]=(byte)Integer.parseInt(this.getRaiseSwitchId());
+		     b[3]=(byte)Integer.parseInt(this.getSkinGroupId());
+		     b[4]=(byte)Integer.parseInt(this.getSkinSwitchId());
+		     b[5]=(byte)this.getDirection();
+		     b[6]=(byte)this.getDistanceOrDuration();
+		     b[7]=(byte)this.getPosSensorCH();
+	     }
+	     if(b[0]==0x2){
+	    	 b[1]=(byte)Integer.parseInt(this.getRaiseGroupId());
+		     b[2]=(byte)Integer.parseInt(this.getRaiseSwitchId());
+		     byte[] durationByte=PublicMethod.int4bytes(this.getDistanceOrDuration());
+		     System.arraycopy(durationByte, 0, b, 3, 4);
+	     }
+	     return b;
+	    }*/
 	    
 	    public byte[] toByteCmd(){
 	    	byte[] b=null;

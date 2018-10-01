@@ -318,4 +318,9 @@ public class SettingDao {
     }
 
 
+    public List<Map<String, Object>> findByCtrl_ids(String s) {
+        String sql = "select * from control where ctrl_id in (" + s + ")  GROUP BY ctrl_id ";
+
+        return jdbcTemplate.queryForList(sql);
+    }
 }

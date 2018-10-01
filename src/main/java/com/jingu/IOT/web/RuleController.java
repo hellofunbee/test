@@ -18,6 +18,7 @@ import com.jingu.IOT.entity.RuleEntity;
 import com.jingu.IOT.requset.MonitorRequest;
 import com.jingu.IOT.requset.RuleRequset;
 import com.jingu.IOT.response.IOTResult;
+import com.jingu.IOT.service.RedisService;
 import com.jingu.IOT.service.RuleService;
 import com.jingu.IOT.service.SettingService;
 import com.jingu.IOT.util.Client;
@@ -44,6 +45,8 @@ public class RuleController {
     private RuleService ruleService;
     private static ToolUtil toolUtil;
     private SettingService settingService;
+    @Autowired
+    RedisService redisService;
 
     @Autowired
     public RuleController(RuleService ruleService, ToolUtil toolUtil, SettingService settingService) {
@@ -126,7 +129,7 @@ public class RuleController {
         MonitorEntity monitorEntity = new MonitorEntity();
         monitorEntity.setCtrl_id(ruleRequset.getCtrl_id());
         monitorEntity.setMo_deviceId(ruleRequset.getR_deviceId());
-        int deleteRuleList2 = ruleService.deleteMonitorList(monitorEntity);
+        int deleteRuleList2 = redisService.deleteMonitorList(monitorEntity);
 
         ControlEntity controlEntity = new ControlEntity();
         controlEntity.setCtrl_id(ruleRequset.getCtrl_id());
@@ -143,41 +146,7 @@ public class RuleController {
             if (listRule == null || listRule.isEmpty()) {
                 return new IOTResult(true, "没有预约控制规则", null, 5);
             }
-            // RuleEntity [r_id=12, r_name=12121, r_deviceId=null,
-            // switchGroupId=null, switchId=null, ctrlType=null, cycleDay=1,
-            // execTime=14:00:00, beginTime=2017-10-10 14:00:00,
-            // endTime=2017-11-20 14:00:00, targetDeviceId=null,
-            // targetFieldName=null, ruleEnable=2, lastExecDataTime=null,
-            // ctrl_id=5, maxValue=0.0, minValue=0.0, duration=60.0,
-            // coefficient=0.0, getCtrl_id()=5, getR_id()=12, getR_name()=12121,
-            // getR_deviceId()=null, getSwitchGroupId()=null,
-            // getSwitchId()=null, getCtrlType()=null, getCycleDay()=1,
-            // getExecTime()=14:00:00, getBeginTime()=2017-10-10 14:00:00,
-            // getEndTime()=2017-11-20 14:00:00, getTargetDeviceId()=null,
-            // getTargetFieldName()=null, getRuleEnable()=2,
-            // getLastExecDataTime()=null, getMaxValue()=0.0, getMinValue()=0.0,
-            // getDuration()=60.0, getCoefficient()=0.0, getClass()=class
-            // com.jingu.IOT.entity.RuleEntity, hashCode()=778754110,
-            // toString()=com.jingu.IOT.entity.RuleEntity@2e6ad83e]
-            // RuleEntity [r_id=13, r_name=测试, r_deviceId=10.00.21.74,
-            // switchGroupId=null, switchId=null, ctrlType=null, cycleDay=1,
-            // execTime=14:00:00, beginTime=2017-10-10 14:00:00,
-            // endTime=2017-12-10 14:00:00, targetDeviceId=null,
-            // targetFieldName=null, ruleEnable=1, lastExecDataTime=null,
-            // ctrl_id=5, maxValue=0.0, minValue=0.0, duration=60.0,
-            // coefficient=0.0, getCtrl_id()=5, getR_id()=13, getR_name()=测试,
-            // getR_deviceId()=10.00.21.74, getSwitchGroupId()=null,
-            // getSwitchId()=null, getCtrlType()=null, getCycleDay()=1,
-            // getExecTime()=14:00:00, getBeginTime()=2017-10-10 14:00:00,
-            // getEndTime()=2017-12-10 14:00:00, getTargetDeviceId()=null,
-            // getTargetFieldName()=null, getRuleEnable()=1,
-            // getLastExecDataTime()=null, getMaxValue()=0.0, getMinValue()=0.0,
-            // getDuration()=60.0, getCoefficient()=0.0, getClass()=class
-            // com.jingu.IOT.entity.RuleEntity, hashCode()=252737087,
-            // toString()=com.jingu.IOT.entity.RuleEntity@f10763f]
-            for (RuleEntity ruleEntity : listRule) {
-                System.out.println(ruleEntity.getBeginTime());
-            }
+
             Calendar calendar = Calendar.getInstance();
             Date time = calendar.getTime();
             SimpleDateFormat dfDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
@@ -204,6 +173,7 @@ public class RuleController {
             // int updateControlSetting =
             // settingService.updateControlSetting(controlEntity);
             if (addAll) {
+
                 toolUtil.setRuleList(ToolUtil.RULE, ruleList);
                 if (ruleRequset.getApp() == 1) {
                     Calendar c = Calendar.getInstance();// 可以对每个时间域单独修改
@@ -271,7 +241,7 @@ public class RuleController {
             return new IOTResult(false, "预约控制没有生效", null, 8);
         }
         if (ruleRequset.getType() == 2) {
-            int deleteRuleList = ruleService.deleteRuleList(ruleRequset);
+            int deleteRuleList = redisService.deleteRuleListByCtrl_id(ruleRequset);
 
             controlEntity.setState_type(0);
             settingService.updateControlSetting(controlEntity);
@@ -288,35 +258,31 @@ public class RuleController {
     @CrossOrigin
     @RequestMapping(value = "/removeRuleList", method = RequestMethod.POST)
     public IOTResult removeRuleList(@RequestBody RuleRequset ruleRequset) throws UnsupportedEncodingException {
-        // 验证控制设备是否存在
-        // 验证权限
-        RuleEntity re;
-        int deleteRuleList = ruleService.deleteRuleList(ruleRequset);
-        return null;
+
+        int status = redisService.deleteRuleListByCtrl_id(ruleRequset);
+        if (status > 0)
+            return new IOTResult(true, "删除成功", status, 0);
+        else
+            return new IOTResult(false, "删除失败", status, 0);
     }
 
-    // @CrossOrigin
-    // @RequestMapping(value = "/setRuleList", method = RequestMethod.POST)
-    // public IOTResult setRuleList(@RequestBody RuleRequset ruleRequset) throws
-    // UnsupportedEncodingException{
-    // // 验证控制设备是否存在
-    // //验证权限
-    // List<RuleEntity> ruleList = toolUtil.getRuleList(ToolUtil.RULE);
-    // if(ruleList==null){
-    // ruleList = new ArrayList<>();
-    // toolUtil.setMaxId(ToolUtil.RULEID, 0);
-    // }
-    // List<RuleEntity> listRule = ruleService.listRule(ruleRequset);
-    // if(listRule ==null ||listRule.isEmpty()){
-    // return new IOTResult(false,"没有有效的规则",null,6);
-    // }
-    // boolean addAll = ruleList.addAll(listRule);
-    // if(addAll){
-    // toolUtil.setRuleList(ToolUtil.RULE, ruleList);
-    // return new IOTResult(true,"预约控制生效",null,0);
-    // }
-    // return new IOTResult(false,"预约控制没有",null,6);
-    // }
+    // 删除redis中rule数据
+    @CrossOrigin
+    @RequestMapping(value = "/resetRuleSet", method = RequestMethod.POST)
+    public IOTResult resetRuleSet(@RequestBody RuleRequset ruleRequset) throws UnsupportedEncodingException {
+        toolUtil.setRuleList(ToolUtil.RULE, null);
+        return new IOTResult(true, "删除成功", 1, 0);
+    }
+
+
+    // 重置智能控制规则
+    @CrossOrigin
+    @RequestMapping(value = "/resetMonitorList", method = RequestMethod.POST)
+    public IOTResult resetMonitorList(@RequestBody MonitorRequest mr) throws UnsupportedEncodingException {
+        toolUtil.setRuleList(ToolUtil.MONITOR + mr.getMo_deviceId(), null);
+        return new IOTResult(true, "修改成功", null, 0);
+    }
+
 
     // 获得预约控制规则
     @CrossOrigin
@@ -336,11 +302,7 @@ public class RuleController {
             return new IOTResult(false, "查看成功", listRule, 0);
         }
         return new IOTResult(false, "查看失败", null, 0);
-        // List<RuleEntity> listRule = ruleService.listRule(ruleRequset);
-        // if(listRule !=null && !listRule.isEmpty()){
-        // return new IOTResult(true,"查找成功",listRule,0);
-        // }
-        // return new IOTResult(false,"暂无相关信息",null,0);
+
     }
 
     // 修改预约控制规则
@@ -356,36 +318,15 @@ public class RuleController {
         if (check == null || !ruleRequset.getCksid().equals(check)) {
             return new IOTResult(false, "登陆失效", null, 2);
         }
-        int updateRule = ruleService.updateRuleList(ruleRequset);
+
+        int updateRule = ruleService.updateRule(ruleRequset);
         if (updateRule > 0) {
+            redisService.updateRuleList(ruleRequset);
             return new IOTResult(true, "修改成功", null, 0);
         }
         return new IOTResult(false, "修改失败", null, 0);
     }
 
-    // 重置redis中数据
-    @CrossOrigin
-    @RequestMapping(value = "/resetRuleSet", method = RequestMethod.POST)
-    public IOTResult resetRuleSet(@RequestBody RuleRequset ruleRequset) throws UnsupportedEncodingException {
-        toolUtil.setRuleList(ToolUtil.RULE, null);
-        // if(updateRule >0){
-        // return new IOTResult(true,"修改成功",null,0);
-        // }
-        // return new IOTResult(false,"修改失败",null,0);
-        return null;
-    }
-
-    // 重置智能控制规则
-    @CrossOrigin
-    @RequestMapping(value = "/resetMonitorList", method = RequestMethod.POST)
-    public IOTResult resetMonitorList(@RequestBody MonitorRequest mr) throws UnsupportedEncodingException {
-        toolUtil.setRuleList(ToolUtil.MONITOR + mr.getMo_deviceId(), null);
-        // if(updateRule >0){
-        // return new IOTResult(true,"修改成功",null,0);
-        // }
-        // return new IOTResult(false,"修改失败",null,0);
-        return null;
-    }
 
     // 修改预约智能控制规则
     @CrossOrigin
@@ -410,8 +351,9 @@ public class RuleController {
     }
 
     // 修改预约智能控制规则
-    @Transactional(value = "primaryTransactionManager")
+
     @CrossOrigin
+    @Transactional(value = "primaryTransactionManager")
     @RequestMapping(value = "/addListMonitor", method = RequestMethod.POST)
     public IOTResult addListMonitor(@RequestBody MonitorRequest mr) {
         int ok = 0;
@@ -432,15 +374,14 @@ public class RuleController {
                 }
                 if (m.getMo_id() == 0) {
                 */
-                    int addRule = ruleService.addMonitor(m);
-                    if (addRule > 0)
-                        ok++;
-                    else er++;
+                int addRule = ruleService.addMonitor(m);
+                if (addRule > 0)
+                    ok++;
+                else er++;
                 /*}*/
             }
         }
-
-
+        redisService.resetMonitor();
         return new IOTResult(true, "保存成功" + er, null, 0);
 
     }
@@ -476,21 +417,24 @@ public class RuleController {
         // 验证权限
         RuleEntity ruleEntity = new RuleEntity();
         ruleEntity.setCtrl_id(moRequest.getCtrl_id());
-        int deleteRuleList2 = ruleService.deleteRuleList(ruleEntity);
+
+        int deleteRuleList2 = redisService.deleteRuleListByCtrl_id(ruleEntity);
         ControlEntity controlEntity = new ControlEntity();
         controlEntity.setCtrl_id(moRequest.getCtrl_id());
         controlEntity.setState_type(3);
+
         int updateControlSetting = settingService.updateControlSetting(controlEntity);
+
         if (moRequest.getType() == 1) {
             List<MonitorEntity> monitorList = toolUtil.getMonitorList(ToolUtil.MONITOR + moRequest.getMo_deviceId());
+
             if (monitorList == null || monitorList.isEmpty()) {
                 monitorList = new ArrayList<>();
                 toolUtil.setMaxId(ToolUtil.MONITOR + moRequest.getMo_deviceId(), 0);
             }
+
             List<MonitorEntity> listMonitor = ruleService.listMonitor(moRequest);
-            // if(listMonitor ==null ||listMonitor.isEmpty()){
-            // return new IOTResult(false,"没有有效的规则",null,6);
-            // }
+
             if (listMonitor == null || listMonitor.isEmpty()) {
 
                 if (updateControlSetting > 0) {
@@ -508,7 +452,7 @@ public class RuleController {
             return new IOTResult(false, "智能控制没有生效", null, 6);
         }
         if (moRequest.getType() == 2) {
-            int deleteRuleList = ruleService.deleteMonitorList(moRequest);
+            int deleteRuleList = redisService.deleteMonitorList(moRequest);
             controlEntity.setState_type(0);
             settingService.updateControlSetting(controlEntity);
             if (deleteRuleList > 0) {
@@ -520,44 +464,7 @@ public class RuleController {
 
     }
 
-    // public static void main(String[] args) {
-    // Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
-    // int hour = c.get(Calendar.HOUR_OF_DAY);
-    // int minute = c.get(Calendar.MINUTE);
-    // int second = c.get(Calendar.SECOND);
-    // System.out.println(hour+"-"+minute+"-"+second);
-    // String cktime = cktimeHour(hour+":"+minute+":"+second);
-    //// String replace = cktime.replace("-", ":");
-    // System.out.println(cktime);
-    // String timeHour = hour+":"+minute+":"+second;
-    //
-    //
-    // Comparator<RuleEntity> byTime = (m1, m2) ->
-    // m2.getExecTime().toString().compareTo(m1.getExecTime().toString());
-    // Collections.sort(listArticleByName, byTime);
 
-    // List<Object> list1 = new ArrayList<>();
-    // List<Object> list2 =new ArrayList<>();
-    // list2.add("1");
-    // boolean addAll = list1.addAll(list2);
-    // System.out.println(addAll);
-
-    // }
-    // public static String cktimeHour(String time){
-    //// String tString = "2017-1-01";
-    // if(time.length()<10){
-    // String[] split = time.split(":");
-    // if(split[1].length()<2){
-    // split[1] = String.valueOf(0)+split[1];
-    // }
-    // if(split[2].length()<2){
-    // split[2] = String.valueOf(0)+split[2];
-    // }
-    // return split[0]+":"+split[1]+":"+split[2];
-    // }else{
-    // return time;
-    // }
-    // }
 
     public static void main(String[] args) {
         int result = -1;

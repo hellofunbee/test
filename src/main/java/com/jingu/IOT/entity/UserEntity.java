@@ -50,11 +50,14 @@ public class UserEntity implements RowMapper<UserEntity> {
 	private String tu_sex;// '0:1:2保密，男，女',
 	private String tu_job;//'职务',
 	private String tu_edu;// '学位',
+	private String tu_logo;
+	private int tu_age;
 
 	private String device_name;
 	private String device_ip;
 
 	private int c_id;//专家分类
+
 
 
 
@@ -246,5 +249,21 @@ public class UserEntity implements RowMapper<UserEntity> {
 
 	public void setC_id(int c_id) {
 		this.c_id = c_id;
+	}
+
+	public int getTu_age() {
+		return tu_age;
+	}
+
+	public void setTu_age(int tu_age) {
+		this.tu_age = tu_age;
+	}
+
+	public String getTu_logo() {
+		return tu_logo;
+	}
+
+	public void setTu_logo(String tu_logo) {
+		this.tu_logo = tu_logo;
 	}
 }

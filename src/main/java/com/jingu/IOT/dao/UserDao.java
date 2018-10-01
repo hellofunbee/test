@@ -149,9 +149,17 @@ public class UserDao {
             sql += " , tu_edu =? ";
             list.add(userEntity.getTu_edu());
         }
+        if (userEntity.getTu_logo() != null && userEntity.getTu_logo().trim().length() > 0) {
+            sql += " , tu_logo =? ";
+            list.add(userEntity.getTu_logo());
+        }
         if (userEntity.getC_id() > 0) {
             sql += " , c_id =? ";
             list.add(userEntity.getC_id());
+        }
+        if (userEntity.getTu_age() > 0) {
+            sql += " , tu_age =? ";
+            list.add(userEntity.getTu_age());
         }
         if (list.size() == 1) {
             return 0;
@@ -168,7 +176,11 @@ public class UserDao {
                 " select GROUP_CONCAT(c1.c_name) from exp_field e1 " +
                 " LEFT JOIN class c1 on c1.c_id = e1.c_id " +
                 " where e1.tu_id = t.tu_id " +
-                " ) fields " +
+                " ) fields ," +
+                " ( " +
+                "select count(exp_client_id) from exp_client cl " +
+                " where cl.exp_id = t.tu_id " +
+                " ) clients " +
                 " from t_user t " +
                 "LEFT join class c on c.c_id = t.c_id " +
                 "where 1 =1";
