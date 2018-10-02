@@ -146,8 +146,29 @@ public class RuleDao {
     }
 
     public List<RuleEntity> listRule(RuleEntity re) {
-        String sql = " select * from  t_varstriver_switchctrl_rule where 1=1 ";
+        String sql = " select * from  t_varstriver_switchctrl_rule rule where 1=1 ";
         List<Object> list = new ArrayList<>();
+        sql = getSql(re, sql, list);
+        return jdbcTemplate.query(sql, list.toArray(), new RuleEntity());
+
+    }
+
+    /**
+     * 获取所有的要执行的预约控制的规则
+     * @param re
+     * @return
+     */
+    public List<RuleEntity> resetRule(RuleEntity re) {
+        String sql = " select * from  t_varstriver_switchctrl_rule rule" +
+                " INNER JOIN control ctrl on ctrl.ctrl_id = rule.ctrl_id and ctrl.state_type = 3 " +
+                " where 1=1 ";
+        List<Object> list = new ArrayList<>();
+        sql = getSql(re, sql, list);
+        return jdbcTemplate.query(sql, list.toArray(), new RuleEntity());
+
+    }
+
+    private String getSql(RuleEntity re, String sql, List<Object> list) {
         if (re.getType() > 0) {
             sql += " and type =?";
             list.add(re.getType());
@@ -201,7 +222,7 @@ public class RuleDao {
             list.add(re.getTargetFieldName());
         }
         if (re.getCtrl_id() > 0) {
-            sql += " and ctrl_id =?";
+            sql += " and rule.ctrl_id =?";
             list.add(re.getCtrl_id());
         }
         if (re.getTime() != null && re.getTime().trim().length() > 0) {
@@ -213,8 +234,7 @@ public class RuleDao {
             sql += " and id = ?";
             list.add(re.getR_id());
         }
-        return jdbcTemplate.query(sql, list.toArray(), new RuleEntity());
-
+        return sql;
     }
 
     /**
@@ -329,14 +349,43 @@ public class RuleDao {
 
 
     public List<MonitorEntity> listMonitor(MonitorEntity mo) {
-        String sql = " select * from  t_monitor  where 1=1 ";
+        String sql = " select * from  t_monitor mo where 1=1 ";
         List<Object> list = new ArrayList<>();
+        sql = getString(mo, sql, list);
+        return jdbcTemplate.query(sql, new MonitorEntity(), list.toArray());
+    }
+
+    /**
+     * 获取所有的要执行的智能控制的规则
+     *
+     * @param mo
+     * @return
+     */
+    public List<MonitorEntity> resetMonitor(MonitorEntity mo) {
+        String sql = " select * from  t_monitor mo " +
+                " INNER JOIN control ctrl on ctrl.ctrl_id = mo.ctrl_id and ctrl.state_type = 2 " +
+                " where 1=1 ";
+        List<Object> list = new ArrayList<>();
+        sql = getString(mo, sql, list);
+        return jdbcTemplate.query(sql, new MonitorEntity(), list.toArray());
+    }
+
+
+    /**
+     * 拼接sql参数
+     *
+     * @param mo
+     * @param sql
+     * @param list
+     * @return
+     */
+    private String getString(MonitorEntity mo, String sql, List<Object> list) {
         if (mo.getMo_name() != null && mo.getMo_name().trim().length() > 0) {
             sql += " and mo_name =? ";
             list.add(mo.getMo_name());
         }
         if (mo.getCtrl_id() > 0) {
-            sql += " and ctrl_id =? ";
+            sql += " and mo.ctrl_id =? ";
             list.add(mo.getCtrl_id());
         }
         if (mo.getMo_channel() != null && mo.getMo_channel().trim().length() > 0) {
@@ -371,8 +420,6 @@ public class RuleDao {
             sql += " and mo_lower =? ";
             list.add(mo.getMo_lower());
         }
-        return jdbcTemplate.query(sql, new MonitorEntity(), list.toArray());
+        return sql;
     }
-
-
 }

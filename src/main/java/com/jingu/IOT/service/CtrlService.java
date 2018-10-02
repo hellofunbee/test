@@ -90,20 +90,6 @@ public class CtrlService {
         MotorHBM hbm = new MotorHBM();
         List<MonitorEntity> monitorList = toolUtil.getMonitorList(ToolUtil.MONITOR + deviceId);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                try {
-                    findChannelValue(deviceId, split);
-                } catch (UnsupportedEncodingException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-
         for (MonitorEntity monitorEntity : monitorList) {
             String mo_channel = monitorEntity.getMo_channel();
             String channel_index = mo_channel.substring(7);

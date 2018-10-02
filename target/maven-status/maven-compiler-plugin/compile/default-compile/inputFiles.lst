@@ -1,3 +1,4 @@
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/MobileController.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/RelationShipRequset.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/AlarmDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/InputEntity.java
@@ -10,6 +11,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/SettingService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/ExpFieldDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/PageData.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/TaskService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/IPCController.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/SpringLoggingHelper.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/response/PointResult.java
@@ -29,6 +31,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/xlsx/FontRegion.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/AnswerQuestionRequset.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/UserReq.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/config/MyInterceptor.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/MainSettingEntity.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/DistributionController.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/IOTApplication.java
@@ -51,6 +54,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/response/IOTResult3.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/VideoEncodeType.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/support/XLSXWriterSupport.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/config/MyFilter.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/MonitorEntity.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/ProduceRequset.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/RelationShipDao.java
@@ -118,6 +122,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/requset/IPCProxyRequest.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/HCNetSDK.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/support/CellFormat.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/ClientServie.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/Client.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/RoleDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/inter/Timing.java
@@ -202,6 +207,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/ExportService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/AreaDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/CtrlController.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/config/MyListener.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/SettingEntity.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/switcher/SwitchConfTimeCtrlHBM.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/switcher/SwitchStatusViewHBM.java

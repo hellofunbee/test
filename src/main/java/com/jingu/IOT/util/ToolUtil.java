@@ -83,6 +83,7 @@ public class ToolUtil {
     public static final String READ = "READ";
     public static final String ALARM = "ALARM";
     public static final String ALARMGRADE = "ALARMGRADE";
+    public static final int TotalS = 120;//卷帘从完全开启 到完全关闭 所用时间
 
     // 线上
 //	 public static final String FILEPATH = File.separator+"data"+File.separator+"IOT"+File.separator+"resources"+File.separator+"picture"+File.separator;

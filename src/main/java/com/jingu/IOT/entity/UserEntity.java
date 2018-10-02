@@ -51,6 +51,7 @@ public class UserEntity implements RowMapper<UserEntity> {
 	private String tu_job;//'职务',
 	private String tu_edu;// '学位',
 	private String tu_logo;
+	private String tu_info;
 	private int tu_age;
 
 	private String device_name;
@@ -265,5 +266,13 @@ public class UserEntity implements RowMapper<UserEntity> {
 
 	public void setTu_logo(String tu_logo) {
 		this.tu_logo = tu_logo;
+	}
+
+	public String getTu_info() {
+		return tu_info;
+	}
+
+	public void setTu_info(String tu_info) {
+		this.tu_info = tu_info;
 	}
 }

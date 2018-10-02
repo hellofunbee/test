@@ -217,6 +217,10 @@ public class SettingDao {
             sql += " , s_state =?";
             list.add(ce.getS_state());
         }
+        if (ce.getIs_running() > 0) {
+            sql += " , is_running =?";
+            list.add(ce.getIs_running());
+        }
         if (list.size() == 1) {
             return 0;
         }

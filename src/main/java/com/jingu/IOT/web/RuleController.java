@@ -196,15 +196,15 @@ public class RuleController {
                     RuleEntity ruleEntity = collect.get(0);
                     // 获得当前开启度
 
-                    Map<String, Object> controlSetting = settingService.getControlSetting(ruleRequset.getCtrl_id());
+                    Map<String, Object> ctrl = settingService.getControlSetting(ruleRequset.getCtrl_id());
                     int result = -1;
-                    if (controlSetting.get("ctrl_type").toString().equals("2")) {
+                    if (ctrl.get("ctrl_type").toString().equals("2")) {
                         byte[] recData = Client.getMotorSensor2(ruleRequset.getPointEntity().getIp(),
                                 ruleRequset.getPointEntity().getPort(), ruleRequset.getPointEntity().getDeviceId());
 
-                        int posSensorSh = Integer.parseInt(controlSetting.get("ctrl_channel").toString());
-                        String maxVal = controlSetting.get("ctrl_max").toString();
-                        String minVal = controlSetting.get("ctrl_min").toString();
+                        int posSensorSh = Integer.parseInt(ctrl.get("ctrl_channel").toString());
+                        String maxVal = ctrl.get("ctrl_max").toString();
+                        String minVal = ctrl.get("ctrl_min").toString();
                         try {
                             byte[] value = new byte[2];
 
@@ -270,8 +270,10 @@ public class RuleController {
     @CrossOrigin
     @RequestMapping(value = "/resetRuleSet", method = RequestMethod.POST)
     public IOTResult resetRuleSet(@RequestBody RuleRequset ruleRequset) throws UnsupportedEncodingException {
-        toolUtil.setRuleList(ToolUtil.RULE, null);
+//        toolUtil.setRuleList(ToolUtil.RULE, null);
+        redisService.resetRuleList();
         return new IOTResult(true, "删除成功", 1, 0);
+
     }
 
 
@@ -279,7 +281,8 @@ public class RuleController {
     @CrossOrigin
     @RequestMapping(value = "/resetMonitorList", method = RequestMethod.POST)
     public IOTResult resetMonitorList(@RequestBody MonitorRequest mr) throws UnsupportedEncodingException {
-        toolUtil.setRuleList(ToolUtil.MONITOR + mr.getMo_deviceId(), null);
+        //toolUtil.setRuleList(ToolUtil.MONITOR, null);
+        redisService.resetMonitor();
         return new IOTResult(true, "修改成功", null, 0);
     }
 
@@ -321,33 +324,41 @@ public class RuleController {
 
         int updateRule = ruleService.updateRule(ruleRequset);
         if (updateRule > 0) {
-            redisService.updateRuleList(ruleRequset);
+            redisService.resetRuleList();
+
             return new IOTResult(true, "修改成功", null, 0);
         }
         return new IOTResult(false, "修改失败", null, 0);
     }
 
 
-    // 修改预约智能控制规则
+    // 修改智能控制规则
     @CrossOrigin
     @RequestMapping(value = "/updateMonitor", method = RequestMethod.POST)
     public IOTResult updateMonitor(@RequestBody MonitorRequest mr) {
 
+        IOTResult result = new IOTResult(false, "新增失败", null, 0);
         if (mr.getMo_id() > 0) {
             int update = ruleService.updateMonitor(mr);
             if (update > 0) {
-                return new IOTResult(true, "更新成功", null, 0);
+                result = new IOTResult(true, "更新成功", null, 0);
+            } else {
+                result = new IOTResult(false, "更新失败", null, 0);
             }
-            return new IOTResult(false, "更新失败", null, 0);
         }
         if (mr.getMo_id() == 0) {
             int addRule = ruleService.addMonitor(mr);
             if (addRule > 0) {
-                return new IOTResult(true, "新增成功", null, 0);
+                result = new IOTResult(true, "新增成功", null, 0);
+            } else {
+                result = new IOTResult(false, "新增失败", null, 0);
             }
-            return new IOTResult(false, "新增失败", null, 0);
         }
-        return new IOTResult(false, "请求失败", null, 0);
+        if (result.isSuccess()) {
+            redisService.resetMonitor();
+        }
+        return result;
+
     }
 
     // 修改预约智能控制规则
@@ -393,12 +404,13 @@ public class RuleController {
     public IOTResult deleteMonitor(@RequestBody MonitorRequest mRequest) {
         int addRule = ruleService.deleteMonitor(mRequest);
         if (addRule > 0) {
+            redisService.resetMonitor();
             return new IOTResult(true, "删除成功", null, 0);
         }
         return new IOTResult(false, "删除失败", null, 0);
     }
 
-    // 产看数据库中的智能控制规则
+    // 看数据库中的智能控制规则
     @CrossOrigin
     @RequestMapping(value = "/listMonitor", method = RequestMethod.POST)
     public IOTResult listMonitor(@RequestBody MonitorRequest mRequest) {
@@ -415,10 +427,12 @@ public class RuleController {
     public IOTResult setMonitorList(@RequestBody MonitorRequest moRequest) throws UnsupportedEncodingException {
         // 验证控制设备是否存在
         // 验证权限
+        //删除 预约控制
         RuleEntity ruleEntity = new RuleEntity();
         ruleEntity.setCtrl_id(moRequest.getCtrl_id());
-
         int deleteRuleList2 = redisService.deleteRuleListByCtrl_id(ruleEntity);
+
+
         ControlEntity controlEntity = new ControlEntity();
         controlEntity.setCtrl_id(moRequest.getCtrl_id());
         controlEntity.setState_type(3);
@@ -463,7 +477,6 @@ public class RuleController {
         return new IOTResult(false, "参数错误", null, 0);
 
     }
-
 
 
     public static void main(String[] args) {

@@ -25,12 +25,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
-
+ * @author jianghu
  * @ClassName: RuleService
  * @Description: TODO
- * @author jianghu
  * @date 2017年10月24日 下午4:55:27
-
  */
 @Component
 public class RuleService {
@@ -97,4 +95,11 @@ public class RuleService {
         return ruleDao.listMonitor(mo);
     }
 
+    public List<MonitorEntity> resetMonitor(MonitorEntity mo) {
+        return ruleDao.resetMonitor(mo);
+    }
+
+    public List<RuleEntity> resetRule(RuleEntity mo) {
+        return ruleDao.resetRule(mo);
+    }
 }

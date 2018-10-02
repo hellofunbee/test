@@ -55,34 +55,13 @@ public class CMSService {
 	public List<Map<String, Object>> listClass1(ClassEntity c) {
 		return dao.listClass1(c);
 	}
-	//
-	// public JSONObject listCMSClass1(ClassRequest c) {
-	// RestTemplate restTemplate = new RestTemplate();
-	// JSONObject jsonObject = restTemplate.postForObject(ToolUtil.CMSURL +
-	// "/listClass1", c, JSONObject.class);
-	// System.out.println(jsonObject);
-	// return jsonObject;
-	//
-	// }
+
 
 	public List<Map<String, Object>> listCMSClass2Byrid(ClassEntity c) {
 		return dao.listClass2Byrid(c);
 	}
 
-	/**
-	 * 2017年11月23日 jianghu
-	 * 
-	 * @param c
-	 *            TODO
-	 * @return
-	 */
-	// public JSONObject listCMSClass2Byrid(ClassRequest c) {
-	// RestTemplate restTemplate = new RestTemplate();
-	// JSONObject jsonObject = restTemplate.postForObject(ToolUtil.CMSURL +
-	// "/listClass2Byrid", c, JSONObject.class);
-	// System.out.println(jsonObject);
-	// return jsonObject;
-	// }
+
 	public int listUserCount(UserReq u) {
 		// TODO Auto-generated method stub
 		return dao.listUserCount(u);
@@ -117,40 +96,13 @@ public class CMSService {
 		return listArticle;
 	}
 
-	/**
-	 * 2017年11月23日 jianghu
-	 * 
-	 * @param u
-	 *            TODO
-	 * @return
-	 */
-	// public JSONObject getProfessorArticle2(UserReq u) {
-	// RestTemplate restTemplate = new RestTemplate();
-	// JSONObject jsonObject = restTemplate.postForObject(ToolUtil.CMSURL +
-	// "/getProfessorArticle", u,
-	// JSONObject.class);
-	// System.out.println(jsonObject);
-	// return jsonObject;
-	//
-	// }
+
 
 	public int updateCMSUser(UserEntity2 use) {
 		return dao.updateUser(use);
 	}
 
-	/**
-	 * 2017年11月23日 jianghu
-	 * 
-	 * @param u
-	 * @return TODO
-	 */
-	// public JSONObject updateCMSUser(UserReq u) {
-	// RestTemplate restTemplate = new RestTemplate();
-	// JSONObject jsonObject = restTemplate.postForObject(ToolUtil.CMSURL +
-	// "/updateUser", u, JSONObject.class);
-	// // System.out.println(jsonObject);
-	// return jsonObject;
-	// }
+
 
 	public List<ClassEntity> queryAllClass(ClassRequest c) {
 		return dao.queryAllClass(c);
@@ -162,13 +114,6 @@ public class CMSService {
 	 * @param c
 	 * @return TODO
 	 */
-	// public JSONObject listCMSAllClass(ClassRequest c) {
-	// RestTemplate restTemplate = new RestTemplate();
-	// JSONObject jsonObject = restTemplate.postForObject(ToolUtil.CMSURL +
-	// "/listAllClass2", c, JSONObject.class);
-	// System.out.println(jsonObject);
-	// return jsonObject;
-	// }
 
 	
 	public int updateUserState(int uid, int tu_state) {
@@ -179,23 +124,6 @@ public class CMSService {
 		return dao.updateUserState(userReq);
 	}
 	
-	/**
-	 * 2017年12月20日 jianghu
-	 * 
-	 * @param uid
-	 * @param tu_state
-	 *            TODO
-	 */
-//	public JSONObject updateProfessor(int uid, int tu_state) {
-//		// TODO Auto-generated method stub
-//		UserReq userReq = new UserReq();
-//		userReq.setU_id(Long.parseLong(String.valueOf(uid)));
-//		userReq.setU_state(tu_state);
-//		RestTemplate restTemplate = new RestTemplate();
-//		JSONObject jsonObject = restTemplate.postForObject(ToolUtil.CMSURL + "/updateUserState", userReq,
-//				JSONObject.class);
-//		return jsonObject;
-//	}
 
 	
 	
@@ -230,17 +158,5 @@ public class CMSService {
 		return listArticle;
 	}
 	
-	/**
-	 * 2018年1月10日 jianghu
-	 * 
-	 * @param c
-	 * @return TODO
-	 */
-//	public JSONObject listArticle(ArticleEntity c) {
-//		RestTemplate restTemplate = new RestTemplate();
-//		JSONObject jsonObject = restTemplate.postForObject(ToolUtil.CMSURL + "/listArticle", c, JSONObject.class);
-//		System.out.println(jsonObject);
-//		return jsonObject;
-//	}
 
 }

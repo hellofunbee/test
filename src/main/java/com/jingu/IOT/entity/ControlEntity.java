@@ -44,7 +44,8 @@ public class ControlEntity {
 	private int state_type;
 	private int s_state;
 	private int montor_state;
-	
+	private int is_running;//是否正在控制中
+
 	
 	
 	
@@ -241,9 +242,12 @@ public class ControlEntity {
 		}
 		this.ctrl_picturetitle = ctrl_picturetitle;
 	}
-	
-	
-	
-	
-	
+
+	public int getIs_running() {
+		return is_running;
+	}
+
+	public void setIs_running(int is_running) {
+		this.is_running = is_running;
+	}
 }

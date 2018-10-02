@@ -19,6 +19,7 @@ import com.jingu.IOT.response.IOTResult;
 import com.jingu.IOT.service.*;
 import com.jingu.IOT.switcher.VRASwitchBean;
 import com.jingu.IOT.util.Client;
+import com.jingu.IOT.util.PageData;
 import com.jingu.IOT.util.PublicMethod;
 import com.jingu.IOT.util.ToolUtil;
 import org.slf4j.Logger;
@@ -49,6 +50,11 @@ public class CtrlController {
     private ControlService controlService;
     private RuleService ruleService;
     private CtrlService ctrlService;
+
+    @Autowired
+    RedisService redisService;
+    @Autowired
+    ClientServie clientServie;
 
     @Autowired
     public CtrlController(SettingService settingService, ToolUtil toolUtil, PointService pointService,
@@ -112,15 +118,7 @@ public class CtrlController {
         }
         // 检测是否有这个点
         long uid = toolUtil.getbase_uidSid(cr.getCkuid(), cr.getCksid());
-        // PointEntity pointEntity = cr.getPointEntity();
-        // pointEntity.setDeviceId(cr.getCtrl_deviceId());
-        // pointEntity.setRole(String.valueOf(uid));
-        // pointEntity.setUid(uid);
-        // pointEntity.setRole(String.valueOf(uid));
-        // PointEntity point = pointService.getPoint(pointEntity);
-        // if(point ==null ){
-        // return new IOTResult(false,"节点不存在",null,3);
-        // }
+
         int ckAdmin = userService.ckAdmin(uid);
         if (ckAdmin == 0) {
             return new IOTResult(false, "权限不足", null, 111);
@@ -161,6 +159,16 @@ public class CtrlController {
             return new IOTResult(false, "权限不足", null, 111);
         }
         int addDistributionList = settingService.updateControlSetting(cr);
+        //更新redis的 rule、monitor 信息
+
+        try {
+            redisService.updateCtrl(cr);
+        } catch (Exception e) {
+            System.out.println("更新redis控制时出现异常！");
+            e.printStackTrace();
+        }
+
+
         if (addDistributionList > 0) {
             return new IOTResult(true, "修改成功", null, 0);
         }
@@ -209,16 +217,16 @@ public class CtrlController {
                         && 1 == (Integer) m.get("ctrl_type")
                         ) {
 
-                try {
+                    try {
 
-                    ControlRequset ctrl_r = new ControlRequset();
-                    ctrl_r.setPointEntity(pointEntity);
-                    ctrl_r.setCtrl_id((Integer) m.get("ctrl_id"));
-                    IOTResult r = getControlDevStatus(ctrl_r);
-                    m.put("status", r.getObject());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                        ControlRequset ctrl_r = new ControlRequset();
+                        ctrl_r.setPointEntity(pointEntity);
+                        ctrl_r.setCtrl_id((Integer) m.get("ctrl_id"));
+                        IOTResult r = getControlDevStatus(ctrl_r);
+                        m.put("status", r.getObject());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
 
@@ -330,6 +338,22 @@ public class CtrlController {
         return new IOTResult(false, "暂无相关信息", null, 0);
     }
 
+    // 自动控制
+    @CrossOrigin
+    @RequestMapping(value = "/autoControlDev", method = RequestMethod.POST)
+    public IOTResult AutoControlDev(@RequestBody PageData pd) {
+       return clientServie.autoCtrl(pd);
+
+    }
+
+    // 自动控制 开关关闭
+    @CrossOrigin
+    @RequestMapping(value = "/autoControlDev_off_on", method = RequestMethod.POST)
+    public IOTResult autoControlDev_off_on(@RequestBody PageData pd) {
+       return clientServie.autoCtrl_off_on(pd);
+
+    }
+
 
     // 控制设备
     @CrossOrigin
@@ -368,34 +392,7 @@ public class CtrlController {
         if (cSeting == null || cSeting.isEmpty()) {
             return new IOTResult(false, "控制设备不存在", null, 0);
         }
-        // ctrl.setState_type(1);
-        // b=new byte[12];
-        // b[0]=(byte)this.getCtrlType();
-        // b[1]=(byte)Integer.parseInt(this.getRaiseGroupId());
-        // b[2]=(byte)Integer.parseInt(this.getRaiseSwitchId());
-        // b[3]=(byte)Integer.parseInt(this.getSkinGroupId());
-        // b[4]=(byte)Integer.parseInt(this.getSkinSwitchId());
-        // b[5]=(byte)this.getDirection();
-        // b[6]=(byte)this.getDistanceOrDuration();
-        // b[7]=(byte)this.getPosSensorCH();
-        // byte[] maxB =
-        // PublicMethod.int2bytes(Integer.parseInt(this.getMaxValue()));
-        // System.arraycopy(maxB, 0, b, 8, 2);
-        // byte[] minB =
-        // PublicMethod.int2bytes(Integer.parseInt(this.getMinValue()));
-        // System.arraycopy(minB, 0, b, 10, 2);
-        // }
-        // if((byte)this.getCtrlType()==0x2){
-        // b=new byte[9];
-        // b[0]=(byte)this.getCtrlType();
-        // b[1]=(byte)Integer.parseInt(this.getRaiseGroupId());
-        // b[2]=(byte)Integer.parseInt(this.getRaiseSwitchId());
-        // byte[]
-        // durationByte=PublicMethod.int4bytes(this.getDistanceOrDuration());
-        // System.arraycopy(durationByte, 0, b, 3, 4);
-        // }
-        // return b;
-        // }
+
         point = cr.getPointEntity();
         MotorHBM hbm = cr.getHbm();
         ////行程1-100,时间 0关  -1 常开
@@ -463,7 +460,6 @@ public class CtrlController {
         }
         return new IOTResult(false, "命令发送失败", null, 10);
     }
-
 
 
     // @CrossOrigin

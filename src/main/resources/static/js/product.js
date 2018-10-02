@@ -11,6 +11,7 @@ $(function () {
     var treeEl = page.find("#product_device_tree");
     var otherCtrlBox = page.find(".other-control-status");
     var ctrlBox = page.find(".default-control-status");
+    var ctrl_auto = page.find(".fitbit-handle-result");
 
     otherCtrlBox.find(".fitbit-handle>span").on('click', function () {
         var data = item;
@@ -29,24 +30,134 @@ $(function () {
             }
         }
 
+        if (index == 0) {
+            if (data.ctrl_type == 1) {
+                ctrl_auto.find(".btn-offon").hide();
+                ctrl_auto.find("table").show()
+            } else {
+                ctrl_auto.find(".btn-offon").show();
+                ctrl_auto.find("table").hide()
+            }
+
+
+        }
+
         $(this).addClass("on").siblings().removeClass("on");
         otherCtrlBox.find(".fitbit-handle-result>div").hide().eq($(this).index()).show()
 
+        var c_data_type = index + 1;
 
-        if (data.state_type != index + 1) {
+        if (data.state_type != c_data_type) {
             var ctrl = {};
             ctrl.ctrl_id = data.ctrl_id;
-            ctrl.state_type = index + 1;
+            ctrl.state_type = c_data_type;
             ctrl.pointEntity = {deviceId: lastSelectNode.oriData.deviceId};
             ctrl.ctrl_deviceId = lastSelectNode.oriData.deviceId;
 
             console.log(data)
             API.service('/updateControlSetting', ctrl, function (e) {
+                data.state_type = c_data_type;
                 layer.msg(e.msg)
             });
         }
 
     });
+
+    ctrl_auto.find(".btn-off,.btn-on").click(function () {
+        //卷帘
+        if (item.ctrl_type == 1) {
+            if ($(this).is(".btn-off")) {
+                $(this).parents(".ctrl-box").find("table").hide()
+                console.log('拉帘关闭')
+            } else {
+                $(this).parents(".ctrl-box").find("table").show()
+                console.log('拉帘开启')
+            }
+            return false
+        } else {
+            if ($(this).is(".btn-off")) {
+                console.log('关闭')
+                exeOff_on(2);
+            } else {
+                // 开启
+                console.log('开启')
+                exeOff_on(1);
+            }
+            return false
+        }
+    });
+
+    ctrl_auto.find(".ctrl").on('click', function () {
+        ctrl_auto.find(".ctrl").removeClass('kz-btn-on ');
+        $(this).addClass('kz-btn-on');
+
+        if ($(this).hasClass('up')) {
+            console.log('up')
+            exe(0, 0, 1);
+        }
+        if ($(this).hasClass('down')) {
+            console.log('down')
+            exe(0, 0, 2);
+        }
+
+
+    });
+
+
+    ctrl_auto.find(".ctrl-close").on('click', function () {
+        ctrl_auto.find(".ctrl").removeClass('kz-btn-on ');
+        exe(0, 0, 4);
+
+    });
+    ctrl_auto.find(".exe").on('click', function () {
+        if (ctrl_auto.find('.kqd').val()) {
+            ctrl_auto.find(".exe").addClass('kz-btn-on ');
+            console.log('exe');
+            exe(ctrl_auto.find('.kqd').val(), 0, 3);
+        }
+        else {
+            layer.msg('请输入开启度');
+            return false;
+        }
+
+
+    });
+
+    //卷帘：direction 开启度0x0，控制运动方向，0x1：上升，0x2：下降，0x3:停止。
+    //卷帘：distanceOrDuration 0 ~ 100：表示整个行程的0% ~ 100%。
+
+    //开关 distanceOrduration  -1一直开，0立即关
+
+
+    function exe(distanceOrduration, direction, auto_type) {
+        item.distanceOrduration = distanceOrduration;
+        item.direction = direction;
+        item.auto_type = auto_type;//1：上升 2：下降 3：开启度 4；关闭
+
+
+        API.service('/autoControlDev', item, function (e) {
+            if (e.success) {
+                layer.msg(e.msg);
+            }
+
+        });
+
+    }
+
+    function exeOff_on(auto_type) {
+
+        item.auto_type = auto_type;//1：开启 2：关闭
+
+        API.service('/autoControlDev_off_on', item, function (e) {
+            if (e.success) {
+                layer.msg(e.msg);
+                item.s_state = auto_type;
+                appendControlImage(item)
+            }
+
+        });
+
+    }
 
 
     var appendControlImage = function (data) {
@@ -78,6 +189,7 @@ $(function () {
                 '    <p class="close">智能控水：关闭</p>' +
                 "  </div>" + "</li>"
             ).prependTo(newUl);
+
             console.log(data);
             var statusText = (statusInfo[data.state_type] || {})[data.s_state] || "未知";
             deviceInfoLi.find("h3").text(data.ctrl_picturetitle).end().find("img").attr("src", imgSrc[data.ctrl_picturetype]).end().find("p").text(data.ctrl_name + " : " + statusText).end();
@@ -86,32 +198,6 @@ $(function () {
             }
             ctrlBox.hide();
 
-
-            //卷帘
-            if (data.ctrl_type == 1) {
-                otherCtrlBox.find(".btn-off,.btn-on").click(function () {
-                    if ($(this).is(".btn-off")) {
-                        $(this).parents(".ctrl-box").find("table").hide()
-                        console.log('拉帘关闭')
-                    } else {
-                        $(this).parents(".ctrl-box").find("table").show()
-                        console.log('拉帘开启')
-                    }
-                    return false
-                });
-            } else {
-                otherCtrlBox.find(".btn-off,.btn-on").click(function () {
-                    if ($(this).is(".btn-off")) {
-
-                        console.log('关闭')
-                    } else {
-                        // 开启
-                        console.log('开启')
-                    }
-                    return false
-                });
-
-            }
 
             if (data.state_type == 0 || data.state_type == 1) {
                 otherCtrlBox.show().find(".fitbit-handle>span:eq(0)").click()
@@ -128,6 +214,7 @@ $(function () {
                     otherCtrlBox.show().find(".fitbit-handle>span:eq(0)").click()
 
             }
+
 
         } else {
             tmp.find("li.device-info-li").remove();

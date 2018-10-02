@@ -208,6 +208,11 @@
                         </select></td>
 
                     </tr>
+                    <tr>
+                        <th>简介</th>
+                        <td><p><textarea name="" field="tu_info" cols="60" rows="10"></textarea></p>
+                        </td>
+                    </tr>
 
                 </table>
 
@@ -1164,8 +1169,8 @@
             var html = $('#user_profile');
 
 
-            $("#cms-cover").attr('value',data.tu_logo);
-            $("#cms-cover").attr('src',data.tu_logo);
+            $("#cms-cover").attr('value', data.tu_logo);
+            $("#cms-cover").attr('src', data.tu_logo);
 
             var ctl_el = UI.renderField(html, data);
 
@@ -1204,7 +1209,7 @@
 
     var img_input = $("#publish-file");
     var cover = $("#cms-cover");
-    cover.on('click',function () {
+    cover.on('click', function () {
         img_input.click();
     });
     img_input.on("change", function () {

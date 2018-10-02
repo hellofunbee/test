@@ -60,12 +60,17 @@ $(function () {
             "专家管理": "system5.html"
         };
         var pageNav = $(".mx-nav>li").click(function () {
-            var content = $(this).children("a").text();
+
+            var content = $(this).children("a").text().trim();
+
             $(this).addClass("active").siblings().removeClass("active");
             if (topMenus[content] && content) {
                 showMainContent(topMenus[content])
             }
+
         });
+
+
         if (window.purl && location.hash && location.hash.indexOf("page=") > 0) {
             var s = "http://s.com/?" + location.hash.substring(1);
             var url = purl(s);
@@ -107,4 +112,6 @@ $(function () {
     $(".mx-topSearch").on("click", "a", function () {
         window.openPageContent("信息发布", "首页资讯", {url: "publish4.html?keyword=" + encodeURIComponent($(".mx-topSearch").find("input").val())})
     })
+
+
 });

@@ -41,12 +41,19 @@ public class TaskService {
     @Autowired
     private CtrlService ctrlService;
     @Autowired
-    SMSService smsService;
+    private SMSService smsService;
 
     @Autowired
-    RelationShipService relationShipService;
+    private RelationShipService relationShipService;
     @Autowired
     MainDeviceService mainDeviceService;
+
+    @Autowired
+    PointService pointService;
+    @Autowired
+    SettingService settingService;
+    @Autowired
+    ClientServie clientServie;
 
     /**
      * 预警的实时监控
@@ -110,6 +117,7 @@ public class TaskService {
 
     /**
      * 智能控制的实时监控
+     *
      * @throws UnsupportedEncodingException
      */
     @Scheduled(fixedRate = 1000 * 60)
@@ -147,7 +155,7 @@ public class TaskService {
         //不符合执行规则（控制），符合规则的则关闭开关
 
         List<Map> typedMos = new ArrayList<>();
-        System.out.println(ruleList.size());
+        System.out.println("monitor_size:"+ruleList.size());
         //找出所有监控类别
         for (MonitorEntity mo : ruleList) {
             //按照设备，传感器进行分组
@@ -158,7 +166,7 @@ public class TaskService {
                 typedMos.add(m);
             }
         }
-        System.out.println(typedMos.size());
+        System.out.println("typed_monitor_size"+typedMos.size());
         //监控类别分组
         for (Map m : typedMos) {
             List<MonitorEntity> cmos = new ArrayList<>();
@@ -192,10 +200,17 @@ public class TaskService {
                 }
             });
             for (MonitorEntity m : mos) {
+
                 Double mo_lower = m.getMo_lower();
                 int order_less = m.getOrder_less();
                 int duration = m.getDuration();
+
                 Map ctrl = (Map) ctrls_map.get(m.getCtrl_id());
+
+                boolean isJuanLian = (Integer) ctrl.get("ctrl_type") == 1 ? true : false;
+
+                int distanceOrduration = 0;
+
                 /**
                  * 1）温度：一种温度低了，比如当温度15（可设）度时，全关上；
                  * 另一种时当温度高于35（可设）度时全开启。120s
@@ -206,12 +221,22 @@ public class TaskService {
 
                 if (c_val >= mo_lower) continue;
 
+
+                distanceOrduration = duration;
+
                 if (order_less == 1) {//开启 duration 秒
                     System.out.println("当前值过【低】，需要开启：" + duration + "秒");
+                    ctrl.put("s_state", 1);
                 } else if (order_less == 2) {//关闭 duration 秒
                     System.out.println("当前值过【低】，需要关闭：" + duration + "秒");
+                    // 关闭开关
+                    if (!isJuanLian)
+                        distanceOrduration = 0;
+                    ctrl.put("s_state", 2);
                 }
 
+
+                clientServie.switchIt(ctrl, distanceOrduration, duration, true);
 
             }
             //高于设定温度
@@ -227,22 +252,36 @@ public class TaskService {
                 int order_more = m.getOrder_more();
                 int duration = m.getDuration();
                 Map ctrl = (Map) ctrls_map.get(m.getCtrl_id());
+
+                boolean isJuanLian = (Integer) ctrl.get("ctrl_type") == 1 ? true : false;
+
+                int distanceOrduration = 0;
+
                 System.out.println("**********" + ctrl.toString());
 
                 if (c_val <= mo_high) continue;
 
-                if (order_more == 1) {//开启 duration 秒
+                distanceOrduration = duration;
 
+
+                if (order_more == 1) {//开启 duration 秒
+                    ctrl.put("s_state", 1);
                     System.out.println("当前值过【高】，需要开启：" + duration + "秒");
+
                 } else if (order_more == 2) {//关闭 duration 秒
-                    System.out.println("当前值过【高】，需要开启：" + duration + "秒");
+                    if (!isJuanLian)
+                        distanceOrduration = 0;
+                    ctrl.put("s_state", 2);
+                    System.out.println("当前值过【高】，需要关闭：" + duration + "秒");
                 }
+                clientServie.switchIt(ctrl, distanceOrduration, duration, true);
             }
         }
     }
 
 
     @Scheduled(fixedRate = 1000 * 60)
+
     public void ctrlDevice() throws UnsupportedEncodingException {
         List<RuleEntity> ruleList = toolUtil.getRuleList(ToolUtil.RULE);
         if (ruleList == null) {
@@ -257,7 +296,6 @@ public class TaskService {
 
             System.out.println("当前时间:" + substring);
             for (RuleEntity ruleEntity : ruleList) {
-                System.out.println(ruleEntity);
                 if (ruleEntity.getExecTime().equals(substring)) {
                     // 调用开关控制方法
                     motorHBM.setDistanceOrDuration(-1); // 常开

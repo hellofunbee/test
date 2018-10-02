@@ -153,6 +153,11 @@ public class UserDao {
             sql += " , tu_logo =? ";
             list.add(userEntity.getTu_logo());
         }
+
+        if (userEntity.getTu_info() != null && userEntity.getTu_info().trim().length() > 0) {
+            sql += " , tu_info =? ";
+            list.add(userEntity.getTu_info());
+        }
         if (userEntity.getC_id() > 0) {
             sql += " , c_id =? ";
             list.add(userEntity.getC_id());
