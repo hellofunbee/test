@@ -149,6 +149,7 @@ API.getMainDeviceInfo = function (deviceId, tpId, successFunc, errorFunc) {
 };
 API.getUnReadMessage = API.bind("/getUnReadMessage");
 API.listInputType = API.bind("/listClass");
+API.listMenus = API.bind("/listMenus");
 API.getShopCamera = function (deviceId, successFunc, errorFunc) {
     API.service("/getShopCamera", {deviceId: deviceId}, successFunc, errorFunc)
 };

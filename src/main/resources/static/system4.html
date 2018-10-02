@@ -15,33 +15,70 @@
         <div class="sm-title fl">权限管理</div>
         <div class="mx-top-search fr">
             <input type="text" id="top-search"> <a href="#" onclick="serch()">搜索</a></div>
+        <ul class="little-menu cleafix fl">
+            <li class="on" utype="">
+                <a href="javascript:;" data-href="#yhgl">用户</a>
+            </li>
+            <li class="last" utype="">
+                <a href="javascript:;" data-href="#jsgl">角色</a>
+            </li>
+        </ul>
     </div>
-    <table class="mx-table2 mt10">
-        <thead>
-        <tr>
-            <th>姓名</th>
-            <th>手机号</th>
-            <th>角色</th>
-            <th width="10%">用户状态</th>
-            <th width="13%">修改状态</th>
-            <th width="13%">操作</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        <!-- <tr>
-             <td>张三</td>
-             <td>1372082****</td>
-             <td>管理员</td>
-             <td>封停</td>
-             <td><a href="#" class="btn-sm btn-hf">恢复</a></td>
-             <td><a href="javascript:;" id="bjqx" class="btn-sm">编辑</a></td>
-         </tr>-->
-        </tbody>
+    <div class="yhgl-module cleafix">
+        <div id="yhgl">
+            <table class="mx-table2 mt10">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>手机号</th>
+                    <th>角色</th>
+                    <th width="10%">用户状态</th>
+                    <th width="13%">修改状态</th>
+                    <th width="13%">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <!-- <tr>
+                     <td>张三</td>
+                     <td>1372082****</td>
+                     <td>管理员</td>
+                     <td>封停</td>
+                     <td><a href="#" class="btn-sm btn-hf">恢复</a></td>
+                     <td><a href="javascript:;" id="bjqx" class="btn-sm">编辑</a></td>
+                 </tr>-->
+                </tbody>
 
 
-    </table>
-    <div class="mx-page m-style">
+            </table>
+            <div class="mx-page m-style">
+            </div>
+        </div>
+        <div id="jsgl" style="width: 50%;margin: auto">
+            <table class="mx-table2 mt10">
+                <thead>
+                <tr>
+                    <th width="90%">角色</th>
+                    <th width="10%">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <!-- <tr>
+                     <td>张三</td>
+                     <td>1372082****</td>
+                     <td>管理员</td>
+                     <td>封停</td>
+                     <td><a href="#" class="btn-sm btn-hf">恢复</a></td>
+                     <td><a href="javascript:;" id="bjqx" class="btn-sm">编辑</a></td>
+                 </tr>-->
+                </tbody>
+
+
+            </table>
+        </div>
+
     </div>
 </div>
 <div class="xyh-layer"></div>
@@ -83,15 +120,6 @@
         var i = $(this).children("a").attr("data-href");
         $(i).show().siblings().hide()
     });
-    /*$("#bjqx").click(function () {
-     layer.open({
-     type: 1,
-     area: ["620px", "325px"],
-     title: "编辑权限",
-     skin: "mlayer",
-     content: $(".bjqx-layer")
-     })
-     });*/
 
 
     var tpl =
@@ -104,6 +132,12 @@
             '  <td field="tu_state" render="dict" dict="user_state"></td>' +
             '  <td><a href="javascript:;" class="btn-sm btn-hf a-valid" onclick="valid(this)">恢复</a></td>' +
             '  <td><a href="javascript:;" class="btn-sm" onclick="edit(this)">编辑</a></td>' +
+            ' </tr>';
+
+    var tpl1 =
+            ' <tr>' +
+            '  <td field="r_cname" ></td>' +
+            '  <td><a href="javascript:;" class="btn-sm edit">编辑</a></td>' +
             ' </tr>';
 
     var tpl_edit = ' <div class="tjzsb add-user" style="padding-top:60px">' +
@@ -183,9 +217,9 @@
             start: o.start,
             u_search: $('#top-search').val(),
         }, function (data) {
-            if(!notShowMsg)
+            if (!notShowMsg)
                 layer.msg(data.msg)
-            var toEl = $('.mx-table2').find('tbody');
+            var toEl = $('#yhgl .mx-table2').find('tbody');
             toEl.empty();
             $.each(data.object, function (i, e) {
 
@@ -204,15 +238,6 @@
 
                 }
 
-                //解绑
-                /*if (e.unbind && e.unbind== 1) {
-                 } else {
-                 var a = el.find('.unbind');
-                 a.attr("disabled",true);
-                 a.addClass('btn-lock');
-
-                 }
-                 */
             });
             pageIt(data.totalpage);
         }, function (rsp) {
@@ -298,9 +323,7 @@
                 var ctl_el = UI.appendFieldTo(html, data, toEl);
 
 
-
                 ctl_el.find('[field="tu_pwd1"]').val(data.tu_pwd);
-
 
 
                 ctl_el.find('.reset').on('click', function () {
@@ -346,6 +369,48 @@
 
         ctl_data.start = 1;
         reload();
+    }
+
+    loadRole();
+    // 角色
+    function loadRole() {
+
+        API.service("/listRole", {}, function (data) {
+            var toEl = $('#jsgl .mx-table2').find('tbody');
+            toEl.empty();
+            $.each(data.object, function (i, e) {
+
+                var el = UI.renderField(UI.appendFieldTo($(tpl1), e, toEl), e).data("data", e);
+
+
+                el.find('.edit').on('click', function () {
+                    var data = $(this).parents('tr').data('data');
+                    var param= encodeURIComponent(JSON.stringify(data)	                                    );
+
+
+                    layer.open({
+                        type: 2,
+                        area: ["420px", "508px"],
+                        title: "修改角色菜单",
+                        skin: "mlayer",
+                        /* btn: ["保存", "取消"],*/
+                        content: 'role-menu-edit.html?data=' + param,
+                        success: function (layero, index) {
+
+                        },end:function () {
+                            loadRole();
+                        }
+                    });
+
+
+                });
+            });
+
+        }, function (rsp) {
+            layer.msg(rsp.msg)
+        });
+
+
     }
 
 

@@ -1161,7 +1161,7 @@
     //修改用户信息
     function loadUInfo() {
         API.service("/listUserForMap", {
-            tu_id: sessionStorage.getItem("ckuid"),
+            uid: sessionStorage.getItem("ckuid"),
         }, function (data) {
             var data = data.object[0];
 

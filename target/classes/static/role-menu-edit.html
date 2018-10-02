@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>物联网-大数据分析-监测多数据</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="left-info">
+
+
+    <div class="fieldset-con" style="height:320px;overflow-y:auto">
+        <ul id="tree-id" class="ztree"></ul>
+
+    </div>
+
+
+    <div class="tc mt20">
+        <a class="btn-lg btn-lg-blue save">保存</a>
+    </div>
+
+
+</div>
+<script type="text/javascript">if (!window.jQuery) {
+    var html = '<script src="js/jquery.min.js"><\/script>\n<script src="js/jquery.scrollTo.min.js"><\/script>\n<script src="js/jquery.bgiframe-2.1.2.js"><\/script>\n<script src="js/jquery.ztree.all.min.js"><\/script>\n<script src="js/layer/laydate/laydate.js"><\/script>\n<script src="js/layer/layer.js"><\/script>\n<script src="js/slide.js"><\/script>\n<script src="js/common.js"><\/script>\n<script src="js/purl.js"><\/script>\n<script src="js/api.js"><\/script>\n<script src="js/ui.js"><\/script>';
+    document.write(html)
+}</script>
+<script>
+    $(function () {
+        var a = $("div#main_iframe").attr("src") || location.href;
+        var param = JSON.parse(decodeURI(purl(a).param("data")));
+
+
+        var r_id = param.r_id;
+        var menu_ids = param.menu_ids;
+
+
+        var treeEl = $("#tree-id"),
+                onNodeSelect = function (e) {
+                };
+        var zTreeOnCheck = function (o) {
+
+            var e = $("#tree-id").data("z-tree").getCheckedNodes(!0);
+            if (0 === e.length)
+                return;
+            var i = [];
+            $.each(e, function () {
+                i.push(this.oriData.deviceId)
+            })
+            if (0 === i.length)
+                return;
+
+        }
+
+
+        UI.renderMenuType("#tree-id",
+                onNodeSelect,
+                {
+                    check: {enable: !0},
+                    callback: {
+                        onCheck: zTreeOnCheck
+                    }
+                });
+
+        treeEl.on("z-tree-load", function () {
+//            var nodes = $(this).data("z-tree").getNodes();
+//            nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
+
+            if (menu_ids && menu_ids.length > 0) {
+
+                var treeObj = $.fn.zTree.getZTreeObj("tree-id");
+//
+
+                $(menu_ids).each(function (i, e) {
+                    treeObj.checkNode(treeObj.getNodeByParam("id", e.id, null), true, true);
+
+                });
+            }
+
+        });
+
+
+        $(".save").click(function () {
+
+            var e = $("#tree-id").data("z-tree").getCheckedNodes(!0);
+            if (0 === e.length)
+                return layer.msg("请选择菜单!"), !1;
+            var i = [];
+            $.each(e, function () {
+                i.push(this.oriData.id)
+            })
+            if (0 === i.length)
+                return layer.msg("请选择菜单!"), !1;
+
+
+            API.service('/updateRole', {
+                menu_ids: i.join(','),
+                id: r_id
+            }, function (e) {
+                layer.msg(e.msg);
+            })
+
+        })
+
+    });
+
+</script>
+
+</body>
+</html>

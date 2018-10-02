@@ -211,7 +211,7 @@ var UI = {
             });
         }
 
-    },renderInputType: function (targetEl, onClick, setting, showTypes) {
+    }, renderInputType: function (targetEl, onClick, setting, showTypes) {
         var el = $(targetEl).empty();
         setting = $.extend({}, {
             check: {chkboxType: {Y: "ps", N: "ps"}},
@@ -224,7 +224,7 @@ var UI = {
                 }
             }
         }, setting);
-        API.listInputType({c_type: 2,c_state:1, u_type: "1"}, function (data) {
+        API.listInputType({c_type: 2, c_state: 1, u_type: "1"}, function (data) {
             console.log(data)
             var zNodes = [];
             var buildNode = function (data, parents, deep) {
@@ -265,8 +265,51 @@ var UI = {
                 ctEl.bgiframe({conditional: true, width: "291px", height: "250px"})
             }
         })
+    }, renderMenuType: function (targetEl, onClick, setting, showTypes) {
+        var el = $(targetEl).empty();
+        setting = $.extend({}, {
+            check: {chkboxType: {Y: "ps", N: "ps"}},
+            data: {simpleData: {enable: true}},
+            callback: {
+                onClick: function (e, target, selNode) {
+                    if (onClick) {
+                        onClick(selNode)
+                    }
+                }
+            }
+        }, setting);
+        API.listMenus({}, function (data) {
+
+            var zNodes = [];
+            var buildNode = function (data, parents, deep) {
+                $.each(data, function (idx) {
+                    var node = this;
+                    var currenNode = {name: node["name"], id: node["id"], oriData: node};
+
+                    parents.push(currenNode);
+                    if (node["rank"] && node["rank"].length) {
+                        currenNode.children = [];
+                        buildNode(node["rank"], currenNode.children, deep + 1);
+                        if (currenNode.children.length === 0) {
+                            delete currenNode.children
+                        }
+                        currenNode.open = node["state"] === 1
+                    }
+
+                })
+            };
+            buildNode(data.object, zNodes, 0);
+            var treeObj = $.fn.zTree.init(el, setting, zNodes);
+            el.data("z-tree", treeObj).trigger("z-tree-load");
+            var ctEl = el.parents(".tree-cnt");
+            if ($.fn.bgiframe) {
+                ctEl.bgiframe({conditional: true, width: "291px", height: "250px"})
+            }
+        })
     }
 };
+
+
 $.fn.selectX = function (data) {
     var render = function (d) {
         return '<dd style="cursor: pointer;"' + " onmouseover=\"this.style.backgroundColor='#ccc';\"" + " onmouseout=\"this.style.backgroundColor='#fff'\"" + ' value="' + d.value + '"' + " onclick=\"$(this).parents('dl')" + ".attr('value', $(this).attr('value'))" + ".trigger('change')" + ".prev('h3').html($(this).text()+'<em><i></i></em>').click()" + '">' + d.name + "</dd>"
@@ -492,15 +535,15 @@ UI.renderSynChart = function (ulEL, chartData, callbackHtml) {
 UI.cleanHtml = function (html) {
     return html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "").replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, "").replace(/<link\b[^<]*(?:(?!<\/>)<[^<]*)*<\/>/gi, "").replace(/onmouse/gi, "_onmouse").replace(/onclick/gi, "_onclick")
 };
-var showMessageDetail = function (id, type, title,type2) {
+var showMessageDetail = function (id, type, title, type2) {
     var url = "detail.html";
     if (type === 4) {
         url = "news.html"
     }
 
-    if(type2 == 1)
+    if (type2 == 1)
         url = "detail-exp.html";
-    if(type2 == 2)
+    if (type2 == 2)
         url = "device-gover.html";
 
     var options = {url: url + "?id=" + id + "&type=" + (type || 2)};
@@ -626,7 +669,7 @@ UI.renderField = function (el, data) {
         {
             var text = data[f];
             var rendered = false;
-            if (!text ) {
+            if (!text) {
                 text = ""
             }
             if (me.attr("date-format")) {
@@ -660,7 +703,7 @@ UI.renderField = function (el, data) {
                         }
                     } else if (tagName === "DIV" || tagName === "SPAN" || tagName === "TD" || tagName === "TH" || tagName === "DD" || tagName === "DT") {
                         var val = API.dict[me.attr("dict")][text];
-                        val =  text?val + (unit || ""):"";
+                        val = text ? val + (unit || "") : "";
                         me.attr("value", text).text(val).change();
                         rendered = true
                     }
@@ -704,7 +747,7 @@ UI.renderField2 = function (tpl, data) {
     }
     if (tpl && typeof tpl === "string") {
         for (var n in data) {
-            tpl = tpl.replace(new RegExp("{" + n + "}", "gi"), data[n]?data[n]:"")
+            tpl = tpl.replace(new RegExp("{" + n + "}", "gi"), data[n] ? data[n] : "")
         }
     }
     return tpl;
