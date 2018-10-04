@@ -77,6 +77,7 @@ $(function () {
     };
     laydate.render({elem: "#synthesize2_from"});
     laydate.render({elem: "#synthesize2_to"});
+
     var lastSelectNode = null, lastPageNo = 1;
     var listImage = function () {
         var treeEl = $("#synthesize2_tree");
@@ -158,6 +159,29 @@ $(function () {
         return listImage()
     };
     $(".btn-search").click(queryIt);
+
+    $(".jsd-list").on("click", "li", function () {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(this).parents("ul").attr("value", $(this).attr("value")).trigger("change")
+    });
+    $(".jsd-list").find("ul").on("change", function () {
+        var name = $(this).find("li.on").text();
+        $(".monitor-name").text(name);
+        lastPageNo = 1;
+        listImage()
+    });
+
+    $('.btn-jsdgl').click(function (el) {
+        if (!lastSelectNode) {
+            layer.msg('请选择摄像头');
+            return false;
+        }
+        var id = lastSelectNode.oriData["tp_id"];
+        var deviceId = lastSelectNode.oriData["deviceId"];
+        window.showMainContent('jsdgl.html?deviceId=' + deviceId + "&tp_id=" + id);
+    });
+
+
     var onNodeSelect = function (node) {
         if (lastSelectNode === node)return;
         //当点击父节点时，自动选择第一个设备
@@ -179,7 +203,7 @@ $(function () {
 
 
         if (node && node.oriData && node.oriData["tp_type"] === 3) {
-            if (node.children &&node.children.length) {
+            if (node.children && node.children.length) {
                 $("#synthesize2_tree").data("z-tree").selectNode(node.children[0]);
                 onNodeSelect(node.children[0]);
                 return
@@ -202,6 +226,7 @@ $(function () {
                         $("<li></li>").attr("value", item.monitorId).text(item.monitorName).appendTo(list)
                     }
                 });
+                list.change();
                 list.find("li:eq(0)").click()
             }, function (d) {
                 layer.msg("err:5" + d.msg)
@@ -209,7 +234,7 @@ $(function () {
             queryIt()
         }
     };
-    UI.renderPointTree("#synthesize2_tree", onNodeSelect);
+
 
     $("#synthesize2_tree").on("z-tree-load", function () {
         if (tp_id_from_url > 0) {
@@ -233,20 +258,11 @@ $(function () {
 
         // UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
     });
-    var deviceProj = $("#big_data_analysis_device_proj");
-    var deviceFrom = $("#big_data_analysis_device_from");
-    var deviceTo = $("#big_data_analysis_device_to");
+
+    UI.renderPointTree("#synthesize2_tree", onNodeSelect);
+
     $(".sblb>h3").click(function () {
         $(this).next().toggle()
     });
-    $(".jsd-list").on("click", "li", function () {
-        $(this).addClass("on").siblings().removeClass("on");
-        $(this).parents("ul").attr("value", $(this).attr("value")).trigger("change")
-    });
-    $(".jsd-list").find("ul").on("change", function () {
-        var name = $(this).find("li.on").text();
-        $(".monitor-name").text(name);
-        lastPageNo = 1;
-        listImage()
-    })
+
 });

@@ -1,4 +1,3 @@
-
 // 初始化插件
 
 // 全局保存当前选中窗口
@@ -6,18 +5,27 @@ var g_iWndIndex = 0; //可以不用设置这个变量，有窗口参数的接口
 $(function () {
     // 检查插件是否已经安装过
     if (-1 == WebVideoCtrl.I_CheckPluginInstall()) {
-        alert("您还未安装过插件，双击开发包目录里的WebComponents.exe安装！");
+        // alert("您还未安装过插件，双击开发包目录里的WebComponents.exe安装！");
+
+
+        var a = window.confirm("视频插件未安装，请点击“确定”进行下载和安装");
+        if (a == true) {
+            window.open('../WebComponents.exe')
+        }
+        else {
+
+        }
         return;
     }
     var width = 786;
     var height = 576;
     if (top !== self) {
-        width = sessionStorage.getItem('player_width')||width;
-        height = sessionStorage.getItem('player_height')||height;
+        width = sessionStorage.getItem('player_width') || width;
+        height = sessionStorage.getItem('player_height') || height;
     }
 
     // 初始化插件参数及插入插件
-    WebVideoCtrl.I_InitPlugin(width,height, {
+    WebVideoCtrl.I_InitPlugin(width, height, {
         iWndowType: 1,
         cbSelWnd: function (xmlDoc) {
             g_iWndIndex = $(xmlDoc).find("SelectWnd").eq(0).text();
@@ -163,7 +171,7 @@ function changeWndNum(iType) {
 // 登录
 function clickLogin() {
     var szIP = sessionStorage.getItem('szIP'),
-        szPort =sessionStorage.getItem('szPort'),
+        szPort = sessionStorage.getItem('szPort'),
         szUsername = sessionStorage.getItem('szUsername'),
         szPassword = sessionStorage.getItem('szPassword');
 
@@ -183,9 +191,9 @@ function clickLogin() {
                 $("#ip").val(szIP);
                 getChannelInfo();
                 clickStartRealPlay()
-                setTimeout(function(){
+                setTimeout(function () {
                     clickEnable3DZoom()
-                },200)
+                }, 200)
             }, 10);
         },
         error: function () {
@@ -253,7 +261,7 @@ function getChannelInfo() {
     var szIP = $("#ip").val(),
         oSel = $("#channels").empty(),
         nAnalogChannel = 0;
-    console.log('获取通道'+szIP)
+    console.log('获取通道' + szIP)
     if ("" == szIP) {
         return;
     }
@@ -586,7 +594,7 @@ function clickStartVoiceTalk() {
         return;
     }
 
-    if (isNaN(iAudioChannel)){
+    if (isNaN(iAudioChannel)) {
         alert("请选择对讲通道！");
         return;
     }
@@ -799,11 +807,11 @@ function clickRecordSearch(iType) {
     WebVideoCtrl.I_RecordSearch(szIP, iChannelID, szStartTime, szEndTime, {
         iSearchPos: iSearchTimes * 40,
         success: function (xmlDoc) {
-            if("MORE" === $(xmlDoc).find("responseStatusStrg").eq(0).text()) {
+            if ("MORE" === $(xmlDoc).find("responseStatusStrg").eq(0).text()) {
 
-                for(var i = 0, nLen = $(xmlDoc).find("searchMatchItem").length; i < nLen; i++) {
+                for (var i = 0, nLen = $(xmlDoc).find("searchMatchItem").length; i < nLen; i++) {
                     var szPlaybackURI = $(xmlDoc).find("playbackURI").eq(i).text();
-                    if(szPlaybackURI.indexOf("name=") < 0) {
+                    if (szPlaybackURI.indexOf("name=") < 0) {
                         break;
                     }
                     var szStartTime = $(xmlDoc).find("startTime").eq(i).text();
@@ -833,9 +841,9 @@ function clickRecordSearch(iType) {
                 clickRecordSearch(1);// 继续搜索
             } else if ("OK" === $(xmlDoc).find("responseStatusStrg").eq(0).text()) {
                 var iLength = $(xmlDoc).find("searchMatchItem").length;
-                for(var i = 0; i < iLength; i++) {
+                for (var i = 0; i < iLength; i++) {
                     var szPlaybackURI = $(xmlDoc).find("playbackURI").eq(i).text();
-                    if(szPlaybackURI.indexOf("name=") < 0) {
+                    if (szPlaybackURI.indexOf("name=") < 0) {
                         break;
                     }
                     var szStartTime = $(xmlDoc).find("startTime").eq(i).text();
@@ -861,8 +869,8 @@ function clickRecordSearch(iType) {
                     $("#downloadTd" + i).data("playbackURI", szPlaybackURI);
                 }
                 showOPInfo(szIP + " 搜索录像文件成功！");
-            } else if("NO MATCHES" === $(xmlDoc).find("responseStatusStrg").eq(0).text()) {
-                setTimeout(function() {
+            } else if ("NO MATCHES" === $(xmlDoc).find("responseStatusStrg").eq(0).text()) {
+                setTimeout(function () {
                     showOPInfo(szIP + " 没有录像文件！");
                 }, 50);
             }
@@ -1206,7 +1214,9 @@ function reconnect(szIP) {
             $("#restartDiv").remove();
         },
         error: function () {
-            setTimeout(function () {reconnect(szIP);}, 5000);
+            setTimeout(function () {
+                reconnect(szIP);
+            }, 5000);
         }
     });
 }
@@ -1519,11 +1529,11 @@ dateFormat = function (oDate, fmt) {
         "q+": Math.floor((oDate.getMonth() + 3) / 3), //季度
         "S": oDate.getMilliseconds()//毫秒
     };
-    if(/(y+)/.test(fmt)) {
+    if (/(y+)/.test(fmt)) {
         fmt = fmt.replace(RegExp.$1, (oDate.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
     for (var k in o) {
-        if(new RegExp("(" + k + ")").test(fmt)) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         }
     }

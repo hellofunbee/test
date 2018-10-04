@@ -60,6 +60,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/RelationShipDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/switcher/SwitchCtrlHBM.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/ExpAnsController.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/MenuEntity.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/LL.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/response/IOTResult2.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/ParaDataEntity.java
@@ -74,6 +75,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/PointDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/StoreUtil.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/AreaBean.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/MenuController.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/switcher/VRASwitchConfBean.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/IPCService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/ConfigFile.java
@@ -87,6 +89,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/ClassDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/ExpClientController.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/CtrlService.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/MenuService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/ShopRetrospectService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/HttpClientUtil.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/PointController.java
@@ -105,6 +108,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/CMSDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/ReadExcelService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/RuleController.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/RoleController.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/HomePageService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/xlsx/ParsableEntry.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/web/SettingController.java
@@ -177,6 +181,7 @@
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/StringUtils.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/RedisService.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/ExcelRowIterator.java
+/Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/dao/MenuDao.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/util/excelUtils/support/XLSWriterSupport.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/entity/IpPortBean.java
 /Users/weifengxu/Downloads/iot/IOT/src/main/java/com/jingu/IOT/service/GatherService.java

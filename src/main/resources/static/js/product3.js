@@ -263,13 +263,14 @@ $(function () {
             queryIt()
         }
     };
-    UI.renderPointTree("#product3_device_tree", onNodeSelect);
     treeEl.on("z-tree-load", function () {
         var nodes = $(this).data("z-tree").getNodes();
         nodes && nodes.length > 0 && onNodeSelect(nodes[0]);
 
         // UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
     });
+    UI.renderPointTree("#product3_device_tree", onNodeSelect);
+
     page.find(".mx-top-select > h3").click(function () {
         if ($(this).hasClass("on")) {
             $(this).removeClass("on");

@@ -257,6 +257,7 @@ com/jingu/IOT/entity/HCNetSDK$NET_DVR_IPPARACFG.class
 com/jingu/IOT/entity/HCNetSDK$struStatFrame.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_VICOLOR.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_EXPOSURE.class
+com/jingu/IOT/dao/MenuDao.class
 com/jingu/IOT/entity/HCNetSDK$FExceptionCallBack.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_MATRIX_DEC_REMOTE_PLAY_STATUS.class
 com/jingu/IOT/service/CMSService.class
@@ -322,6 +323,7 @@ com/jingu/IOT/util/excelUtils/xlsx/Sheet$IteratorStatus.class
 com/jingu/IOT/entity/ClassEntity.class
 com/jingu/IOT/web/ClassController.class
 com/jingu/IOT/requset/AnswerQuestionRequset.class
+com/jingu/IOT/web/MenuController.class
 com/jingu/IOT/service/ControlService.class
 com/jingu/IOT/config/MyFilter.class
 com/jingu/IOT/imsg/WebSocketConfig.class
@@ -445,6 +447,7 @@ com/jingu/IOT/util/ToolUtil.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_SCHEDTIMEWEEK.class
 com/jingu/IOT/dao/DistributionDao.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_VIDEOOUT_V30.class
+com/jingu/IOT/service/MenuService.class
 com/jingu/IOT/service/AnswerService.class
 com/jingu/IOT/web/GatherController.class
 com/jingu/IOT/util/StringUtils.class
@@ -499,6 +502,7 @@ com/jingu/IOT/entity/InputEntity.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_CRUISE_PARA.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_DECODERINFO.class
 com/jingu/IOT/entity/HCNetSDK$PASSIVEDECODE_CHANINFO.class
+com/jingu/IOT/web/RoleController.class
 com/jingu/IOT/service/RedisService.class
 com/jingu/IOT/requset/PointRequest.class
 com/jingu/IOT/entity/ControlList.class
@@ -546,6 +550,7 @@ com/jingu/IOT/entity/HCNetSDK$NET_DVR_USER.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_CHANNELSTATE.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_ALARMINFO_EX.class
 com/jingu/IOT/entity/HCNetSDK$struRecordingHost.class
+com/jingu/IOT/entity/MenuEntity.class
 com/jingu/IOT/entity/HCNetSDK$NET_DVR_ALARMINCFG_V30.class
 com/jingu/IOT/entity/HCNetSDK$uStatModeParam.class
 com/jingu/IOT/entity/HCNetSDK$RECV_ALARM.class

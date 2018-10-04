@@ -14,6 +14,7 @@ package com.jingu.IOT.service;
 
 import com.jingu.IOT.entity.*;
 import com.jingu.IOT.response.IOTResult;
+import com.jingu.IOT.util.CommonUtils;
 import com.jingu.IOT.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -27,8 +28,10 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 @Component
@@ -54,6 +57,9 @@ public class TaskService {
     SettingService settingService;
     @Autowired
     ClientServie clientServie;
+
+    private static List<TimerTask> tasks = new ArrayList<>();
+    ScheduledExecutorService pool = Executors.newScheduledThreadPool(1000);
 
     /**
      * 预警的实时监控
@@ -117,6 +123,8 @@ public class TaskService {
 
     /**
      * 智能控制的实时监控
+     * direction 控制卷帘（直流机）的参数
+     * distanceOrDuration 控制开关的参数
      *
      * @throws UnsupportedEncodingException
      */
@@ -155,7 +163,7 @@ public class TaskService {
         //不符合执行规则（控制），符合规则的则关闭开关
 
         List<Map> typedMos = new ArrayList<>();
-        System.out.println("monitor_size:"+ruleList.size());
+        System.out.println("monitor_size:" + ruleList.size());
         //找出所有监控类别
         for (MonitorEntity mo : ruleList) {
             //按照设备，传感器进行分组
@@ -166,7 +174,7 @@ public class TaskService {
                 typedMos.add(m);
             }
         }
-        System.out.println("typed_monitor_size"+typedMos.size());
+        System.out.println("typed_monitor_size" + typedMos.size());
         //监控类别分组
         for (Map m : typedMos) {
             List<MonitorEntity> cmos = new ArrayList<>();
@@ -204,12 +212,7 @@ public class TaskService {
                 Double mo_lower = m.getMo_lower();
                 int order_less = m.getOrder_less();
                 int duration = m.getDuration();
-
                 Map ctrl = (Map) ctrls_map.get(m.getCtrl_id());
-
-                boolean isJuanLian = (Integer) ctrl.get("ctrl_type") == 1 ? true : false;
-
-                int distanceOrduration = 0;
 
                 /**
                  * 1）温度：一种温度低了，比如当温度15（可设）度时，全关上；
@@ -218,25 +221,23 @@ public class TaskService {
                  土壤水分传感器数值低于设置值n，开启时间n；
                  土壤水分传感器数值低于设置值5，开启时间5。
                  */
-
                 if (c_val >= mo_lower) continue;
-
-
-                distanceOrduration = duration;
-
-                if (order_less == 1) {//开启 duration 秒
+                if (order_less == 1) {
                     System.out.println("当前值过【低】，需要开启：" + duration + "秒");
                     ctrl.put("s_state", 1);
-                } else if (order_less == 2) {//关闭 duration 秒
+                    ctrl.put("direction", 0x1);
+                    ctrl.put("distanceOrDuration", -1);
+
+                } else if (order_less == 2) {
                     System.out.println("当前值过【低】，需要关闭：" + duration + "秒");
-                    // 关闭开关
-                    if (!isJuanLian)
-                        distanceOrduration = 0;
                     ctrl.put("s_state", 2);
+                    ctrl.put("direction", 0x2);
+                    ctrl.put("distanceOrDuration", 0);
                 }
+                ctrl.put("has_next", true);//存在下一步操作
+                ctrl.put("ctr_from", 3);
 
-
-                clientServie.switchIt(ctrl, distanceOrduration, duration, true);
+                clientServie.switchIt(ctrl, duration);
 
             }
             //高于设定温度
@@ -253,45 +254,85 @@ public class TaskService {
                 int duration = m.getDuration();
                 Map ctrl = (Map) ctrls_map.get(m.getCtrl_id());
 
-                boolean isJuanLian = (Integer) ctrl.get("ctrl_type") == 1 ? true : false;
-
-                int distanceOrduration = 0;
-
-                System.out.println("**********" + ctrl.toString());
-
                 if (c_val <= mo_high) continue;
 
-                distanceOrduration = duration;
-
-
-                if (order_more == 1) {//开启 duration 秒
-                    ctrl.put("s_state", 1);
+                if (order_more == 1) {
                     System.out.println("当前值过【高】，需要开启：" + duration + "秒");
 
-                } else if (order_more == 2) {//关闭 duration 秒
-                    if (!isJuanLian)
-                        distanceOrduration = 0;
-                    ctrl.put("s_state", 2);
+                    ctrl.put("s_state", 1);
+                    ctrl.put("direction", 0x1);
+                    ctrl.put("distanceOrDuration", -1);
+
+                } else if (order_more == 2) {
                     System.out.println("当前值过【高】，需要关闭：" + duration + "秒");
+
+                    ctrl.put("s_state", 2);
+                    ctrl.put("direction", 0x2);
+                    ctrl.put("distanceOrDuration", 0);
                 }
-                clientServie.switchIt(ctrl, distanceOrduration, duration, true);
+                ctrl.put("has_next", true);//存在下一步操作
+                ctrl.put("ctr_from", 3);
+                clientServie.switchIt(ctrl, duration);
             }
         }
     }
 
 
-    @Scheduled(fixedRate = 1000 * 60)
+    @Scheduled(fixedRate = 1000 * 3600 * 24)
 
     public void ctrlDevice() throws UnsupportedEncodingException {
+
+        //每天都清零任务
+        for (TimerTask task : tasks) {
+            task.cancel();
+        }
+        tasks.clear();
+
         List<RuleEntity> ruleList = toolUtil.getRuleList(ToolUtil.RULE);
         if (ruleList == null) {
             System.out.println("暂时没有定时任务执行");
         } else {
+
+            //过滤
+            for (int i = 0; i < ruleList.size(); i++) {
+                RuleEntity r = ruleList.get(i);
+                long b = CommonUtils.getDateLong(r.getBeginTime(), null);
+                long e = CommonUtils.getDateLong(r.getEndTime(), null);
+                long now = new Date().getTime();
+                //b < 0，e<0 开始、结束日期未解析出来
+                //e < b 结束日期小于开始日期
+                //e < now 已经结束了
+                //b > now 还未开始
+                if (b < 0 || e < 0 || e < b || e < now || b > now) {
+                    ruleList.remove(i);
+                    i--;
+                }
+
+            }
+
+            //定时执行
+            for (RuleEntity r : ruleList) {
+                String st = r.getExecTime();
+                String et = r.getExecEndTime();
+                if (getDate(st) < 0 || getDate(et) < 0) continue;
+
+                TimerTask ts = getTask(1, r);
+                TimerTask te = getTask(0, r);
+
+                tasks.add(ts);
+                tasks.add(te);
+                pool.schedule(ts, getDate(st), TimeUnit.MILLISECONDS);
+                pool.schedule(te, getDate(et), TimeUnit.MILLISECONDS);
+
+            }
+
+/*
             MotorHBM motorHBM = new MotorHBM();
             Calendar calendar = Calendar.getInstance();
             Date time = calendar.getTime();
             SimpleDateFormat dfDateFormat = new SimpleDateFormat("HH:mm:ss");
             String format = dfDateFormat.format(time);
+
             String substring = format.substring(0, 5);
 
             System.out.println("当前时间:" + substring);
@@ -301,14 +342,53 @@ public class TaskService {
                     motorHBM.setDistanceOrDuration(-1); // 常开
                     call_async(ruleEntity, motorHBM);
                 }
+
                 if (ruleEntity.getEndTime().equals(substring)) {
                     // 调用开关控制方法
                     motorHBM.setDistanceOrDuration(0); // 关
                     call_async(ruleEntity, motorHBM);
                 }
-            }
+            }*/
         }
 
+    }
+
+    /*产生timer任务 TODO 卷帘 升上去没有降下来就停止了*/
+    private TimerTask getTask(int is_open, RuleEntity r) {
+        Map ctrl = ctrlService.findByCtrl_id(r.getCtrl_id());
+
+        if (is_open == 1) {
+            System.out.println(" 预约控制开启:");
+            ctrl.put("s_state", 1);
+            ctrl.put("direction", 0x1);
+            ctrl.put("distanceOrDuration", -1);
+
+        } else if (is_open == 0) {
+            System.out.println(" 预约控制关闭:");
+
+            ctrl.put("s_state", 2);
+            ctrl.put("direction", 0x3);
+            ctrl.put("distanceOrDuration", 0);
+        }
+        ctrl.put("has_next", false);//存在下一步操作
+        ctrl.put("ctr_from", 2);
+
+        return new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("timer is excute start " + CommonUtils.getStrTime(new Date(), null));
+                clientServie.switchIt(ctrl, 1000);
+                System.out.println("timer is excute end !" + CommonUtils.getStrTime(new Date(), null));
+
+            }
+        };
+
+    }
+
+    /*获取当天的时间点日期*/
+    private long getDate(String st) {
+        String time = CommonUtils.getStrTime(new Date(), "yyyy-MM-dd") + " " + st;
+        return CommonUtils.getDate(time, "yyyy-MM-dd HH:mm:ss").getTime() - new Date().getTime();
     }
 
     private void call_async(RuleEntity ruleEntity, MotorHBM motorHBM) {

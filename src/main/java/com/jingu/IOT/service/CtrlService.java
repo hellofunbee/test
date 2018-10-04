@@ -172,4 +172,16 @@ public class CtrlService {
         }
         return settingDao.findByCtrl_ids(s);
     }
+
+    /**
+     * 根据 ctrl id 查找
+     * @param s
+     * @return
+     */
+    public Map<String, Object> findByCtrl_id(int s) {
+        if (s == 0 ) {
+            return null;
+        }
+        return settingDao.findByCtrl_id(s).get(0);
+    }
 }

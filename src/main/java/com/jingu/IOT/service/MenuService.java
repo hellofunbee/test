@@ -75,7 +75,10 @@ public class MenuService {
 
 
     public List<Map<String, Object>> listByIds(String menu_ids) {
-
-        return menuDao.listByIds(menu_ids);
+        List<Map<String, Object>> listMenus = menuDao.listByIds(menu_ids);
+        if (listMenus != null && listMenus.size() > 0) {
+            return effact(listMenus);
+        }
+        return null;
     }
 }

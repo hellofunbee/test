@@ -385,7 +385,19 @@
 
                 el.find('.edit').on('click', function () {
                     var data = $(this).parents('tr').data('data');
-                    var param= encodeURIComponent(JSON.stringify(data)	                                    );
+                    console.log(data)
+                    var rq = {};
+                    rq.r_id = data.r_id;
+                    rq.menu_ids = [];
+
+                    if (data.menu_ids && data.menu_ids.length > 0) {
+                        $(data.menu_ids).each(function (i, e) {
+                            rq.menu_ids.push({id:e.id});
+                        });
+                    }
+                    console.log(rq)
+
+                    var param = encodeURIComponent(JSON.stringify(rq));
 
 
                     layer.open({
@@ -397,7 +409,7 @@
                         content: 'role-menu-edit.html?data=' + param,
                         success: function (layero, index) {
 
-                        },end:function () {
+                        }, end: function () {
                             loadRole();
                         }
                     });

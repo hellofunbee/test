@@ -13,7 +13,7 @@
 
 <body style="overflow:hidden">
 <div class="mx-header">
-    <div class="mx-contaniner clearfix"><a href="/" class="mx-logo">物联网综合信息云平台</a>
+    <div class="mx-contaniner clearfix"><a href="/" class="mx-logo">物联网测控云平台</a>
         <div class="mx-topNocie">
             <marquee width=400 onmousemove="this.stop()" onmouseout="this.start()" scrollamount=5 align=middle>
                 <div class="mx-topNocieCnt marquee">
@@ -32,7 +32,7 @@
 <div class="header-line"></div>
 <div class="mx-navCnt">
     <ul class="mx-nav">
-        <li class="">
+        <!--<li class="">
             <a href="javascript:;">
                 <i class="ico1"></i>首页</a>
         </li>
@@ -90,7 +90,7 @@
                 <dd><a href="javascript:;">专家管理</a></dd>
             </dl>
         </li>
-        <li><a href="javascript:;"><i class="ico9"></i>注销</a></li>
+        <li><a href="javascript:;"><i class="ico9"></i>注销</a></li>-->
     </ul>
 </div>
 <div id="main_iframe"></div>
@@ -145,7 +145,7 @@
     }
     connect();
 
-    API.listMessage(2, null, null, function (t) {
+    /*API.listMessage(2, null, null, function (t) {
         var e = t.object,
                 i = 3 < e.length ? e.slice(0, 3) : e,
                 n = $(".mx-topNocieCnt").empty();
@@ -154,7 +154,7 @@
                 return showMessageDetail($(this).attr("m_id")), !1
             })
         })
-    })
+    })*/
     /*, $(".mx-topNocie").slide({
      mainCell: ".mx-topNocieCnt ",
      titCell: ".mx-topNocieCnt span",

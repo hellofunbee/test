@@ -38,8 +38,15 @@ public class RoleDao {
 
 
     public List<Map<String, Object>> listRole(RoleEntity re) {
-        String sql = "select * from role ";
-        return jdbcTemplate.queryForList(sql);
+        List<Object> p = new ArrayList<>();
+        String sql = "select * from role WHERE 1 = 1 ";
+        if (re.getR_value() > 0) {
+            sql += " and r_value = ? ";
+            p.add(re.getR_value());
+        }
+
+
+        return jdbcTemplate.queryForList(sql,p.toArray());
     }
 
     public int updateRole(RoleEntity role) {
@@ -65,7 +72,7 @@ public class RoleDao {
         sql += " where r_id = ? ";
         o.add(role.getId());
 
-       return jdbcTemplate.update(sql, o.toArray());
+        return jdbcTemplate.update(sql, o.toArray());
     }
 
 }

@@ -15,6 +15,7 @@ package com.jingu.IOT.web;
 import com.jingu.IOT.entity.RoleEntity;
 import com.jingu.IOT.response.IOTResult;
 import com.jingu.IOT.service.RoleService;
+import com.jingu.IOT.util.CommonUtils;
 import com.jingu.IOT.util.PageData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,11 @@ public class RoleController {
     @RequestMapping(value = "/listRole", method = RequestMethod.POST)
     public IOTResult listRole(@RequestBody PageData pd) {
 
-        return roleService.listRole(new RoleEntity());
+        RoleEntity r = new RoleEntity();
+        if (CommonUtils.has(pd.get("r_value")))
+            r.setR_value(Integer.parseInt(pd.get("r_value").toString()));
+
+        return roleService.listRole(r);
     }
 
     @CrossOrigin

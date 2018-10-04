@@ -15,21 +15,20 @@ $(function () {
 
     otherCtrlBox.find(".fitbit-handle>span").on('click', function () {
         var data = item;
+        var obj = $(this);
         var index = $(this).index();
-        if (index == 2) {//预约控制
+        if (index == 1) {//预约控制
             if (!data.rules || data.rules.length == 0) {
                 layer.msg('请先配置预约控制规则');
                 return !1;
             }
         }
-        if (index == 1) {//智能控制
+        if (index == 2) {//智能控制
             if (!data.mos || data.mos.length == 0) {
                 layer.msg('请先配置智能控制规则');
                 return !1;
-
             }
         }
-
         if (index == 0) {
             if (data.ctrl_type == 1) {
                 ctrl_auto.find(".btn-offon").hide();
@@ -38,27 +37,36 @@ $(function () {
                 ctrl_auto.find(".btn-offon").show();
                 ctrl_auto.find("table").hide()
             }
-
-
         }
 
-        $(this).addClass("on").siblings().removeClass("on");
-        otherCtrlBox.find(".fitbit-handle-result>div").hide().eq($(this).index()).show()
 
         var c_data_type = index + 1;
 
         if (data.state_type != c_data_type) {
+
             var ctrl = {};
             ctrl.ctrl_id = data.ctrl_id;
             ctrl.state_type = c_data_type;
             ctrl.pointEntity = {deviceId: lastSelectNode.oriData.deviceId};
             ctrl.ctrl_deviceId = lastSelectNode.oriData.deviceId;
 
-            console.log(data)
-            API.service('/updateControlSetting', ctrl, function (e) {
-                data.state_type = c_data_type;
-                layer.msg(e.msg)
+            layer.confirm('确认修改控制方式?', function (index) {
+                layer.close(index);
+                console.log(data)
+                API.service('/updateControlSetting', ctrl, function (e) {
+                    data.state_type = c_data_type;
+                    layer.msg(e.msg)
+                    obj.addClass("on").siblings().removeClass("on");
+                    otherCtrlBox.find(".fitbit-handle-result>div").hide().eq(obj.index()).show()
+
+                });
             });
+
+
+        } else {
+            obj.addClass("on").siblings().removeClass("on");
+            otherCtrlBox.find(".fitbit-handle-result>div").hide().eq(obj.index()).show()
+
         }
 
     });
@@ -199,15 +207,24 @@ $(function () {
             ctrlBox.hide();
 
 
+            //开启度
+            if (data.open_lev && data.open_lev > 0) {
+                $('#open_lev').attr('placeholder', '当前' + data.open_lev);
+            } else {
+                $('#open_lev').attr('placeholder', '');
+            }
+
+            console.log(data.state_type)
             if (data.state_type == 0 || data.state_type == 1) {
                 otherCtrlBox.show().find(".fitbit-handle>span:eq(0)").click()
-            } else if (data.state_type == 2) {
+            } else if (data.state_type == 3) {
                 if (data.mos && data.mos.length > 0)
                     otherCtrlBox.show().find(".fitbit-handle>span:eq(" + (data.state_type - 1) + ")").click()
                 else
                     otherCtrlBox.show().find(".fitbit-handle>span:eq(0)").click()
 
-            } else if (data.state_type == 3) {
+            } else if (data.state_type == 2) {
+                console.log('------------2', data.rules, (data.state_type - 1))
                 if (data.rules && data.rules.length > 0)
                     otherCtrlBox.show().find(".fitbit-handle>span:eq(" + (data.state_type - 1) + ")").click()
                 else
@@ -361,7 +378,6 @@ $(function () {
             })
         }
     };
-    UI.renderPointTree("#product_device_tree", onNodeSelect);
     treeEl.on("z-tree-load", function () {
 
         if (tp_id_from_url > 0) {
@@ -383,6 +399,8 @@ $(function () {
         }
         // UI.findFirstDeviceOnTree($(this).data("z-tree"), 3, onNodeSelect)
     });
+    UI.renderPointTree("#product_device_tree", onNodeSelect);
+
     page.find(".sblb >h3").click(function () {
         $(this).next().toggle()
     });

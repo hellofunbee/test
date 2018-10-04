@@ -29,6 +29,28 @@ public class CommonUtils {
         return null;
     }
 
+    public static long getDateLong(String date_srt, String patt) {
+        if (patt == null)
+            patt = "yyyy-MM-dd HH:mm:ss";
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(patt);
+        //必须捕获异常
+        try {
+            return simpleDateFormat.parse(date_srt).getTime();
+        } catch (ParseException px) {
+            px.printStackTrace();
+        }
+        return 0;
+    }
+
+    public static String getStrTime(Date date, String patt) {
+        if (patt == null)
+            patt = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(patt);
+
+        return sdf.format(date);
+    }
+
     public static String forFormatDate() {
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -240,6 +262,7 @@ public class CommonUtils {
 
     /**
      * 查找map 与list<Map>是否存在key为field的元相同素
+     *
      * @param m
      * @param list
      * @param field
@@ -258,5 +281,6 @@ public class CommonUtils {
         return false;
 
     }
+
 
 }

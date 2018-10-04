@@ -31,7 +31,7 @@
         if (!t)return layer.msg("请填写用户名"), void e.focus();
         var o = $("#pass"), s = o.val();
         return s ? (API.login(t, s, function (e) {
-            e.success ? (sessionStorage.setItem("ckuid", e.object.ckuid), sessionStorage.setItem("cksid", e.object.cksid), sessionStorage.setItem("utype", e.object.u_type), window.location.href = "./index.html") : layer.alert(e.msg)
+            e.success ? (sessionStorage.setItem("ckuid", e.object.ckuid), sessionStorage.setItem("cksid", e.object.cksid), sessionStorage.setItem("tu_type", e.object.tu_type), sessionStorage.setItem("utype", e.object.u_type), window.location.href = "./index.html") : layer.alert(e.msg)
         }, function (e) {
             layer.alert("用户名或密码错误!")
         }), !1) : (layer.msg("请填写密码"), void o.focus())

@@ -90,6 +90,19 @@ public class RedisService {
         toolUtil.setMonitorList(ToolUtil.MONITOR, mos);
     }
 
+    public void addRuleByCtrlId(RuleEntity rule) throws UnsupportedEncodingException {
+
+        rule.setRuleEnable("1");
+
+        List<RuleEntity> listMonitor = ruleService.resetRule(rule);
+        List<RuleEntity> rules = toolUtil.getRuleList(ToolUtil.RULE);
+
+        if (rules == null) rules = new ArrayList<>();
+        rules.addAll(listMonitor);
+
+        toolUtil.setRuleList(ToolUtil.RULE, rules);
+    }
+
 
     /**
      * @param re 删除一个
@@ -208,16 +221,34 @@ public class RedisService {
             return;
         }
         //monitor
-        if (cr.getState_type() == 2) {
-            //添加智能控制
-            MonitorEntity m = new MonitorEntity();
-            m.setCtrl_id(cr.getCtrl_id());
-            addMonitorByCtrlId(m);
-
+        if (cr.getState_type() == 3) {
             //删除预约控制
             RuleEntity r = new RuleEntity();
             r.setCtrl_id(cr.getCtrl_id());
             deleteRuleListByCtrl_id(r);
+            //添加智能控制
+            MonitorEntity m = new MonitorEntity();
+            m.setCtrl_id(cr.getCtrl_id());
+            deleteMonitorList(m);
+            addMonitorByCtrlId(m);
+
+
+        }
+
+        if (cr.getState_type() == 2) {
+            //删除智能控制
+            MonitorEntity m = new MonitorEntity();
+            m.setCtrl_id(cr.getCtrl_id());
+            deleteMonitorList(m);
+
+            //添加预约控制
+
+            RuleEntity r = new RuleEntity();
+            r.setCtrl_id(cr.getCtrl_id());
+
+
+            deleteRuleListByCtrl_id(r);
+            addRuleByCtrlId(r);
         }
 
     }

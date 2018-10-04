@@ -160,7 +160,7 @@ public class RuleDao {
      */
     public List<RuleEntity> resetRule(RuleEntity re) {
         String sql = " select * from  t_varstriver_switchctrl_rule rule" +
-                " INNER JOIN control ctrl on ctrl.ctrl_id = rule.ctrl_id and ctrl.state_type = 3 " +
+                " INNER JOIN control ctrl on ctrl.ctrl_id = rule.ctrl_id and ctrl.state_type = 2 " +
                 " where 1=1 ";
         List<Object> list = new ArrayList<>();
         sql = getSql(re, sql, list);
@@ -363,7 +363,7 @@ public class RuleDao {
      */
     public List<MonitorEntity> resetMonitor(MonitorEntity mo) {
         String sql = " select * from  t_monitor mo " +
-                " INNER JOIN control ctrl on ctrl.ctrl_id = mo.ctrl_id and ctrl.state_type = 2 " +
+                " INNER JOIN control ctrl on ctrl.ctrl_id = mo.ctrl_id and ctrl.state_type = 3 " +
                 " where 1=1 ";
         List<Object> list = new ArrayList<>();
         sql = getString(mo, sql, list);

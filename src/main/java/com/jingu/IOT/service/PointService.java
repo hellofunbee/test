@@ -54,7 +54,6 @@ public class PointService {
 		return point.get(0);
 	}
 	public Map<String, Object> findById(int tp_id){
-
 		return pointDao.findById(tp_id);
 	}
 
@@ -97,8 +96,7 @@ public class PointService {
 			}else{
 				map.put("rank", listPoint2);
 			}
-//			if(listPoint2)
-//			System.out.println(map);
+
 		}
 		return listPoint;
 	}
@@ -109,8 +107,8 @@ public class PointService {
 		return pointDao.updatePoint(pointEntity);
 	}
 	public List<Map<String, Object>> listPoint2(PointEntity  pointEntity){
-		List<Map<String,Object>> listPoint = pointDao.listPoint(pointEntity);
-		return listPoint;
+		return pointDao.listPoint(pointEntity);
+
 	}
 	// 设置主设备时 索要的站点分组信息
 	public Map<String, Object> listPoint3(PointEntity  pointEntity){

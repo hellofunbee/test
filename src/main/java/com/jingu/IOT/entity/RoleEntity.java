@@ -27,7 +27,7 @@ public class RoleEntity {
 
     private int id;
     private String r_name;
-    private String r_value;
+    private int r_value;
     private String r_cname;
 
     List<MenuEntity> menus;
@@ -52,14 +52,11 @@ public class RoleEntity {
         this.r_name = r_name;
     }
 
-    public String getR_value() {
+    public int getR_value() {
         return r_value;
     }
 
-    public void setR_value(String r_value) {
-        if (null == r_value || r_value.trim().length() == 0) {
-            this.r_value = "";
-        }
+    public void setR_value(int r_value) {
         this.r_value = r_value;
     }
 

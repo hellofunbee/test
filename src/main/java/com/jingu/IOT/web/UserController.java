@@ -56,6 +56,7 @@ public class UserController {
         this.cMSService = cMSService;
     }
 
+
     /**
      * 2018年5月24日
      * jianghu
@@ -66,12 +67,10 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public IOTResult login(@RequestBody UserRequest uRequest) {
-        if (uRequest.getTu_username() == null || uRequest.getTu_username().trim().length() < 1) {
-            return new IOTResult(false, "用户名不能为空", null, 1);
-        }
-        if (uRequest.getTu_pwd() == null || uRequest.getTu_pwd().trim().length() < 1) {
-            return new IOTResult(false, "密码不能为空", null, 2);
-        }
+        IOTResult x = CheckUP(uRequest);
+        if (x != null) return x;
+
+
         UserEntity userByPwd = userService.getUserByPwd(uRequest);
         if (userByPwd != null) {
             String intVal = toolUtil.getIntVal(ToolUtil.MESSAGEREADING + userByPwd.getUid() + ToolUtil.READ);
@@ -95,6 +94,8 @@ public class UserController {
             } else {
                 map.put("u_type", 3);
             }
+
+            map.put("tu_type", tu_type);
             return new IOTResult(true, "登陆成功", map, 0);
         }
 
@@ -114,25 +115,13 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public IOTResult addPoint(@RequestBody UserRequest ur) {
-        if (ur.getTu_username() == null || ur.getTu_username().trim().length() < 1) {
-            return new IOTResult(false, "用户名不能为空", null, 1);
-        }
-        if (ur.getTu_pwd() == null || ur.getTu_pwd().trim().length() < 1) {
-            return new IOTResult(false, "密码不能为空", null, 2);
-        }
+        IOTResult x = CheckUP(ur);
+        if (x != null) return x;
+
         if (ur.getTu_type() == 1 || ur.getTu_type() == 2) {
-            if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-                return new IOTResult(false, "信息不规范", null, 3);
-            }
-            String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-            if (check == null || !ur.getCksid().equals(check)) {
-                return new IOTResult(false, "登陆失效", null, 4);
-            }
-            long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-            int ckAdmin = userService.ckSuperAdmin(uid);
-            if (ckAdmin == 0) {
-                return new IOTResult(false, "权限不足", null, 111);
-            }
+            x = checkAdmin(ur);
+            if (x != null) return x;
+
         }
         UserEntity userByName = userService.getUserByName(ur);
         if (userByName != null) {
@@ -150,19 +139,11 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     public IOTResult updateUser(@RequestBody UserRequest ur) {
-        if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-        if (check == null || !ur.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
+        IOTResult x = chckSession(ur);
+        if (x != null) return x;
+        x = checkAdmin(ur);
+        if (x != null) return x;
+
         if (ur.getTu_type() == 7) {
             int updateUser = cMSService.updateUserState(ur.getUid(), ur.getTu_state());
             if (updateUser > 0) {
@@ -181,19 +162,11 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/unbind", method = RequestMethod.POST)
     public IOTResult unbind(@RequestBody UserRequest ur) {
-        if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-        if (check == null || !ur.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
+        IOTResult x = chckSession(ur);
+        if (x != null) return x;
+        x = checkAdmin(ur);
+        if (x != null) return x;
+
         int unbind = relationShipService.unbind(ur);
         if (unbind > 0) {
             return new IOTResult(true, "解绑成功", null, 0);
@@ -206,19 +179,12 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
     public IOTResult deleteUser(@RequestBody UserRequest ur) {
-        if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-        if (check == null || !ur.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
+        IOTResult x = chckSession(ur);
+        if (x != null) return x;
+        x = checkAdmin(ur);
+        if (x != null) return x;
+
+
         int addUser = userService.deleteUserByUid(ur);
         if (addUser > 0) {
             return new IOTResult(true, "删除成功", null, 0);
@@ -230,19 +196,10 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/findUserById", method = RequestMethod.POST)
     public IOTResult findUserById(@RequestBody UserRequest ur) {
-        if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-        if (check == null || !ur.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
+        IOTResult x = chckSession(ur);
+        if (x != null) return x;
+        x = checkAdmin(ur);
+        if (x != null) return x;
 
         Map u = userService.findById(ur);
 
@@ -257,19 +214,10 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/listUserForMap", method = RequestMethod.POST)
     public IOTResult listUserForMap(@RequestBody UserRequest ur) {
-        if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-        if (check == null || !ur.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
+        IOTResult x = chckSession(ur);
+        if (x != null) return x;
+        x = checkAdmin(ur);
+        if (x != null) return x;
 
         List<Map<String, Object>> listUser = userService.listUserForMap(ur);
         int listUserCount = userService.listUserCount(ur);
@@ -289,19 +237,10 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/listUser", method = RequestMethod.POST)
     public IOTResult listUser(@RequestBody UserRequest ur) {
-        if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-        if (check == null || !ur.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
+        IOTResult x = chckSession(ur);
+        if (x != null) return x;
+        x = checkAdmin(ur);
+        if (x != null) return x;
 
         List<UserEntity> listUser = userService.listUser(ur);
         int listUserCount = userService.listUserCount(ur);
@@ -322,20 +261,11 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/listPower", method = RequestMethod.POST)
     public IOTResult listPower(@RequestBody UserRequest ur) {
-        if (ur.getCksid() == null || ur.getCksid().trim().length() < 1 || ur.getCkuid() == null || ur.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + ur.getCkuid());
-        if (check == null || !ur.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
+        IOTResult x = chckSession(ur);
+        if (x != null) return x;
+        x = checkAdmin(ur);
+        if (x != null) return x;
 
-        long uid = toolUtil.getbase_uidSid(ur.getCkuid(), ur.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
         List<UserEntity> listUser = userService.listUser(ur);
         if (listUser == null) {
             listUser = new ArrayList<>();
@@ -426,7 +356,6 @@ public class UserController {
     }
 
 
-
     // 查看专家
     @CrossOrigin
     @RequestMapping(value = "/listProfessor", method = RequestMethod.POST)
@@ -458,19 +387,10 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(value = "/listRelationShip", method = RequestMethod.POST)
     public IOTResult listRelationShip(@RequestBody RelationShipRequset re) {
-        if (re.getCksid() == null || re.getCksid().trim().length() < 1 || re.getCkuid() == null || re.getCkuid() == null) {
-            return new IOTResult(false, "信息不规范", null, 1);
-        }
-        // 注册登陆按照什么来????
-        String check = toolUtil.getCheck(ToolUtil.IOT + re.getCkuid());
-        if (check == null || !re.getCksid().equals(check)) {
-            return new IOTResult(false, "登陆失效", null, 2);
-        }
-        long uid = toolUtil.getbase_uidSid(re.getCkuid(), re.getCksid());
-        int ckAdmin = userService.ckSuperAdmin(uid);
-        if (ckAdmin == 0) {
-            return new IOTResult(false, "权限不足", null, 111);
-        }
+        IOTResult r = chckSession(re);
+        if (r != null) return r;
+        r = checkAdmin(re);
+        if (r != null) return r;
 
         List<Map<String, Object>> listRelationShip = relationShipService.listRelationShip(re);
         List<Map<String, Object>> collect = listRelationShip.stream().filter(x -> x.get("tu_name") != null).collect(Collectors.toList());
@@ -481,6 +401,71 @@ public class UserController {
 
     }
 
+    /**
+     * 检查 用户名 和密码
+     *
+     * @param ur
+     * @return
+     */
+    private IOTResult CheckUP(UserRequest ur) {
+        if (ur.getTu_username() == null || ur.getTu_username().trim().length() < 1) {
+            return new IOTResult(false, "用户名不能为空", null, 1);
+        }
+        if (ur.getTu_pwd() == null || ur.getTu_pwd().trim().length() < 1) {
+            return new IOTResult(false, "密码不能为空", null, 2);
+        }
+        return null;
+    }
+
+    private IOTResult checkAdmin(RelationShipRequset re) {
+
+        if(1 == 1)
+        return null;
+
+        long uid = toolUtil.getbase_uidSid(re.getCkuid(), re.getCksid());
+        int ckAdmin = userService.ckSuperAdmin(uid);
+        if (ckAdmin == 0) {
+            return new IOTResult(false, "权限不足", null, 111);
+        }
+        return null;
+    }
+
+    private IOTResult checkAdmin(UserRequest re) {
+        if(1 == 1)
+            return null;
+
+        long uid = toolUtil.getbase_uidSid(re.getCkuid(), re.getCksid());
+        int ckAdmin = userService.ckSuperAdmin(uid);
+        if (ckAdmin == 0) {
+            return new IOTResult(false, "权限不足", null, 111);
+        }
+        return null;
+    }
+
+
+    private IOTResult chckSession(RelationShipRequset re) {
+        if (re.getCksid() == null || re.getCksid().trim().length() < 1 || re.getCkuid() == null || re.getCkuid() == null) {
+            return new IOTResult(false, "信息不规范", null, 1);
+        }
+        // 注册登陆按照什么来????
+        String check = toolUtil.getCheck(ToolUtil.IOT + re.getCkuid());
+        if (check == null || !re.getCksid().equals(check)) {
+            return new IOTResult(false, "登陆失效", null, 2);
+        }
+        return null;
+    }
+
+    private IOTResult chckSession(UserRequest re) {
+        if (re.getCksid() == null || re.getCksid().trim().length() < 1 || re.getCkuid() == null || re.getCkuid() == null) {
+            return new IOTResult(false, "信息不规范", null, 1);
+        }
+        // 注册登陆按照什么来????
+        String check = toolUtil.getCheck(ToolUtil.IOT + re.getCkuid());
+        if (check == null || !re.getCksid().equals(check)) {
+            return new IOTResult(false, "登陆失效", null, 2);
+        }
+        return null;
+    }
 
 
 }

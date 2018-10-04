@@ -105,10 +105,12 @@ public class MenuDao {
             p.add(pd.get("href"));
         }
 
-        if (CommonUtils.has(pd.get("tu_id"))) {
-            sql += " and e.tu_id = ? ";
-            p.add(pd.get("tu_id"));
+        if (CommonUtils.has(pd.get("sort"))) {
+            sql += " and e.sort = ? ";
+            p.add(pd.get("sort"));
         }
+
+        sql += " ORDER BY sort ";
 
 
         return jdbcTemplate.queryForList(sql, p.toArray());

@@ -45,6 +45,7 @@ public class ControlEntity {
 	private int s_state;
 	private int montor_state;
 	private int is_running;//是否正在控制中
+	private int open_lev = -2;//开启度 -2 默认 -1：无状态 0-100开启度
 
 	
 	
@@ -249,5 +250,13 @@ public class ControlEntity {
 
 	public void setIs_running(int is_running) {
 		this.is_running = is_running;
+	}
+
+	public int getOpen_lev() {
+		return open_lev;
+	}
+
+	public void setOpen_lev(int open_lev) {
+		this.open_lev = open_lev;
 	}
 }

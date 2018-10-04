@@ -2853,6 +2853,28 @@ a.mx-logo {
   justify-content: center;
   overflow: hidden;
 }
+.round_icon_150{
+  width: 150px;
+  height: 150px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.round_icon_200{
+  width: 200px;
+  height: 200px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+
 
 
 /*# sourceMappingURL=style.css.map */

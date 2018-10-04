@@ -26,33 +26,36 @@ public class ClientServie {
     PointService pointService;
     @Autowired
     ToolUtil toolUtil;
+    @Autowired
+    CtrlLogService ctrlLogService;
 
+
+    //s_state  1 开启： 0 关闭  >1-100 开启度 [只有在自动控制中的卷帘才有值]
     //用到两个状态：s_state、is_running
     //s_state 是开关的固有状态 是开还是关
     //is_running 表示 现在程序正在对这个开关做出控制 ，当程序控制完成 is_running 状态改变
 
-    ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+    private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 
-    /**
-     * 控制开关 ctrl_type:1 -->卷帘 设置开启     distanceOrduration 秒
-     * 控制开关 ctrl_type:1 -->电磁阀 设开关 distanceOrduration -1，0,或者 开启后 distanceOrduration 秒关闭
-     *
+    /***
      * @param ctrl
-     * @param distanceOrduration
      * @return
+     *
+
      */
 
-    public IOTResult switchIt(Map ctrl, int distanceOrduration, int sencond, boolean hasNext) {
+    public IOTResult switchIt(Map ctrl, int sencond) {
+        System.out.println(ctrl.toString());
         MotorHBM hbm = new MotorHBM();
-        int openLevel = distanceOrduration;
+        boolean has_next = (Boolean) ctrl.get("has_next");
+        int ctrl_type = (Integer) ctrl.get("ctrl_type");
+        int direction = (int) ctrl.get("direction");
+        int distanceOrDuration = (int) ctrl.get("distanceOrDuration");
 
 
         //直流
-        if ((Integer) ctrl.get("ctrl_type") == 1) {
-            //计算开启度
-            if (distanceOrduration > 0) {
-                openLevel = distanceOrduration * 100 / ToolUtil.TotalS;
-            }
+        if (ctrl_type == 1) {
+            hbm.setDirection(direction);//0x1：上升，0x2：下降，0x3:停止。
             hbm.setSkinGroupId((ctrl.get("ctrl_down_groupId").toString()));
             hbm.setSkinSwitchId((ctrl.get("ctrl_down_switchId").toString()));
             hbm.setPosSensorCH(Integer.parseInt(ctrl.get("ctrl_channel").toString()));//电机位置传感器通道号 1 ~ 16。
@@ -62,8 +65,7 @@ public class ClientServie {
         hbm.setCtrlType(Integer.parseInt(ctrl.get("ctrl_type").toString()));
         hbm.setRaiseGroupId((ctrl.get("ctrl_raise_groupId").toString()));
         hbm.setRaiseSwitchId((ctrl.get("ctrl_raise_switchId").toString()));
-
-        hbm.setDistanceOrDuration(openLevel);//控制行程，0 ~ 100：表示整个行程的1% ~ 100%。 0关  -1 常开
+        hbm.setDistanceOrDuration(distanceOrDuration);// 0关  -1 常开
 
 
         PointEntity point = new PointEntity();
@@ -74,71 +76,75 @@ public class ClientServie {
 
         boolean result = Client.motorsCtrl2(devicePoint.getIp(), devicePoint.getPort(), devicePoint.getDeviceId(), hbm.toByteCmd(), (byte) 0x17);
 
+
         if (result) {
+
+            //-----------save log-------------
+            int ctrl_act = ctrl_type == 1 ? direction : distanceOrDuration;
+            int ctr_from = (int) ctrl.get("ctr_from");
+            saveCtrl_log((Integer) ctrl.get("ctrl_id"), ctrl_type, ctrl_act, ctr_from);
+            //-----------save log  end -------------
+
             // 改变开关状态
             ControlEntity ctrl_bean = new ControlEntity();
             ctrl_bean.setCtrl_id((Integer) ctrl.get("ctrl_id"));
+            if (ctrl_type == 1) {
+                //只要不是关闭状态 就设置成正在执行
+                if (direction == 0x3) {
+                    ctrl_bean.setS_state(2);
+                } else {
+                    ctrl_bean.setS_state(1);
+                }
 
-
-            //只要不是关闭状态 就设置成正在执行
-            if (distanceOrduration != 0) {
-                ctrl_bean.setIs_running(1);
-                ctrl_bean.setS_state(1);
-            } else {
-                ctrl_bean.setS_state(2);
+                ctrl_bean.setOpen_lev(-1);
             }
 
+            if (ctrl_type == 2) {
+                //只要不是关闭状态 就设置成正在执行
+                if (distanceOrDuration == 0) {
+                    ctrl_bean.setS_state(2);
+                } else {
+                    ctrl_bean.setS_state(1);
+                }
 
+                ctrl_bean.setOpen_lev(-1);
+            }
+            if (has_next) {
+                ctrl_bean.setIs_running(1);
+            } else {
+                ctrl_bean.setIs_running(2);
+            }
             int status = settingService.updateControlSetting(ctrl_bean);
-            //开启 x 秒后 或者 关闭 X秒后执行此操作
-            if (hasNext)
+
+
+            if (has_next) {
+                ctrl.put("has_next", false);
+                if (ctrl_type == 1) {
+                    ctrl.put("direction", 0x3);
+                }
+                if (ctrl_type == 2) {
+                    if (distanceOrDuration == -1) {
+                        ctrl.put("distanceOrDuration", 1);
+                    } else {
+                        ctrl.put("distanceOrDuration", -1);
+                    }
+
+                }
                 exe(new Runnable() {
                     @Override
                     public void run() {
-                        ctrl_bean.setIs_running(2);
-                        ctrl_bean.setS_state(2);//关闭
-
-                        if (hbm.getCtrlType() == 1) {
-                            int status = settingService.updateControlSetting(ctrl_bean);
-
-                        } else {
-                            //开完就关 关完就开
-                            //如果是设置了 --定时关闭 在这里只做状态更新
-                            if (hbm.getDistanceOrDuration() > 0) {
-                                settingService.updateControlSetting(ctrl_bean);
-                                return;
-                            }
-
-                            //常开到时间后 关闭
-                            if (hbm.getDistanceOrDuration() == -1) {
-                                hbm.setDistanceOrDuration(0);
-
-                                //关闭到时间后 开启
-                            } else if (hbm.getDistanceOrDuration() == 0) {
-                                ctrl_bean.setS_state(1);//常开
-                                hbm.setDistanceOrDuration(-1);
-                            }
-
-                            boolean result = Client.motorsCtrl2(devicePoint.getIp(), devicePoint.getPort(), devicePoint.getDeviceId(), hbm.toByteCmd(), (byte) 0x17);
-                            if (result) {
-                                int status = settingService.updateControlSetting(ctrl_bean);
-                            } else {
-                                throw new RuntimeException("1");
-                            }
-                        }
-
+                        switchIt(ctrl, sencond);
                         System.out.println("执行完成..");
-
                     }
                 }, sencond);
-
-            System.out.println("执行开始..");
+            }
 
             return new IOTResult(true, "执行成功", hbm, 1);
         } else {
             return new IOTResult(false, "socket 异常", null, 0);
         }
     }
+
 
     private IOTResult exe(Runnable runnable, int second) {
         // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
@@ -153,7 +159,7 @@ public class ClientServie {
 
 
     /**
-     * 自动控制 ---直流电机（）
+     * 自动控制 ---卷帘
      *
      * @param ctrl
      * @return
@@ -185,7 +191,7 @@ public class ClientServie {
                 break;
             case 3:
                 direction = 0x2;
-                duation = ((int) ctrl.get("distanceOrduration") * ToolUtil.TotalS) / 100;
+                duation = (distanceOrduration * ToolUtil.TotalS) / 100;
                 break;
             case 4:
                 direction = 0x3;
@@ -201,7 +207,7 @@ public class ClientServie {
         hbm.setCtrlType(Integer.parseInt(ctrl.get("ctrl_type").toString()));
         hbm.setRaiseGroupId((ctrl.get("ctrl_raise_groupId").toString()));
         hbm.setRaiseSwitchId((ctrl.get("ctrl_raise_switchId").toString()));
-        hbm.setDistanceOrDuration(duation);
+        hbm.setDistanceOrDuration(duation);//此参数无效
         hbm.setDirection(direction);
 
         PointEntity point = new PointEntity();
@@ -211,6 +217,10 @@ public class ClientServie {
         boolean result = Client.motorsCtrl2(devicePoint.getIp(), devicePoint.getPort(), devicePoint.getDeviceId(), hbm.toByteCmd(), (byte) 0x17);
 
         if (result) {
+            //-----------save log-------------
+            saveCtrl_log((Integer) ctrl.get("ctrl"), 1, direction, 1);
+            //-----------save log  end -------------
+
             ControlEntity ctrl_bean = new ControlEntity();
             ctrl_bean.setCtrl_id((Integer) ctrl.get("ctrl_id"));
 
@@ -221,11 +231,14 @@ public class ClientServie {
             } else {
                 ctrl_bean.setS_state(2);
             }
+
+            ctrl_bean.setOpen_lev(-1);
+
             int status = settingService.updateControlSetting(ctrl_bean);
             if (auto_type == 3) {
                 //如果是开启度 则要在彻底关闭后再开启
                 hbm.setDirection(0x1);
-                boxRun(hbm, devicePoint, ctrl_bean, ToolUtil.TotalS);
+                boxRun(hbm, devicePoint, ctrl_bean, ToolUtil.TotalS, distanceOrduration);
             }
             return new IOTResult(true, "执行成功", hbm, 1);
         } else {
@@ -233,6 +246,12 @@ public class ClientServie {
         }
     }
 
+    /**
+     * 自动控制--开关
+     *
+     * @param ctrl
+     * @return
+     */
     public IOTResult autoCtrl_off_on(PageData ctrl) {
         //auto_type;//1：开启 2：关闭
         int auto_type = (int) ctrl.get("auto_type");
@@ -269,6 +288,10 @@ public class ClientServie {
 
         boolean result = Client.motorsCtrl2(devicePoint.getIp(), devicePoint.getPort(), devicePoint.getDeviceId(), hbm.toByteCmd(), (byte) 0x17);
 
+        //-----------save log-------------
+        saveCtrl_log((Integer) ctrl.get("ctrl_id"), 2, distanceOrDuration, 1);
+        //-----------save log  end -------------
+
         if (result) {
             ControlEntity ctrl_bean = new ControlEntity();
             ctrl_bean.setCtrl_id((Integer) ctrl.get("ctrl_id"));
@@ -290,13 +313,14 @@ public class ClientServie {
 
     /**
      * 开启 duation 秒后 关闭
+     * 开启度设置
      *
      * @param hbm
      * @param devicePoint
      * @param ctrl_bean
      * @param duation
      */
-    private void boxRun(final MotorHBM hbm, final PointEntity devicePoint, final ControlEntity ctrl_bean, int duation) {
+    private void boxRun(final MotorHBM hbm, final PointEntity devicePoint, final ControlEntity ctrl_bean, int duation, int distanceOrduration) {
 
         exe(new Runnable() {
             @Override
@@ -304,23 +328,27 @@ public class ClientServie {
                 if (hbm.getDirection() == 0x3) {
                     ctrl_bean.setIs_running(2);
                     ctrl_bean.setS_state(2);
+                    ctrl_bean.setOpen_lev(distanceOrduration);
+
                 } else {
                     ctrl_bean.setIs_running(1);
                     ctrl_bean.setS_state(1);
                 }
                 boolean result = Client.motorsCtrl2(devicePoint.getIp(), devicePoint.getPort(), devicePoint.getDeviceId(), hbm.toByteCmd(), (byte) 0x17);
                 if (result) {
+                    //-----------save log-------------
+                    saveCtrl_log(ctrl_bean.getCtrl_id(), 2, hbm.getDirection(), 1);
+                    //-----------save log  end -------------
                     settingService.updateControlSetting(ctrl_bean);
 
                     if (ctrl_bean.getIs_running() == 1) {
                         hbm.setDirection(0x3);//到时间后关闭
-                        boxRun(hbm, devicePoint, ctrl_bean, hbm.getDistanceOrDuration());
+                        boxRun(hbm, devicePoint, ctrl_bean, hbm.getDistanceOrDuration(), distanceOrduration);
 
                     }
                 } else {
                     //throw new RuntimeException("1");
                 }
-
                 if (ctrl_bean.getIs_running() == 1)
                     System.out.println("正在执行....上拉");
                 if (ctrl_bean.getIs_running() == 2)
@@ -328,6 +356,25 @@ public class ClientServie {
 
             }
         }, duation);
+    }
+
+
+    /**
+     * log 分析 保存
+     *
+     * @param ctrl_id
+     * @param ctrl_type 1、2：卷帘、继电器
+     * @param ctrl_act  -1、0：（继电器的）开：关；1、2、3：（卷帘）上升、下降、关闭
+     * @param ctrl_from 1、2、3：自动、预约、智能
+     */
+    private void saveCtrl_log(int ctrl_id, int ctrl_type, int ctrl_act, int ctrl_from) {
+        PageData pd = new PageData();
+        pd.put("ctrl_id", ctrl_id);
+        pd.put("ctrl_type", ctrl_type);
+        pd.put("ctrl_act", ctrl_act);
+        pd.put("ctrl_from", ctrl_from);
+
+        ctrlLogService.save(pd);
     }
 
 

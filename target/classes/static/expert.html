@@ -23,7 +23,7 @@
     </div>
     <div class="expert-module clearfix">
         <div class="expert-list tpl" style="display: none">
-            <div class="img"><img src="images/people.png" alt=""></div>
+            <div class="img"><img src="images/nopic.png" class="round_icon" onerror="javascript:this.src='images/nopic.png'" alt=""></div>
             <div class="name" field="tu_name">天知道</div>
             <div class="education" field="tu_edu" render="dict" dict="user_edu">博士</div>
             <div class="info">
@@ -67,6 +67,8 @@
                 tpl.removeClass('tpl');
 
                 var el =  UI.appendFieldTo(tpl, e, $('.expert-module'))
+                if(e.tu_logo)
+                el.find('img').attr('src',e.tu_logo);
                 el.find('img').on('click',function () {
                     window.openPageContent('&quot;专家系统&quot;','&quot;'+e.tu_name+'&quot;',{url:'/expert-xq2.html?tu_id='+e.tu_id});
                 });
@@ -89,6 +91,10 @@
                 tpl.css('display', 'block');
                 tpl.removeClass('tpl');
                 var el =  UI.appendFieldTo(tpl, e, $('.expert-module'));
+                if(e.tu_logo)
+                el.find('img').attr('src',e.tu_logo);
+
+
                 el.find('img').on('click',function () {
                     window.openPageContent('&quot;专家系统&quot;','&quot;'+e.tu_name+'&quot;',{url:'/expert-xq2.html?tu_id='+e.tu_id});
 

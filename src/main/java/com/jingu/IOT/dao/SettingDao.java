@@ -221,6 +221,10 @@ public class SettingDao {
             sql += " , is_running =?";
             list.add(ce.getIs_running());
         }
+        if (ce.getOpen_lev() != -2) {
+            sql += " , open_lev =?";
+            list.add(ce.getOpen_lev());
+        }
         if (list.size() == 1) {
             return 0;
         }
@@ -325,6 +329,11 @@ public class SettingDao {
     public List<Map<String, Object>> findByCtrl_ids(String s) {
         String sql = "select * from control where ctrl_id in (" + s + ")  GROUP BY ctrl_id ";
 
+        return jdbcTemplate.queryForList(sql);
+    }
+
+    public List<Map<String, Object>> findByCtrl_id(int s) {
+        String sql = "select * from control where ctrl_id = " + s + "  GROUP BY ctrl_id ";
         return jdbcTemplate.queryForList(sql);
     }
 }
